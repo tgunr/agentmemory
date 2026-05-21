@@ -5,6 +5,7 @@ import type {
   CompressedObservation,
   HybridSearchResult,
   Lesson,
+  SearchResult,
 } from "../types.js";
 import { KV } from "../state/schema.js";
 import { StateKV } from "../state/kv.js";
@@ -27,6 +28,7 @@ export function registerSmartSearchFunction(
       limit?: number;
       project?: string;
       includeLessons?: boolean;
+      format?: string;
     }) => {
 
       if (data.expandIds && data.expandIds.length > 0) {
@@ -75,6 +77,8 @@ export function registerSmartSearchFunction(
         return { mode: "compact", results: [], error: "query is required" };
       }
 
+      const format = typeof data.format === "string" ? data.format.trim().toLowerCase() : "compact";
+
       const limit = Math.max(1, Math.min(data.limit ?? 20, 100));
       // Cap lesson results at a smaller number than observations: lessons
       // are denser (curated insights) so 10 is usually plenty for a recall.
@@ -92,6 +96,33 @@ export function registerSmartSearchFunction(
           : Promise.resolve([]),
       ]);
 
+      void recordAccessBatch(
+        kv,
+        hybridResults.map((r) => r.observation.id),
+      );
+
+      if (format === "full") {
+        // Return full observation content for each result
+        const fullResults: SearchResult[] = hybridResults.map((r) => ({
+          observation: r.observation,
+          score: r.combinedScore,
+          sessionId: r.sessionId,
+        }));
+        logger.info("Smart search full", {
+          query: data.query,
+          results: fullResults.length,
+          lessons: lessons.length,
+        });
+        const response: {
+          mode: "full";
+          results: SearchResult[];
+          lessons?: CompactLessonResult[];
+        } = { mode: "full", results: fullResults };
+        if (includeLessons) response.lessons = lessons;
+        return response;
+      }
+
+      // Default: compact mode
       const compact: CompactSearchResult[] = hybridResults.map((r) => ({
         obsId: r.observation.id,
         sessionId: r.sessionId,
@@ -100,11 +131,6 @@ export function registerSmartSearchFunction(
         score: r.combinedScore,
         timestamp: r.observation.timestamp,
       }));
-
-      void recordAccessBatch(
-        kv,
-        compact.map((r) => r.obsId),
-      );
 
       logger.info("Smart search compact", {
         query: data.query,
