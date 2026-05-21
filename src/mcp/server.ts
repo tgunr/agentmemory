@@ -263,6 +263,7 @@ export function registerMcpEndpoints(
                 query: args.query,
                 expandIds,
                 limit,
+                format: typeof args.format === "string" ? args.format : "full",
               },
             });
             return {

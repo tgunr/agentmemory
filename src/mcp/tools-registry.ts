@@ -122,6 +122,10 @@ export const CORE_TOOLS: McpToolDef[] = [
           description: "Comma-separated observation IDs to expand",
         },
         limit: { type: "number", description: "Max results (default 10)" },
+        format: {
+          type: "string",
+          description: "Result format: full, compact, or narrative (default compact)",
+        },
       },
       required: ["query"],
     },
