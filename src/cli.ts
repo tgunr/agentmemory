@@ -19,7 +19,8 @@ import {
 } from "node:fs";
 import { join, dirname, delimiter as PATH_DELIMITER } from "node:path";
 import { fileURLToPath } from "node:url";
-import { homedir, platform } from "node:os";
+import { homedir, platform, tmpdir } from "node:os";
+import { mkdtempSync } from "node:fs";
 import * as p from "@clack/prompts";
 import { generateId } from "./state/schema.js";
 import {
@@ -687,12 +688,31 @@ function spawnEngineBackground(
   return child;
 }
 
+function prepareIiiConfig(originalConfigPath: string): string {
+  const dataDir = process.env["AGENTMEMORY_DATA_DIR"];
+  if (!dataDir || !originalConfigPath) return originalConfigPath;
+
+  const configContent = readFileSync(originalConfigPath, "utf-8");
+  const modifiedContent = configContent
+    .replace(/(file_path:\s*)\.\/data\/state_store\.db/g, `$1${dataDir}/state_store.db`)
+    .replace(/(file_path:\s*)\.\/data\/stream_store/g, `$1${dataDir}/stream_store`);
+
+  if (modifiedContent === configContent) return originalConfigPath;
+
+  const tmpDir = mkdtempSync(join(tmpdir(), "agentmemory-iii-"));
+  const newConfigPath = join(tmpDir, "iii-config.yaml");
+  writeFileSync(newConfigPath, modifiedContent);
+  vlog(`iii-config: injected AGENTMEMORY_DATA_DIR=${dataDir}`);
+  return newConfigPath;
+}
+
 function startIiiBin(iiiBin: string, configPath: string): boolean {
   warnIfEngineVersionMismatch(iiiBin);
   const s = p.spinner();
   s.start(`Starting iii-engine: ${iiiBin}`);
-  writeEngineState({ kind: "native", configPath });
-  spawnEngineBackground(iiiBin, ["--config", configPath], "iii-engine");
+  const effectiveConfig = prepareIiiConfig(configPath);
+  writeEngineState({ kind: "native", configPath: effectiveConfig });
+  spawnEngineBackground(iiiBin, ["--config", effectiveConfig], "iii-engine");
   s.stop("iii-engine process started");
   return true;
 }
