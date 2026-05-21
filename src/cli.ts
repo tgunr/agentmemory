@@ -719,19 +719,54 @@ function spawnEngineBackground(
 
 function prepareIiiConfig(originalConfigPath: string): string {
   const dataDir = process.env["AGENTMEMORY_DATA_DIR"];
-  if (!dataDir || !originalConfigPath) return originalConfigPath;
+  const httpHost = process.env["III_REST_HOST"];
+  const streamHost = process.env["III_STREAMS_HOST"];
+  const restPort = process.env["III_REST_PORT"];
+  const streamsPort = process.env["III_STREAMS_PORT"];
+  if (!originalConfigPath) return originalConfigPath;
 
-  const configContent = readFileSync(originalConfigPath, "utf-8");
-  const modifiedContent = configContent
-    .replace(/(file_path:\s*)\.\/data\/state_store\.db/g, `$1${dataDir}/state_store.db`)
-    .replace(/(file_path:\s*)\.\/data\/stream_store/g, `$1${dataDir}/stream_store`);
+  let configContent = readFileSync(originalConfigPath, "utf-8");
 
-  if (modifiedContent === configContent) return originalConfigPath;
+  if (dataDir) {
+    configContent = configContent
+      .replace(/(file_path:\s*)\.\/data\/state_store\.db/g, `$1${dataDir}/state_store.db`)
+      .replace(/(file_path:\s*)\.\/data\/stream_store/g, `$1${dataDir}/stream_store`);
+  }
+
+  if (httpHost) {
+    configContent = configContent.replace(
+      /(name:\s*iii-http[\s\S]*?host:\s*)127\.0\.0\.1/g,
+      `$1${httpHost}`
+    );
+  }
+
+  if (streamHost) {
+    configContent = configContent.replace(
+      /(name:\s*iii-stream[\s\S]*?host:\s*)127\.0\.0\.1/g,
+      `$1${streamHost}`
+    );
+  }
+
+  if (restPort) {
+    configContent = configContent.replace(
+      /(name:\s*iii-http[\s\S]*?port:\s*)\d+/g,
+      `$1${restPort}`
+    );
+  }
+
+  if (streamsPort) {
+    configContent = configContent.replace(
+      /(name:\s*iii-stream[\s\S]*?port:\s*)\d+/g,
+      `$1${streamsPort}`
+    );
+  }
+
+  if (configContent === readFileSync(originalConfigPath, "utf-8")) return originalConfigPath;
 
   const tmpDir = mkdtempSync(join(tmpdir(), "agentmemory-iii-"));
   const newConfigPath = join(tmpDir, "iii-config.yaml");
-  writeFileSync(newConfigPath, modifiedContent);
-  vlog(`iii-config: injected AGENTMEMORY_DATA_DIR=${dataDir}`);
+  writeFileSync(newConfigPath, configContent);
+  vlog(`iii-config: injected III_REST_HOST=${httpHost}, III_STREAMS_HOST=${streamHost}`);
   return newConfigPath;
 }
 
