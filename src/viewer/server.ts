@@ -28,6 +28,8 @@ function loadViewerFavicon(): Buffer | null {
   return null;
 }
 
+const VIEWER_LISTEN_ADDR = process.env.VIEWER_LISTEN_ADDR || "127.0.0.1";
+
 const ALLOWED_ORIGINS = (
   process.env.VIEWER_ALLOWED_ORIGINS ||
   "http://localhost:3111,http://localhost:3113,http://127.0.0.1:3111,http://127.0.0.1:3113"
@@ -237,7 +239,7 @@ export function startViewerServer(
   let currentPort = requestedPort;
 
   const tryListen = (): void => {
-    server.listen(currentPort, "0.0.0.0");
+    server.listen(currentPort, VIEWER_LISTEN_ADDR);
   };
 
   server.on("listening", () => {
