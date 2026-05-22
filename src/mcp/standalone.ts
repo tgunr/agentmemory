@@ -32,10 +32,13 @@ const SERVER_INFO = {
 const kv = new InMemoryKV(getStandalonePersistPath());
 let modeAnnounced = false;
 
+function getCurrentSessionId(): string | undefined {
+  const fromEnv = process.env["AGENTMEMORY_SESSION_ID"];
+  if (fromEnv && fromEnv.trim().length > 0) return fromEnv.trim();
+  return undefined;
+}
+
 function displayAgentmemoryUrl(): string {
-  // Match the literal-placeholder guard in rest-proxy.ts so log lines
-  // don't show `${AGENTMEMORY_URL}` when an MCP host passed the
-  // placeholder through unexpanded.
   const raw = process.env["AGENTMEMORY_URL"];
   if (!raw || (raw.startsWith("${") && raw.endsWith("}"))) {
     return "http://localhost:3111";
@@ -170,16 +173,19 @@ async function handleProxy(
   v: Validated,
   handle: ProxyHandle,
 ): Promise<{ content: Array<{ type: string; text: string }> }> {
+  const sessionId = getCurrentSessionId();
   switch (v.tool) {
     case "memory_save": {
+      const body: Record<string, unknown> = {
+        content: v.content,
+        type: v.type,
+        concepts: v.concepts,
+        files: v.files,
+      };
+      if (sessionId) body["sessionId"] = sessionId;
       const result = await handle.call("/agentmemory/remember", {
         method: "POST",
-        body: JSON.stringify({
-          content: v.content,
-          type: v.type,
-          concepts: v.concepts,
-          files: v.files,
-        }),
+        body: JSON.stringify(body),
       });
       return textResponse(result);
     }
@@ -190,6 +196,7 @@ async function handleProxy(
         format: v.format ?? "full",
       };
       if (v.tokenBudget != null) body["token_budget"] = v.tokenBudget;
+      if (sessionId) body["sessionId"] = sessionId;
       const result = await handle.call("/agentmemory/search", {
         method: "POST",
         body: JSON.stringify(body),
@@ -200,6 +207,7 @@ async function handleProxy(
       const body: Record<string, unknown> = { query: v.query, limit: v.limit };
       if (v.format != null) body["format"] = v.format;
       if (v.tokenBudget != null) body["token_budget"] = v.tokenBudget;
+      if (sessionId) body["sessionId"] = sessionId;
       const result = await handle.call("/agentmemory/smart-search", {
         method: "POST",
         body: JSON.stringify(body),
@@ -240,6 +248,7 @@ async function handleLocal(
   v: Validated,
   kvInstance: InMemoryKV,
 ): Promise<{ content: Array<{ type: string; text: string }> }> {
+  const sessionId = getCurrentSessionId();
   switch (v.tool) {
     case "memory_save": {
       const id = generateId("mem");
@@ -256,7 +265,7 @@ async function handleLocal(
         strength: 7,
         version: 1,
         isLatest: true,
-        sessionIds: [],
+        sessionIds: sessionId ? [sessionId] : [],
       });
       kvInstance.persist();
       return textResponse({ saved: id });
@@ -337,13 +346,11 @@ async function handleProxyGeneric(
   args: Record<string, unknown>,
   handle: ProxyHandle,
 ): Promise<{ content: Array<{ type: string; text: string }> }> {
-  // Forward to the server's full MCP surface so non-Claude clients can
-  // reach all 51 tools (lessons, sentinels, slots, signals, graph, …)
-  // instead of being capped at the 7 IMPLEMENTED_TOOLS set baked into
-  // this shim. The server validates arguments per tool.
+  const sessionId = getCurrentSessionId();
+  const augmentedArgs = sessionId ? { ...args, sessionId } : args;
   const result = (await handle.call("/agentmemory/mcp/call", {
     method: "POST",
-    body: JSON.stringify({ name: toolName, arguments: args }),
+    body: JSON.stringify({ name: toolName, arguments: augmentedArgs }),
   })) as { content?: Array<{ type: string; text: string }> } | null;
   if (result && Array.isArray(result.content)) {
     return { content: result.content };
@@ -359,9 +366,6 @@ export async function handleToolCall(
   const handle = await resolveHandle();
   announceMode(handle);
 
-  // Tools the local InMemoryKV fallback doesn't implement: forward straight
-  // to the server. Local validation would otherwise raise "Unknown tool"
-  // (issue #234).
   if (!IMPLEMENTED_TOOLS.has(toolName)) {
     if (handle.mode === "proxy") {
       try {
@@ -485,6 +489,12 @@ const transport = createStdioTransport(async (method, params) => {
   }
 });
 
+const activeSessionId = getCurrentSessionId();
+if (activeSessionId) {
+  process.stderr.write(
+    `[@agentmemory/mcp] Session: ${activeSessionId}\n`,
+  );
+}
 process.stderr.write(
   `[@agentmemory/mcp] Standalone MCP server v${SERVER_INFO.version} starting...\n`,
 );
