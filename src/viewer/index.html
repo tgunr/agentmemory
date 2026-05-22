@@ -1113,7 +1113,31 @@
     function sessionDisplayName(s) {
       var project = s && s.project ? String(s.project).split('/').pop() : '';
       if (project) return project;
-      return shortSessionId(s, 8) || 'Unknown session';
+      var cwd = s && s.cwd ? String(s.cwd).split('/').pop() : '';
+      if (cwd) return cwd;
+      if (s && s.startedAt) {
+        try {
+          var d = new Date(s.startedAt);
+          return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+                 d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+        } catch (e) {}
+      }
+      var id = sessionId(s);
+      if (id) {
+        var parts = id.replace('ses_', '').split('_');
+        if (parts.length >= 2 && parts[0].length > 4) {
+          try {
+            var ts = parseInt(parts[0], 10);
+            if (ts > 1e9 && ts < 2e10) {
+              var d = new Date(ts * 1000);
+              return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+                     d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+            }
+          } catch (e) {}
+        }
+        return 'session ' + id.slice(0, 6);
+      }
+      return 'Unknown session';
     }
     function sessionLabel(s) {
       var id = shortSessionId(s, 8);
@@ -1245,16 +1269,16 @@
 
     async function loadTab(tab) {
       switch(tab) {
-        case 'dashboard': if (!state.dashboard.loaded) await loadDashboard(); break;
+        case 'dashboard': await loadDashboard(); break;
         case 'graph': if (!state.graph.loaded) await loadGraph(); break;
-        case 'memories': if (!state.memories.loaded) await loadMemories(); break;
-        case 'timeline': if (!state.timeline.loaded) await loadTimeline(); break;
-        case 'sessions': if (!state.sessions.loaded) await loadSessions(); break;
-        case 'lessons': if (!state.lessons.loaded) await loadLessons(); break;
-        case 'actions': if (!state.actions.loaded) await loadActions(); break;
-        case 'crystals': if (!state.crystals.loaded) await loadCrystals(); break;
-        case 'audit': if (!state.audit.loaded) await loadAudit(); break;
-        case 'activity': if (!state.activity.loaded) await loadActivity(); break;
+        case 'memories': await loadMemories(); break;
+        case 'timeline': await loadTimeline(); break;
+        case 'sessions': await loadSessions(); break;
+        case 'lessons': await loadLessons(); break;
+        case 'actions': await loadActions(); break;
+        case 'crystals': await loadCrystals(); break;
+        case 'audit': await loadAudit(); break;
+        case 'activity': await loadActivity(); break;
         case 'profile': if (!state.profile.loaded) await loadProfile(); break;
         case 'replay': if (!state.replay.loaded) await loadReplay(); break;
       }

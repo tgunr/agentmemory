@@ -383,4 +383,215 @@ describe("@agentmemory/mcp standalone — server proxy (issue #159)", () => {
       delete process.env["AGENTMEMORY_PROBE_TIMEOUT_MS"];
     }
   });
+
+  it("proxies memory_save to POST /agentmemory/remember with session ID", async () => {
+    process.env["AGENTMEMORY_SESSION_ID"] = "proxy-session-xyz";
+    const calls: Array<{ url: string; body?: unknown }> = [];
+    installFetch((url, init) => {
+      if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+      if (url.endsWith("/agentmemory/remember")) {
+        const body = init?.body ? JSON.parse(init.body as string) : undefined;
+        calls.push({ url, body });
+        return new Response(JSON.stringify({ id: "m-1", action: "created" }), {
+          status: 200,
+          headers: { "content-type": "application/json" },
+        });
+      }
+      return new Response("not found", { status: 404 });
+    });
+    try {
+      const res = await handleToolCall("memory_save", { content: "proxied save" });
+      const body = JSON.parse(res.content[0].text);
+      expect(body.id).toBe("m-1");
+      expect(calls).toHaveLength(1);
+      expect(calls[0].body).toHaveProperty("sessionId", "proxy-session-xyz");
+    } finally {
+      delete process.env["AGENTMEMORY_SESSION_ID"];
+    }
+  });
+
+  it("proxies memory_export to GET /agentmemory/export", async () => {
+    installFetch((url) => {
+      if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+      if (url.endsWith("/agentmemory/export")) {
+        return new Response(
+          JSON.stringify({ version: "0.9.0", memories: [], sessions: [] }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      return new Response("not found", { status: 404 });
+    });
+    const res = await handleToolCall("memory_export", {});
+    const body = JSON.parse(res.content[0].text);
+    expect(body.version).toBe("0.9.0");
+    expect(body.memories).toEqual([]);
+    expect(body.sessions).toEqual([]);
+  });
+
+  it("proxies memory_audit to GET /agentmemory/audit with limit", async () => {
+    const calls: string[] = [];
+    installFetch((url) => {
+      calls.push(url);
+      if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+      if (url.includes("/agentmemory/audit")) {
+        return new Response(JSON.stringify({ entries: [{ id: "a1" }] }), {
+          status: 200,
+          headers: { "content-type": "application/json" },
+        });
+      }
+      return new Response("not found", { status: 404 });
+    });
+    await handleToolCall("memory_audit", { limit: 5 });
+    expect(calls.some((u) => u.includes("/agentmemory/audit?limit=5"))).toBe(true);
+  });
+
+  it("handleProxyGeneric forwards non-implemented tools via /agentmemory/mcp/call with session ID", async () => {
+    process.env["AGENTMEMORY_SESSION_ID"] = "generic-session-id";
+    const calls: Array<{ url: string; body?: unknown }> = [];
+    installFetch((url, init) => {
+      if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+      if (url.endsWith("/agentmemory/mcp/call")) {
+        const body = init?.body ? JSON.parse(init.body as string) : undefined;
+        calls.push({ url, body });
+        return new Response(
+          JSON.stringify({ result: "ok" }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      return new Response("not found", { status: 404 });
+    });
+    try {
+      const res = await handleToolCall("memory_verify", { content: "test" });
+      const body = JSON.parse(res.content[0].text);
+      expect(body.result).toBe("ok");
+      expect(calls).toHaveLength(1);
+      expect(calls[0].body).toEqual({
+        name: "memory_verify",
+        arguments: { content: "test", sessionId: "generic-session-id" },
+      });
+    } finally {
+      delete process.env["AGENTMEMORY_SESSION_ID"];
+    }
+  });
+
+  it("handleProxyGeneric returns content array when server responds with MCP shape", async () => {
+    installFetch((url, init) => {
+      if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+      if (url.endsWith("/agentmemory/mcp/call")) {
+        return new Response(
+          JSON.stringify({
+            content: [{ type: "text", text: '{"status": "verified"}' }],
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      return new Response("not found", { status: 404 });
+    });
+    const res = await handleToolCall("memory_verify", { content: "check" });
+    expect(res.content).toHaveLength(1);
+    expect(res.content[0].type).toBe("text");
+    expect(res.content[0].text).toBe('{"status": "verified"}');
+  });
+
+  it("handleToolsList returns remote tools when proxy succeeds", async () => {
+    const { handleToolsList } = await import("../src/mcp/standalone.js");
+    const { resetHandleForTests } = await import("../src/mcp/rest-proxy.js");
+    const originalFetch = globalThis.fetch;
+    try {
+      resetHandleForTests();
+      process.env["AGENTMEMORY_URL"] = BASE;
+      installFetch((url) => {
+        if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+        if (url.endsWith("/agentmemory/mcp/tools")) {
+          return new Response(
+            JSON.stringify({
+              tools: [
+                { name: "remote_tool_1", description: "Remote tool" },
+                { name: "remote_tool_2", description: "Another remote tool" },
+              ],
+            }),
+            { status: 200, headers: { "content-type": "application/json" } },
+          );
+        }
+        return new Response("not found", { status: 404 });
+      });
+      const result = await handleToolsList();
+      const tools = result.tools as Array<{ name: string }>;
+      expect(tools).toHaveLength(2);
+      expect(tools[0].name).toBe("remote_tool_1");
+      expect(tools[1].name).toBe("remote_tool_2");
+    } finally {
+      resetHandleForTests();
+      delete process.env["AGENTMEMORY_URL"];
+      globalThis.fetch = originalFetch;
+    }
+  });
+
+  it("handleToolsList falls back to local when proxy returns non-array tools", async () => {
+    const { handleToolsList } = await import("../src/mcp/standalone.js");
+    const { resetHandleForTests } = await import("../src/mcp/rest-proxy.js");
+    const originalFetch = globalThis.fetch;
+    try {
+      resetHandleForTests();
+      process.env["AGENTMEMORY_URL"] = BASE;
+      installFetch((url) => {
+        if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+        if (url.endsWith("/agentmemory/mcp/tools")) {
+          return new Response(
+            JSON.stringify({ status: "ok" }),
+            { status: 200, headers: { "content-type": "application/json" } },
+          );
+        }
+        return new Response("not found", { status: 404 });
+      });
+      const result = await handleToolsList();
+      const tools = result.tools as Array<{ name: string }>;
+      expect(tools).toHaveLength(7);
+    } finally {
+      resetHandleForTests();
+      delete process.env["AGENTMEMORY_URL"];
+      globalThis.fetch = originalFetch;
+    }
+  });
+
+  it("handleToolsList falls back when proxy call throws", async () => {
+    const { handleToolsList } = await import("../src/mcp/standalone.js");
+    const { resetHandleForTests } = await import("../src/mcp/rest-proxy.js");
+    const originalFetch = globalThis.fetch;
+    try {
+      resetHandleForTests();
+      process.env["AGENTMEMORY_URL"] = BASE;
+      installFetch((url) => {
+        if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+        if (url.endsWith("/agentmemory/mcp/tools")) {
+          throw new Error("network timeout");
+        }
+        return new Response("not found", { status: 404 });
+      });
+      const result = await handleToolsList();
+      const tools = result.tools as Array<{ name: string }>;
+      expect(tools).toHaveLength(7);
+    } finally {
+      resetHandleForTests();
+      delete process.env["AGENTMEMORY_URL"];
+      globalThis.fetch = originalFetch;
+    }
+  });
+
+  it("handleProxyGeneric returns plain text response when server does not return content array", async () => {
+    installFetch((url, init) => {
+      if (url.endsWith("/agentmemory/livez")) return new Response("ok", { status: 200 });
+      if (url.endsWith("/agentmemory/mcp/call")) {
+        return new Response(
+          JSON.stringify({ success: true, data: "result" }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        );
+      }
+      return new Response("not found", { status: 404 });
+    });
+    const res = await handleToolCall("memory_verify", { content: "check" });
+    const body = JSON.parse(res.content[0].text);
+    expect(body.success).toBe(true);
+    expect(body.data).toBe("result");
+  });
 });

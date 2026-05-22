@@ -29,6 +29,21 @@ function mockKV() {
       const m = store.get(scope);
       return m ? (Array.from(m.values()) as T[]) : [];
     },
+    update: async (
+      scope: string,
+      key: string,
+      updates: Array<{ type: "set"; path: string; value: unknown }>,
+    ): Promise<void> => {
+      const m = store.get(scope);
+      const existing = m?.get(key) as Record<string, unknown>;
+      if (!existing) return;
+      for (const u of updates) {
+        if (u.type === "set") {
+          existing[u.path] = u.value;
+        }
+      }
+      m?.set(key, existing);
+    },
   };
 }
 
@@ -162,6 +177,62 @@ describe("mem::observe auto-compress gate (#138)", () => {
 
     const compressCalls = sdk.triggered.filter((t) => t.id === "mem::compress");
     expect(compressCalls).toHaveLength(0);
+  });
+
+  it("auto-registers session when it does not exist in KV.sessions", async () => {
+    const { registerObserveFunction } = await import(
+      "../src/functions/observe.js"
+    );
+    const sdk = mockSdk();
+    const kv = mockKV();
+    registerObserveFunction(sdk as never, kv as never);
+
+    const payload = validPayload({ sessionId: "ses_autoreg_test" });
+    await sdk.trigger("mem::observe", payload);
+
+    // Session should have been auto-registered
+    const sessionScope = "mem:sessions";
+    const session = kv.store.get(sessionScope)?.get("ses_autoreg_test");
+    expect(session).toBeDefined();
+    const sess = session as {
+      id: string;
+      observationCount: number;
+      status: string;
+      startedAt: string;
+    };
+    expect(sess.id).toBe("ses_autoreg_test");
+    expect(sess.observationCount).toBe(1);
+    expect(sess.status).toBe("active");
+    expect(sess.startedAt).toBeTruthy();
+  });
+
+  it("increments observationCount when session already exists", async () => {
+    const { registerObserveFunction } = await import(
+      "../src/functions/observe.js"
+    );
+    const sdk = mockSdk();
+    const kv = mockKV();
+
+    // Pre-register a session with 3 observations
+    await kv.set("mem:sessions", "ses_existing", {
+      id: "ses_existing",
+      project: "/test",
+      cwd: "/test",
+      startedAt: "2026-01-01T00:00:00.000Z",
+      status: "active",
+      observationCount: 3,
+    });
+
+    registerObserveFunction(sdk as never, kv as never);
+
+    const payload = validPayload({ sessionId: "ses_existing" });
+    await sdk.trigger("mem::observe", payload);
+
+    // Session should have 4 observations now
+    const session = kv.store.get("mem:sessions")?.get("ses_existing");
+    expect(session).toBeDefined();
+    const sess = session as { observationCount: number };
+    expect(sess.observationCount).toBe(4);
   });
 });
 

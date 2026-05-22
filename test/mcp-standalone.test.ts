@@ -449,4 +449,386 @@ describe("handleToolCall", () => {
     expect(parsed.deleted).toBe(1);
     expect(parsed.requested).toBe(2);
   });
+
+  it("memory_export returns version, memories, and sessions", async () => {
+    const kv = new InMemoryKV();
+    await handleToolCall("memory_save", { content: "export test memory" }, kv);
+    await kv.set("mem:sessions", "ses_export_test", { id: "ses_export_test" });
+    const result = await handleToolCall("memory_export", {}, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed).toHaveProperty("version");
+    expect(parsed).toHaveProperty("memories");
+    expect(parsed).toHaveProperty("sessions");
+    expect(Array.isArray(parsed.memories)).toBe(true);
+    expect(Array.isArray(parsed.sessions)).toBe(true);
+    expect(parsed.memories.length).toBeGreaterThanOrEqual(1);
+    const found = parsed.memories.find((m: { content: string }) =>
+      m.content === "export test memory",
+    );
+    expect(found).toBeDefined();
+  });
+
+  it("memory_export returns empty arrays when no data exists", async () => {
+    const kv = new InMemoryKV();
+    const result = await handleToolCall("memory_export", {}, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.memories).toEqual([]);
+    expect(parsed.sessions).toEqual([]);
+  });
+
+  it("memory_audit returns entries from the audit log", async () => {
+    const kv = new InMemoryKV();
+    await kv.set("mem:audit", "audit_1", {
+      id: "audit_1",
+      operation: "save",
+      timestamp: "2026-01-01T00:00:00.000Z",
+      memoryId: "mem_test",
+    });
+    await kv.set("mem:audit", "audit_2", {
+      id: "audit_2",
+      operation: "delete",
+      timestamp: "2026-01-02T00:00:00.000Z",
+      memoryId: "mem_test",
+    });
+    const result = await handleToolCall("memory_audit", {}, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed).toHaveProperty("entries");
+    expect(Array.isArray(parsed.entries)).toBe(true);
+    expect(parsed.entries).toHaveLength(2);
+  });
+
+  it("memory_audit honours limit argument", async () => {
+    const kv = new InMemoryKV();
+    for (let i = 0; i < 5; i++) {
+      await kv.set("mem:audit", `audit_${i}`, {
+        id: `audit_${i}`,
+        operation: "test",
+        timestamp: `2026-01-0${i + 1}T00:00:00.000Z`,
+      });
+    }
+    const result = await handleToolCall("memory_audit", { limit: 2 }, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.entries).toHaveLength(2);
+  });
+
+  it("memory_save with explicit type stores the type value", async () => {
+    const kv = new InMemoryKV();
+    const result = await handleToolCall(
+      "memory_save",
+      { content: "typed memory", type: "pattern" },
+      kv,
+    );
+    const saved = JSON.parse(result.content[0].text);
+    const mem = await kv.get<{ type: string }>("mem:memories", saved.saved);
+    expect(mem?.type).toBe("pattern");
+  });
+
+  it("memory_save defaults type to fact when not provided", async () => {
+    const kv = new InMemoryKV();
+    const result = await handleToolCall(
+      "memory_save",
+      { content: "default type memory" },
+      kv,
+    );
+    const saved = JSON.parse(result.content[0].text);
+    const mem = await kv.get<{ type: string }>("mem:memories", saved.saved);
+    expect(mem?.type).toBe("fact");
+  });
+
+  it("memory_save stores sessionIds when AGENTMEMORY_SESSION_ID is set", async () => {
+    const kv = new InMemoryKV();
+    const originalSessionId = process.env["AGENTMEMORY_SESSION_ID"];
+    try {
+      process.env["AGENTMEMORY_SESSION_ID"] = "test-session-123";
+      const result = await handleToolCall(
+        "memory_save",
+        { content: "session-tracked memory" },
+        kv,
+      );
+      const saved = JSON.parse(result.content[0].text);
+      const mem = await kv.get<{ sessionIds: string[] }>(
+        "mem:memories",
+        saved.saved,
+      );
+      expect(mem?.sessionIds).toContain("test-session-123");
+    } finally {
+      if (originalSessionId !== undefined) {
+        process.env["AGENTMEMORY_SESSION_ID"] = originalSessionId;
+      } else {
+        delete process.env["AGENTMEMORY_SESSION_ID"];
+      }
+    }
+  });
+
+  it("memory_save stores empty sessionIds when AGENTMEMORY_SESSION_ID is not set", async () => {
+    const kv = new InMemoryKV();
+    const originalSessionId = process.env["AGENTMEMORY_SESSION_ID"];
+    try {
+      delete process.env["AGENTMEMORY_SESSION_ID"];
+      const result = await handleToolCall(
+        "memory_save",
+        { content: "no session memory" },
+        kv,
+      );
+      const saved = JSON.parse(result.content[0].text);
+      const mem = await kv.get<{ sessionIds: string[] }>(
+        "mem:memories",
+        saved.saved,
+      );
+      expect(mem?.sessionIds).toEqual([]);
+    } finally {
+      if (originalSessionId !== undefined) {
+        process.env["AGENTMEMORY_SESSION_ID"] = originalSessionId;
+      }
+    }
+  });
+
+  it("normalizeList handles null, undefined, number, and object values", async () => {
+    const kv = new InMemoryKV();
+    // Non-string, non-array concepts/files should produce empty arrays
+    for (const bogus of [null, undefined, 42, {}, true]) {
+      const result = await handleToolCall(
+        "memory_save",
+        { content: "normalize test", concepts: bogus, files: bogus },
+        kv,
+      );
+      const saved = JSON.parse(result.content[0].text);
+      const mem = await kv.get<{ concepts: string[]; files: string[] }>(
+        "mem:memories",
+        saved.saved,
+      );
+      expect(mem?.concepts).toEqual([]);
+      expect(mem?.files).toEqual([]);
+    }
+  });
+
+  it("normalizeList handles arrays with mixed types", async () => {
+    const kv = new InMemoryKV();
+    const result = await handleToolCall(
+      "memory_save",
+      {
+        content: "mixed array test",
+        concepts: ["valid", 42, null, "  ", "also-valid"],
+        files: ["src/test.ts", undefined as unknown as string, "", "src/real.ts"],
+      },
+      kv,
+    );
+    const saved = JSON.parse(result.content[0].text);
+    const mem = await kv.get<{ concepts: string[]; files: string[] }>(
+      "mem:memories",
+      saved.saved,
+    );
+    expect(mem?.concepts).toEqual(["valid", "also-valid"]);
+    expect(mem?.files).toEqual(["src/test.ts", "src/real.ts"]);
+  });
+
+  it("memory_recall searches sessionIds field", async () => {
+    const kv = new InMemoryKV();
+    await kv.set("mem:memories", "mem_session_search", {
+      id: "mem_session_search",
+      content: "session-specific memory",
+      title: "session-specific memory",
+      concepts: [],
+      files: [],
+      sessionIds: ["unique-session-id-abc123"],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      strength: 7,
+      version: 1,
+      isLatest: true,
+      type: "fact",
+    });
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "unique-session-id-abc123" },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toHaveLength(1);
+    expect(parsed.results[0].id).toBe("mem_session_search");
+  });
+
+  it("memory_recall with string limit parses it as a number", async () => {
+    const kv = new InMemoryKV();
+    for (let i = 0; i < 15; i++) {
+      await handleToolCall("memory_save", { content: `recall item ${i}` }, kv);
+    }
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "recall item", limit: "3" as unknown as number },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toHaveLength(3);
+  });
+
+  it("memory_recall with format argument lowercases it", async () => {
+    const kv = new InMemoryKV();
+    await handleToolCall("memory_save", { content: "format test" }, kv);
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "format", format: "COMPACT" },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.mode).toBe("compact");
+  });
+
+  it("memory_smart_search with token_budget as string parses it", async () => {
+    const kv = new InMemoryKV();
+    await handleToolCall("memory_save", { content: "token budget test" }, kv);
+    const result = await handleToolCall(
+      "memory_smart_search",
+      { query: "token", token_budget: "500" as unknown as number },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toHaveLength(1);
+  });
+
+  it("memory_recall returns all matching memories when query has no words", async () => {
+    const kv = new InMemoryKV();
+    await handleToolCall("memory_save", { content: "hello world" }, kv);
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "hello" },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toHaveLength(1);
+  });
+
+  it("memory_recall with no matches returns empty results", async () => {
+    const kv = new InMemoryKV();
+    await handleToolCall("memory_save", { content: "typescript code" }, kv);
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "rust programming" },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toEqual([]);
+  });
+
+  it("handleToolsList with AGENTMEMORY_DEBUG=true logs debug output", async () => {
+    const { handleToolsList } = await import("../src/mcp/standalone.js");
+    const originalFetch = globalThis.fetch;
+    const originalDebug = process.env["AGENTMEMORY_DEBUG"];
+    try {
+      process.env["AGENTMEMORY_DEBUG"] = "true";
+      const writes: string[] = [];
+      const origStderrWrite = process.stderr.write.bind(process.stderr);
+      process.stderr.write = ((chunk: string | Uint8Array) => {
+        writes.push(typeof chunk === "string" ? chunk : Buffer.from(chunk).toString("utf8"));
+        return true;
+      }) as typeof process.stderr.write;
+
+      const fn = vi.fn(async () => {
+        throw new Error("ECONNREFUSED");
+      });
+      (globalThis as { fetch: typeof fetch }).fetch = fn as unknown as typeof fetch;
+
+      const result = await handleToolsList();
+      const tools = result.tools as Array<{ name: string }>;
+      expect(tools).toHaveLength(7);
+
+      const joined = writes.join("");
+      expect(joined).toMatch(/tools\/list: returning 7 local fallback tools/);
+    } finally {
+      process.stderr.write = process.stderr.write;
+      globalThis.fetch = originalFetch;
+      if (originalDebug !== undefined) {
+        process.env["AGENTMEMORY_DEBUG"] = originalDebug;
+      } else {
+        delete process.env["AGENTMEMORY_DEBUG"];
+      }
+    }
+  });
+
+  it("memory_save with whitespace-only content throws validation error", async () => {
+    const kv = new InMemoryKV();
+    await expect(
+      handleToolCall("memory_save", { content: "   " }, kv),
+    ).rejects.toThrow("content is required");
+    await expect(
+      handleToolCall("memory_save", { content: "\n\t" }, kv),
+    ).rejects.toThrow("content is required");
+  });
+
+  it("memory_recall with whitespace-only query throws validation error", async () => {
+    const kv = new InMemoryKV();
+    await expect(
+      handleToolCall("memory_recall", { query: "   " }, kv),
+    ).rejects.toThrow("query is required");
+    await expect(
+      handleToolCall("memory_recall", { query: "" }, kv),
+    ).rejects.toThrow("query is required");
+  });
+
+  it("memory_recall searches id field for exact ID lookups", async () => {
+    const kv = new InMemoryKV();
+    await kv.set("mem:memories", "mem_exact_id", {
+      id: "mem_exact_id",
+      content: "id searchable memory",
+      title: "id searchable memory",
+      concepts: [],
+      files: [],
+      sessionIds: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      strength: 7,
+      version: 1,
+      isLatest: true,
+      type: "fact",
+    });
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "mem_exact_id" },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toHaveLength(1);
+    expect(parsed.results[0].id).toBe("mem_exact_id");
+  });
+
+  it("memory_recall handles entries with missing fields gracefully", async () => {
+    const kv = new InMemoryKV();
+    await kv.set("mem:memories", "mem_partial", {
+      id: "mem_partial",
+      content: "partial entry",
+    });
+    const result = await handleToolCall(
+      "memory_recall",
+      { query: "partial" },
+      kv,
+    );
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.results).toHaveLength(1);
+    expect(parsed.results[0].content).toBe("partial entry");
+  });
+
+  it("memory_sessions with no sessions returns empty array", async () => {
+    const kv = new InMemoryKV();
+    const result = await handleToolCall("memory_sessions", {}, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.sessions).toEqual([]);
+  });
+
+  it("memory_sessions returns sessions sorted by insertion order", async () => {
+    const kv = new InMemoryKV();
+    await kv.set("mem:sessions", "ses_first", { id: "ses_first", order: 1 });
+    await kv.set("mem:sessions", "ses_second", { id: "ses_second", order: 2 });
+    await kv.set("mem:sessions", "ses_third", { id: "ses_third", order: 3 });
+    const result = await handleToolCall("memory_sessions", { limit: 10 }, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.sessions).toHaveLength(3);
+    expect(parsed.sessions[0].id).toBe("ses_first");
+  });
+
+  it("memory_audit with no entries returns empty array", async () => {
+    const kv = new InMemoryKV();
+    const result = await handleToolCall("memory_audit", {}, kv);
+    const parsed = JSON.parse(result.content[0].text);
+    expect(parsed.entries).toEqual([]);
+  });
 });

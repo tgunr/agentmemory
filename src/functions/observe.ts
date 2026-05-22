@@ -214,6 +214,23 @@ export function registerObserveFunction(
             }
           }
           await kv.update(KV.sessions, payload.sessionId, updates);
+        } else {
+          // Auto-register the session if it doesn't exist yet. This
+          // handles the common case where hooks fire observations before
+          // the session-start hook has registered the session in
+          // KV.sessions (e.g. iii-engine session IDs that bypass the
+          // agentmemory session-start hook).
+          const now = new Date().toISOString();
+          const newSession = {
+            id: payload.sessionId,
+            project: "",
+            cwd: "",
+            startedAt: now,
+            updatedAt: now,
+            status: "active",
+            observationCount: 1,
+          };
+          await kv.set(KV.sessions, payload.sessionId, newSession);
         }
 
         // Per-observation LLM compression is opt-in as of 0.8.8 (#138).
