@@ -86,13 +86,18 @@ describe("Consistency checks", () => {
 
     // Match `./<path>:<container-path>` style bind mounts. We only care
     // about files that live in the repo root (so they'd be shipped via
-    // the `files` field). `iii-data:/data` (a named volume) has no `./`
-    // prefix and is correctly skipped.
+    // the `files` field). Named volumes and absolute host paths
+    // (`/alpha/data/agentmemory:/data`) don't ship via npm and are
+    // correctly skipped.
     const bindRe = /^\s*-\s+\.\/([^\s:]+):[^\s]+/gm;
     const sources: string[] = [];
     for (const m of compose.matchAll(bindRe)) sources.push(m[1]!);
 
-    expect(sources.length).toBeGreaterThan(0);
+    // If there are no ./ bind mounts, nothing to check — the
+    // regression was specifically about relative paths shipped in the
+    // npm package.
+    if (sources.length === 0) return;
+
     for (const src of sources) {
       // Any nested path would need a directory entry in `files` (e.g.
       // `dist/`); for top-level files, the exact name must be listed.

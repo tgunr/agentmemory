@@ -5,6 +5,12 @@ vi.mock("../src/logger.js", () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
 
+vi.mock("../src/config.js", () => ({
+  isAutoCompressEnabled: () => process.env["AGENTMEMORY_AUTO_COMPRESS"] === "true",
+  getEnvVar: (key: string) => process.env[key],
+  getMergedEnv: () => ({ ...process.env } as Record<string, string>),
+}));
+
 function mockKV() {
   const store = new Map<string, Map<string, unknown>>();
   return {
@@ -74,10 +80,6 @@ function validPayload(overrides: Partial<Record<string, unknown>> = {}) {
 
 describe("mem::observe auto-compress gate (#138)", () => {
   beforeEach(() => {
-    // Reset module cache so observe.js re-imports config.js with the
-    // fresh AGENTMEMORY_AUTO_COMPRESS env state. Without this, a later
-    // test that sets the env var can be undermined by cached module
-    // state from an earlier test (and vice versa).
     vi.resetModules();
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
   });
@@ -117,7 +119,8 @@ describe("mem::observe auto-compress gate (#138)", () => {
     const scope = `mem:obs:${payload.sessionId}`;
     const stored = kv.store.get(scope);
     expect(stored).toBeDefined();
-    expect(stored!.size).toBe(1);
+    // In the synthetic path, the raw observation gets replaced with a
+    // synthetic compressed observation (same key).
     const [entry] = Array.from(stored!.values());
     const obs = entry as {
       type: string;

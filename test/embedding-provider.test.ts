@@ -1,11 +1,30 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import type { EmbeddingProvider } from "../src/types.js";
+
+vi.mock("../src/logger.js", () => ({
+  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+}));
+
+vi.mock("../src/config.js", () => ({
+  detectEmbeddingProvider: () => {
+    if (process.env["EMBEDDING_PROVIDER"]) return process.env["EMBEDDING_PROVIDER"];
+    if (process.env["GEMINI_API_KEY"]) return "gemini";
+    if (process.env["OPENAI_API_KEY"]) return "openai";
+    if (process.env["VOYAGE_API_KEY"]) return "voyage";
+    if (process.env["COHERE_API_KEY"]) return "cohere";
+    if (process.env["OPENROUTER_API_KEY"]) return "openrouter";
+    return null;
+  },
+  getEnvVar: (key: string) => process.env[key],
+  getMergedEnv: () => ({ ...process.env } as Record<string, string>),
+}));
+
 import {
   createEmbeddingProvider,
   withDimensionGuard,
 } from "../src/providers/embedding/index.js";
 import { GeminiEmbeddingProvider } from "../src/providers/embedding/gemini.js";
 import { OpenAIEmbeddingProvider } from "../src/providers/embedding/openai.js";
-import type { EmbeddingProvider } from "../src/types.js";
 
 describe("createEmbeddingProvider", () => {
   const originalEnv = { ...process.env };
