@@ -1,0 +1,53 @@
+{
+	"folders": [
+		{
+			"name": "agentmemory",
+			"path": "."
+		},
+		{
+			"name": ".agentmemory",
+			"path": "../../../Users/davec/.agentmemory"
+		},
+		{
+			"name": "agentmemory-kilo-hooks",
+			"path": "../Servers/agentmemory-kilo-hooks"
+		},
+		{
+			"name": "mcp-router",
+			"path": "../Servers/MCP/mcp-router"
+		},
+		{
+			"name": ".mcp-router",
+			"path": "../../../Users/davec/.mcp-router"
+		}
+	],
+	"settings": {
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#c89f6e",
+			"activityBar.background": "#c89f6e",
+			"activityBar.foreground": "#15202b",
+			"activityBar.inactiveForeground": "#15202b99",
+			"activityBarBadge.background": "#e8f6f0",
+			"activityBarBadge.foreground": "#15202b",
+			"commandCenter.border": "#15202b99",
+			"sash.hoverBorder": "#c89f6e",
+			"statusBar.background": "#ba8649",
+			"statusBar.foreground": "#15202b",
+			"statusBarItem.hoverBackground": "#976c39",
+			"statusBarItem.remoteBackground": "#ba8649",
+			"statusBarItem.remoteForeground": "#15202b",
+			"titleBar.activeBackground": "#ba8649",
+			"titleBar.activeForeground": "#15202b",
+			"titleBar.inactiveBackground": "#ba864999",
+			"titleBar.inactiveForeground": "#15202b99"
+		},
+		"peacock.color": "#ba8649",
+		"dotfileToggle.hideDotfiles": false,
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/Thumbs.db": true
+		}
+	}
+}
