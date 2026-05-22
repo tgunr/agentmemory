@@ -58,6 +58,7 @@
     "url": "https://github.com/rohitg00/agentmemory"
   },
   "dependencies": {
+    "@agentmemory/mcp": "^0.9.21",
     "@anthropic-ai/claude-agent-sdk": "^0.3.142",
     "@anthropic-ai/sdk": "^0.39.0",
     "@clack/prompts": "^1.2.0",
