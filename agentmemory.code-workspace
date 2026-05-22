@@ -1,19 +1,24 @@
 {
 	"folders": [
 		{
+			"name": "agentmemory",
+			"path": "."
+		},
+		{
+			"name": ".agentmemory",
 			"path": "../../../Users/davec/.agentmemory"
 		},
 		{
+			"name": "agentmemory-kilo-hooks",
 			"path": "../Servers/agentmemory-kilo-hooks"
 		},
 		{
+			"name": "mcp-router",
 			"path": "../Servers/MCP/mcp-router"
 		},
 		{
+			"name": ".mcp-router",
 			"path": "../../../Users/davec/.mcp-router"
-		},
-		{
-			"path": "."
 		}
 	],
 	"settings": {
