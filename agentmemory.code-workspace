@@ -1,14 +1,48 @@
 {
 	"folders": [
 		{
-			"path": "../../.agentmemory"
+			"path": "../../../Users/davec/.agentmemory"
+		},
+		{
+			"path": "../Servers/agentmemory-kilo-hooks"
+		},
+		{
+			"path": "../Servers/MCP/mcp-router"
+		},
+		{
+			"path": "../../../Users/davec/.mcp-router"
 		},
 		{
 			"path": "."
-		},
-		{
-			"path": "../../.config/kilo"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"workbench.colorCustomizations": {
+			"activityBar.activeBackground": "#90fb75",
+			"activityBar.background": "#90fb75",
+			"activityBar.foreground": "#15202b",
+			"activityBar.inactiveForeground": "#15202b99",
+			"activityBarBadge.background": "#839bfb",
+			"activityBarBadge.foreground": "#15202b",
+			"commandCenter.border": "#15202b99",
+			"sash.hoverBorder": "#90fb75",
+			"statusBar.background": "#68fa43",
+			"statusBar.foreground": "#15202b",
+			"statusBarItem.hoverBackground": "#40f911",
+			"statusBarItem.remoteBackground": "#68fa43",
+			"statusBarItem.remoteForeground": "#15202b",
+			"titleBar.activeBackground": "#68fa43",
+			"titleBar.activeForeground": "#15202b",
+			"titleBar.inactiveBackground": "#68fa4399",
+			"titleBar.inactiveForeground": "#15202b99"
+		},
+		"peacock.color": "#68fa43",
+		"dotfileToggle.hideDotfiles": false,
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/Thumbs.db": true
+		}
+	}
 }
