@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.agentmemory"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../../.config/kilo"
+		}
+	],
+	"settings": {}
+}
