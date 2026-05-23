@@ -2757,4 +2757,169 @@ export function registerApiTriggers(
     return { status_code: 200, body: result };
   });
   sdk.registerTrigger({ type: "http", function_id: "api::insight-search", config: { api_path: "/agentmemory/insights/search", http_method: "POST" } });
+
+  sdk.registerFunction("api::kilo-sessions::list-local",
+    async (req: ApiRequest): Promise<Response> => {
+      const denied = checkAuth(req, secret);
+      if (denied) return denied;
+      const params = req.query_params || {};
+      const { listLocalSessions } = await import("../functions/kilo-sessions.js");
+      const limit = parseOptionalPositiveInt(params.limit);
+      const result = await listLocalSessions({
+        limit: limit !== undefined && limit !== null ? limit : undefined,
+        workspace: typeof params.workspace === "string" ? params.workspace : undefined,
+      });
+      return { status_code: 200, body: result };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::kilo-sessions::list-local",
+    config: { api_path: "/agentmemory/kilo-sessions/local", http_method: "GET" },
+  });
+
+  sdk.registerFunction("api::kilo-sessions::list-cloud",
+    async (req: ApiRequest): Promise<Response> => {
+      const denied = checkAuth(req, secret);
+      if (denied) return denied;
+      const params = req.query_params || {};
+      const { listCloudSessions } = await import("../functions/kilo-sessions.js");
+      const limit = parseOptionalPositiveInt(params.limit);
+      const result = await listCloudSessions({
+        limit: limit !== undefined && limit !== null ? limit : undefined,
+      });
+      return { status_code: 200, body: result };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::kilo-sessions::list-cloud",
+    config: { api_path: "/agentmemory/kilo-sessions/cloud", http_method: "GET" },
+  });
+
+  sdk.registerFunction("api::kilo-sessions::preview",
+    async (req: ApiRequest): Promise<Response> => {
+      const denied = checkAuth(req, secret);
+      if (denied) return denied;
+      const body = req.body as Record<string, unknown>;
+      const sessionId = asNonEmptyString(body.sessionId);
+      const source = asNonEmptyString(body.source);
+      if (!sessionId || !source || (source !== "local" && source !== "cloud")) {
+        return { status_code: 400, body: { error: "sessionId and source (local|cloud) are required" } };
+      }
+      if (source === "local") {
+        const { previewLocalSession } = await import("../functions/kilo-sessions.js");
+        const result = await previewLocalSession(sessionId);
+        return { status_code: 200, body: result };
+      }
+      const { previewCloudSession } = await import("../functions/kilo-sessions.js");
+      const result = await previewCloudSession(sessionId);
+      return { status_code: 200, body: result };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::kilo-sessions::preview",
+    config: { api_path: "/agentmemory/kilo-sessions/preview", http_method: "POST" },
+  });
+
+  sdk.registerFunction("api::kilo-sessions::import",
+    async (req: ApiRequest): Promise<Response> => {
+      const denied = checkAuth(req, secret);
+      if (denied) return denied;
+      const body = req.body as Record<string, unknown>;
+      const sessionId = asNonEmptyString(body.sessionId);
+      const source = asNonEmptyString(body.source);
+      if (!sessionId || !source || (source !== "local" && source !== "cloud")) {
+        return { status_code: 400, body: { error: "sessionId and source (local|cloud) are required" } };
+      }
+      const saveObservations = body.saveObservations !== false;
+      const saveMemories = body.saveMemories === true;
+      const memoryTypes = Array.isArray(body.memoryTypes)
+        ? (body.memoryTypes as string[]).filter((t) => typeof t === "string")
+        : ["decision", "pattern", "bug", "architecture"];
+      const createSummary = body.createSummary !== false;
+
+      const importOptions = {
+        saveObservations,
+        saveMemories,
+        memoryTypes,
+        createSummary,
+      };
+
+      if (source === "local") {
+        const { importLocalSession } = await import("../functions/kilo-import.js");
+        const result = await importLocalSession(sessionId, importOptions);
+        return { status_code: result.success ? 200 : 400, body: result };
+      }
+      const { importCloudSession } = await import("../functions/kilo-import.js");
+      const result = await importCloudSession(sessionId, importOptions);
+      return { status_code: result.success ? 200 : 400, body: result };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::kilo-sessions::import",
+    config: { api_path: "/agentmemory/kilo-sessions/import", http_method: "POST" },
+  });
+
+  sdk.registerFunction("api::kilo-sessions::extract",
+    async (req: ApiRequest): Promise<Response> => {
+      const denied = checkAuth(req, secret);
+      if (denied) return denied;
+      const body = req.body as Record<string, unknown>;
+      const sessionId = asNonEmptyString(body.sessionId);
+      const extractWhat = asNonEmptyString(body.extractWhat) || "all";
+      if (!sessionId) {
+        return { status_code: 400, body: { error: "sessionId is required" } };
+      }
+      const { extractSessionMemories } = await import("../functions/kilo-extract.js");
+      const result = await extractSessionMemories(sessionId, extractWhat, sdk, kv);
+      return { status_code: result.success ? 200 : 400, body: result };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::kilo-sessions::extract",
+    config: { api_path: "/agentmemory/kilo-sessions/extract", http_method: "POST" },
+  });
+
+  sdk.registerFunction("api::kilo-sessions::batch",
+    async (req: ApiRequest): Promise<Response> => {
+      const denied = checkAuth(req, secret);
+      if (denied) return denied;
+      const body = req.body as Record<string, unknown>;
+      const sessions = body.sessions;
+      if (!Array.isArray(sessions) || sessions.length === 0) {
+        return { status_code: 400, body: { error: "sessions array is required" } };
+      }
+      const saveObservations = body.saveObservations !== false;
+      const results: Array<{ sessionId: string; source: string; success: boolean; agentmemorySessionId?: string; error?: string }> = [];
+      for (const entry of sessions.slice(0, 50)) {
+        const e = entry as Record<string, unknown>;
+        const sid = asNonEmptyString(e.sessionId);
+        const src = asNonEmptyString(e.source);
+        if (!sid || !src || (src !== "local" && src !== "cloud")) {
+          results.push({ sessionId: String(e.sessionId ?? ""), source: String(e.source ?? ""), success: false, error: "invalid sessionId or source" });
+          continue;
+        }
+        const opts = { saveObservations, saveMemories: false, memoryTypes: [], createSummary: false };
+        if (src === "local") {
+          const { importLocalSession } = await import("../functions/kilo-import.js");
+          const r = await importLocalSession(sid, opts);
+          results.push({ sessionId: sid, source: src, success: r.success, agentmemorySessionId: r.agentmemorySessionId, error: r.error });
+        } else {
+          const { importCloudSession } = await import("../functions/kilo-import.js");
+          const r = await importCloudSession(sid, opts);
+          results.push({ sessionId: sid, source: src, success: r.success, agentmemorySessionId: r.agentmemorySessionId, error: r.error });
+        }
+      }
+      return { status_code: 200, body: { results, total: results.length, successCount: results.filter((r) => r.success).length } };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::kilo-sessions::batch",
+    config: { api_path: "/agentmemory/kilo-sessions/batch", http_method: "POST" },
+  });
 }

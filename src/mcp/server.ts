@@ -1242,6 +1242,72 @@ export function registerMcpEndpoints(
             };
           }
 
+          case "memory_kilo_sessions_list": {
+            const source = typeof args.source === "string" ? args.source : undefined;
+            if (!source || (source !== "local" && source !== "cloud")) {
+              return { status_code: 400, body: { error: "source must be 'local' or 'cloud'" } };
+            }
+            const limit = Math.max(1, Math.min(200, asNumber(args.limit, 50) ?? 50));
+            const workspace = typeof args.workspace === "string" ? args.workspace : undefined;
+            if (source === "local") {
+              const { listLocalSessions } = await import("../functions/kilo-sessions.js");
+              const result = await listLocalSessions({ limit, workspace });
+              return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+            }
+            const { listCloudSessions } = await import("../functions/kilo-sessions.js");
+            const result = await listCloudSessions({ limit });
+            return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+          }
+
+          case "memory_kilo_session_preview": {
+            const sessionId = typeof args.sessionId === "string" ? args.sessionId : undefined;
+            const source = typeof args.source === "string" ? args.source : undefined;
+            if (!sessionId || !source || (source !== "local" && source !== "cloud")) {
+              return { status_code: 400, body: { error: "sessionId and source (local|cloud) are required" } };
+            }
+            if (source === "local") {
+              const { previewLocalSession } = await import("../functions/kilo-sessions.js");
+              const result = await previewLocalSession(sessionId);
+              return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+            }
+            const { previewCloudSession } = await import("../functions/kilo-sessions.js");
+            const result = await previewCloudSession(sessionId);
+            return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+          }
+
+          case "memory_kilo_session_save": {
+            const sessionId = typeof args.sessionId === "string" ? args.sessionId : undefined;
+            const source = typeof args.source === "string" ? args.source : undefined;
+            if (!sessionId || !source || (source !== "local" && source !== "cloud")) {
+              return { status_code: 400, body: { error: "sessionId and source (local|cloud) are required" } };
+            }
+            const saveObservations = args.saveObservations !== "false";
+            const saveMemories = args.saveMemories === "true";
+            const importOptions = {
+              saveObservations,
+              saveMemories,
+              memoryTypes: saveMemories ? ["decision", "pattern", "bug", "architecture"] : [],
+              createSummary: true,
+            };
+            if (source === "local") {
+              const { importLocalSession } = await import("../functions/kilo-import.js");
+              const result = await importLocalSession(sessionId, importOptions);
+              return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+            }
+            const { importCloudSession } = await import("../functions/kilo-import.js");
+            const result = await importCloudSession(sessionId, importOptions);
+            return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+          }
+
+          case "memory_kilo_session_memories": {
+            const sessionId = typeof args.sessionId === "string" ? args.sessionId : undefined;
+            if (!sessionId) return { status_code: 400, body: { error: "sessionId is required" } };
+            const extractWhat = typeof args.extractWhat === "string" ? args.extractWhat : "all";
+            const { extractSessionMemories } = await import("../functions/kilo-extract.js");
+            const result = await extractSessionMemories(sessionId, extractWhat, sdk, kv);
+            return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
+          }
+
           default:
             return {
               status_code: 400,

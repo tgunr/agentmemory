@@ -921,6 +921,64 @@ export const V010_SLOTS_TOOLS: McpToolDef[] = [
   },
 ];
 
+export const KILO_SESSIONS_TOOLS: McpToolDef[] = [
+  {
+    name: "memory_kilo_sessions_list",
+    description:
+      "List Kilo sessions from local or cloud history. Returns session metadata including title, workspace, timestamp, and token usage. Use to browse past sessions before deciding which to save.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        source: { type: "string", description: "Session source: 'local' or 'cloud'" },
+        limit: { type: "number", description: "Max sessions to return (default 50)" },
+        workspace: { type: "string", description: "Filter by workspace path (local only)" },
+      },
+      required: ["source"],
+    },
+  },
+  {
+    name: "memory_kilo_session_preview",
+    description:
+      "Preview a specific Kilo session's content including first prompt, files modified, tool usage, and message count. Use to review a session before saving.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sessionId: { type: "string", description: "Kilo session ID to preview" },
+        source: { type: "string", description: "Session source: 'local' or 'cloud'" },
+      },
+      required: ["sessionId", "source"],
+    },
+  },
+  {
+    name: "memory_kilo_session_save",
+    description:
+      "Save a Kilo session to AgentMemory as a full session with observations. Creates an AgentMemory session record with parsed observations from the session's tool usage and messages.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sessionId: { type: "string", description: "Kilo session ID to save" },
+        source: { type: "string", description: "Session source: 'local' or 'cloud'" },
+        saveObservations: { type: "string", description: "'false' to skip observation creation (default true)" },
+        saveMemories: { type: "string", description: "'true' to also extract memories (default false)" },
+      },
+      required: ["sessionId", "source"],
+    },
+  },
+  {
+    name: "memory_kilo_session_memories",
+    description:
+      "Extract specific parts of an AgentMemory session as individual memories (decisions, patterns, bugs, architecture). Session must be imported first.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        sessionId: { type: "string", description: "AgentMemory session ID (kilo_<kiloSessionId>)" },
+        extractWhat: { type: "string", description: "What to extract: 'decisions', 'patterns', 'bugs', 'architecture', or 'all'" },
+      },
+      required: ["sessionId"],
+    },
+  },
+];
+
 const ESSENTIAL_TOOLS = new Set([
   "memory_save",
   "memory_recall",
@@ -942,6 +1000,7 @@ export function getAllTools(): McpToolDef[] {
     ...V070_TOOLS,
     ...V073_TOOLS,
     ...V010_SLOTS_TOOLS,
+    ...KILO_SESSIONS_TOOLS,
   ];
 }
 

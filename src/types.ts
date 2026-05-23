@@ -886,3 +886,61 @@ export interface StateScope {
 }
 
 export type StateScopeKey = keyof StateScope;
+
+export interface KiloLocalSessionEntry {
+  id: string;
+  number: number;
+  ts: number;
+  task: string;
+  tokensIn: number;
+  tokensOut: number;
+  cacheWrites: number;
+  cacheReads: number;
+  totalCost: number;
+  size: number;
+  workspace: string;
+  mode: string;
+}
+
+export interface KiloCloudSessionEntry {
+  session_id: string;
+  title: string | null;
+  created_at: string;
+  updated_at: string;
+  version: number;
+}
+
+export interface KiloSessionPreview {
+  id: string;
+  source: "local" | "cloud";
+  title: string;
+  workspace: string;
+  createdAt: string;
+  updatedAt: string;
+  mode?: string;
+  tokensIn?: number;
+  tokensOut?: number;
+  totalCost?: number;
+  size?: number;
+  firstPrompt?: string;
+  messageCount: number;
+  fileCount: number;
+  toolCallCount: number;
+  summary?: string;
+  filesModified?: string[];
+  errors?: string[];
+}
+
+export interface KiloSessionImportOptions {
+  saveObservations: boolean;
+  saveMemories: boolean;
+  memoryTypes: string[];
+  createSummary: boolean;
+}
+
+export interface KiloExtractResult {
+  decisions: Array<{ title: string; content: string; files: string[] }>;
+  patterns: Array<{ title: string; content: string }>;
+  bugs: Array<{ title: string; content: string; solution?: string }>;
+  architecture: Array<{ title: string; content: string; files: string[] }>;
+}
