@@ -870,6 +870,7 @@ export function registerApiTriggers(
     async (
       req: ApiRequest<{
         content: string;
+        title?: string;
         type?: string;
         concepts?: string[];
         files?: string[];

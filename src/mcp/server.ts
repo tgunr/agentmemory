@@ -174,6 +174,7 @@ export function registerMcpEndpoints(
 
             const result = await sdk.trigger({ function_id: "mem::remember", payload: {
               content: args.content,
+              title: typeof args.title === "string" ? args.title : undefined,
               type,
               concepts,
               files,

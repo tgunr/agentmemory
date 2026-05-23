@@ -58,6 +58,10 @@ export const CORE_TOOLS: McpToolDef[] = [
     inputSchema: {
       type: "object",
       properties: {
+        title: {
+          type: "string",
+          description: "Optional custom title. If omitted, auto-generated from content.",
+        },
         content: {
           type: "string",
           description: "The insight or decision to remember",

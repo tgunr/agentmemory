@@ -13,6 +13,7 @@ export function registerRememberFunction(sdk: ISdk, kv: StateKV): void {
   sdk.registerFunction("mem::remember", 
     async (data: {
       content: string;
+      title?: string;
       type?: string;
       concepts?: string[];
       files?: string[];
@@ -74,7 +75,7 @@ export function registerRememberFunction(sdk: ISdk, kv: StateKV): void {
           createdAt: now,
           updatedAt: now,
           type: memType,
-          title: data.content.slice(0, 80),
+          title: data.title?.trim() || data.content.slice(0, 80),
           content: data.content,
           concepts: data.concepts || [],
           files: data.files || [],

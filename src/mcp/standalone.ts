@@ -178,6 +178,7 @@ async function handleProxy(
     case "memory_save": {
       const body: Record<string, unknown> = {
         content: v.content,
+        title: v.title,
         type: v.type,
         concepts: v.concepts,
         files: v.files,
