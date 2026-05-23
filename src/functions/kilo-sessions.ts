@@ -1,6 +1,6 @@
-import { homedir, platform } from "os";
-import { join, resolve } from "path";
-import { access, readFile, readdir, stat } from "fs/promises";
+import { homedir } from "os";
+import { join } from "path";
+import { access, readFile, stat } from "fs/promises";
 import type { KiloLocalSessionEntry, KiloCloudSessionEntry, KiloSessionPreview } from "../types.js";
 
 interface GlobalState {
@@ -19,26 +19,17 @@ interface ApiMessage {
   content?: string | Array<{ type?: string; text?: string }>;
 }
 
-function getKiloConfigDir(): string {
+async function getKiloDataDir(): Promise<string | null> {
   const home = homedir();
   const candidates = [
-    join(home, ".kilocode"),
-    join(home, ".kilo"),
-    join(home, ".opencode"),
+    join(home, ".kilocode", "cli"),
+    join(home, ".kilo", "cli"),
+    join(home, ".opencode", "cli"),
   ];
-  return candidates[0];
-}
-
-function getKiloDataDir(): string | null {
-  const configDir = getKiloConfigDir();
-  const cliDir = join(configDir, "cli");
-  const possible = [
-    join(cliDir, "global"),
-    join(cliDir),
-  ];
-  for (const p of possible) {
+  for (const p of candidates) {
     try {
-      return p;
+      const s = await stat(p);
+      if (s.isDirectory()) return p;
     } catch {
       // continue
     }
@@ -65,7 +56,7 @@ async function readJsonFile<T>(path: string): Promise<T | null> {
 }
 
 export async function listLocalSessions(options?: { limit?: number; workspace?: string }): Promise<{ success: boolean; sessions: KiloLocalSessionEntry[]; error?: string }> {
-  const dataDir = getKiloDataDir();
+  const dataDir = await getKiloDataDir();
   if (!dataDir) {
     return { success: false, sessions: [], error: "Kilo data directory not found" };
   }
@@ -97,7 +88,7 @@ export async function listLocalSessions(options?: { limit?: number; workspace?: 
 }
 
 export async function previewLocalSession(sessionId: string): Promise<{ success: boolean; preview?: KiloSessionPreview; error?: string }> {
-  const dataDir = getKiloDataDir();
+  const dataDir = await getKiloDataDir();
   if (!dataDir) {
     return { success: false, error: "Kilo data directory not found" };
   }
@@ -192,7 +183,7 @@ export async function previewLocalSession(sessionId: string): Promise<{ success:
 }
 
 export async function listCloudSessions(options?: { limit?: number }): Promise<{ success: boolean; sessions: KiloCloudSessionEntry[]; error?: string }> {
-  const dataDir = getKiloDataDir();
+  const dataDir = await getKiloDataDir();
   if (!dataDir) {
     return { success: false, sessions: [], error: "Kilo data directory not found" };
   }
@@ -237,7 +228,7 @@ export async function listCloudSessions(options?: { limit?: number }): Promise<{
 }
 
 export async function previewCloudSession(sessionId: string): Promise<{ success: boolean; preview?: KiloSessionPreview; error?: string }> {
-  const dataDir = getKiloDataDir();
+  const dataDir = await getKiloDataDir();
   if (!dataDir) {
     return { success: false, error: "Kilo data directory not found" };
   }

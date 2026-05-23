@@ -1291,11 +1291,11 @@ export function registerMcpEndpoints(
             };
             if (source === "local") {
               const { importLocalSession } = await import("../functions/kilo-import.js");
-              const result = await importLocalSession(sessionId, importOptions);
+              const result = await importLocalSession(sessionId, importOptions, kv);
               return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
             }
             const { importCloudSession } = await import("../functions/kilo-import.js");
-            const result = await importCloudSession(sessionId, importOptions);
+            const result = await importCloudSession(sessionId, importOptions, kv);
             return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
           }
 

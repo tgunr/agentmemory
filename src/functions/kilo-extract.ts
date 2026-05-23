@@ -1,8 +1,7 @@
 import type { ISdk } from "iii-sdk";
 import type { StateKV } from "../state/kv.js";
 import type { CompressedObservation, KiloExtractResult } from "../types.js";
-import { KV } from "../state/schema.js";
-import { generateId } from "iii-sdk";
+import { KV, generateId } from "../state/schema.js";
 
 interface MemoryInput {
   title: string;
@@ -94,51 +93,55 @@ Return valid JSON only, no markdown formatting, no explanation.`;
     let savedCount = 0;
 
     for (const decision of normalized.decisions) {
-      await saveAsMemory(sdk, {
+      if (await saveAsMemory(sdk, {
         title: decision.title,
         content: decision.content,
         type: "workflow",
         concepts: [sessionId, "decision"],
         files: decision.files || [],
         sessionIds: [sessionId],
-      });
-      savedCount++;
+      })) {
+        savedCount++;
+      }
     }
 
     for (const pattern of normalized.patterns) {
-      await saveAsMemory(sdk, {
+      if (await saveAsMemory(sdk, {
         title: pattern.title,
         content: pattern.content,
         type: "pattern",
         concepts: [sessionId, "pattern"],
         files: [],
         sessionIds: [sessionId],
-      });
-      savedCount++;
+      })) {
+        savedCount++;
+      }
     }
 
     for (const bug of normalized.bugs) {
-      await saveAsMemory(sdk, {
+      if (await saveAsMemory(sdk, {
         title: bug.title,
         content: `${bug.content}${bug.solution ? `\nSolution: ${bug.solution}` : ""}`,
         type: "bug",
         concepts: [sessionId, "bug"],
         files: [],
         sessionIds: [sessionId],
-      });
-      savedCount++;
+      })) {
+        savedCount++;
+      }
     }
 
     for (const arch of normalized.architecture) {
-      await saveAsMemory(sdk, {
+      if (await saveAsMemory(sdk, {
         title: arch.title,
         content: arch.content,
         type: "architecture",
         concepts: [sessionId, "architecture"],
         files: arch.files || [],
         sessionIds: [sessionId],
-      });
-      savedCount++;
+      })) {
+        savedCount++;
+      }
     }
 
     return {
@@ -152,7 +155,7 @@ Return valid JSON only, no markdown formatting, no explanation.`;
   }
 }
 
-async function saveAsMemory(sdk: ISdk, input: MemoryInput): Promise<void> {
+async function saveAsMemory(sdk: ISdk, input: MemoryInput): Promise<boolean> {
   try {
     await sdk.trigger({
       function_id: "mem::remember",
@@ -163,6 +166,10 @@ async function saveAsMemory(sdk: ISdk, input: MemoryInput): Promise<void> {
         files: input.files,
       },
     });
-  } catch {
+    return true;
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.warn(`[kilo-extract] Failed to save memory: ${msg}`);
+    return false;
   }
 }

@@ -1,12 +1,10 @@
 import { homedir } from "os";
 import { join } from "path";
-import { access, readFile, readdir } from "fs/promises";
-import type { ISdk } from "iii-sdk";
+import { access, readFile, stat } from "fs/promises";
 import type { StateKV } from "../state/kv.js";
 import type { Session, CompressedObservation } from "../types.js";
-import type { KiloSessionImportOptions, KiloSessionPreview } from "../types.js";
-import { KV } from "../state/schema.js";
-import { generateId } from "iii-sdk";
+import type { KiloSessionImportOptions } from "../types.js";
+import { KV, generateId } from "../state/schema.js";
 
 interface GlobalState {
   taskHistory?: Array<{
@@ -31,12 +29,6 @@ interface ApiMessage {
   content?: string | Array<{ type?: string; text?: string; name?: string }>;
 }
 
-interface UiMessage {
-  type?: string;
-  text?: string;
-  data?: unknown;
-}
-
 async function fileExists(path: string): Promise<boolean> {
   try {
     await access(path);
@@ -55,22 +47,37 @@ async function readJsonFile<T>(path: string): Promise<T | null> {
   }
 }
 
-function getKiloDataDir(): string {
-  return join(homedir(), ".kilocode");
+async function getKiloDataDir(): Promise<string | null> {
+  const home = homedir();
+  const candidates = [
+    join(home, ".kilocode", "cli"),
+    join(home, ".kilo", "cli"),
+    join(home, ".opencode", "cli"),
+  ];
+  for (const p of candidates) {
+    try {
+      const s = await stat(p);
+      if (s.isDirectory()) return p;
+    } catch {
+      // continue
+    }
+  }
+  return null;
 }
 
 export async function importLocalSession(
   sessionId: string,
   options: KiloSessionImportOptions,
+  kv: StateKV,
 ): Promise<{ success: boolean; agentmemorySessionId?: string; observationsCreated?: number; error?: string }> {
-  const dataDir = getKiloDataDir();
-  const sessionDir = join(dataDir, "cli", "global", "tasks", sessionId);
+  const dataDir = await getKiloDataDir();
+  const sessionDir = join(dataDir, "global", "tasks", sessionId);
 
   if (!(await fileExists(sessionDir))) {
     return { success: false, error: `Session directory not found: ${sessionDir}` };
   }
 
-  const globalStatePath = join(dataDir, "cli", "global", "global-state.json");
+  const globalStatePath = join(dataDir, "global", "global-state.json");
   const globalState = await readJsonFile<GlobalState>(globalStatePath);
   const sessionEntry = globalState?.taskHistory?.find((s) => s.id === sessionId);
 
@@ -183,9 +190,10 @@ export async function importLocalSession(
 export async function importCloudSession(
   sessionId: string,
   options: KiloSessionImportOptions,
+  kv: StateKV,
 ): Promise<{ success: boolean; agentmemorySessionId?: string; observationsCreated?: number; error?: string }> {
-  const dataDir = getKiloDataDir();
-  const configPath = join(dataDir, "cli", "config.json");
+  const dataDir = await getKiloDataDir();
+  const configPath = join(dataDir, "config.json");
   const config = await readJsonFile<Record<string, unknown>>(configPath);
   const token = config?.["kilocodeToken"] as string | undefined;
 

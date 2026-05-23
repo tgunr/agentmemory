@@ -2849,11 +2849,11 @@ export function registerApiTriggers(
 
       if (source === "local") {
         const { importLocalSession } = await import("../functions/kilo-import.js");
-        const result = await importLocalSession(sessionId, importOptions);
+        const result = await importLocalSession(sessionId, importOptions, kv);
         return { status_code: result.success ? 200 : 400, body: result };
       }
       const { importCloudSession } = await import("../functions/kilo-import.js");
-      const result = await importCloudSession(sessionId, importOptions);
+      const result = await importCloudSession(sessionId, importOptions, kv);
       return { status_code: result.success ? 200 : 400, body: result };
     },
   );
@@ -2906,11 +2906,11 @@ export function registerApiTriggers(
         const opts = { saveObservations, saveMemories: false, memoryTypes: [], createSummary: false };
         if (src === "local") {
           const { importLocalSession } = await import("../functions/kilo-import.js");
-          const r = await importLocalSession(sid, opts);
+          const r = await importLocalSession(sid, opts, kv);
           results.push({ sessionId: sid, source: src, success: r.success, agentmemorySessionId: r.agentmemorySessionId, error: r.error });
         } else {
           const { importCloudSession } = await import("../functions/kilo-import.js");
-          const r = await importCloudSession(sid, opts);
+          const r = await importCloudSession(sid, opts, kv);
           results.push({ sessionId: sid, source: src, success: r.success, agentmemorySessionId: r.agentmemorySessionId, error: r.error });
         }
       }
