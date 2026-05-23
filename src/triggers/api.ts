@@ -593,6 +593,34 @@ export function registerApiTriggers(
     },
   });
 
+  sdk.registerFunction("api::session::rename",
+    async (req: ApiRequest<{ sessionId: string; title: string }>): Promise<Response> => {
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      const sessionId = asNonEmptyString(body.sessionId);
+      const title = asNonEmptyString(body.title);
+      if (!sessionId || !title) {
+        return {
+          status_code: 400,
+          body: { error: "sessionId and title are required non-empty strings" },
+        };
+      }
+      const result = await sdk.trigger({
+        function_id: "mem::session::rename",
+        payload: { sessionId, title },
+      });
+      return { status_code: 200, body: result };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::session::rename",
+    config: {
+      api_path: "/agentmemory/session/rename",
+      http_method: "POST",
+      middleware_function_ids: ["middleware::api-auth"],
+    },
+  });
+
   sdk.registerFunction("api::summarize", 
     async (req: ApiRequest<{ sessionId: string }>): Promise<Response> => {
       const sessionId = asNonEmptyString((req.body as Record<string, unknown>)?.sessionId);
