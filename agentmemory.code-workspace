@@ -19,6 +19,14 @@
 		{
 			"name": ".mcp-router",
 			"path": "../../../Users/davec/.mcp-router"
+		},
+		{
+			"name": "kilocode",
+			"path": "../kilocode"
+		},
+		{
+			"name": "KiloSessions",
+			"path": "../KiloSessions"
 		}
 	],
 	"settings": {
