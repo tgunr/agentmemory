@@ -38,15 +38,8 @@ export async function renameSession(
   ]);
 
   const updated = await kv.get<Session>(KV.sessions, data.sessionId);
-  const now = new Date().toISOString();
 
-  await recordAudit({
-    type: "session",
-    operation: "rename",
-    sessionId: data.sessionId,
-    timestamp: now,
-    details: { title },
-  });
+  await recordAudit(kv, "session_rename", "mem::session::rename", [data.sessionId], { title });
 
   return { success: true, session: updated! };
 }
