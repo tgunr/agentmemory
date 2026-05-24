@@ -981,6 +981,19 @@ export const KILO_SESSIONS_TOOLS: McpToolDef[] = [
       required: ["sessionId"],
     },
   },
+  {
+    name: "memory_find_session",
+    description:
+      "Find a Kilo session by partial name match. Returns matching sessions with their IDs, project names, and observation counts. Use the returned sessionId with memory_kilo_session_save or memory_kilo_session_preview.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "Partial session name or project to search for (e.g. 'keyload', 'agentmemory')" },
+        limit: { type: "string", description: "Max results to return (default 10)" },
+      },
+      required: ["query"],
+    },
+  },
 ];
 
 const ESSENTIAL_TOOLS = new Set([
@@ -992,6 +1005,9 @@ const ESSENTIAL_TOOLS = new Set([
   "memory_diagnose",
   "memory_lesson_save",
   "memory_reflect",
+  "memory_find_session",
+  "memory_kilo_session_save",
+  "memory_kilo_session_preview",
 ]);
 
 export function getAllTools(): McpToolDef[] {

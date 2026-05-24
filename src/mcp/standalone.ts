@@ -240,6 +240,14 @@ async function handleProxy(
       );
       return textResponse(result, true);
     }
+    case "memory_find_session": {
+      const body: Record<string, unknown> = { query: v.query, limit: v.limit };
+      const result = await handle.call("/agentmemory/find-session", {
+        method: "POST",
+        body: JSON.stringify(body),
+      });
+      return textResponse(result, true);
+    }
     default:
       throw new Error(`Unknown tool: ${v.tool}`);
   }
@@ -327,16 +335,26 @@ async function handleLocal(
     }
 
     case "memory_audit": {
-      const entries = await kvInstance.list("mem:audit");
-      const limit = v.limit ?? 50;
-      return textResponse(
-        {
-          entries: (entries as Array<Record<string, unknown>>).slice(0, limit),
-        },
-        true,
-      );
+      const all = await kvInstance.list("mem:audit");
+      const limit = parseInt(v.limit || "20", 10);
+      return textResponse(JSON.stringify({ entries: all.slice(-limit) }, null, 2));
     }
-
+    case "memory_find_session": {
+      const query = (v.query || "").toLowerCase();
+      const limit = parseInt(v.limit || "10", 10);
+      const sessions = await kvInstance.list<Record<string, unknown>>("mem:sessions");
+      const matches = sessions.filter(function(s) {
+        var project = String(s.project || "").split("/").pop().toLowerCase();
+        var cwd = String(s.cwd || "").split("/").pop().toLowerCase();
+        var prompt = String(s.firstPrompt || "").toLowerCase();
+        var id = String(s.id || "").toLowerCase();
+        return project.includes(query) || cwd.includes(query) || prompt.includes(query) || id.includes(query);
+      }).slice(0, limit);
+      const result = matches.map(function(s) {
+        return { sessionId: s.id, project: String(s.project || "").split("/").pop() || s.cwd || "", observations: s.observationCount || 0, status: s.status || "unknown" };
+      });
+      return textResponse(JSON.stringify({ query, found: result.length, sessions: result }, null, 2));
+    }
     default:
       throw new Error(`Unknown tool: ${v.tool}`);
   }

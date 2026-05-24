@@ -786,6 +786,34 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/sessions", http_method: "GET" },
   });
 
+  sdk.registerFunction("api::find-session",
+    async (req: ApiRequest): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      const body = req.body as Record<string, unknown> | undefined;
+      const query = typeof body?.query === "string" ? body.query.toLowerCase() : "";
+      if (!query) return { status_code: 400, body: { error: "query is required" } };
+      const limit = typeof body?.limit === "number" ? body.limit : 10;
+      const sessions = await kv.list<Session>(KV.sessions);
+      const matches = sessions.filter(function(s) {
+        var project = ((s.project || "").split("/").pop() || "").toLowerCase();
+        var cwd = ((s.cwd || "").split("/").pop() || "").toLowerCase();
+        var prompt = (s.firstPrompt || "").toLowerCase();
+        var id = (s.id || "").toLowerCase();
+        return project.includes(query) || cwd.includes(query) || prompt.includes(query) || id.includes(query);
+      }).slice(0, limit);
+      const result = matches.map(function(s) {
+        return { sessionId: s.id, project: (s.project || "").split("/").pop() || s.cwd || "", observations: s.observationCount || 0, status: s.status || "unknown", startedAt: s.startedAt || "" };
+      });
+      return { status_code: 200, body: { query, found: result.length, sessions: result } };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::find-session",
+    config: { api_path: "/agentmemory/find-session", http_method: "POST" },
+  });
+
   sdk.registerFunction("api::observations", 
     async (req: ApiRequest): Promise<Response> => {
       const authErr = checkAuth(req, secret);

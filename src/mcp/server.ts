@@ -1309,6 +1309,24 @@ export function registerMcpEndpoints(
             return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] } };
           }
 
+          case "memory_find_session": {
+            const query = typeof args.query === "string" ? args.query.toLowerCase() : "";
+            if (!query) return { status_code: 400, body: { error: "query is required" } };
+            const limit = parseInt(typeof args.limit === "string" ? args.limit : "10", 10) || 10;
+            const sessions = await kv.list<{ id: string; project?: string; cwd?: string; observationCount?: number; firstPrompt?: string; status?: string; startedAt?: string }>(KV.sessions);
+            const matches = sessions.filter(function(s) {
+              var project = ((s.project || "").split("/").pop() || "").toLowerCase();
+              var cwd = ((s.cwd || "").split("/").pop() || "").toLowerCase();
+              var prompt = (s.firstPrompt || "").toLowerCase();
+              var id = (s.id || "").toLowerCase();
+              return project.includes(query) || cwd.includes(query) || prompt.includes(query) || id.includes(query);
+            }).slice(0, limit);
+            const result = matches.map(function(s) {
+              return { sessionId: s.id, project: (s.project || "").split("/").pop() || s.cwd || "", observations: s.observationCount || 0, status: s.status || "unknown", startedAt: s.startedAt || "" };
+            });
+            return { status_code: 200, body: { content: [{ type: "text", text: JSON.stringify({ query, found: result.length, sessions: result }, null, 2) }] } };
+          }
+
           default:
             return {
               status_code: 400,
