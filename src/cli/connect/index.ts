@@ -20,6 +20,7 @@ export const ADAPTERS: readonly ConnectAdapter[] = [
   hermes,
   pi,
   openhuman,
+  kilo,
 ];
 
 export function resolveAdapter(name: string): ConnectAdapter | null {
