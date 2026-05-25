@@ -17,7 +17,7 @@
 		<false/>
 	</dict>
 	<key>Label</key>
-	<string>dev.agentmemory</string>
+	<string>com.github.agentmemory</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>{{AGENTMEMORY_BIN}}</string>

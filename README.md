@@ -399,8 +399,8 @@ This fills in your `$HOME`, binary path, and data dir into the template plist, c
 | Uninstall | `node scripts/install-launch-agent.js --uninstall` |
 | View logs | `cat /tmp/agentmemory.stdout.log` |
 | View errors | `cat /tmp/agentmemory.stderr.log` |
-| Stop | `launchctl stop dev.agentmemory` |
-| Restart | `launchctl kickstart -k gui/$(id -u)/dev.agentmemory` |
+| Stop | `launchctl stop com.github.agentmemory` |
+| Restart | `launchctl kickstart -k gui/$(id -u)/com.github.agentmemory` |
 
 ### Session Replay
 
