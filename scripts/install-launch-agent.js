@@ -44,7 +44,7 @@ async function install() {
     process.exit(1);
   }
 
-  const templatePath = join(root, "deploy", "macos", "net.polymicro.agentmemory.plist");
+  const templatePath = join(root, "deploy", "macos", "dev.agentmemory.plist");
   if (!existsSync(templatePath)) {
     console.error(`Error: Template plist not found at ${templatePath}`);
     process.exit(1);
@@ -61,7 +61,7 @@ async function install() {
   const launchAgentsDir = join(home, "Library", "LaunchAgents");
   if (!existsSync(launchAgentsDir)) mkdirSync(launchAgentsDir, { recursive: true });
 
-  const destPath = join(launchAgentsDir, "net.polymicro.agentmemory.plist");
+  const destPath = join(launchAgentsDir, "dev.agentmemory.plist");
   writeFileSync(destPath, template, { mode: 0o644 });
 
   console.log(`LaunchAgent plist installed to: ${destPath}`);
@@ -70,7 +70,7 @@ async function install() {
 
   // Bootstrap into launchd if not already loaded
   try {
-    execFileSync("launchctl", ["list", "net.polymicro.agentmemory"], { stdio: "pipe" });
+    execFileSync("launchctl", ["list", "dev.agentmemory"], { stdio: "pipe" });
     console.log("LaunchAgent is already loaded. Restarting...");
     execFileSync("launchctl", ["bootout", `gui/${process.getuid()}`, destPath]);
     // Brief pause for teardown
@@ -83,18 +83,18 @@ async function install() {
   console.log("LaunchAgent bootstrapped and started.");
 
   console.log("View logs: cat /tmp/agentmemory.stdout.log");
-  console.log("Stop: launchctl stop net.polymicro.agentmemory");
+  console.log("Stop: launchctl stop dev.agentmemory");
   console.log("Uninstall: agentmemory remove-launch-agent  OR  node scripts/install-launch-agent.js --uninstall");
 }
 
 function uninstall() {
   const home = homedir();
-  const destPath = join(home, "Library", "LaunchAgents", "net.polymicro.agentmemory.plist");
+  const destPath = join(home, "Library", "LaunchAgents", "dev.agentmemory.plist");
 
   // Unload from launchd first
   try {
-    execFileSync("launchctl", ["list", "net.polymicro.agentmemory"], { stdio: "pipe" });
-    execFileSync("launchctl", ["bootout", `gui/${process.getuid()}/net.polymicro.agentmemory`]);
+    execFileSync("launchctl", ["list", "dev.agentmemory"], { stdio: "pipe" });
+    execFileSync("launchctl", ["bootout", `gui/${process.getuid()}/dev.agentmemory`]);
     console.log("LaunchAgent unloaded.");
   } catch {
     // Not loaded, that's fine

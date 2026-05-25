@@ -17,7 +17,7 @@
 		<false/>
 	</dict>
 	<key>Label</key>
-	<string>net.polymicro.agentmemory</string>
+	<string>dev.agentmemory</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>{{AGENTMEMORY_BIN}}</string>

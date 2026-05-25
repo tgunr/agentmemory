@@ -399,8 +399,8 @@ This fills in your `$HOME`, binary path, and data dir into the template plist, c
 | Uninstall | `node scripts/install-launch-agent.js --uninstall` |
 | View logs | `cat /tmp/agentmemory.stdout.log` |
 | View errors | `cat /tmp/agentmemory.stderr.log` |
-| Stop | `launchctl stop net.polymicro.agentmemory` |
-| Restart | `launchctl kickstart -k gui/$(id -u)/net.polymicro.agentmemory` |
+| Stop | `launchctl stop dev.agentmemory` |
+| Restart | `launchctl kickstart -k gui/$(id -u)/dev.agentmemory` |
 
 ### Session Replay
 
