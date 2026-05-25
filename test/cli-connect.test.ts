@@ -181,6 +181,142 @@ describe("agentmemory connect — claude-code adapter (mock filesystem)", () => 
   });
 });
 
+describe("agentmemory connect — kilo adapter (mock filesystem)", () => {
+  let tmpHome: string;
+  let originalHome: string | undefined;
+  let originalUserprofile: string | undefined;
+
+  beforeEach(() => {
+    tmpHome = mkdtempSync(join(tmpdir(), "am-connect-kilo-"));
+    originalHome = process.env["HOME"];
+    originalUserprofile = process.env["USERPROFILE"];
+    process.env["HOME"] = tmpHome;
+    process.env["USERPROFILE"] = tmpHome;
+    vi.resetModules();
+  });
+
+  afterEach(() => {
+    if (originalHome !== undefined) process.env["HOME"] = originalHome;
+    else delete process.env["HOME"];
+    if (originalUserprofile !== undefined)
+      process.env["USERPROFILE"] = originalUserprofile;
+    else delete process.env["USERPROFILE"];
+    rmSync(tmpHome, { recursive: true, force: true });
+    vi.resetModules();
+  });
+
+  async function loadAdapter(): Promise<ConnectAdapter> {
+    const mod = await import("../src/cli/connect/kilo.js?t=" + Date.now());
+    return (mod as { adapter: ConnectAdapter }).adapter;
+  }
+
+  it("detect() returns false when ~/.config/kilo doesn't exist", async () => {
+    const a = await loadAdapter();
+    expect(a.detect()).toBe(false);
+  });
+
+  it("install() writes mcp.agentmemory into kilo.json and is idempotent", async () => {
+    const kiloDir = join(tmpHome, ".config", "kilo");
+    require("node:fs").mkdirSync(kiloDir, { recursive: true });
+    writeFileSync(
+      join(kiloDir, "kilo.json"),
+      JSON.stringify({ mcp: { other: { type: "local", command: ["x"] } } }),
+    );
+
+    const a = await loadAdapter();
+    expect(a.detect()).toBe(true);
+
+    const first = await a.install({ dryRun: false, force: false });
+    expect(first.kind).toBe("installed");
+
+    const config = JSON.parse(readFileSync(join(kiloDir, "kilo.json"), "utf-8"));
+    expect(config.mcp.agentmemory.type).toBe("local");
+    expect(config.mcp.agentmemory.command).toContain("npx");
+    expect(config.mcp.agentmemory.command.some((c: string) => c.includes("@agentmemory/mcp"))).toBe(true);
+    expect(config.mcp.other.command[0]).toBe("x");
+
+    const second = await a.install({ dryRun: false, force: false });
+    expect(second.kind).toBe("already-wired");
+  });
+
+  it("install() writes env passthrough block for AGENTMEMORY_URL + AGENTMEMORY_SECRET", async () => {
+    const kiloDir = join(tmpHome, ".config", "kilo");
+    require("node:fs").mkdirSync(kiloDir, { recursive: true });
+    writeFileSync(join(kiloDir, "kilo.json"), JSON.stringify({}));
+
+    const a = await loadAdapter();
+    const result = await a.install({ dryRun: false, force: false });
+    expect(result.kind).toBe("installed");
+
+    const config = JSON.parse(readFileSync(join(kiloDir, "kilo.json"), "utf-8"));
+    const entry = config.mcp.agentmemory;
+    expect(entry.environment).toBeDefined();
+    expect(entry.environment.AGENTMEMORY_URL).toBe("${AGENTMEMORY_URL}");
+    expect(entry.environment.AGENTMEMORY_SECRET).toBe("${AGENTMEMORY_SECRET}");
+  });
+
+  it("install() with --force re-writes even when already wired", async () => {
+    const kiloDir = join(tmpHome, ".config", "kilo");
+    require("node:fs").mkdirSync(kiloDir, { recursive: true });
+    writeFileSync(
+      join(kiloDir, "kilo.json"),
+      JSON.stringify({
+        mcp: {
+          agentmemory: { type: "local", command: ["npx", "-y", "@agentmemory/mcp"] },
+        },
+      }),
+    );
+
+    const a = await loadAdapter();
+    const result = await a.install({ dryRun: false, force: true });
+    expect(result.kind).toBe("installed");
+  });
+
+  it("install() with --dry-run does not mutate the file", async () => {
+    const kiloDir = join(tmpHome, ".config", "kilo");
+    require("node:fs").mkdirSync(kiloDir, { recursive: true });
+    const before = JSON.stringify({ mcp: {} });
+    writeFileSync(join(kiloDir, "kilo.json"), before);
+
+    const a = await loadAdapter();
+    const result = await a.install({ dryRun: true, force: false });
+    expect(result.kind).toBe("installed");
+
+    const after = readFileSync(join(kiloDir, "kilo.json"), "utf-8");
+    expect(after).toBe(before);
+  });
+
+  it("install() creates a backup file under ~/.agentmemory/backups/", async () => {
+    const kiloDir = join(tmpHome, ".config", "kilo");
+    require("node:fs").mkdirSync(kiloDir, { recursive: true });
+    writeFileSync(
+      join(kiloDir, "kilo.json"),
+      JSON.stringify({ mcp: {} }),
+    );
+
+    const a = await loadAdapter();
+    const result = await a.install({ dryRun: false, force: false });
+    expect(result.kind).toBe("installed");
+    if (result.kind === "installed") {
+      expect(result.backupPath).toBeDefined();
+      expect(existsSync(result.backupPath!)).toBe(true);
+      expect(result.backupPath!).toContain(".agentmemory/backups");
+    }
+  });
+
+  it("prefers kilo.jsonc over kilo.json when both exist", async () => {
+    const kiloDir = join(tmpHome, ".config", "kilo");
+    require("node:fs").mkdirSync(kiloDir, { recursive: true });
+    writeFileSync(join(kiloDir, "kilo.jsonc"), JSON.stringify({ mcp: { jsonc: true } }));
+    writeFileSync(join(kiloDir, "kilo.json"), JSON.stringify({ mcp: { json: true } }));
+
+    const a = await loadAdapter();
+    const result = await a.install({ dryRun: false, force: false });
+    expect(result.kind).toBe("installed");
+    expect(result.mutatedPath).toBe(join(kiloDir, "kilo.jsonc"));
+  });
+});
+
 describe("agentmemory connect — stub adapters log + return stub", () => {
   it("hermes adapter returns stub regardless of detect", async () => {
     const { adapter } = await import("../src/cli/connect/hermes.js");
