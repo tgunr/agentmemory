@@ -1597,8 +1597,13 @@
       state.graph.stats = results[1] || {};
 
       if (state.graph.nodes.length === 0) {
+        var graphEnabled = state.flagsConfig && state.flagsConfig.flags &&
+          state.flagsConfig.flags.some(function(f) { return f.key === 'GRAPH_EXTRACTION_ENABLED' && f.enabled; });
         var sb = document.getElementById('graph-sidebar');
-        if (sb) sb.innerHTML = '<h3>Graph</h3><p style="font-size:12px;color:var(--ink-faint);margin:8px 0;font-style:italic;">No graph data yet. Building from observations and memories...</p>';
+        var msg = graphEnabled
+          ? '<h3>Graph</h3><p style="font-size:12px;color:var(--ink-faint);margin:8px 0;font-style:italic;">Graph extraction is enabled. Building from completed sessions...</p>'
+          : '<h3>Graph</h3><p style="font-size:12px;color:var(--ink-faint);margin:8px 0;font-style:italic;">No graph data yet. Set GRAPH_EXTRACTION_ENABLED=true to enable.</p>';
+        if (sb) sb.innerHTML = msg;
         var buildResult = await apiPost('graph/build', {});
         if (buildResult && buildResult.success && buildResult.nodes > 0) {
           var freshResults = await Promise.all([
@@ -1609,6 +1614,15 @@
           state.graph.nodes = freshQuery.nodes || [];
           state.graph.edges = freshQuery.edges || [];
           state.graph.stats = freshResults[1] || {};
+          if (sb && state.graph.nodes.length > 0) {
+            sb.innerHTML = '';
+            renderGraphSidebar();
+          }
+        } else if (sb && buildResult && buildResult.success && buildResult.nodes === 0) {
+          var noDataMsg = graphEnabled
+            ? '<h3>Graph</h3><p style="font-size:12px;color:var(--ink-faint);margin:8px 0;font-style:italic;">No completed sessions with observations. Run a session and stop it to extract graph data.</p>'
+            : '<h3>Graph</h3><p style="font-size:12px;color:var(--ink-faint);margin:8px 0;font-style:italic;">No graph data yet. Set GRAPH_EXTRACTION_ENABLED=true to enable.</p>';
+          sb.innerHTML = noDataMsg;
         }
       }
 
@@ -2206,12 +2220,18 @@
       ctx.restore();
 
       if (graphSim.nodes.length === 0) {
+        var graphEnabled = state.flagsConfig && state.flagsConfig.flags &&
+          state.flagsConfig.flags.some(function(f) { return f.key === 'GRAPH_EXTRACTION_ENABLED' && f.enabled; });
         ctx.fillStyle = '#999999';
         ctx.font = '14px Lora, Georgia, serif';
         ctx.textAlign = 'center';
         ctx.fillText('No graph data yet.', w / 2, h / 2 - 16);
         ctx.font = '12px Inter, sans-serif';
-        ctx.fillText('Set GRAPH_EXTRACTION_ENABLED=true to enable knowledge graph extraction.', w / 2, h / 2 + 8);
+        if (graphEnabled) {
+          ctx.fillText('Graph extraction is enabled. Run a session and it will extract on stop, or click Rebuild Graph.', w / 2, h / 2 + 8);
+        } else {
+          ctx.fillText('Set GRAPH_EXTRACTION_ENABLED=true to enable knowledge graph extraction.', w / 2, h / 2 + 8);
+        }
       }
     }
 

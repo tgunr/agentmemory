@@ -1254,6 +1254,46 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/graph/extract", http_method: "POST" },
   });
 
+  sdk.registerFunction("api::graph-build",
+    async (req: ApiRequest): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      if (!isGraphExtractionEnabled()) return graphDisabledResponse();
+      try {
+        const sessions = await kv.list<Session>(KV.sessions);
+        const completedSessions = sessions.filter(
+          (s) => s.status === "completed" || s.status === "abandoned",
+        );
+        let totalNodes = 0;
+        let totalEdges = 0;
+        for (const session of completedSessions) {
+          const observations = await kv.list<CompressedObservation>(
+            KV.observations(session.id),
+          );
+          const compressed = observations.filter((o) => o.title);
+          if (compressed.length === 0) continue;
+          const result = await sdk.trigger({
+            function_id: "mem::graph-extract",
+            payload: { observations: compressed },
+          });
+          if (result?.success) {
+            totalNodes += result.nodesAdded || 0;
+            totalEdges += result.edgesAdded || 0;
+          }
+        }
+        return { status_code: 200, body: { success: true, nodes: totalNodes, edges: totalEdges, sessions: completedSessions.length } };
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        return { status_code: 500, body: { error: msg } };
+      }
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::graph-build",
+    config: { api_path: "/agentmemory/graph/build", http_method: "POST" },
+  });
+
   sdk.registerFunction("api::consolidate-pipeline", 
     async (req: ApiRequest<{ tier?: string }>): Promise<Response> => {
       const authErr = checkAuth(req, secret);

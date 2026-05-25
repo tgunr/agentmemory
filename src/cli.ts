@@ -301,7 +301,21 @@ async function isAgentmemoryReady(): Promise<boolean> {
   }
 }
 
+function generateIiiConfig(dataDir: string): string {
+  const baseConfig = join(__dirname, "iii-config.yaml");
+  const template = existsSync(baseConfig)
+    ? readFileSync(baseConfig, "utf-8")
+    : readFileSync(join(__dirname, "..", "iii-config.yaml"), "utf-8");
+  const target = join(homedir(), ".agentmemory", "iii-config.yaml");
+  const resolved = template.replaceAll("file_path: ./data/", `file_path: ${dataDir}/data/`);
+  mkdirSync(dirname(target), { recursive: true });
+  writeFileSync(target, resolved);
+  return target;
+}
+
 function findIiiConfig(): string {
+  const dataDir = process.env["AGENTMEMORY_DATA_DIR"];
+  if (dataDir) return generateIiiConfig(dataDir);
   const candidates = [
     join(__dirname, "iii-config.yaml"),
     join(__dirname, "..", "iii-config.yaml"),
