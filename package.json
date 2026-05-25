@@ -27,7 +27,9 @@
     "test:all": "vitest run",
     "bench:load": "node --import tsx benchmark/load-100k.ts",
     "eval:longmemeval": "tsx eval/runner/longmemeval.ts",
-    "eval:coding-life": "tsx eval/runner/coding-life.ts"
+    "eval:coding-life": "tsx eval/runner/coding-life.ts",
+    "install-launch-agent": "node scripts/install-launch-agent.js",
+    "uninstall-launch-agent": "node scripts/install-launch-agent.js --uninstall"
   },
   "keywords": [
     "ai",
@@ -43,6 +45,8 @@
   "files": [
     "dist/",
     "plugin/",
+    "scripts/install-launch-agent.js",
+    "deploy/macos/",
     "iii-config.yaml",
     "iii-config.docker.yaml",
     "docker-compose.yml",

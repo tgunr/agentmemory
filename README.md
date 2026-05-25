@@ -381,6 +381,27 @@ rm -rf ~/.npm/_npx && npx @agentmemory/agentmemory     # macOS/Linux only (POSIX
 
 On Windows / PowerShell, the equivalent cache clear is `Remove-Item -Recurse -Force "$env:LOCALAPPDATA\npm-cache\_npx"` — the `npx -y ...@latest` form above is the cross-platform option.
 
+### Auto-start on macOS (LaunchAgent)
+
+On macOS, agentmemory can run automatically at login via a LaunchAgent so the memory server is always available:
+
+```bash
+npm install -g @agentmemory/agentmemory
+npm run install-launch-agent --workspace=@agentmemory/agentmemory  # or:
+node $(npm root -g)/@agentmemory/agentmemory/scripts/install-launch-agent.js
+```
+
+This fills in your `$HOME`, binary path, and data dir into the template plist, copies it to `~/Library/LaunchAgents/`, and starts it. The server restarts automatically if it exits.
+
+| Task | Command |
+|---|---|
+| Install | `node scripts/install-launch-agent.js` |
+| Uninstall | `node scripts/install-launch-agent.js --uninstall` |
+| View logs | `cat /tmp/agentmemory.stdout.log` |
+| View errors | `cat /tmp/agentmemory.stderr.log` |
+| Stop | `launchctl stop net.polymicro.agentmemory` |
+| Restart | `launchctl kickstart -k gui/$(id -u)/net.polymicro.agentmemory` |
+
 ### Session Replay
 
 Every session agentmemory records is replayable. Open the viewer, pick the **Replay** tab, and scrub through the timeline: prompts, tool calls, tool results, and responses render as discrete events with play/pause, speed control (0.5×–4×), and keyboard shortcuts (space to toggle, arrows to step).
