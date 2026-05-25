@@ -593,6 +593,33 @@ export function registerApiTriggers(
     },
   });
 
+  sdk.registerFunction("api::session::update",
+    async (req: ApiRequest<{ sessionId: string; title?: string }>): Promise<Response> => {
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      const sessionId = asNonEmptyString(body.sessionId);
+      if (!sessionId) {
+        return { status_code: 400, body: { error: "sessionId is required" } };
+      }
+      const title = typeof body.title === "string" ? body.title.trim() : undefined;
+      if (title) {
+        await kv.update(KV.sessions, sessionId, [
+          { type: "set", path: "summary", value: title.slice(0, 200) },
+          { type: "set", path: "firstPrompt", value: title.slice(0, 200) },
+        ]);
+      }
+      return { status_code: 200, body: { success: true } };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::session::update",
+    config: {
+      api_path: "/agentmemory/session/update",
+      http_method: "POST",
+      middleware_function_ids: ["middleware::api-auth"],
+    },
+  });
+
   sdk.registerFunction("api::summarize", 
     async (req: ApiRequest<{ sessionId: string }>): Promise<Response> => {
       const sessionId = asNonEmptyString((req.body as Record<string, unknown>)?.sessionId);
