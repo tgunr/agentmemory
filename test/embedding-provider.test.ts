@@ -12,6 +12,7 @@ describe("createEmbeddingProvider", () => {
 
   beforeEach(() => {
     process.env = { ...originalEnv };
+    process.env["AGENTMEMORY_SKIP_ENV_FILE"] = "true";
     delete process.env["GEMINI_API_KEY"];
     delete process.env["OPENAI_API_KEY"];
     delete process.env["VOYAGE_API_KEY"];
@@ -57,9 +58,11 @@ describe("OpenAIEmbeddingProvider", () => {
 
   beforeEach(() => {
     process.env = { ...originalEnv };
+    process.env["AGENTMEMORY_SKIP_ENV_FILE"] = "true";
     delete process.env["OPENAI_BASE_URL"];
     delete process.env["OPENAI_EMBEDDING_MODEL"];
     delete process.env["OPENAI_EMBEDDING_DIMENSIONS"];
+    delete process.env["OPENAI_API_KEY"];
   });
 
   afterEach(() => {

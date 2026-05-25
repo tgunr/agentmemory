@@ -29,7 +29,7 @@ describe("agentmemory connect — dispatcher", () => {
     expect(resolveAdapter("")).toBeNull();
   });
 
-  it("ships exactly the 8 agents specified by the spec", () => {
+  it("ships exactly the 9 agents specified by the spec", () => {
     expect(knownAgents().sort()).toEqual(
       [
         "claude-code",
@@ -37,12 +37,13 @@ describe("agentmemory connect — dispatcher", () => {
         "cursor",
         "gemini-cli",
         "hermes",
+        "kilo",
         "openclaw",
         "openhuman",
         "pi",
       ].sort(),
     );
-    expect(ADAPTERS.length).toBe(8);
+    expect(ADAPTERS.length).toBe(9);
   });
 
   it("every adapter exposes detect() and install()", () => {

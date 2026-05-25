@@ -79,10 +79,12 @@ describe("mem::observe auto-compress gate (#138)", () => {
     // test that sets the env var can be undermined by cached module
     // state from an earlier test (and vice versa).
     vi.resetModules();
+    process.env["AGENTMEMORY_SKIP_ENV_FILE"] = "true";
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
   });
   afterEach(() => {
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
+    delete process.env["AGENTMEMORY_SKIP_ENV_FILE"];
   });
 
   it("default (AGENTMEMORY_AUTO_COMPRESS unset): does NOT fire mem::compress", async () => {

@@ -20,6 +20,7 @@ const DATA_DIR = join(homedir(), ".agentmemory");
 const ENV_FILE = join(DATA_DIR, ".env");
 
 function loadEnvFile(): Record<string, string> {
+  if (process.env["AGENTMEMORY_SKIP_ENV_FILE"] === "true") return {};
   if (!existsSync(ENV_FILE)) return {};
   const content = readFileSync(ENV_FILE, "utf-8");
   const vars: Record<string, string> = {};
