@@ -1111,8 +1111,22 @@
       return id ? id.slice(0, n || 8) : '';
     }
     function sessionDisplayName(s) {
-      var project = s && s.project ? String(s.project).split('/').pop() : '';
+      if (!s) return 'Unknown session';
+      
+      // 1. Prefer the first prompt or summary (most descriptive, matches user's actual session intent)
+      var prompt = s.firstPrompt || s.summary;
+      if (prompt && typeof prompt === 'string') {
+        var cleanPrompt = prompt.split('\n')[0].trim();
+        if (cleanPrompt.length > 0) {
+          return cleanPrompt.length > 50 ? cleanPrompt.slice(0, 47) + '...' : cleanPrompt;
+        }
+      }
+      
+      // 2. Fall back to the project folder name
+      var project = s.project ? String(s.project).split('/').pop() : '';
       if (project) return project;
+      
+      // 3. Absolute last resort: short session ID
       return shortSessionId(s, 8) || 'Unknown session';
     }
     function sessionLabel(s) {
