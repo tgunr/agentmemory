@@ -8,7 +8,7 @@ import type {
   QueryExpansion,
 } from "../types.js";
 import { memoryToObservation } from "./memory-utils.js";
-import type { StateKV } from "./kv.js";
+import type { IKVStore } from "./kv.js";
 import { KV } from "./schema.js";
 import {
   GraphRetrieval,
@@ -26,7 +26,7 @@ export class HybridSearch {
     private bm25: SearchIndex,
     private vector: VectorIndex | null,
     private embeddingProvider: EmbeddingProvider | null,
-    private kv: StateKV,
+    private kv: IKVStore,
     private bm25Weight = 0.4,
     private vectorWeight = 0.6,
     private graphWeight = 0.3,

@@ -15,7 +15,7 @@ function escapeXml(s: string): string {
     .replace(/'/g, "&apos;");
 }
 
-export function registerEnrichFunction(sdk: ISdk, kv: StateKV): void {
+export function registerEnrichFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::enrich", 
     async (data: {
       sessionId: string;

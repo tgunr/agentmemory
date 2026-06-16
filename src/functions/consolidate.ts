@@ -64,7 +64,7 @@ function parseMemoryXml(
 
 export function registerConsolidateFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::consolidate", 

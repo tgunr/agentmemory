@@ -10,7 +10,7 @@ import { logger } from "../logger.js";
 
 const GRACE_PERIOD_MS = 30_000;
 
-export function registerImageQuotaCleanup(sdk: ISdk, kv: StateKV): void {
+export function registerImageQuotaCleanup(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction(
     "mem::image-quota-cleanup",
     async () => {

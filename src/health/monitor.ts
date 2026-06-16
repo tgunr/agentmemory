@@ -1,12 +1,12 @@
 import type { ISdk } from "iii-sdk";
 import type { HealthSnapshot } from "../types.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV } from "../state/schema.js";
 import { evaluateHealth } from "./thresholds.js";
 
 export function registerHealthMonitor(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
 ): { stop: () => void } {
   let connectionState = "connected";
   let prevCpuUsage = process.cpuUsage();
@@ -105,7 +105,7 @@ export function registerHealthMonitor(
 }
 
 export async function getLatestHealth(
-  kv: StateKV,
+  kv: IKVStore,
 ): Promise<HealthSnapshot | null> {
   return kv.get<HealthSnapshot>(KV.health, "latest");
 }

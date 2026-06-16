@@ -9,7 +9,7 @@ import { StateKV } from "../state/kv.js";
 import { recordAccessBatch } from "./access-tracker.js";
 import { logger } from "../logger.js";
 
-export function registerTimelineFunction(sdk: ISdk, kv: StateKV): void {
+export function registerTimelineFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::timeline", 
     async (data: {
       anchor: string;
@@ -106,7 +106,7 @@ export function registerTimelineFunction(sdk: ISdk, kv: StateKV): void {
 }
 
 async function findByKeyword(
-  kv: StateKV,
+  kv: IKVStore,
   keyword: string,
   project?: string,
 ): Promise<CompressedObservation[]> {

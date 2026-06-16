@@ -9,7 +9,7 @@ import { recordAudit } from "./audit.js";
 import { getSearchIndex, vectorIndexAddGuarded } from "./search.js";
 import { logger } from "../logger.js";
 
-export function registerRememberFunction(sdk: ISdk, kv: StateKV): void {
+export function registerRememberFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::remember", 
     async (data: {
       content: string;

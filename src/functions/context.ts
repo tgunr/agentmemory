@@ -32,7 +32,7 @@ function escapeXmlAttr(s: string): string {
 
 export function registerContextFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   tokenBudget: number,
 ): void {
   sdk.registerFunction("mem::context", 

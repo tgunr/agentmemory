@@ -8,7 +8,7 @@ import type {
   MemoryProvider,
 } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { logger } from "../logger.js";
 
 const TEMPORAL_EXTRACTION_SYSTEM = `You are a temporal knowledge extraction engine. Given observations, extract entities AND their temporal relationships with full context metadata.
@@ -151,7 +151,7 @@ function parseTemporalGraphXml(
 
 export function registerTemporalGraphFunctions(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::temporal-graph-extract", 

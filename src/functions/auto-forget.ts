@@ -20,7 +20,7 @@ interface AutoForgetResult {
   dryRun: boolean;
 }
 
-export function registerAutoForgetFunction(sdk: ISdk, kv: StateKV): void {
+export function registerAutoForgetFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::auto-forget", 
     async (data: { dryRun?: boolean }): Promise<AutoForgetResult> => {
       const dryRun = data?.dryRun ?? false;

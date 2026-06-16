@@ -19,7 +19,7 @@ interface FileHistory {
   }>;
 }
 
-export function registerFileIndexFunction(sdk: ISdk, kv: StateKV): void {
+export function registerFileIndexFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::file-context", 
     async (
       data: { sessionId?: string; files?: string[]; project?: string } | undefined,

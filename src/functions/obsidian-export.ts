@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV } from "../state/schema.js";
 import type {
   Memory,
@@ -195,7 +195,7 @@ interface ExportError {
 
 export function registerObsidianExportFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
 ): void {
   sdk.registerFunction("mem::obsidian-export",
     async (data: { vaultDir?: string; types?: string[] } | undefined) => {

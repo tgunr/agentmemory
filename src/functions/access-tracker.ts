@@ -1,5 +1,5 @@
 import { KV } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import { logger } from "../logger.js";
 
@@ -37,7 +37,7 @@ export function normalizeAccessLog(raw: unknown): AccessLog {
 }
 
 export async function getAccessLog(
-  kv: StateKV,
+  kv: IKVStore,
   memoryId: string,
 ): Promise<AccessLog> {
   try {
@@ -52,7 +52,7 @@ export async function getAccessLog(
 }
 
 export async function recordAccess(
-  kv: StateKV,
+  kv: IKVStore,
   memoryId: string,
   timestampMs?: number,
 ): Promise<void> {
@@ -80,7 +80,7 @@ export async function recordAccess(
 }
 
 export async function recordAccessBatch(
-  kv: StateKV,
+  kv: IKVStore,
   memoryIds: string[],
   timestampMs?: number,
 ): Promise<void> {
@@ -91,7 +91,7 @@ export async function recordAccessBatch(
 }
 
 export async function deleteAccessLog(
-  kv: StateKV,
+  kv: IKVStore,
   memoryId: string,
 ): Promise<void> {
   if (!memoryId) return;

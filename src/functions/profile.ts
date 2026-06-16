@@ -9,7 +9,7 @@ import { StateKV } from "../state/kv.js";
 import { recordAudit } from "./audit.js";
 import { logger } from "../logger.js";
 
-export function registerProfileFunction(sdk: ISdk, kv: StateKV): void {
+export function registerProfileFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::profile", 
     async (data: { project: string; refresh?: boolean } | undefined) => {
       if (!data || typeof data.project !== "string" || !data.project.trim()) {

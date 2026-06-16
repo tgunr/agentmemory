@@ -7,7 +7,7 @@ import type {
   MemoryProvider,
 } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import {
   SEMANTIC_MERGE_SYSTEM,
   buildSemanticMergePrompt,
@@ -44,7 +44,7 @@ function applyDecay(
 
 export function registerConsolidationPipelineFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::consolidate-pipeline", 

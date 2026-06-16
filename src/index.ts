@@ -20,6 +20,7 @@ import {
   createImageEmbeddingProvider,
 } from "./providers/index.js";
 import { StateKV } from "./state/kv.js";
+import { RedisKV } from "./state/redis-kv.js";
 import { KV } from "./state/schema.js";
 import { VectorIndex } from "./state/vector-index.js";
 import { HybridSearch } from "./state/hybrid-search.js";
@@ -185,7 +186,17 @@ async function main() {
     },
   });
 
-  const kv = new StateKV(sdk);
+  const redisUrl = getEnvVar("REDIS_URL");
+  const kv = redisUrl 
+    ? new RedisKV(redisUrl) 
+    : new StateKV(sdk);
+    
+  if (redisUrl) {
+    bootLog(`State backend: Redis (${redisUrl})`);
+  } else {
+    bootLog(`State backend: iii-engine (file-based)`);
+  }
+  
   const secret = getEnvVar("AGENTMEMORY_SECRET");
   const metricsStore = new MetricsStore(kv);
   const dedupMap = new DedupMap();

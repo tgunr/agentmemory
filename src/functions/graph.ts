@@ -7,7 +7,7 @@ import type {
   MemoryProvider,
 } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import {
   GRAPH_EXTRACTION_SYSTEM,
   buildGraphExtractionPrompt,
@@ -87,7 +87,7 @@ function parseGraphXml(
 
 export function registerGraphFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::graph-extract", 

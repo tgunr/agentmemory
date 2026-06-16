@@ -1,7 +1,7 @@
 import type { EmbeddingProvider, CompressedObservation, Memory } from "../types.js";
 import { VectorIndex } from "../state/vector-index.js";
 import { KV } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { logger } from "../logger.js";
 
 export interface MigrateVectorIndexResult {
@@ -42,7 +42,7 @@ function isValidEmbedding(
 // `failedSessions`, but the migration continues. Returns a structured
 // result the caller can inspect to decide whether to swap the index in.
 export async function migrateVectorIndex(
-  kv: StateKV,
+  kv: IKVStore,
   newProvider: EmbeddingProvider,
 ): Promise<MigrateVectorIndexResult> {
   const newIndex = new VectorIndex();

@@ -1,6 +1,6 @@
 import { SearchIndex } from "./search-index.js";
 import { VectorIndex } from "./vector-index.js";
-import type { StateKV } from "./kv.js";
+import type { IKVStore } from "./kv.js";
 import { KV } from "./schema.js";
 import { logger } from "../logger.js";
 
@@ -12,7 +12,7 @@ export class IndexPersistence {
   private lastFailureLogAt = 0;
 
   constructor(
-    private kv: StateKV,
+    private kv: IKVStore,
     private bm25: SearchIndex,
     private vector: VectorIndex | null,
   ) {}

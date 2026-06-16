@@ -67,6 +67,7 @@
     "@clack/prompts": "^1.2.0",
     "dotenv": "^17.4.2",
     "iii-sdk": "0.11.2",
+    "redis": "^6.0.0",
     "zod": "^4.0.0"
   },
   "optionalDependencies": {
@@ -77,11 +78,11 @@
     "tiny-segmenter": "^0.2.0"
   },
   "devDependencies": {
-    "@types/node": "^25.7.0",
+    "@types/node": "^22.0.0",
     "tsdown": "^0.20.3",
     "tsx": "^4.19.0",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.6"
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
   },
   "engines": {
     "node": ">=20.0.0"

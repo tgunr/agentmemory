@@ -1,5 +1,5 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV, generateId } from "../state/schema.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import { recordAudit } from "./audit.js";
@@ -75,7 +75,7 @@ interface MeshSyncPayload {
 }
 
 async function lwwMergeList<T extends { id: string }>(
-  kv: StateKV,
+  kv: IKVStore,
   scope: string,
   items: T[] | undefined,
   lockPrefix: string,
@@ -110,7 +110,7 @@ function graphNodeTs(node: GraphNode): string {
 }
 
 async function lwwMergeGraphNodes(
-  kv: StateKV,
+  kv: IKVStore,
   items: GraphNode[] | undefined,
 ): Promise<number> {
   if (!items || !Array.isArray(items)) return 0;
@@ -138,7 +138,7 @@ async function lwwMergeGraphNodes(
 
 export function registerMeshFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   meshAuthToken?: string,
 ): void {
   sdk.registerFunction("mem::mesh-register",
@@ -396,7 +396,7 @@ function deltaFilter<T>(
 }
 
 async function collectSyncData(
-  kv: StateKV,
+  kv: IKVStore,
   scopes: string[],
   since?: string,
   syncFilter?: { project?: string },
@@ -451,7 +451,7 @@ async function collectSyncData(
 }
 
 async function applySyncData(
-  kv: StateKV,
+  kv: IKVStore,
   data: MeshSyncPayload,
   scopes: string[],
 ): Promise<number> {

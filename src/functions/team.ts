@@ -6,7 +6,7 @@ import type {
   Memory,
 } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { recordAudit } from "./audit.js";
 import { logger } from "../logger.js";
 
@@ -14,7 +14,7 @@ const VALID_ITEM_TYPES = new Set(["memory", "pattern", "observation"]);
 
 export function registerTeamFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   config: TeamConfig,
 ): void {
   sdk.registerFunction("mem::team-share", 

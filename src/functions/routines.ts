@@ -1,11 +1,11 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV, generateId } from "../state/schema.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import type { Action, Routine, RoutineStep, RoutineRun } from "../types.js";
 import { recordAudit } from "./audit.js";
 
-export function registerRoutinesFunction(sdk: ISdk, kv: StateKV): void {
+export function registerRoutinesFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::routine-create", 
     async (data: {
       name: string;

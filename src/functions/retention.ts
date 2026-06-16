@@ -6,7 +6,7 @@ import type {
   DecayConfig,
 } from "../types.js";
 import { KV } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import type { AccessLog } from "./access-tracker.js";
 import {
   emptyAccessLog,
@@ -121,7 +121,7 @@ function computeSalience(
 
 export function registerRetentionFunctions(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
 ): void {
   sdk.registerFunction("mem::retention-score",
     async (data: { config?: Partial<DecayConfig> }) => {

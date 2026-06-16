@@ -5,7 +5,7 @@ import type {
   MemoryProvider,
 } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { recordAudit } from "./audit.js";
 import { logger } from "../logger.js";
 
@@ -115,7 +115,7 @@ function parseEnrichedXml(xml: string): {
 
 export function registerSlidingWindowFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::enrich-window", 

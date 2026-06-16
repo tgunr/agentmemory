@@ -1,5 +1,5 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV, generateId } from "../state/schema.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import type { Action, ActionEdge, Checkpoint, CompressedObservation, FunctionMetrics, Sentinel, Session } from "../types.js";
@@ -14,7 +14,7 @@ const VALID_TYPES: Sentinel["type"][] = [
   "custom",
 ];
 
-export function registerSentinelsFunction(sdk: ISdk, kv: StateKV): void {
+export function registerSentinelsFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::sentinel-create", 
     async (data: {
       name: string;
@@ -412,7 +412,7 @@ export function registerSentinelsFunction(sdk: ISdk, kv: StateKV): void {
 }
 
 async function unblockLinkedActions(
-  kv: StateKV,
+  kv: IKVStore,
   sentinel: Sentinel,
 ): Promise<number> {
   if (sentinel.linkedActionIds.length === 0) return 0;

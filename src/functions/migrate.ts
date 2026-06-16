@@ -17,7 +17,7 @@ function isAllowedPath(dbPath: string): boolean {
   return ALLOWED_DIRS.some((dir) => resolved.startsWith(dir + "/"));
 }
 
-export function registerMigrateFunction(sdk: ISdk, kv: StateKV): void {
+export function registerMigrateFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::migrate", 
     async (data: { dbPath: string }) => {
       logger.info("Migration started", { dbPath: data.dbPath });

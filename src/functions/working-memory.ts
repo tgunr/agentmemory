@@ -33,7 +33,7 @@ function scoreEntry(entry: CoreMemoryEntry, now: number): number {
 
 export function registerWorkingMemoryFunctions(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   tokenBudget: number,
 ): void {
   sdk.registerFunction("mem::core-add", 

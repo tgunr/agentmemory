@@ -1037,7 +1037,9 @@ If you want to export to Jaeger/Honeycomb/Grafana Tempo instead, change `exporte
 
 <h2 id="powered-by-iii"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/section-architecture.svg"><img src="assets/tags/section-architecture.svg" alt="Powered by iii" height="32" /></picture></h2>
 
-agentmemory is **already a running [iii](https://iii.dev) instance**. Functions, triggers, KV state, streams, OTEL traces — all of it is iii primitives. You didn't install Postgres, Redis, Express, pm2, or Prometheus, because iii replaces them.
+agentmemory is **already a running [iii](https://iii.dev) instance**. Functions, triggers, KV state, streams, OTEL traces — all of it is iii primitives. By default, state lives on disk as file-based SQLite, so you didn't need to install Postgres, Redis, Express, pm2, or Prometheus, because iii replaces them. 
+
+*(Optional)* If you prefer a distributed state backend, set the `REDIS_URL` environment variable. agentmemory will automatically switch to a Redis-backed KV adapter for all memory, session, and lesson storage while preserving the exact JSON schema iii-engine expects.
 
 That means one more command extends agentmemory with an entire new capability.
 

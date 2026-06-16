@@ -179,7 +179,7 @@ function getRebuildEmbedBatchSize(): number {
   return Number.isFinite(n) && n > 0 ? n : DEFAULT_REBUILD_EMBED_BATCH
 }
 
-export async function rebuildIndex(kv: StateKV): Promise<number> {
+export async function rebuildIndex(kv: IKVStore): Promise<number> {
   const idx = getSearchIndex()
   idx.clear()
 
@@ -280,7 +280,7 @@ export async function rebuildIndex(kv: StateKV): Promise<number> {
   return count
 }
 
-export function registerSearchFunction(sdk: ISdk, kv: StateKV): void {
+export function registerSearchFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction(
     'mem::search',
     async (data: {

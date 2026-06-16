@@ -120,7 +120,7 @@ function validateLabel(label: unknown): string | null {
 }
 
 async function readSlot(
-  kv: StateKV,
+  kv: IKVStore,
   label: string,
 ): Promise<{ slot: MemorySlot | null; scope: SlotScope }> {
   const project = await kv.get<MemorySlot>(KV.slots, label);
@@ -131,7 +131,7 @@ async function readSlot(
 }
 
 async function readSlotInScope(
-  kv: StateKV,
+  kv: IKVStore,
   label: string,
   scope: SlotScope,
 ): Promise<MemorySlot | null> {
@@ -151,7 +151,7 @@ function validateSizeLimit(raw: unknown): number | null | undefined {
   return raw;
 }
 
-async function seedDefaults(kv: StateKV): Promise<void> {
+async function seedDefaults(kv: IKVStore): Promise<void> {
   const ts = nowIso();
   for (const tmpl of DEFAULT_SLOTS) {
     const target = scopeKv(tmpl.scope);
@@ -166,7 +166,7 @@ async function seedDefaults(kv: StateKV): Promise<void> {
   }
 }
 
-export async function listPinnedSlots(kv: StateKV): Promise<MemorySlot[]> {
+export async function listPinnedSlots(kv: IKVStore): Promise<MemorySlot[]> {
   const [project, global] = await Promise.all([
     kv.list<MemorySlot>(KV.slots),
     kv.list<MemorySlot>(KV.globalSlots),
@@ -190,7 +190,7 @@ export function renderPinnedContext(slots: MemorySlot[]): string {
   return lines.join("\n");
 }
 
-export function registerSlotsFunctions(sdk: ISdk, kv: StateKV): void {
+export function registerSlotsFunctions(sdk: ISdk, kv: IKVStore): void {
   void seedDefaults(kv).catch((err) => {
     logger.warn("slot defaults seed failed", {
       error: err instanceof Error ? err.message : String(err),

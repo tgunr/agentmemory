@@ -35,7 +35,7 @@ export function extractImage(d: unknown): string | undefined {
 
 export function registerObserveFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   dedupMap?: DedupMap,
   maxObservationsPerSession?: number,
 ): void {

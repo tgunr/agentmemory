@@ -115,7 +115,7 @@ function parseOptionalPositiveInt(value: unknown): number | undefined | null {
 
 export function registerApiTriggers(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   secret?: string,
   metricsStore?: MetricsStore,
   provider?: ResilientProvider | { circuitState?: unknown },

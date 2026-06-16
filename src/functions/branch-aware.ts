@@ -1,5 +1,5 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV } from "../state/schema.js";
 import type { Session } from "../types.js";
 import { execFile } from "node:child_process";
@@ -18,7 +18,7 @@ function execAsync(
   });
 }
 
-export function registerBranchAwareFunction(sdk: ISdk, kv: StateKV): void {
+export function registerBranchAwareFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::detect-worktree", 
     async (data: { cwd: string }) => {
       if (!data.cwd) {

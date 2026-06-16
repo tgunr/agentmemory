@@ -1,5 +1,5 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV, fingerprintId } from "../state/schema.js";
 import type {
   Insight,
@@ -162,7 +162,7 @@ function buildJaccardClusters(
 
 export function registerReflectFunctions(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::reflect", 

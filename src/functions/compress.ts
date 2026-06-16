@@ -66,7 +66,7 @@ function parseCompressionXml(
 
 export function registerCompressFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
   metricsStore?: MetricsStore,
 ): void {

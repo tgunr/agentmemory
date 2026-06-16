@@ -11,7 +11,7 @@ import type {
   AccessLogExport,
 } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { recordAudit } from "./audit.js";
 import { VERSION } from "../version.js";
 import { logger } from "../logger.js";
@@ -38,7 +38,7 @@ async function ensureGitRepo(dir: string): Promise<void> {
 
 export function registerSnapshotFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   snapshotDir: string,
 ): void {
   sdk.registerFunction("mem::snapshot-create", 

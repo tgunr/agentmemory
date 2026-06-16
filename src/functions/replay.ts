@@ -9,7 +9,7 @@ import type {
   RawObservation,
   Session,
 } from "../types.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV, generateId, fingerprintId } from "../state/schema.js";
 import { parseJsonlText } from "../replay/jsonl-parser.js";
 import { projectTimeline, type Timeline } from "../replay/timeline.js";
@@ -67,7 +67,7 @@ const LESSON_PATTERNS: RegExp[] = [
 ];
 
 async function deriveCrystalAndLessons(
-  kv: StateKV,
+  kv: IKVStore,
   sessionId: string,
   project: string,
   rawObs: RawObservation[],
@@ -194,7 +194,7 @@ function isRawShape(o: unknown): o is RawObservation {
 }
 
 async function loadObservations(
-  kv: StateKV,
+  kv: IKVStore,
   sessionId: string,
 ): Promise<RawObservation[]> {
   const rows = await kv.list<RawObservation | CompressedObservation>(
@@ -258,7 +258,7 @@ async function findJsonlFiles(
   };
 }
 
-export function registerReplayFunctions(sdk: ISdk, kv: StateKV): void {
+export function registerReplayFunctions(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction(
     "mem::replay::load",
     async (data: { sessionId: string }): Promise<

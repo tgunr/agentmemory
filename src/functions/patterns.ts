@@ -12,7 +12,7 @@ interface Pattern {
   sessions: string[];
 }
 
-export function registerPatternsFunction(sdk: ISdk, kv: StateKV): void {
+export function registerPatternsFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::patterns", 
     async (data: { project?: string }) => {
       const patterns: Pattern[] = [];

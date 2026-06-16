@@ -31,7 +31,7 @@ import { VERSION } from "../version.js";
 import { recordAudit } from "./audit.js";
 import { logger } from "../logger.js";
 
-export function registerExportImportFunction(sdk: ISdk, kv: StateKV): void {
+export function registerExportImportFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::export", 
     async (data?: { maxSessions?: number; offset?: number }) => {
       const rawMax = Number(data?.maxSessions);

@@ -208,7 +208,7 @@ function parseSummaryXml(
 
 export function registerSummarizeFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
   metricsStore?: MetricsStore,
 ): void {

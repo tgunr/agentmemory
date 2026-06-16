@@ -36,7 +36,7 @@ function computeConfidence(
   return Math.max(0, Math.min(1, score));
 }
 
-export function registerRelationsFunction(sdk: ISdk, kv: StateKV): void {
+export function registerRelationsFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::relate", 
     async (data: {
       sourceId: string;

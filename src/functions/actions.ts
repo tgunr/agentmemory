@@ -1,11 +1,11 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV, generateId } from "../state/schema.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import type { Action, ActionEdge } from "../types.js";
 import { recordAudit } from "./audit.js";
 
-export function registerActionsFunction(sdk: ISdk, kv: StateKV): void {
+export function registerActionsFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::action-create", 
     async (data: {
       title: string;
@@ -263,7 +263,7 @@ export function registerActionsFunction(sdk: ISdk, kv: StateKV): void {
 }
 
 async function propagateCompletion(
-  kv: StateKV,
+  kv: IKVStore,
   completedActionId: string,
 ): Promise<void> {
   const allEdges = await kv.list<ActionEdge>(KV.actionEdges);

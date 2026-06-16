@@ -1,5 +1,5 @@
 import type { ISdk } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV } from "../state/schema.js";
 import type {
   Memory,
@@ -7,7 +7,7 @@ import type {
   Session,
 } from "../types.js";
 
-export function registerVerifyFunction(sdk: ISdk, kv: StateKV): void {
+export function registerVerifyFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::verify", 
     async (data: { id: string }) => {
       if (!data.id || typeof data.id !== "string") {
@@ -93,7 +93,7 @@ export function registerVerifyFunction(sdk: ISdk, kv: StateKV): void {
 }
 
 async function findObservation(
-  kv: StateKV,
+  kv: IKVStore,
   obsId: string,
   hintSessionIds?: string[],
 ): Promise<CompressedObservation | null> {

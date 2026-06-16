@@ -1,12 +1,12 @@
 import type { FunctionMetrics } from "../types.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV } from "../state/schema.js";
 
 export class MetricsStore {
   private cache = new Map<string, FunctionMetrics>();
   private qualityCallCounts = new Map<string, number>();
 
-  constructor(private kv: StateKV) {}
+  constructor(private kv: IKVStore) {}
 
   async record(
     functionId: string,

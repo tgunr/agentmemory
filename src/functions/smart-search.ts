@@ -17,7 +17,7 @@ const LESSON_CONTENT_PREVIEW_CHARS = 240;
 
 export function registerSmartSearchFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   searchFn: (query: string, limit: number) => Promise<HybridSearchResult[]>,
 ): void {
   sdk.registerFunction("mem::smart-search",
@@ -155,7 +155,7 @@ async function recallLessons(
 }
 
 async function findObservation(
-  kv: StateKV,
+  kv: IKVStore,
   obsId: string,
   sessionIdHint?: string,
 ): Promise<CompressedObservation | null> {

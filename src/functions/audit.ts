@@ -1,6 +1,6 @@
 import type { AuditEntry } from "../types.js";
 import { KV, generateId } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { logger } from "../logger.js";
 
 // Audit coverage policy (issue #125).
@@ -32,7 +32,7 @@ import { logger } from "../logger.js";
 // BEFORE kv.delete(...) and match one of the two shapes above.
 
 export async function recordAudit(
-  kv: StateKV,
+  kv: IKVStore,
   operation: AuditEntry["operation"],
   functionId: string,
   targetIds: string[],
@@ -55,7 +55,7 @@ export async function recordAudit(
 }
 
 export async function safeAudit(
-  kv: StateKV,
+  kv: IKVStore,
   operation: AuditEntry["operation"],
   functionId: string,
   targetIds: string[],
@@ -78,7 +78,7 @@ export async function safeAudit(
 }
 
 export async function queryAudit(
-  kv: StateKV,
+  kv: IKVStore,
   filter?: {
     operation?: AuditEntry["operation"];
     dateFrom?: string;

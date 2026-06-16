@@ -102,7 +102,7 @@ function parseSkillXml(
 
 export function registerSkillExtractFunctions(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction("mem::skill-extract", 

@@ -1,6 +1,18 @@
 import type { ISdk } from 'iii-sdk'
 
-export class StateKV {
+export interface IKVStore {
+  get<T = unknown>(scope: string, key: string): Promise<T | null>
+  set<T = unknown>(scope: string, key: string, value: T): Promise<T>
+  update<T = unknown>(
+    scope: string,
+    key: string,
+    ops: Array<{ type: string; path: string; value?: unknown }>,
+  ): Promise<T>
+  delete(scope: string, key: string): Promise<void>
+  list<T = unknown>(scope: string): Promise<T[]>
+}
+
+export class StateKV implements IKVStore {
   constructor(private sdk: ISdk) {}
 
   async get<T = unknown>(scope: string, key: string): Promise<T | null> {

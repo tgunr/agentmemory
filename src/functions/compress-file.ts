@@ -3,7 +3,7 @@ import { lstat, open, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, join, resolve } from "node:path";
 import type { ISdk } from "iii-sdk";
 import type { MemoryProvider } from "../types.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { recordAudit } from "./audit.js";
 
 const SENSITIVE_PATH_TERMS = [
@@ -94,7 +94,7 @@ function resolveBackupPath(filePath: string): string {
 
 export function registerCompressFileFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   provider: MemoryProvider,
 ): void {
   sdk.registerFunction(

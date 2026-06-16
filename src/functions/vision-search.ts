@@ -18,7 +18,7 @@ interface StoredEmbedding {
 
 export function registerVisionSearchFunctions(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   imageProvider: EmbeddingProvider | null,
 ): void {
   sdk.registerFunction(

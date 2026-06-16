@@ -3,7 +3,7 @@ import type {
   GraphEdge,
 } from "../types.js";
 import { KV } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 
 export interface GraphRetrievalResult {
   obsId: string;
@@ -39,7 +39,7 @@ function buildGraphContext(
 }
 
 export class GraphRetrieval {
-  constructor(private kv: StateKV) {}
+  constructor(private kv: IKVStore) {}
 
   async searchByEntities(
     entityNames: string[],

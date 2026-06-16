@@ -6,7 +6,7 @@ import { isReflectEnabled } from "../functions/slots.js";
 import { isGraphExtractionEnabled } from "../config.js";
 import { logger } from "../logger.js";
 
-export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
+export function registerEventTriggers(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction(
     "event::session::started",
     async (data: { sessionId: string; project: string; cwd: string }) => {

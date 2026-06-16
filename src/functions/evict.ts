@@ -92,7 +92,7 @@ async function runRecoveredSessionConsolidation(sdk: ISdk): Promise<void> {
   }
 }
 
-export function registerEvictFunction(sdk: ISdk, kv: StateKV): void {
+export function registerEvictFunction(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction("mem::evict", 
     async (data: { dryRun?: boolean }): Promise<EvictionStats> => {
       const dryRun = data?.dryRun ?? false;

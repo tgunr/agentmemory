@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname } from "node:path";
 import type { Memory, ClaudeBridgeConfig } from "../types.js";
 import { KV } from "../state/schema.js";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { recordAudit } from "./audit.js";
 import { logger } from "../logger.js";
 
@@ -71,7 +71,7 @@ function serializeToMemoryMd(
 
 export function registerClaudeBridgeFunction(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   config: ClaudeBridgeConfig,
 ): void {
   sdk.registerFunction("mem::claude-bridge-read", 

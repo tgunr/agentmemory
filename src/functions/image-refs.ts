@@ -4,12 +4,12 @@ import { StateKV } from "../state/kv.js";
 import { deleteImage, touchImage } from "../utils/image-store.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 
-export async function getImageRefCount(kv: StateKV, filePath: string): Promise<number> {
+export async function getImageRefCount(kv: IKVStore, filePath: string): Promise<number> {
   const count = await kv.get<number>(KV.imageRefs, filePath);
   return count ? Number(count) : 0;
 }
 
-export async function incrementImageRef(kv: StateKV, filePath: string): Promise<void> {
+export async function incrementImageRef(kv: IKVStore, filePath: string): Promise<void> {
   return withKeyedLock(`imgRef:${filePath}`, async () => {
     const current = await getImageRefCount(kv, filePath);
     await kv.set(KV.imageRefs, filePath, current + 1);
@@ -17,7 +17,7 @@ export async function incrementImageRef(kv: StateKV, filePath: string): Promise<
   });
 }
 
-export async function decrementImageRef(kv: StateKV, sdk: ISdk, filePath: string): Promise<void> {
+export async function decrementImageRef(kv: IKVStore, sdk: ISdk, filePath: string): Promise<void> {
   return withKeyedLock(`imgRef:${filePath}`, async () => {
     const current = await getImageRefCount(kv, filePath);
     if (current <= 1) {

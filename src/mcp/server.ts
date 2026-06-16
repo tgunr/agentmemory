@@ -1,5 +1,5 @@
 import type { ISdk, ApiRequest } from "iii-sdk";
-import type { StateKV } from "../state/kv.js";
+import type { IKVStore } from "../state/kv.js";
 import { KV } from "../state/schema.js";
 import type {
   SessionSummary,
@@ -41,7 +41,7 @@ function parseCsvList(value: unknown): string[] {
 
 export function registerMcpEndpoints(
   sdk: ISdk,
-  kv: StateKV,
+  kv: IKVStore,
   secret?: string,
 ): void {
   function checkAuth(

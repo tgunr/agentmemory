@@ -8,7 +8,7 @@ import type { StateScope, StateScopeKey } from "../types.js";
 
 const DISK_SIZE_KEY: StateScopeKey = "system:currentDiskSize";
 
-export function registerDiskSizeManager(sdk: ISdk, kv: StateKV): void {
+export function registerDiskSizeManager(sdk: ISdk, kv: IKVStore): void {
   sdk.registerFunction(
     "mem::disk-size-delta",
     async (data: { deltaBytes: number }) => {
