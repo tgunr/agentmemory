@@ -302,7 +302,13 @@ async function isAgentmemoryReady(): Promise<boolean> {
 }
 
 function findIiiConfig(): string {
+  // Profile directory is always ~/.agentmemory (where .env, iii-config.yaml live)
+  // AGENTMEMORY_DATA_DIR is just where state is stored (can be different location)
+  const profileDir = join(homedir(), ".agentmemory");
   const candidates = [
+    // Prefer profile-dir config (has absolute paths for state store)
+    join(profileDir, "iii-config.yaml"),
+    // Then packaged config (has relative paths, cwd-sensitive)
     join(__dirname, "iii-config.yaml"),
     join(__dirname, "..", "iii-config.yaml"),
     join(process.cwd(), "iii-config.yaml"),
