@@ -997,24 +997,32 @@
     var locPort = window.location.port;
     var wsProto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var REST, WS_URL, WS_DIRECT_URL, wsPort;
+    // REST API lives on III_REST_PORT (default 3111). Viewer is served on
+    // III_REST_PORT + 2 (default 3113). The API is NOT served on the viewer
+    // port — pointing REST at the viewer port causes every fetch to 404 and
+    // leaves the dashboard in a permanent "first run" state. Always resolve
+    // REST to the API port, regardless of which port the viewer is on.
+    var apiPort = (function() {
+      var p = parseInt(locPort, 10);
+      if (!isNaN(p) && p >= 3113 && p <= 3113 + 10) return String(p - 2);
+      var pp = parseInt(paramPort, 10);
+      if (!isNaN(pp) && pp >= 3113 && pp <= 3113 + 10) return String(pp - 2);
+      return '3111';
+    })();
     if (paramPort) {
-      var resolvedPort = parseInt(paramPort) === 3111 ? '3113' : paramPort;
-      REST = window.location.protocol + '//' + window.location.hostname + ':' + resolvedPort;
-      wsPort = params.get('wsPort') || String(parseInt(resolvedPort) - 1);
+      REST = window.location.protocol + '//' + window.location.hostname + ':' + apiPort;
+      wsPort = params.get('wsPort') || '3112';
       WS_URL = wsProto + '//' + window.location.hostname + ':' + wsPort;
       WS_DIRECT_URL = WS_URL + '/stream/mem-live/viewer';
     } else if (locPort) {
-      var resolvedPort = parseInt(locPort) === 3111 ? '3113' : locPort;
-      REST = window.location.protocol + '//' + window.location.hostname + ':' + resolvedPort;
-      wsPort = params.get('wsPort') || String(parseInt(resolvedPort) - 1);
+      REST = window.location.protocol + '//' + window.location.hostname + ':' + apiPort;
+      wsPort = params.get('wsPort') || '3112';
       WS_URL = wsProto + '//' + window.location.hostname + ':' + wsPort;
       WS_DIRECT_URL = WS_URL + '/stream/mem-live/viewer';
     } else {
-      REST = window.location.origin;
-      wsPort = params.get('wsPort');
-      WS_URL = wsPort
-        ? wsProto + '//' + window.location.hostname + ':' + wsPort
-        : wsProto + '//' + window.location.host;
+      REST = window.location.protocol + '//' + window.location.hostname + ':' + apiPort;
+      wsPort = params.get('wsPort') || '3112';
+      WS_URL = wsProto + '//' + window.location.hostname + ':' + wsPort;
       WS_DIRECT_URL = WS_URL + '/stream/mem-live/viewer';
     }
 
@@ -1082,6 +1090,7 @@
       replay: { loaded: false, sessions: [], selectedId: '', timeline: null, cursor: 0, playing: false, speed: 1, timer: null, startAt: 0, offsetAt: 0 },
       flagsConfig: null,
       flagsDismissed: {},
+      livez: null,
       ws: null
     };
 
@@ -3584,6 +3593,21 @@
           dismissKey: '__embedding_none',
         });
       }
+      if (cfg.embeddingEnabled && !dismissed['__vector_empty']) {
+        var vectorSize = state.livez && state.livez.vector && state.livez.vector.size;
+        if (!vectorSize) {
+          banners.push({
+            kind: 'warn',
+            icon: '&#9888;',
+            title: 'Vector index is empty',
+            keyLabel: 'EMBEDDING_PROVIDER',
+            desc: 'Embedding provider is configured but the vector index has 0 entries. Hybrid search is falling back to BM25. New memories/observations will backfill the index, or you can restart to force a rebuild.',
+            enable: 'Check worker logs for embed errors, then restart agentmemory.',
+            docs: 'https://github.com/rohitg00/agentmemory#embedding-providers',
+            dismissKey: '__vector_empty',
+          });
+        }
+      }
       if (banners.length === 0) { host.innerHTML = ''; return; }
       var warnCount = banners.filter(function(b) { return b.kind === 'warn'; }).length;
       var infoCount = banners.filter(function(b) { return b.kind === 'info'; }).length;
@@ -3617,11 +3641,13 @@
         '<div class="flag-list' + (expanded ? ' open' : '') + '" id="flag-list">' + listHtml + '</div>';
     }
     async function fetchFlags() {
-      var res = await apiGet('config/flags');
-      if (!res) return;
-      state.flagsConfig = res;
-      renderFlagBanners(res);
-      updateFooter(res);
+      var flagsRes = await apiGet('config/flags');
+      var livezRes = await apiGet('livez');
+      if (!flagsRes) return;
+      state.flagsConfig = flagsRes;
+      state.livez = livezRes;
+      renderFlagBanners(flagsRes);
+      updateFooter(flagsRes);
     }
     function updateFooter(cfg) {
       var vEl = document.getElementById('footer-version');
