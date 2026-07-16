@@ -12,14 +12,12 @@ describe("createEmbeddingProvider", () => {
 
   beforeEach(() => {
     process.env = { ...originalEnv };
-    // Mask any provider keys and override values from the user's
-    // ~/.agentmemory/.env so tests run in a controlled environment.
-    process.env["GEMINI_API_KEY"] = "";
-    process.env["OPENAI_API_KEY"] = "";
-    process.env["VOYAGE_API_KEY"] = "";
-    process.env["COHERE_API_KEY"] = "";
-    process.env["OPENROUTER_API_KEY"] = "";
-    process.env["EMBEDDING_PROVIDER"] = "";
+    delete process.env["GEMINI_API_KEY"];
+    delete process.env["OPENAI_API_KEY"];
+    delete process.env["VOYAGE_API_KEY"];
+    delete process.env["COHERE_API_KEY"];
+    delete process.env["OPENROUTER_API_KEY"];
+    delete process.env["EMBEDDING_PROVIDER"];
   });
 
   afterEach(() => {
@@ -60,11 +58,10 @@ describe("OpenAIEmbeddingProvider", () => {
   beforeEach(() => {
     process.env = { ...originalEnv };
     delete process.env["OPENAI_BASE_URL"];
+    delete process.env["OPENAI_EMBEDDING_BASE_URL"];
+    delete process.env["OPENAI_EMBEDDING_API_KEY"];
     delete process.env["OPENAI_EMBEDDING_MODEL"];
     delete process.env["OPENAI_EMBEDDING_DIMENSIONS"];
-    // Mask any OPENAI_API_KEY value from the user's ~/.agentmemory/.env so
-    // tests that expect a missing key actually see a missing key.
-    process.env["OPENAI_API_KEY"] = "";
   });
 
   afterEach(() => {
@@ -78,8 +75,9 @@ describe("OpenAIEmbeddingProvider", () => {
   });
 
   it("throws when no API key is provided", () => {
-    process.env["OPENAI_API_KEY"] = "";
-    expect(() => new OpenAIEmbeddingProvider()).toThrow("OPENAI_API_KEY is required");
+    delete process.env["OPENAI_API_KEY"];
+    delete process.env["OPENAI_EMBEDDING_API_KEY"];
+    expect(() => new OpenAIEmbeddingProvider()).toThrow(/API key is required.*OPENAI_EMBEDDING_API_KEY.*OPENAI_API_KEY/);
   });
 
   it("respects OPENAI_BASE_URL env var", async () => {

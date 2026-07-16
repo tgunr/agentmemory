@@ -1,5 +1,5 @@
-import type { ISdk, ApiRequest } from "iii-sdk";
-import type { Session, CompressedObservation, HookPayload, CommitLink } from "../types.js";
+import { TriggerAction, type ISdk, type ApiRequest } from "iii-sdk";
+import type { Session, CompressedObservation, HookPayload, CommitLink, SessionSummary } from "../types.js";
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import { KV } from "../state/schema.js";
 import { StateKV } from "../state/kv.js";
@@ -8,9 +8,11 @@ import type { MetricsStore } from "../eval/metrics-store.js";
 import type { ResilientProvider } from "../providers/resilient.js";
 import { VERSION } from "../version.js";
 import { timingSafeCompare } from "../auth.js";
+import { isSlotsEnabled, isReflectEnabled } from "../functions/slots.js";
 import { renderViewerDocument } from "../viewer/document.js";
 import { getBoundViewerPort, getViewerSkipped } from "../viewer/server.js";
 import { MAX_FILES_UPPER_BOUND } from "../functions/replay.js";
+import { logger } from "../logger.js";
 import {
   isGraphExtractionEnabled,
   isConsolidationEnabled,
@@ -18,9 +20,9 @@ import {
   isContextInjectionEnabled,
   detectEmbeddingProvider,
   detectLlmProviderKind,
+  getAgentId,
+  isAgentScopeIsolated,
 } from "../config.js";
-import { getVectorIndex } from "../functions/search.js";
-import { readHermesSessions, lookupHermesSessionTitle } from "../state/hermes-sessions.js";
 
 type Response = {
   status_code: number;
@@ -90,6 +92,24 @@ function consolidationDisabledResponse(): Response {
   });
 }
 
+function slotsDisabledResponse(): Response {
+  return flagDisabledResponse({
+    error: "Memory slots not enabled",
+    flag: "AGENTMEMORY_SLOTS",
+    enableHow: "Set AGENTMEMORY_SLOTS=true (in ~/.agentmemory/.env or the shell) and restart.",
+    docsHref: "https://github.com/rohitg00/agentmemory#memory-slots",
+  });
+}
+
+function reflectDisabledResponse(): Response {
+  return flagDisabledResponse({
+    error: "Slot reflection not enabled",
+    flag: "AGENTMEMORY_REFLECT",
+    enableHow: "Set AGENTMEMORY_REFLECT=true (in ~/.agentmemory/.env or the shell) and restart. Requires AGENTMEMORY_SLOTS=true.",
+    docsHref: "https://github.com/rohitg00/agentmemory#memory-slots",
+  });
+}
+
 function asNonEmptyString(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const trimmed = value.trim();
@@ -146,15 +166,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::liveness",
     async (): Promise<Response> => ({
       status_code: 200,
-      body: {
-        status: "ok",
-        service: "agentmemory",
-        viewerPort: getBoundViewerPort(),
-        viewerSkipped: getViewerSkipped(),
-        vector: {
-          size: getVectorIndex()?.size ?? 0,
-        },
-      },
+      body: { status: "ok", service: "agentmemory", viewerPort: getBoundViewerPort(), viewerSkipped: getViewerSkipped() },
     }),
   );
   sdk.registerTrigger({
@@ -168,8 +180,7 @@ export function registerApiTriggers(
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
       const providerKind = detectLlmProviderKind();
-      const embeddingProvider = detectEmbeddingProvider();
-      const embeddingEnabled = embeddingProvider !== null;
+      const embeddingProvider = detectEmbeddingProvider() ? "embeddings" : "none";
       const flags = [
         {
           key: "GRAPH_EXTRACTION_ENABLED",
@@ -221,8 +232,7 @@ export function registerApiTriggers(
         body: {
           version: VERSION,
           provider: providerKind,
-          embeddingProvider: embeddingProvider ? "embeddings" : "none",
-          embeddingEnabled,
+          embeddingProvider,
           flags,
         },
       };
@@ -351,7 +361,7 @@ export function registerApiTriggers(
     },
   });
 
-  sdk.registerFunction("api::search", 
+  sdk.registerFunction("api::search",
     async (
       req: ApiRequest<{
         query: string;
@@ -360,9 +370,16 @@ export function registerApiTriggers(
         cwd?: string;
         format?: string;
         token_budget?: number;
+        agentId?: string;
       }>,
     ): Promise<Response> => {
       const body = (req.body ?? {}) as Record<string, unknown>;
+      const queryAgentId =
+        typeof (req as { query_params?: Record<string, string> })
+          .query_params?.["agentId"] === "string"
+          ? (req as { query_params: Record<string, string> })
+              .query_params["agentId"]
+          : undefined;
       if (typeof body.query !== "string" || !body.query.trim()) {
         return { status_code: 400, body: { error: "query is required and must be a non-empty string" } };
       }
@@ -397,6 +414,14 @@ export function registerApiTriggers(
           body: { error: "token_budget must be a positive integer" },
         };
       }
+      // #817: propagate agentId so the upstream isolation filter
+      // applies. Honors body.agentId (POST body), ?agentId=... query
+      // param, or implicit fallback to the worker's AGENT_ID when
+      // AGENTMEMORY_AGENT_SCOPE=isolated.
+      const bodyAgentId =
+        typeof body.agentId === "string" && body.agentId.trim().length > 0
+          ? (body.agentId as string).trim()
+          : undefined;
       const payload = {
         query: body.query.trim(),
         limit: body.limit as number | undefined,
@@ -407,6 +432,7 @@ export function registerApiTriggers(
             ? body.format.trim().toLowerCase()
             : undefined,
         token_budget: body.token_budget as number | undefined,
+        agentId: bodyAgentId ?? queryAgentId,
       };
       const result = await sdk.trigger({ function_id: "mem::search", payload: payload });
       return { status_code: 200, body: result };
@@ -547,17 +573,15 @@ export function registerApiTriggers(
           },
         };
       }
-      let title: string | undefined;
-      if (typeof body.title === "string" && body.title.trim().length > 0) {
-        title = body.title.trim().slice(0, 200);
-      } else {
-        // Fall back to the Hermes session title so agentmemory's session
-        // name matches the one the user sees in Hermes/Kilocode.
-        title = lookupHermesSessionTitle(
-          sessionId,
-          process.env.HERMES_STATE_DB,
-        );
-      }
+      const title = typeof body.title === "string" ? body.title.trim() : undefined;
+      // allow session/start to override AGENT_ID from request body
+      // (multi-agent runtimes that route many roles through one server
+      // process). Falls back to the AGENT_ID env on the server.
+      const requestAgentId =
+        typeof body.agentId === "string" && body.agentId.trim().length > 0
+          ? body.agentId.trim().slice(0, 128)
+          : undefined;
+      const agentId = requestAgentId ?? getAgentId();
       const session: Session = {
         id: sessionId,
         project,
@@ -565,8 +589,9 @@ export function registerApiTriggers(
         startedAt: new Date().toISOString(),
         status: "active",
         observationCount: 0,
-        ...(title ? { summary: title } : {}),
-        ...(title ? { firstPrompt: title } : {}),
+        ...(title ? { summary: title.slice(0, 200) } : {}),
+        ...(title ? { firstPrompt: title.slice(0, 200) } : {}),
+        ...(agentId ? { agentId } : {}),
       };
       await kv.set(KV.sessions, sessionId, session);
       const contextResult = await sdk.trigger<
@@ -602,6 +627,19 @@ export function registerApiTriggers(
         { type: "set", path: "endedAt", value: new Date().toISOString() },
         { type: "set", path: "status", value: "completed" },
       ]);
+      // Fan out session-stopped lifecycle (non-blocking).
+      try {
+        sdk.trigger({
+          function_id: "event::session::stopped",
+          payload: { sessionId },
+          action: TriggerAction.Void(),
+        });
+      } catch (err) {
+        logger.warn("event::session::stopped trigger failed", {
+          sessionId,
+          error: err instanceof Error ? err.message : String(err),
+        });
+      }
       return { status_code: 200, body: { success: true } };
     },
   );
@@ -770,31 +808,30 @@ export function registerApiTriggers(
     async (req: ApiRequest): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
-      // Hermes is the source of truth for sessions; agentmemory's KV provides
-      // observation counts/metadata for those sessions it has seen.
-      const limit = parseOptionalInt(req.query_params?.["limit"], 100);
-      const includeEmpty = req.query_params?.["includeEmpty"] === "true";
-      const sessions = await readHermesSessions(
-        kv,
-        process.env.HERMES_STATE_DB,
-        limit,
+      const sessions = await kv.list<Session>(KV.sessions);
+      const normalizedAgentId =
+        typeof req.query_params?.["agentId"] === "string"
+          ? req.query_params["agentId"].trim()
+          : undefined;
+      const wildcardAgent = normalizedAgentId === "*";
+      const explicitAgentId =
+        normalizedAgentId && !wildcardAgent ? normalizedAgentId : undefined;
+      const filterAgentId = wildcardAgent
+        ? undefined
+        : explicitAgentId ??
+          (isAgentScopeIsolated() ? getAgentId() : undefined);
+      const filtered = filterAgentId
+        ? sessions.filter((s) => s.agentId === filterAgentId)
+        : sessions;
+      const summaries = await Promise.all(
+        filtered.map((s) =>
+          kv.get<SessionSummary>(KV.summaries, s.id).catch(() => null),
+        ),
       );
-      const visible = includeEmpty
-        ? sessions
-        : sessions.filter((s) => (s.observationCount ?? 0) > 0);
-      if (visible.length > 0 || sessions.length > 0) {
-        return { status_code: 200, body: { sessions: visible } };
-      }
-      // Fallback to KV store if Hermes DB unavailable
-      const kvSessions = await kv.list<Session>(KV.sessions);
-      return {
-        status_code: 200,
-        body: {
-          sessions: includeEmpty
-            ? kvSessions
-            : kvSessions.filter((s) => (s.observationCount ?? 0) > 0),
-        },
-      };
+      const withSummary = filtered.map((s, i) =>
+        summaries[i] ? { ...s, summary: summaries[i] } : s,
+      );
+      return { status_code: 200, body: { sessions: withSummary } };
     },
   );
   sdk.registerTrigger({
@@ -803,7 +840,7 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/sessions", http_method: "GET" },
   });
 
-  sdk.registerFunction("api::observations", 
+  sdk.registerFunction("api::observations",
     async (req: ApiRequest): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
@@ -813,7 +850,21 @@ export function registerApiTriggers(
       const observations = await kv.list<CompressedObservation>(
         KV.observations(sessionId),
       );
-      return { status_code: 200, body: { observations } };
+      const normalizedAgentId =
+        typeof req.query_params?.["agentId"] === "string"
+          ? req.query_params["agentId"].trim()
+          : undefined;
+      const wildcardAgent = normalizedAgentId === "*";
+      const explicitAgentId =
+        normalizedAgentId && !wildcardAgent ? normalizedAgentId : undefined;
+      const filterAgentId = wildcardAgent
+        ? undefined
+        : explicitAgentId ??
+          (isAgentScopeIsolated() ? getAgentId() : undefined);
+      const filtered = filterAgentId
+        ? observations.filter((o) => o.agentId === filterAgentId)
+        : observations;
+      return { status_code: 200, body: { observations: filtered } };
     },
   );
   sdk.registerTrigger({
@@ -838,13 +889,14 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/file-context", http_method: "POST" },
   });
 
-  sdk.registerFunction("api::enrich", 
+  sdk.registerFunction("api::enrich",
     async (
       req: ApiRequest<{
         sessionId: string;
         files: string[];
         terms?: string[];
         toolName?: string;
+        project?: string;
       }>,
     ): Promise<Response> => {
       const authErr = checkAuth(req, secret);
@@ -873,7 +925,25 @@ export function registerApiTriggers(
           body: { error: "terms must be an array of strings" },
         };
       }
-      const result = await sdk.trigger({ function_id: "mem::enrich", payload: req.body });
+      if (
+        req.body.project !== undefined &&
+        (typeof req.body.project !== "string" || !req.body.project.trim())
+      ) {
+        return {
+          status_code: 400,
+          body: { error: "project must be a non-empty string" },
+        };
+      }
+      const result = await sdk.trigger({
+        function_id: "mem::enrich",
+        payload: {
+          sessionId: req.body.sessionId,
+          files: req.body.files,
+          ...(req.body.terms !== undefined && { terms: req.body.terms }),
+          ...(req.body.toolName !== undefined && { toolName: req.body.toolName }),
+          ...(req.body.project !== undefined && { project: req.body.project }),
+        },
+      });
       return { status_code: 200, body: result };
     },
   );
@@ -883,13 +953,16 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/enrich", http_method: "POST" },
   });
 
-  sdk.registerFunction("api::remember", 
+  sdk.registerFunction("api::remember",
     async (
       req: ApiRequest<{
         content: string;
         type?: string;
         concepts?: string[];
         files?: string[];
+        ttlDays?: number;
+        sourceObservationIds?: string[];
+        project?: string;
       }>,
     ): Promise<Response> => {
       const authErr = checkAuth(req, secret);
@@ -901,7 +974,24 @@ export function registerApiTriggers(
       ) {
         return { status_code: 400, body: { error: "content is required" } };
       }
-      const result = await sdk.trigger({ function_id: "mem::remember", payload: req.body });
+      if (
+        req.body.project !== undefined &&
+        (typeof req.body.project !== "string" || !req.body.project.trim())
+      ) {
+        return { status_code: 400, body: { error: "project must be a non-empty string" } };
+      }
+      const result = await sdk.trigger({
+        function_id: "mem::remember",
+        payload: {
+          content: req.body.content,
+          ...(req.body.type !== undefined && { type: req.body.type }),
+          ...(req.body.concepts !== undefined && { concepts: req.body.concepts }),
+          ...(req.body.files !== undefined && { files: req.body.files }),
+          ...(req.body.ttlDays !== undefined && { ttlDays: req.body.ttlDays }),
+          ...(req.body.sourceObservationIds !== undefined && { sourceObservationIds: req.body.sourceObservationIds }),
+          ...(req.body.project !== undefined && { project: req.body.project }),
+        },
+      });
       return { status_code: 201, body: result };
     },
   );
@@ -981,14 +1071,30 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/generate-rules", http_method: "POST" },
   });
 
-  sdk.registerFunction("api::migrate", 
-    async (req: ApiRequest<{ dbPath: string }>): Promise<Response> => {
+  sdk.registerFunction("api::migrate",
+    async (
+      req: ApiRequest<{ dbPath?: string; step?: string; dryRun?: boolean }>,
+    ): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
-      if (!req.body?.dbPath || typeof req.body.dbPath !== "string") {
-        return { status_code: 400, body: { error: "dbPath is required" } };
+      const hasStep =
+        typeof req.body?.step === "string" && req.body.step.trim().length > 0;
+      const hasDbPath =
+        typeof req.body?.dbPath === "string" && req.body.dbPath.trim().length > 0;
+      if (!hasStep && !hasDbPath) {
+        return {
+          status_code: 400,
+          body: { error: "Either step (string) or dbPath (string) is required" },
+        };
       }
-      const result = await sdk.trigger({ function_id: "mem::migrate", payload: req.body });
+      const result = await sdk.trigger({
+        function_id: "mem::migrate",
+        payload: {
+          ...(req.body.step !== undefined && { step: req.body.step }),
+          ...(req.body.dbPath !== undefined && { dbPath: req.body.dbPath }),
+          ...(req.body.dryRun !== undefined && { dryRun: req.body.dryRun }),
+        },
+      });
       return { status_code: 200, body: result };
     },
   );
@@ -1014,9 +1120,18 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/evict", http_method: "POST" },
   });
 
-  sdk.registerFunction("api::smart-search", 
+  sdk.registerFunction("api::smart-search",
     async (
-      req: ApiRequest<{ query?: string; expandIds?: string[]; limit?: number }>,
+      req: ApiRequest<{
+        query?: string;
+        expandIds?: Array<string | { obsId: string; sessionId: string }>;
+        limit?: number;
+        project?: string;
+        includeLessons?: boolean;
+        agentId?: string;
+        sessionId?: string;
+        source?: string;
+      }>,
     ): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
@@ -1029,7 +1144,27 @@ export function registerApiTriggers(
           body: { error: "query or expandIds is required" },
         };
       }
-      const result = await sdk.trigger({ function_id: "mem::smart-search", payload: req.body });
+      // #771: route the X-Agentmemory-Source header into the payload so
+      // the followup-rate diagnostic can skip viewer-originated calls.
+      // Body wins if both are set (advanced callers explicitly override).
+      const headers = (req.headers || {}) as Record<string, string | string[] | undefined>;
+      const sourceHeader = headers["x-agentmemory-source"] ?? headers["X-Agentmemory-Source"];
+      const sourceFromHeader = Array.isArray(sourceHeader) ? sourceHeader[0] : sourceHeader;
+      // Whitelist payload fields explicitly — REST endpoints never pass
+      // the raw request body through to sdk.trigger (AGENTS.md security
+      // section). Drops unknown fields so a misbehaving client can't
+      // inject downstream-only options.
+      const payload = {
+        query: req.body?.query,
+        expandIds: req.body?.expandIds,
+        limit: req.body?.limit,
+        project: req.body?.project,
+        includeLessons: req.body?.includeLessons,
+        agentId: req.body?.agentId,
+        sessionId: req.body?.sessionId,
+        source: req.body?.source ?? sourceFromHeader,
+      };
+      const result = await sdk.trigger({ function_id: "mem::smart-search", payload });
       return { status_code: 200, body: result };
     },
   );
@@ -1037,6 +1172,38 @@ export function registerApiTriggers(
     type: "http",
     function_id: "api::smart-search",
     config: { api_path: "/agentmemory/smart-search", http_method: "POST" },
+  });
+
+  // #771: read-back endpoint for the followup-rate diagnostic. Returns
+  // a directional signal — overcounts on legitimate query refinement —
+  // so help text + the CLI status line carry the same caveat.
+  sdk.registerFunction("api::diagnostic-followup",
+    async (req: ApiRequest): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      const result = await sdk.trigger({
+        function_id: "mem::diagnostic::followup-stats",
+        payload: {},
+      });
+      return {
+        status_code: 200,
+        body: {
+          ...(result as Record<string, unknown>),
+          caveat:
+            "Directional signal: overcounts on legitimate query refinement. " +
+            "Tune via AGENTMEMORY_FOLLOWUP_WINDOW_SECONDS.",
+        },
+      };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::diagnostic-followup",
+    config: {
+      api_path: "/agentmemory/diagnostics/followup",
+      http_method: "GET",
+      middleware_function_ids: ["middleware::api-auth"],
+    },
   });
 
   sdk.registerFunction("api::timeline", 
@@ -1084,11 +1251,30 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/profile", http_method: "GET" },
   });
 
-  sdk.registerFunction("api::export", 
+  sdk.registerFunction("api::export",
     async (req: ApiRequest): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
-      const result = await sdk.trigger({ function_id: "mem::export", payload: {} });
+      // mem::export already supports maxSessions/offset internally,
+      // but the HTTP endpoint hardcoded an empty payload — so /export on a
+      // real corpus (40 sessions × 34K observations × 8K memories) hit the
+      // iii engine invocation timeout and `agentmemory status` reported 0.
+      // Pass through the query-string pagination so callers can chunk.
+      const rawMax = req.query_params?.["maxSessions"];
+      const rawOffset = req.query_params?.["offset"];
+      const payload: { maxSessions?: number; offset?: number } = {};
+      if (typeof rawMax === "string") {
+        const n = Number(rawMax);
+        if (Number.isInteger(n) && n > 0) payload.maxSessions = n;
+      }
+      if (typeof rawOffset === "string") {
+        const n = Number(rawOffset);
+        if (Number.isInteger(n) && n >= 0) payload.offset = n;
+      }
+      const result = await sdk.trigger({
+        function_id: "mem::export",
+        payload,
+      });
       return { status_code: 200, body: result };
     },
   );
@@ -1229,19 +1415,31 @@ export function registerApiTriggers(
     },
   });
 
-  sdk.registerFunction("api::graph-query", 
+  sdk.registerFunction("api::graph-query",
     async (
       req: ApiRequest<{
         startNodeId?: string;
         nodeType?: string;
         maxDepth?: number;
         query?: string;
+        limit?: number;
+        offset?: number;
       }>,
     ): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
+      // Whitelist payload fields explicitly; AGENTS.md security rule:
+      // REST endpoints never pass raw req.body through to sdk.trigger.
+      const payload = {
+        startNodeId: req.body?.startNodeId,
+        nodeType: req.body?.nodeType,
+        maxDepth: req.body?.maxDepth,
+        query: req.body?.query,
+        limit: req.body?.limit,
+        offset: req.body?.offset,
+      };
       try {
-        const result = await sdk.trigger({ function_id: "mem::graph-query", payload: req.body || {} });
+        const result = await sdk.trigger({ function_id: "mem::graph-query", payload });
         return { status_code: 200, body: result };
       } catch {
         return graphDisabledResponse();
@@ -1272,7 +1470,58 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/graph/stats", http_method: "GET" },
   });
 
-  sdk.registerFunction("api::graph-extract", 
+  // #814: explicit snapshot rebuild endpoint. Pays the full graph
+  // enumeration once and persists a top-degree subgraph + aggregate
+  // counts so subsequent /graph/query and /graph/stats calls skip the
+  // unbounded kv.list. Operator-grade endpoint exposed for the viewer
+  // banner action and CLI repair.
+  sdk.registerFunction("api::graph-snapshot-rebuild",
+    async (req: ApiRequest): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      try {
+        const result = await sdk.trigger({
+          function_id: "mem::graph-snapshot-rebuild",
+          payload: {},
+        });
+        return { status_code: 200, body: result };
+      } catch {
+        return graphDisabledResponse();
+      }
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::graph-snapshot-rebuild",
+    config: { api_path: "/agentmemory/graph/snapshot-rebuild", http_method: "POST" },
+  });
+
+  // #814 v2: clean-restart endpoint for legacy corpora too large for
+  // safe rebuild. Wipes graph state without touching observations, so
+  // recall + history stay intact while the graph rebuilds incrementally
+  // from new extracts (or a one-shot /graph/build replay).
+  sdk.registerFunction("api::graph-reset",
+    async (req: ApiRequest): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      try {
+        const result = await sdk.trigger({
+          function_id: "mem::graph-reset",
+          payload: {},
+        });
+        return { status_code: 200, body: result };
+      } catch {
+        return graphDisabledResponse();
+      }
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::graph-reset",
+    config: { api_path: "/agentmemory/graph/reset", http_method: "POST" },
+  });
+
+  sdk.registerFunction("api::graph-extract",
     async (req: ApiRequest<{ observations: unknown[] }>): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
@@ -1299,7 +1548,72 @@ export function registerApiTriggers(
     config: { api_path: "/agentmemory/graph/extract", http_method: "POST" },
   });
 
-  sdk.registerFunction("api::consolidate-pipeline", 
+  // Backfill the knowledge graph from existing compressed observations.
+  // Viewer calls this when the graph is empty (#666). Iterates every
+  // session, collects observations that have a `title` (compressed only),
+  // and feeds them through `mem::graph-extract` in batches.
+  sdk.registerFunction("api::graph-build",
+    async (req: ApiRequest<{ batchSize?: number }>): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      const batchSize = Math.max(
+        1,
+        Math.min(100, Number((req.body as { batchSize?: number })?.batchSize) || 25),
+      );
+      try {
+        const sessions = await kv.list<Session>(KV.sessions);
+        let totalNodes = 0;
+        let totalEdges = 0;
+        let batchesRun = 0;
+        for (const session of sessions) {
+          const sid = session?.id;
+          if (typeof sid !== "string" || sid.length === 0) continue;
+          const observations = await kv.list<CompressedObservation>(KV.observations(sid));
+          const compressed = observations.filter((o) => o && typeof o.title === "string" && o.title.length > 0);
+          if (compressed.length === 0) continue;
+          for (let i = 0; i < compressed.length; i += batchSize) {
+            const batch = compressed.slice(i, i + batchSize);
+            try {
+              const result = (await sdk.trigger({
+                function_id: "mem::graph-extract",
+                payload: { observations: batch },
+              })) as { success?: boolean; nodesAdded?: number; edgesAdded?: number };
+              if (result?.success) {
+                totalNodes += Number(result.nodesAdded) || 0;
+                totalEdges += Number(result.edgesAdded) || 0;
+              }
+              batchesRun++;
+            } catch (err) {
+              logger.warn("graph-build batch failed", {
+                sessionId: sid,
+                batchIndex: Math.floor(i / batchSize),
+                error: err instanceof Error ? err.message : String(err),
+              });
+            }
+          }
+        }
+        return {
+          status_code: 200,
+          body: {
+            success: true,
+            sessions: sessions.length,
+            batches: batchesRun,
+            nodes: totalNodes,
+            edges: totalEdges,
+          },
+        };
+      } catch {
+        return graphDisabledResponse();
+      }
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::graph-build",
+    config: { api_path: "/agentmemory/graph/build", http_method: "POST" },
+  });
+
+  sdk.registerFunction("api::consolidate-pipeline",
     async (req: ApiRequest<{ tier?: string }>): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
@@ -1517,8 +1831,76 @@ export function registerApiTriggers(
       if (authErr) return authErr;
       const memories = await kv.list<import("../types.js").Memory>(KV.memories);
       const latest = req.query_params?.["latest"] === "true";
-      const filtered = latest ? memories.filter((m) => m.isLatest) : memories;
-      return { status_code: 200, body: { memories: filtered } };
+      // agentId filter. Request param wins, env AGENT_ID (when
+      // scope=isolated) is the fallback. Shared mode keeps the tag but
+      // does not restrict the list endpoint. Pass agentId=* to opt out
+      // of the env scope entirely. includeOrphans=true surfaces
+      // pre-AGENT_ID memories whose agentId is undefined.
+      const normalizedAgentId =
+        typeof req.query_params?.["agentId"] === "string"
+          ? req.query_params["agentId"].trim()
+          : undefined;
+      const wildcardAgent = normalizedAgentId === "*";
+      const explicitAgentId =
+        normalizedAgentId && !wildcardAgent ? normalizedAgentId : undefined;
+      const includeOrphans =
+        req.query_params?.["includeOrphans"] === "true";
+      const filterAgentId = wildcardAgent
+        ? undefined
+        : explicitAgentId ?? (isAgentScopeIsolated() ? getAgentId() : undefined);
+      let filtered = latest ? memories.filter((m) => m.isLatest) : memories;
+      if (filterAgentId) {
+        filtered = filtered.filter(
+          (m) =>
+            m.agentId === filterAgentId ||
+            (includeOrphans && m.agentId === undefined),
+        );
+      }
+
+      // viewer + `agentmemory status` were hitting this endpoint to
+      // count memories. On a real corpus (8K+ memories) the unbounded
+      // response either timed out at the iii engine boundary ("Invocation
+      // stopped") or arrived too large for the viewer to render — so the
+      // UI showed 0 memories despite a healthy store. Two opt-in modes:
+      //   ?count=true       — totals only, no payload
+      //   ?limit=N&offset=M — page slice (default unlimited for back-compat)
+      if (req.query_params?.["count"] === "true") {
+        // Match the SAME scope that the list path applies — returning
+        // unfiltered totals here would leak cross-agent counts to a
+        // caller that's blocked from the underlying rows.
+        return {
+          status_code: 200,
+          body: {
+            total: filtered.length,
+            latestCount: filtered.filter((m) => m.isLatest).length,
+          },
+        };
+      }
+
+      const rawLimit = req.query_params?.["limit"];
+      const rawOffset = req.query_params?.["offset"];
+      const parsedLimit =
+        typeof rawLimit === "string" ? Number(rawLimit) : Number.NaN;
+      const parsedOffset =
+        typeof rawOffset === "string" ? Number(rawOffset) : Number.NaN;
+      const limit =
+        Number.isInteger(parsedLimit) && parsedLimit > 0
+          ? Math.min(parsedLimit, 5000)
+          : undefined;
+      const offset =
+        Number.isInteger(parsedOffset) && parsedOffset >= 0 ? parsedOffset : 0;
+      const sliced =
+        limit !== undefined ? filtered.slice(offset, offset + limit) : filtered;
+
+      return {
+        status_code: 200,
+        body: {
+          memories: sliced,
+          total: filtered.length,
+          offset,
+          limit: limit ?? null,
+        },
+      };
     },
   );
   sdk.registerTrigger({
@@ -1660,6 +2042,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-list", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
     const result = await sdk.trigger({ function_id: "mem::slot-list", payload: {} });
     return { status_code: 200, body: result };
   });
@@ -1672,6 +2055,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-get", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
     const label = asNonEmptyString(req.query_params?.["label"]);
     if (!label) return { status_code: 400, body: { error: "label query param required" } };
     const result = await sdk.trigger({ function_id: "mem::slot-get", payload: { label } });
@@ -1690,6 +2074,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-create", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
     const body = (req.body ?? {}) as Record<string, unknown>;
     const label = asNonEmptyString(body["label"]);
     if (!label) return { status_code: 400, body: { error: "label required" } };
@@ -1739,6 +2124,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-append", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
     const body = (req.body ?? {}) as Record<string, unknown>;
     const label = asNonEmptyString(body["label"]);
     const text = typeof body["text"] === "string" ? body["text"] : null;
@@ -1761,6 +2147,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-replace", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
     const body = (req.body ?? {}) as Record<string, unknown>;
     const label = asNonEmptyString(body["label"]);
     const content = body["content"];
@@ -1785,6 +2172,7 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-delete", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
     const label = asNonEmptyString(req.query_params?.["label"]);
     if (!label) return { status_code: 400, body: { error: "label query param required" } };
     const result = await sdk.trigger({ function_id: "mem::slot-delete", payload: { label } });
@@ -1803,6 +2191,8 @@ export function registerApiTriggers(
   sdk.registerFunction("api::slot-reflect", async (req: ApiRequest): Promise<Response> => {
     const authErr = checkAuth(req, secret);
     if (authErr) return authErr;
+    if (!isSlotsEnabled()) return slotsDisabledResponse();
+    if (!isReflectEnabled()) return reflectDisabledResponse();
     const body = (req.body ?? {}) as Record<string, unknown>;
     const sessionId = asNonEmptyString(body["sessionId"]);
     if (!sessionId) return { status_code: 400, body: { error: "sessionId required" } };
