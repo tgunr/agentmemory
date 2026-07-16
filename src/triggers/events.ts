@@ -5,11 +5,30 @@ import { StateKV } from "../state/kv.js";
 import { isReflectEnabled } from "../functions/slots.js";
 import { isGraphExtractionEnabled } from "../config.js";
 import { logger } from "../logger.js";
+import { lookupHermesSessionTitle } from "../state/hermes-sessions.js";
 
 export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
   sdk.registerFunction(
     "event::session::started",
-    async (data: { sessionId: string; project: string; cwd: string }) => {
+    async (data: {
+      sessionId: string;
+      project: string;
+      cwd: string;
+      title?: string;
+    }) => {
+      // Prefer explicit title, otherwise fall back to looking up the Hermes session
+      // title for the session name. This ensures agentmemory sessions always get the
+      // same name/title the user sees in Hermes/Kilocode.
+      let title: string | undefined;
+      if (typeof data.title === "string" && data.title.trim().length > 0) {
+        title = data.title.trim().slice(0, 200);
+      } else {
+        const hermesTitle = lookupHermesSessionTitle(
+          data.sessionId,
+          process.env.HERMES_STATE_DB,
+        );
+        if (hermesTitle) title = hermesTitle;
+      }
       const session: Session = {
         id: data.sessionId,
         project: data.project,
@@ -17,6 +36,8 @@ export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
         startedAt: new Date().toISOString(),
         status: "active",
         observationCount: 0,
+        ...(title ? { summary: title } : {}),
+        ...(title ? { firstPrompt: title } : {}),
       };
       await kv.set(KV.sessions, data.sessionId, session);
       const contextResult = await sdk.trigger<

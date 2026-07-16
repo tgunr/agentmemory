@@ -20,7 +20,7 @@ import {
   detectLlmProviderKind,
 } from "../config.js";
 import { getVectorIndex } from "../functions/search.js";
-import { readHermesSessions } from "../state/hermes-sessions.js";
+import { readHermesSessions, lookupHermesSessionTitle } from "../state/hermes-sessions.js";
 
 type Response = {
   status_code: number;
@@ -547,7 +547,17 @@ export function registerApiTriggers(
           },
         };
       }
-      const title = typeof body.title === "string" ? body.title.trim() : undefined;
+      let title: string | undefined;
+      if (typeof body.title === "string" && body.title.trim().length > 0) {
+        title = body.title.trim().slice(0, 200);
+      } else {
+        // Fall back to the Hermes session title so agentmemory's session
+        // name matches the one the user sees in Hermes/Kilocode.
+        title = lookupHermesSessionTitle(
+          sessionId,
+          process.env.HERMES_STATE_DB,
+        );
+      }
       const session: Session = {
         id: sessionId,
         project,
@@ -555,8 +565,8 @@ export function registerApiTriggers(
         startedAt: new Date().toISOString(),
         status: "active",
         observationCount: 0,
-        ...(title ? { summary: title.slice(0, 200) } : {}),
-        ...(title ? { firstPrompt: title.slice(0, 200) } : {}),
+        ...(title ? { summary: title } : {}),
+        ...(title ? { firstPrompt: title } : {}),
       };
       await kv.set(KV.sessions, sessionId, session);
       const contextResult = await sdk.trigger<
@@ -763,17 +773,28 @@ export function registerApiTriggers(
       // Hermes is the source of truth for sessions; agentmemory's KV provides
       // observation counts/metadata for those sessions it has seen.
       const limit = parseOptionalInt(req.query_params?.["limit"], 100);
+      const includeEmpty = req.query_params?.["includeEmpty"] === "true";
       const sessions = await readHermesSessions(
         kv,
         process.env.HERMES_STATE_DB,
         limit,
       );
-      if (sessions.length > 0) {
-        return { status_code: 200, body: { sessions } };
+      const visible = includeEmpty
+        ? sessions
+        : sessions.filter((s) => (s.observationCount ?? 0) > 0);
+      if (visible.length > 0 || sessions.length > 0) {
+        return { status_code: 200, body: { sessions: visible } };
       }
       // Fallback to KV store if Hermes DB unavailable
       const kvSessions = await kv.list<Session>(KV.sessions);
-      return { status_code: 200, body: { sessions: kvSessions } };
+      return {
+        status_code: 200,
+        body: {
+          sessions: includeEmpty
+            ? kvSessions
+            : kvSessions.filter((s) => (s.observationCount ?? 0) > 0),
+        },
+      };
     },
   );
   sdk.registerTrigger({

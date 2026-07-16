@@ -238,3 +238,126 @@ describe("mem::evict stale sessions", () => {
     );
   });
 });
+
+describe("mem::evict empty sessions", () => {
+  function emptySession(id: string, ageMs: number): Session {
+    return {
+      id,
+      project: "agentmemory",
+      cwd: "/repo/agentmemory",
+      startedAt: new Date(Date.now() - ageMs).toISOString(),
+      status: "active",
+      observationCount: 0,
+    };
+  }
+
+  it("deletes an empty session past the grace window", async () => {
+    const sessionId = "ses_empty_old";
+    const store = new Map([
+      [
+        KV.sessions,
+        new Map([[sessionId, emptySession(sessionId, 2 * 60 * 60 * 1000)]]),
+      ],
+      [KV.summaries, new Map()],
+      [KV.audit, new Map()],
+    ]);
+    const kv = mockKV(store);
+    const { sdk } = mockSdk();
+
+    registerEvictFunction(sdk as never, kv as never);
+
+    const result = (await sdk.trigger({
+      function_id: "mem::evict",
+      payload: {},
+    })) as { emptySessions: number };
+
+    expect(result.emptySessions).toBe(1);
+    expect(await kv.get(KV.sessions, sessionId)).toBeNull();
+    const audits = await kv.list<{ details: { reason: string } }>(KV.audit);
+    expect(audits[0].details.reason).toBe("empty_session");
+  });
+
+  it("keeps an empty session inside the grace window", async () => {
+    const sessionId = "ses_empty_recent";
+    const store = new Map([
+      [
+        KV.sessions,
+        new Map([[sessionId, emptySession(sessionId, 30 * 60 * 1000)]]),
+      ],
+      [KV.summaries, new Map()],
+      [KV.audit, new Map()],
+    ]);
+    const kv = mockKV(store);
+    const { sdk } = mockSdk();
+
+    registerEvictFunction(sdk as never, kv as never);
+
+    const result = (await sdk.trigger({
+      function_id: "mem::evict",
+      payload: {},
+    })) as { emptySessions: number };
+
+    expect(result.emptySessions).toBe(0);
+    expect(await kv.get(KV.sessions, sessionId)).toMatchObject({
+      id: sessionId,
+    });
+  });
+
+  it("keeps an empty session that has a summary", async () => {
+    const sessionId = "ses_empty_with_summary";
+    const store = new Map([
+      [
+        KV.sessions,
+        new Map([[sessionId, emptySession(sessionId, 24 * 60 * 60 * 1000)]]),
+      ],
+      [
+        KV.summaries,
+        new Map([[sessionId, { sessionId, title: "old summary" }]]),
+      ],
+      [KV.audit, new Map()],
+    ]);
+    const kv = mockKV(store);
+    const { sdk } = mockSdk();
+
+    registerEvictFunction(sdk as never, kv as never);
+
+    const result = (await sdk.trigger({
+      function_id: "mem::evict",
+      payload: {},
+    })) as { emptySessions: number };
+
+    expect(result.emptySessions).toBe(0);
+    expect(await kv.get(KV.sessions, sessionId)).toMatchObject({
+      id: sessionId,
+    });
+  });
+
+  it("respects emptySessionGraceMs=0 to clear all empty sessions", async () => {
+    // Slightly past 0 so the strict > check passes; with graceMs=0, anything
+    // older than 0ms is fair game.
+    const recent = emptySession("ses_recent", 5);
+    const old = emptySession("ses_old", 5 * 60 * 1000);
+    const store = new Map<string, Map<string, unknown>>([
+      [KV.sessions, new Map([[recent.id, recent], [old.id, old]])],
+      [KV.summaries, new Map()],
+      [KV.audit, new Map()],
+      [
+        KV.config,
+        new Map([["eviction", { emptySessionGraceMs: 0 }]]),
+      ],
+    ]);
+    const kv = mockKV(store);
+    const { sdk } = mockSdk();
+
+    registerEvictFunction(sdk as never, kv as never);
+
+    const result = (await sdk.trigger({
+      function_id: "mem::evict",
+      payload: {},
+    })) as { emptySessions: number };
+
+    expect(result.emptySessions).toBe(2);
+    expect(await kv.get(KV.sessions, "ses_recent")).toBeNull();
+    expect(await kv.get(KV.sessions, "ses_old")).toBeNull();
+  });
+});

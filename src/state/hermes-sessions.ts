@@ -13,6 +13,45 @@ import type { StateKV } from "./kv.js";
 const DEFAULT_HERMES_DB = join(homedir(), ".hermes", "profiles", "ai", "state.db");
 
 /**
+ * Look up a single Hermes session's title by id. Returns undefined if the
+ * session is not in the Hermes DB or the DB is unreachable — both are
+ * non-fatal, callers fall back to whatever title the hook payload supplied.
+ */
+export function lookupHermesSessionTitle(
+  sessionId: string,
+  dbPath: string | undefined,
+): string | undefined {
+  const path = dbPath || DEFAULT_HERMES_DB;
+  let db: Database.Database;
+  try {
+    db = new Database(path, { readonly: true });
+  } catch (err) {
+    logger.info("Could not open Hermes session DB for title lookup", {
+      dbPath: path,
+      error: String(err),
+    });
+    return undefined;
+  }
+  try {
+    const row = db
+      .prepare("SELECT title FROM sessions WHERE id = ?")
+      .get(sessionId) as { title?: string | null } | undefined;
+    if (!row || typeof row.title !== "string" || row.title.trim().length === 0) {
+      return undefined;
+    }
+    return row.title.trim().slice(0, 200);
+  } catch (err) {
+    logger.info("Hermes session title lookup failed", {
+      sessionId,
+      error: String(err),
+    });
+    return undefined;
+  } finally {
+    db.close();
+  }
+}
+
+/**
  * Convert Unix timestamp (seconds) to ISO 8601 string.
  */
 function tsToIso(ts: number | null | undefined): string | undefined {
@@ -35,7 +74,7 @@ async function lookupObservationCount(
     );
     return observations.length;
   } catch (err) {
-    logger.debug("Could not fetch observation count for session", {
+    logger.info("Could not fetch observation count for session", {
       sessionId,
       error: String(err),
     });

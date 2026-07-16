@@ -17,18 +17,22 @@ interface EvictionConfig {
   lowImportanceMaxDays: number;
   lowImportanceThreshold: number;
   maxObservationsPerProject: number;
+  emptySessionGraceMs: number;
 }
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+const MS_PER_HOUR = 60 * 60 * 1000;
 
 const DEFAULTS: EvictionConfig = {
   staleSessionDays: 30,
   lowImportanceMaxDays: 90,
   lowImportanceThreshold: 3,
   maxObservationsPerProject: 10_000,
+  emptySessionGraceMs: 1 * MS_PER_HOUR,
 };
 
 interface EvictionStats {
+  emptySessions: number;
   staleSessions: number;
   lowImportanceObs: number;
   capEvictions: number;
@@ -105,6 +109,7 @@ export function registerEvictFunction(sdk: ISdk, kv: StateKV): void {
 
       const now = Date.now();
       const stats: EvictionStats = {
+        emptySessions: 0,
         staleSessions: 0,
         lowImportanceObs: 0,
         capEvictions: 0,
@@ -123,6 +128,40 @@ export function registerEvictFunction(sdk: ISdk, kv: StateKV): void {
       for (const session of sessions) {
         if (!session.startedAt) continue;
         const age = now - new Date(session.startedAt).getTime();
+
+        // Drop sessions that never produced an observation after the grace
+        // window. They carry no signal for recall, search, or the
+        // viewer dashboard, so they just add noise.
+        if (
+          (session.observationCount ?? 0) === 0 &&
+          !summaryIds.has(session.id) &&
+          age > cfg.emptySessionGraceMs
+        ) {
+          if (dryRun) {
+            stats.emptySessions++;
+            continue;
+          }
+          try {
+            await kv.delete(KV.sessions, session.id);
+            stats.emptySessions++;
+          } catch (err) {
+            logger.warn("Eviction delete failed", {
+              resource: "session",
+              id: session.id,
+              reason: "empty_session",
+              error: err instanceof Error ? err.message : String(err),
+            });
+            continue;
+          }
+          await recordAudit(kv, "delete", "mem::evict", [session.id], {
+            resource: "session",
+            reason: "empty_session",
+            ageMs: age,
+            dryRun,
+          });
+          continue;
+        }
+
         const staleDays = cfg.staleSessionDays * MS_PER_DAY;
         if (age > staleDays && !summaryIds.has(session.id)) {
           if (dryRun) {
