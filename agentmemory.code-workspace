@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../Users/davec/.hermes"
 		}
 	],
 	"settings": {
