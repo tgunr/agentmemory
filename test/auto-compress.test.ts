@@ -80,6 +80,9 @@ describe("mem::observe auto-compress gate (#138)", () => {
     // state from an earlier test (and vice versa).
     vi.resetModules();
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
+    // Mask any AGENTMEMORY_AUTO_COMPRESS value from the user's
+    // ~/.agentmemory/.env so tests run in a controlled environment.
+    process.env["AGENTMEMORY_AUTO_COMPRESS"] = "";
   });
   afterEach(() => {
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
