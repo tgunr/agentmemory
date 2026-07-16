@@ -1002,25 +1002,27 @@
     // port — pointing REST at the viewer port causes every fetch to 404 and
     // leaves the dashboard in a permanent "first run" state. Always resolve
     // REST to the API port, regardless of which port the viewer is on.
+    // HOWEVER: when AGENTMEMORY_SECRET is set, direct calls to the API port
+    // return 401 (no auth header). The viewer server (port 3113) proxies
+    // requests with the secret attached. So we must call the viewer server
+    // (our own origin) and let IT proxy to the API. window.location.origin
+    // is `http://localhost:3113` when the viewer is loaded there.
     var apiPort = (function() {
-      var p = parseInt(locPort, 10);
-      if (!isNaN(p) && p >= 3113 && p <= 3113 + 10) return String(p - 2);
-      var pp = parseInt(paramPort, 10);
-      if (!isNaN(pp) && pp >= 3113 && pp <= 3113 + 10) return String(pp - 2);
-      return '3111';
+      // Use our own origin so the proxy adds the Authorization header.
+      return window.location.port || '3113';
     })();
     if (paramPort) {
-      REST = window.location.protocol + '//' + window.location.hostname + ':' + apiPort;
+      REST = window.location.origin;
       wsPort = params.get('wsPort') || '3112';
       WS_URL = wsProto + '//' + window.location.hostname + ':' + wsPort;
       WS_DIRECT_URL = WS_URL + '/stream/mem-live/viewer';
     } else if (locPort) {
-      REST = window.location.protocol + '//' + window.location.hostname + ':' + apiPort;
+      REST = window.location.origin;
       wsPort = params.get('wsPort') || '3112';
       WS_URL = wsProto + '//' + window.location.hostname + ':' + wsPort;
       WS_DIRECT_URL = WS_URL + '/stream/mem-live/viewer';
     } else {
-      REST = window.location.protocol + '//' + window.location.hostname + ':' + apiPort;
+      REST = window.location.origin;
       wsPort = params.get('wsPort') || '3112';
       WS_URL = wsProto + '//' + window.location.hostname + ':' + wsPort;
       WS_DIRECT_URL = WS_URL + '/stream/mem-live/viewer';
