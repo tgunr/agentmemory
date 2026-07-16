@@ -20,6 +20,7 @@ import {
   detectLlmProviderKind,
 } from "../config.js";
 import { getVectorIndex } from "../functions/search.js";
+import { readHermesSessions } from "../state/hermes-sessions.js";
 
 type Response = {
   status_code: number;
@@ -759,8 +760,20 @@ export function registerApiTriggers(
     async (req: ApiRequest): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
-      const sessions = await kv.list<Session>(KV.sessions);
-      return { status_code: 200, body: { sessions } };
+      // Hermes is the source of truth for sessions; agentmemory's KV provides
+      // observation counts/metadata for those sessions it has seen.
+      const limit = parseOptionalInt(req.query_params?.["limit"], 100);
+      const sessions = await readHermesSessions(
+        kv,
+        process.env.HERMES_STATE_DB,
+        limit,
+      );
+      if (sessions.length > 0) {
+        return { status_code: 200, body: { sessions } };
+      }
+      // Fallback to KV store if Hermes DB unavailable
+      const kvSessions = await kv.list<Session>(KV.sessions);
+      return { status_code: 200, body: { sessions: kvSessions } };
     },
   );
   sdk.registerTrigger({
