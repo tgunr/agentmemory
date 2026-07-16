@@ -129,7 +129,15 @@ function readBody(req: IncomingMessage): Promise<string> {
   });
 }
 
-const MAX_VIEWER_PORT_RETRIES = 10;
+// 0 = OS-assigned port. We never walk past it: if the OS can't give us
+// a port we fail loudly instead of silently shifting to port+1..+10,
+// which previously caused "viewer started on 3114 (fallback from 3113)"
+// to leave the user pointing their browser at 3113 and getting a hung
+// dashboard (the API on 3111 is fine, but the rendered viewer URL
+// baked into the page reads 3114).
+// 1 = retry the configured port exactly once (covers SO_REUSEADDR races
+// on hot-reload). Anything beyond that is a real conflict.
+const MAX_VIEWER_PORT_RETRIES = 1;
 
 let boundViewerPort: number | null = null;
 let viewerSkipped = false;
@@ -247,6 +255,7 @@ export function startViewerServer(
         ? addr.port
         : currentPort;
     viewerSkipped = false;
+    console.log(`[agentmemory-debug] listening event fired, boundViewerPort=${boundViewerPort}, viewerSkipped=${viewerSkipped}`);
     if (currentPort === requestedPort) {
       console.log(`[agentmemory] Viewer: http://localhost:${currentPort}`);
     } else {
@@ -259,15 +268,37 @@ export function startViewerServer(
   server.on("error", (err: NodeJS.ErrnoException) => {
     if (err.code === "EADDRINUSE" && attempt < MAX_VIEWER_PORT_RETRIES) {
       attempt++;
-      currentPort = requestedPort + attempt;
+      // Reset state for the retry — the prior error handler below ran and
+      // marked the viewer as skipped, but a successful listen() on retry
+      // should clear that. Without this, a SO_REUSEADDR/TIME_WAIT race
+      // during hot-reload permanently leaves viewerSkipped=true even
+      // though the server is actually listening.
+      boundViewerPort = null;
+      viewerSkipped = false;
+      // Only retry the *same* port — never walk. SO_REUSEADDR races during
+      // hot-reload usually clear within a few hundred ms. The previous
+      // behavior of bumping to port+1, port+2, … port+10 hid the conflict
+      // and produced a UI that rendered on 3114 while the user expected 3113.
       setImmediate(tryListen);
       return;
     }
     if (err.code === "EADDRINUSE") {
+      // Final attempt failed. The server will NOT emit a "listening" event
+      // after this error, so it's safe to mark skipped. The retry path
+      // above returns early so the "listening" handler below can still
+      // clear viewerSkipped on a successful retry.
       boundViewerPort = null;
       viewerSkipped = true;
-      console.warn(
-        `[agentmemory] Viewer ports ${requestedPort}-${requestedPort + MAX_VIEWER_PORT_RETRIES} all in use, skipping viewer.`,
+      // Loud, explicit, but non-fatal: the worker continues serving the
+      // REST API and stream consumer. The viewer is a read-only dashboard
+      // — killing the whole worker for it is worse than running without
+      // it. The error message tells the user how to free the port.
+      console.error(
+        `[agentmemory] Viewer port ${requestedPort} is already in use ` +
+        `and a single retry did not free it. The REST API on ${resolvedRestPort} ` +
+        `is unaffected. The viewer (HTTP ${requestedPort}) will be unavailable ` +
+        `until the conflict is resolved. Run: lsof -i :${requestedPort}. ` +
+        `Original error: ${err.message}`,
       );
     } else {
       boundViewerPort = null;
