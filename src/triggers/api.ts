@@ -19,6 +19,7 @@ import {
   detectEmbeddingProvider,
   detectLlmProviderKind,
 } from "../config.js";
+import { getVectorIndex } from "../functions/search.js";
 
 type Response = {
   status_code: number;
@@ -144,7 +145,15 @@ export function registerApiTriggers(
   sdk.registerFunction("api::liveness",
     async (): Promise<Response> => ({
       status_code: 200,
-      body: { status: "ok", service: "agentmemory", viewerPort: getBoundViewerPort(), viewerSkipped: getViewerSkipped() },
+      body: {
+        status: "ok",
+        service: "agentmemory",
+        viewerPort: getBoundViewerPort(),
+        viewerSkipped: getViewerSkipped(),
+        vector: {
+          size: getVectorIndex()?.size ?? 0,
+        },
+      },
     }),
   );
   sdk.registerTrigger({
@@ -158,7 +167,8 @@ export function registerApiTriggers(
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
       const providerKind = detectLlmProviderKind();
-      const embeddingProvider = detectEmbeddingProvider() ? "embeddings" : "none";
+      const embeddingProvider = detectEmbeddingProvider();
+      const embeddingEnabled = embeddingProvider !== null;
       const flags = [
         {
           key: "GRAPH_EXTRACTION_ENABLED",
@@ -210,7 +220,8 @@ export function registerApiTriggers(
         body: {
           version: VERSION,
           provider: providerKind,
-          embeddingProvider,
+          embeddingProvider: embeddingProvider ? "embeddings" : "none",
+          embeddingEnabled,
           flags,
         },
       };
