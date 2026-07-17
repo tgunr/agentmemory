@@ -62,4 +62,21 @@ export class MetricsStore {
     for (const [id, m] of this.cache) merged.set(id, m);
     return Array.from(merged.values());
   }
+
+  async reset(functionId?: string): Promise<{ cleared: string[] }> {
+    const ids =
+      functionId !== undefined
+        ? [functionId]
+        : (await this.getAll()).map((m) => m.functionId);
+
+    await Promise.all(
+      ids.map((id) => {
+        this.cache.delete(id);
+        this.qualityCallCounts.delete(id);
+        return this.kv.delete(KV.metrics, id).catch(() => {});
+      }),
+    );
+
+    return { cleared: ids };
+  }
 }

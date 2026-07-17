@@ -121,6 +121,7 @@ export type HookType =
   | "prompt_submit"
   | "pre_tool_use"
   | "post_tool_use"
+  | "post_tool_call"
   | "post_tool_failure"
   | "pre_compact"
   | "subagent_start"
@@ -608,7 +609,8 @@ export interface AuditEntry {
     | "slot_replace"
     | "slot_create"
     | "slot_delete"
-    | "slot_reflect";
+    | "slot_reflect"
+    | "metrics_reset";
   userId?: string;
   functionId: string;
   targetIds: string[];

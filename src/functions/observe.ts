@@ -101,6 +101,7 @@ export function registerObserveFunction(
         const d = sanitizedRaw as Record<string, unknown>;
         if (
           payload.hookType === "post_tool_use" ||
+          payload.hookType === "post_tool_call" ||
           payload.hookType === "post_tool_failure"
         ) {
           raw.toolName = d["tool_name"] as string | undefined;
