@@ -5,7 +5,7 @@ import { StateKV } from "../state/kv.js";
 import { isReflectEnabled } from "../functions/slots.js";
 import { isGraphExtractionEnabled } from "../config.js";
 import { logger } from "../logger.js";
-import { lookupHermesSessionTitle } from "../state/hermes-sessions.js";
+import { resolveSessionTitle } from "../state/hermes-sessions.js";
 
 export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
   sdk.registerFunction(
@@ -16,19 +16,12 @@ export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
       cwd: string;
       title?: string;
     }) => {
-      // Prefer explicit title, otherwise fall back to looking up the Hermes session
-      // title for the session name. This ensures agentmemory sessions always get the
-      // same name/title the user sees in Hermes/Kilocode.
-      let title: string | undefined;
-      if (typeof data.title === "string" && data.title.trim().length > 0) {
-        title = data.title.trim().slice(0, 200);
-      } else {
-        const hermesTitle = lookupHermesSessionTitle(
-          data.sessionId,
-          process.env.HERMES_STATE_DB,
-        );
-        if (hermesTitle) title = hermesTitle;
-      }
+      // Prefer the Hermes/Kilo session title, then any explicit title.
+      const title = resolveSessionTitle(
+        data.sessionId,
+        process.env.HERMES_STATE_DB,
+        typeof data.title === "string" ? data.title : undefined,
+      );
       const session: Session = {
         id: data.sessionId,
         project: data.project,

@@ -13,14 +13,20 @@ import type { StateKV } from "./kv.js";
 const DEFAULT_HERMES_DB = join(homedir(), ".hermes", "profiles", "ai", "state.db");
 
 /**
- * Look up a single Hermes session's title by id. Returns undefined if the
- * session is not in the Hermes DB or the DB is unreachable — both are
- * non-fatal, callers fall back to whatever title the hook payload supplied.
+ * Look up a single Hermes session row by id OR session_key. Returns the
+ * row (with a normalized title) or undefined if not present / DB unreachable.
+ * Both outcomes are non-fatal — callers fall back to whatever title the
+ * hook payload supplied.
+ *
+ * agentmemory sessions can be keyed either by the Hermes `id`
+ * (e.g. `20260717_073438_d106c8`) or by `session_key` (the caller's own
+ * opaque id, e.g. a Kilo Code `ses_xxx` id). We match on either so that
+ * the title lookup succeeds regardless of which id the hook forwarded.
  */
-export function lookupHermesSessionTitle(
+export function lookupHermesSessionByKey(
   sessionId: string,
   dbPath: string | undefined,
-): string | undefined {
+): { title?: string; id?: string; sessionKey?: string } | undefined {
   const path = dbPath || DEFAULT_HERMES_DB;
   let db: Database.Database;
   try {
@@ -34,12 +40,22 @@ export function lookupHermesSessionTitle(
   }
   try {
     const row = db
-      .prepare("SELECT title FROM sessions WHERE id = ?")
-      .get(sessionId) as { title?: string | null } | undefined;
-    if (!row || typeof row.title !== "string" || row.title.trim().length === 0) {
-      return undefined;
-    }
-    return row.title.trim().slice(0, 200);
+      .prepare(
+        "SELECT id, session_key, title FROM sessions WHERE id = ? OR session_key = ? LIMIT 1",
+      )
+      .get(sessionId, sessionId) as
+      | { id?: string | null; session_key?: string | null; title?: string | null }
+      | undefined;
+    if (!row) return undefined;
+    const title =
+      typeof row.title === "string" && row.title.trim().length > 0
+        ? row.title.trim().slice(0, 200)
+        : undefined;
+    return {
+      id: typeof row.id === "string" ? row.id : undefined,
+      sessionKey: typeof row.session_key === "string" ? row.session_key : undefined,
+      title,
+    };
   } catch (err) {
     logger.info("Hermes session title lookup failed", {
       sessionId,
@@ -49,6 +65,41 @@ export function lookupHermesSessionTitle(
   } finally {
     db.close();
   }
+}
+
+/**
+ * Resolve the best display title for an agentmemory session, preferring the
+ * Hermes/Kilo session title over any explicitly supplied hook title.
+ *
+ * Priority:
+ *   1. Hermes/Kilo session title (looked up by id or session_key)
+ *   2. `explicitTitle` from the hook payload (already validated non-empty)
+ *
+ * Returns undefined when nothing is available — callers should then fall
+ * back to the first user prompt or the project name.
+ */
+export function resolveSessionTitle(
+  sessionId: string,
+  dbPath: string | undefined,
+  explicitTitle?: string,
+): string | undefined {
+  const trimmedExplicit =
+    typeof explicitTitle === "string" ? explicitTitle.trim().slice(0, 200) : "";
+  const hermes = lookupHermesSessionByKey(sessionId, dbPath);
+  const hermesTitle = hermes?.title;
+  if (hermesTitle) return hermesTitle;
+  return trimmedExplicit.length > 0 ? trimmedExplicit : undefined;
+}
+
+/**
+ * @deprecated use resolveSessionTitle / lookupHermesSessionByKey. Kept for
+ * backward compatibility with existing call sites and tests.
+ */
+export function lookupHermesSessionTitle(
+  sessionId: string,
+  dbPath: string | undefined,
+): string | undefined {
+  return lookupHermesSessionByKey(sessionId, dbPath)?.title;
 }
 
 /**

@@ -48,17 +48,19 @@ async function main() {
 	}
 	if (isSdkChildContext(data)) return;
 	const sessionId = data.session_id || data.sessionId || `ses_${Date.now().toString(36)}`;
+	const explicitTitle = typeof data.title === "string" && data.title.trim().length > 0 ? data.title.trim() : void 0;
 	const cwd = data.cwd || process.cwd();
-	const project = resolveProject(data.cwd);
+	const body = {
+		sessionId,
+		project: resolveProject(data.cwd),
+		cwd
+	};
+	if (explicitTitle) body.title = explicitTitle;
 	const url = `${REST_URL}/agentmemory/session/start`;
 	const init = {
 		method: "POST",
 		headers: authHeaders(),
-		body: JSON.stringify({
-			sessionId,
-			project,
-			cwd
-		})
+		body: JSON.stringify(body)
 	};
 	if (!INJECT_CONTEXT) {
 		fetch(url, {

@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Fixed
+- **Session titles now use the Hermes/Kilo Code session title instead of falling back to generic names.** The Hermes/Kilo session title lookup existed but was only wired into the dead `event::session::started` subscriber (no code ever published `agentmemory.session.started`). The live `api::session::start` path now resolves the title via `resolveSessionTitle`, preferring the Hermes/Kilo session title over any explicit hook title and falling back to the first user prompt / project name only when neither is available. The lookup also matches by `session_key` (not just `id`), and `session-start` hooks now forward `title` when present.
+
 ## [0.9.27] — 2026-06-07
 
 Wave release closing several breaking regressions reported against v0.9.26, plus an agent-scope isolation security fix, an iii version-pin audit fix, and a benchmark scorecard correction. No breaking changes; drop-in upgrade.

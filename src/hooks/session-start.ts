@@ -52,14 +52,26 @@ async function main() {
   const sessionId =
     ((data.session_id || data.sessionId) as string) ||
     `ses_${Date.now().toString(36)}`;
+  // Hermes/TUI and Kilo Code both forward the originating session's id via
+  // session_id/sessionId. When present, prefer it so the Hermes session
+  // title can be resolved server-side. The hook may also carry an explicit
+  // title (Kilo Code does). Forward it too — the server still prefers the
+  // Hermes title and only uses this as a fallback.
+  const explicitTitle =
+    typeof data.title === "string" && data.title.trim().length > 0
+      ? data.title.trim()
+      : undefined;
   const cwd = (data.cwd as string) || process.cwd();
   const project = resolveProject(data.cwd as string | undefined);
+
+  const body: Record<string, unknown> = { sessionId, project, cwd };
+  if (explicitTitle) body.title = explicitTitle;
 
   const url = `${REST_URL}/agentmemory/session/start`;
   const init: RequestInit = {
     method: "POST",
     headers: authHeaders(),
-    body: JSON.stringify({ sessionId, project, cwd }),
+    body: JSON.stringify(body),
   };
 
   if (!INJECT_CONTEXT) {

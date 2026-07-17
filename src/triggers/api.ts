@@ -3,6 +3,7 @@ import type { Session, CompressedObservation, HookPayload, CommitLink, SessionSu
 import { withKeyedLock } from "../state/keyed-mutex.js";
 import { KV } from "../state/schema.js";
 import { StateKV } from "../state/kv.js";
+import { resolveSessionTitle } from "../state/hermes-sessions.js";
 import { getLatestHealth } from "../health/monitor.js";
 import type { MetricsStore } from "../eval/metrics-store.js";
 import type { ResilientProvider } from "../providers/resilient.js";
@@ -279,6 +280,35 @@ export function registerApiTriggers(
     config: {
       api_path: "/agentmemory/health",
       http_method: "GET",
+      middleware_function_ids: ["middleware::api-auth"],
+    },
+  });
+
+  sdk.registerFunction("api::metrics-reset",
+    async (req: ApiRequest): Promise<Response> => {
+      const authErr = checkAuth(req, secret);
+      if (authErr) return authErr;
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      const functionId =
+        typeof body.functionId === "string" && body.functionId.trim()
+          ? body.functionId.trim()
+          : undefined;
+      const result = await sdk.trigger<{ functionId?: string }, { success: true; cleared: string[] }>({
+        function_id: "mem::reset-metrics",
+        payload: functionId ? { functionId } : {},
+      });
+      return {
+        status_code: 200,
+        body: { success: true, cleared: result.cleared },
+      };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::metrics-reset",
+    config: {
+      api_path: "/agentmemory/metrics/reset",
+      http_method: "POST",
       middleware_function_ids: ["middleware::api-auth"],
     },
   });
@@ -573,7 +603,16 @@ export function registerApiTriggers(
           },
         };
       }
-      const title = typeof body.title === "string" ? body.title.trim() : undefined;
+      const explicitTitle =
+        typeof body.title === "string" ? body.title.trim() : undefined;
+      // Prefer the Hermes/Kilo session title so agentmemory sessions carry
+      // the same name the user sees in their client. Fall back to any title
+      // the hook supplied, else to the first user prompt / project name.
+      const title = resolveSessionTitle(
+        sessionId,
+        process.env.HERMES_STATE_DB,
+        explicitTitle,
+      );
       // allow session/start to override AGENT_ID from request body
       // (multi-agent runtimes that route many roles through one server
       // process). Falls back to the AGENT_ID env on the server.
