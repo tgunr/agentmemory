@@ -847,7 +847,18 @@ export function registerApiTriggers(
     async (req: ApiRequest): Promise<Response> => {
       const authErr = checkAuth(req, secret);
       if (authErr) return authErr;
-      const sessions = await kv.list<Session>(KV.sessions);
+      // kv.list() can come back empty on a transient engine hiccup
+      // (circuit-breaker half-open, WS flap) WITHOUT throwing. That empty
+      // list would make the viewer's Sessions tab render "No sessions" even
+      // though the dashboard — fed by the same endpoint — shows N. Retry a
+      // couple times so we never report an empty set we don't trust.
+      let sessions: Session[] = [];
+      for (let attempt = 0; attempt < 3 && sessions.length === 0; attempt++) {
+        sessions = await kv.list<Session>(KV.sessions);
+        if (sessions.length === 0 && attempt < 2) {
+          await new Promise((r) => setTimeout(r, 50 * (attempt + 1)));
+        }
+      }
       const normalizedAgentId =
         typeof req.query_params?.["agentId"] === "string"
           ? req.query_params["agentId"].trim()
@@ -867,6 +878,8 @@ export function registerApiTriggers(
           kv.get<SessionSummary>(KV.summaries, s.id).catch(() => null),
         ),
       );
+      // Don't let a single failed summary lookup drop the session from the
+      // list — fall back to the base session so the row still renders.
       const withSummary = filtered.map((s, i) =>
         summaries[i] ? { ...s, summary: summaries[i] } : s,
       );

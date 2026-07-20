@@ -2909,7 +2909,22 @@
       var el = document.getElementById('view-sessions');
       el.innerHTML = '<div class="loading">Loading sessions...</div>';
       var result = await apiGet('sessions');
-      state.sessions.items = (result && result.sessions) || [];
+      // A failed/empty fetch (apiGet returns null on any non-200 or
+      // network/timeout error) must NOT be treated as "no sessions".
+      // Writing [] + loaded=true would permanently blank the tab until the
+      // next 10s poll — and any poll that also hits a transient API
+      // failure re-blanks it, so the dashboard shows N while the
+      // Sessions tab shows nothing. Keep the previous items and only flip
+      // loaded=false so loadTab() retries on the next switch/poll.
+      if (!result || !Array.isArray(result.sessions)) {
+        console.warn('[viewer] loadSessions got no data; keeping prior state (will retry)');
+        if (state.sessions.items.length === 0) {
+          el.innerHTML = '<div class="loading">Retrying sessions…</div>';
+        }
+        state.sessions.loaded = false;
+        return;
+      }
+      state.sessions.items = result.sessions;
       state.sessions.loaded = true;
       renderSessions();
     }
