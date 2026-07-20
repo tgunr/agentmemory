@@ -1,3 +1,3 @@
 [submodule "agentmemory-okf"]
 	path = agentmemory-okf
-	url = /Volumes/AI/agentmemory-okf.git
+	url = git@github.com:tgunr/agentmemory-okf.git
