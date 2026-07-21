@@ -439,7 +439,11 @@ async function proxyToRestApi(
   }
 
   const controller = new AbortController();
-  const fetchTimeout = setTimeout(() => controller.abort(), 10000);
+  const proxyTimeoutMs = Number.parseInt(
+    (typeof process !== "undefined" && process.env?.AGENTMEMORY_PROXY_TIMEOUT_MS) || "120000",
+    10,
+  );
+  const fetchTimeout = setTimeout(() => controller.abort(), proxyTimeoutMs);
   let upstream: Response;
   try {
     upstream = await fetch(upstreamUrl, {

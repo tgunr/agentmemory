@@ -692,6 +692,58 @@ export function registerApiTriggers(
     },
   });
 
+  // Upsert just the title/summary for an already-started session. The
+  // observer calls this whenever it sees a Hermes/Kilo session title; the
+  // route never existed before, so title syncs 404'd silently.
+  // Prefer an explicitly supplied title (observer / backfill path), else
+  // resolve from the Hermes DB so a bare {sessionId} still works.
+  sdk.registerFunction("api::session::update",
+    async (req: ApiRequest): Promise<Response> => {
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      const sessionId = asNonEmptyString(body.sessionId);
+      if (!sessionId) {
+        return {
+          status_code: 400,
+          body: { error: "sessionId is required and must be a non-empty string" },
+        };
+      }
+      const session = await kv.get<Session>(KV.sessions, sessionId);
+      if (!session) {
+        return { status_code: 404, body: { error: "session not found" } };
+      }
+      const explicitTitle =
+        typeof body.title === "string" ? body.title : undefined;
+      const title = resolveSessionTitle(
+        sessionId,
+        process.env.HERMES_STATE_DB,
+        explicitTitle,
+      );
+      if (!title) {
+        return {
+          status_code: 200,
+          body: { updated: false, reason: "no title available" },
+        };
+      }
+      await kv.update(KV.sessions, sessionId, [
+        { type: "set", path: "summary", value: title.slice(0, 200) },
+        { type: "set", path: "firstPrompt", value: title.slice(0, 200) },
+      ]);
+      return {
+        status_code: 200,
+        body: { updated: true, title: title.slice(0, 200) },
+      };
+    },
+  );
+  sdk.registerTrigger({
+    type: "http",
+    function_id: "api::session::update",
+    config: {
+      api_path: "/agentmemory/session/update",
+      http_method: "POST",
+      middleware_function_ids: ["middleware::api-auth"],
+    },
+  });
+
   sdk.registerFunction("api::summarize", 
     async (req: ApiRequest<{ sessionId: string }>): Promise<Response> => {
       const sessionId = asNonEmptyString((req.body as Record<string, unknown>)?.sessionId);
