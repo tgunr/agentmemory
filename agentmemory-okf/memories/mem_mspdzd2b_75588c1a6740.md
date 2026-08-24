@@ -1,0 +1,84 @@
+---
+type: Fact
+title: # Fixing AirPods Feedback Howling Issues
+
+source: hermes
+session_id: 20260627_11
+description: # Fixing AirPods Feedback Howling Issues
+
+source: hermes
+session_id: 20260627_115740_1fb5c3
+resource: hermes://session/20260627_115740_1fb5c3
+
+# Conversation
+
+- **Session ID:** `20260627_115740_1fb5c3
+resource: agentmemory://memory/mem_mspdzd2b_75588c1a6740
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/davec"]
+timestamp: 2026-08-12T01:04:14.764Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Fixing AirPods Feedback Howling Issues
+
+source: hermes
+session_id: 20260627_115740_1fb5c3
+resource: hermes://session/20260627_115740_1fb5c3
+
+# Conversation
+
+- **Session ID:** `20260627_115740_1fb5c3`
+- **Source:** tui
+- **Model:** kilo-auto/balanced
+- **Started:** 2026-06-27T16:57:42Z
+- **Messages:** 2
+- **CWD:** `/Volumes/davec`
+- **Tokens:** 6 in / 512 out
+- **Est. cost:** $0.0016
+
+---
+
+### 👤 User — 2026-06-27T16:57:42Z
+
+My airpods have started getting feedback howling, can this be fixed?
+
+### 🤖 Assistant — 2026-06-27T16:57:54Z
+
+<details><summary>Reasoning</summary>
+
+The user is asking about AirPods feedback/howling issues. This is a technical support question about Apple audio hardware, not something that requires any of my loaded skills or tools. I can answer this from general knowledge.
+
+
+</details>
+
+Yeah, feedback howling on AirPods is a known issue and it's usually fixable. Here's what typically causes it and how to address it:
+
+## Common Causes & Fixes
+
+**1. Ear tip seal (AirPods Pro)**
+- If the silicone ear tips are damaged, dirty, or not seated properly, the microphone can pick up sound leaking from the speaker — creating a feedback loop.
+- Try removing and re-seating the tips, or swap to a different size. Check for debris/wax buildup in the mesh.
+
+**2. Adaptive Audio / ANC loop**
+- iOS 17+ introduced Adaptive Audio and Conversation Awareness. These modes actively adjust, and in some environments they can oscillate.
+- Toggle these off: **Settings → Bluetooth → tap ⓘ next to your AirPods → Noise Control** — switch to plain "Noise Cancellation" or "Off" and see if it stops.
+
+**3. Firmware bug**
+- Apple has shipped firmware that caused howling on certain AirPods Pro 2 batches.
+- Update firmware: put AirPods in the case, plug the case in, keep them near your iPhone. Check with **Settings → General → About → AirPods** — it'll update automatically if one's available.
+
+**4. Microphone blockage**
+- Wax, lint, or moisture blocking the external mics can confuse the ANC processor.
+- Clean the mic mesh gently with a dry soft-bristle brush or blu-tack.
+
+**5. Reset the AirPods**
+- If nothing else works, factory reset: put both buds in the case, leave lid open, hold the back button for ~15s until the LED flashes amber then white. Re-pair.
+
+## If It Persists
+
+- Try them on a different device — if the howling follows the AirPods, it's hardware (firmware or physical). If it only happens with one device, it's a software/settings issue on that device.
+- If it's AirPods Pro 2 and none of the above helps, Apple has replaced affected units under warranty even out of warranty in some cases — worth a Genius Bar visit.
+
+Which AirPods model are you using, and does the howling happen with ANC/Adaptive Audio, or all the time?

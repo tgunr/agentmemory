@@ -1,0 +1,175 @@
+---
+type: Fact
+title: # Ensuring /shell exists in all profiles
+
+source: hermes
+session_id: 20260705_11
+description: # Ensuring /shell exists in all profiles
+
+source: hermes
+session_id: 20260705_115149_eadf31
+resource: hermes://session/20260705_115149_eadf31
+
+# Conversation
+
+- **Session ID:** `20260705_115149_eadf31
+resource: agentmemory://memory/mem_msp0cqqz_c08a12b33d90
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/projects/UV/Amsler Grid"]
+timestamp: 2026-08-11T18:42:44.452Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Ensuring /shell exists in all profiles
+
+source: hermes
+session_id: 20260705_115149_eadf31
+resource: hermes://session/20260705_115149_eadf31
+
+# Conversation
+
+- **Session ID:** `20260705_115149_eadf31`
+- **Source:** tui
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-07-05T16:51:50Z
+- **Messages:** 61
+- **CWD:** `/Volumes/projects/UV/Amsler Grid`
+- **Tokens:** 88295 in / 10650 out
+- **Est. cost:** $0.1746
+
+---
+
+### 👤 User — 2026-07-05T16:51:51Z
+
+the /shell is missing in some of the profiles, it should be in all of them
+
+### 🤖 Assistant — 2026-07-05T16:52:02Z
+
+<details><summary>Reasoning</summary>
+
+The user is talking about Hermes profiles and says that `/shell` is missing in some profiles. Let me investigate what this means - likely the `terminal.shell_init_files` configuration that runs the profile CWD sync script. Let me check the profile directories and their configurations.
+
+</details>
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "ls ~/.hermes/profiles/"
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "for p in ~/.hermes/profiles/*/; do name=$(basename \"$p\"); echo \"=== $name ===\"; if [ -f \"$p/config.yaml\" ]; then grep -A 5 \"shell_init_files\\|shell_init\" \"$p/config.yaml\" 2>/dev/null || echo \"(no shell_init_files found)\"; else echo \"(no config.yaml)\"; fi; echo; done"
+}
+```
+
+### 🤖 Assistant — 2026-07-05T16:52:17Z
+
+<details><summary>Reasoning</summary>
+
+The user wants `/shell` to be added to all profiles that don't have it. I need to:
+
+1. Check each profile's config.yaml
+2. If `shell_init_files` doesn't exist, add it with `/shell`
+3. If `shell_init_files` exists, add `/shell` to the list (only if not already there)
+
+From the output:
+- ai: has shell_init_files but no /shell
+- cc: missing
+- cnc: has shell_init_files but no /shell
+- default: missing entirely
+- jo: has shell_init_files but no /shell
+- local: missing
+- personal: missing
+- pveroot: missing
+- ranch: missing
+
+Let me check each config.yaml to see exactly what's there, then add /shell where missing.
+
+</details>
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/ai/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/cc/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/cnc/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/jo/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/local/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/personal/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/pveroot/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "~/.hermes/profiles/ranch/config.yaml"
+}
+```
+
+### 🤖 Assistant — 2026-07-05T16:52:55Z
+
+<details><summary>Reasoning</summary>
+
+Now I have a clear picture. Let me look at the `terminal.shell_init_files` for each profile. I also need to check what `/shell` means in this context. Let me look at what the `terminal.shell` setting is and check the hermes-agent skill for what `/shell` or `shell` means.
+
+Wait - the user said "the /shell is missing" - they're referring to the shell command setting. Let me check what `terminal.shell` or similar setting exists. Let me look at the hermes-agent skill or docs to understand what `/shell` means.
+
+Actually, I think they might be talking about the `shell` command in `command_allowlist`. Looking at the profile configs:
+
+
+- The `ai` profile has `command_allowlist` with specific items like "execute_code" and "script execution via -e/-c flag" but doesn't include a shell command option
+- The `default` profile includes "shell command via -c/-lc flag" and "script execution via -e/-c flag" in its allowlist
+- The `cnc` profile doesn't have a `command_allowlist` section at all, just `toolsets`
+
+I need to clarify what the user means by "/shell" — it could be referring to either the `shell` command in `command_allowlist` that enables terminal access, or the `/shell` slash command in the Hermes TUI. Let me check how `command_allowlist` is configured across the different profiles to u

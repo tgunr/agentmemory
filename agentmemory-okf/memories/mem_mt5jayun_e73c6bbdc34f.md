@@ -1,0 +1,108 @@
+---
+type: Fact
+title: # Now do a similar comparison with Kilo free models.
+
+source: hermes
+session_id:
+description: # Now do a similar comparison with Kilo free models.
+
+source: hermes
+session_id: 20260822_095808_7caa9b
+resource: hermes://session/20260822_095808_7caa9b
+
+# Conversation
+
+- **Session ID:** `20260822_0
+resource: agentmemory://memory/mem_mt5jayun_e73c6bbdc34f
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-23T08:17:33.091Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Now do a similar comparison with Kilo free models.
+
+source: hermes
+session_id: 20260822_095808_7caa9b
+resource: hermes://session/20260822_095808_7caa9b
+
+# Conversation
+
+- **Session ID:** `20260822_095808_7caa9b`
+- **Source:** tui
+- **Model:** tencent/hy3:free
+- **Started:** 2026-08-22T14:58:08Z
+- **Ended:** 2026-08-23T08:00:43Z
+- **Messages:** 82
+- **CWD:** `/Users/davec`
+- **Tokens:** 218005 in / 18104 out
+
+---
+
+### 👤 User — 2026-08-22T14:23:09Z
+
+hello
+
+### 🤖 Assistant — 2026-08-22T14:23:16Z
+
+<details><summary>Reasoning</summary>
+
+The user just said "hello" — a simple greeting. I should respond warmly and offer to help.
+
+</details>
+
+Hello! How can I help you today?
+
+### 👤 User — 2026-08-22T14:24:07Z
+
+[System: The active model for this chat has changed to tencent/hy3:free via provider nous. From this point forward, use this runtime metadata when answering questions about what model/provider is active.]
+
+### 👤 User — 2026-08-22T14:24:28Z
+
+compare the free models provided by Nous.
+
+### 🤖 Assistant — 2026-08-22T14:24:37Z
+
+<details><summary>Reasoning</summary>
+
+The user wants me to compare the free models provided by Nous Research. Let me think about what I know and what I should verify.
+
+The active model is tencent/hy3:free via provider nous. I should compare the free models provided by Nous.
+
+Let me search for information about Nous Research's free models. I should use web search to get current information, since this is about their available models.
+
+Let me think - Nous Research provides models through their inference API (inference.nousresearch.com) and possibly through Hermes. The "free" models would be ones available without cost. Let me search for this.
+
+Actually, I have a tool here - I could check the Hermes config or use web search. Let me do web research to compare free models provided by Nous.
+
+Let me search the web for current information about Nous free models.
+
+</details>
+
+I'll research the current free models Nous Research offers and compare them. Let me pull authoritative info.
+
+### 🤖 Assistant — 2026-08-22T14:25:00Z
+
+<details><summary>Reasoning</summary>
+
+The user wants me to compare the free models provided by Nous. The key insight here: this Hermes chat is currently running on `tencent/hy3:free` via provider `nous`. So the "free models" in question are the ones available on the Nous Inference API (and possibly the Nous Portal "Free models only" tier).
+
+Let me think about what "the free models provided by Nous" means. Nous Research runs an inference API at inference-api.nousresearch.com/v1. There's also the Nous Portal. The models with `:free` suffix are free. From the search results, I can see examples:
+- `tencent/hy3:free` (the one we're using now)
+- `nousresearch/hermes-3-llama-3.1-405b:free`
+- `poolside/laguna-s-2.1:free`
+- `poolside/laguna-xs-2.1:free`
+- `stepfun/step-3.7-flash:free`
+
+But these `:free` models appear to be served via OpenRouter actually. Wait — the search result says "Nous Research · 131k ctx Hermes 3 405B Instruct (free)" on LLM Cloud Hub which is sourced from OpenRouter. Hmm.
+
+Actually, the question is ambiguous. Let me clarify what they mean. But actually I think I can be helpful by trying to fetch the actual live model catalog from the Nous Inference API directly. There's an endpoint `https://inference-api.nousresearch.com/v1/models`. But that requires auth potentially. However, the listing might be public.
+
+Actually, let me reconsider. The most authoritative source for "free models provided by Nous" would be the Nous Portal / Nous API docs. But I'm an agent running on Hermes. Let me think about whether I should query the live API.
+
+Actually, the best approach: the user is on a Hermes chat. The "free models provided by Nous" likely refers to the free tier of the Nous Inference API / Hermes. Let me try to actually get the live list. I could use the `hermes` CLI if available, or hit the API.
+
+Hmm, but the API key — I don't have it. Let me think. There's the Nous Portal with "Free models only - Standard rate limits - $0 monthly credits". 
+
+Let me actually try to retrieve the live model list. The OpenAI-compatible /v1/models endpoint at infer

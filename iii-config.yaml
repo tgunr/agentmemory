@@ -13,7 +13,7 @@ workers:
         name: kv
         config:
           store_method: file_based
-          file_path: ./data/state_store.db
+          file_path: /Users/davec/data/agentmemory/data/state_store.db
   - name: iii-queue
     config:
       adapter:
@@ -34,16 +34,25 @@ workers:
         name: kv
         config:
           store_method: file_based
-          file_path: ./data/stream_store
+          file_path: /Users/davec/data/agentmemory/data/stream_store
   - name: iii-observability
     config:
       enabled: true
       service_name: agentmemory
       exporter: memory
-      sampling_ratio: 1.0
+      # 0.1 instead of 1.0: at full sampling under sustained load the
+      # log subscriber falls behind, the worker emits a "Log trigger
+      # subscriber lagged" WARN, and that WARN re-enters the same
+      # stream the subscriber is failing to drain — a positive
+      # feedback loop that wrote 137 GB to daemon.log.new on one user
+      # in a few days (#519).
+      sampling_ratio: 0.1
       metrics_enabled: true
       logs_enabled: true
-      logs_console_output: true
+      # Console output is off by default; the feedback path needs the
+      # console layer to amplify. Re-enable per-session via env if you
+      # need verbose tracing for debugging.
+      logs_console_output: false
   - name: iii-exec
     config:
       watch:

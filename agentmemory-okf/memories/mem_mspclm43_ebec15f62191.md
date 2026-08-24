@@ -1,0 +1,52 @@
+---
+type: Fact
+title: # System Failure and Model Recovery
+
+source: hermes
+session_id: 20260613_082258_
+description: # System Failure and Model Recovery
+
+source: hermes
+session_id: 20260613_082258_d826fd
+resource: hermes://session/20260613_082258_d826fd
+
+# Conversation
+
+- **Session ID:** `20260613_082258_d826fd`
+- *
+resource: agentmemory://memory/mem_mspclm43_ebec15f62191
+tags: ["okf", "okf-hermes", "hermes", "hermes://session/20260613_082258_d826fd"]
+timestamp: 2026-08-12T00:25:33.733Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# System Failure and Model Recovery
+
+source: hermes
+session_id: 20260613_082258_d826fd
+resource: hermes://session/20260613_082258_d826fd
+
+# Conversation
+
+- **Session ID:** `20260613_082258_d826fd`
+- **Source:** cli
+- **Model:** qwen3:1.7b
+- **Started:** 2026-06-13T13:22:58Z
+- **Ended:** 2026-06-13T14:17:19Z
+- **Messages:** 2
+
+---
+
+### 👤 User — 2026-06-13T13:23:06Z
+
+[Note: model was just switched from llama3.2:3b to qwen3:1.7b via custom. Adjust your self-identification accordingly.]
+
+hello
+
+### 👤 User — 2026-06-13T14:12:05Z
+
+[Note: model was just switched from kilo-auto/free to llama3.1:latest via ollama-launch. Adjust your self-identification accordingly.]
+
+hello

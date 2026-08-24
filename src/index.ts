@@ -37,6 +37,7 @@ import {
   getSearchIndex,
   setVectorIndex,
   setEmbeddingProvider,
+  setIndexPersistence,
 } from "./functions/search.js";
 import { registerContextFunction } from "./functions/context.js";
 import { registerSummarizeFunction } from "./functions/summarize.js";
@@ -49,6 +50,7 @@ import { registerEvictFunction } from "./functions/evict.js";
 import { registerRelationsFunction } from "./functions/relations.js";
 import { registerTimelineFunction } from "./functions/timeline.js";
 import { registerSmartSearchFunction } from "./functions/smart-search.js";
+import { registerRecentSearchesSweepFunction } from "./functions/recent-searches-sweep.js";
 import { registerProfileFunction } from "./functions/profile.js";
 import { registerAutoForgetFunction } from "./functions/auto-forget.js";
 import { registerExportImportFunction } from "./functions/export-import.js";
@@ -72,6 +74,7 @@ import { registerSentinelsFunction } from "./functions/sentinels.js";
 import { registerSketchesFunction } from "./functions/sketches.js";
 import { registerCrystallizeFunction } from "./functions/crystallize.js";
 import { registerDiagnosticsFunction } from "./functions/diagnostics.js";
+import { registerMetricsFunctions } from "./functions/metrics.js";
 import { registerFacetsFunction } from "./functions/facets.js";
 import { registerVerifyFunction } from "./functions/verify.js";
 import { registerCascadeFunction } from "./functions/cascade.js";
@@ -97,6 +100,33 @@ import { registerHealthMonitor } from "./health/monitor.js";
 import { initMetrics, OTEL_CONFIG } from "./telemetry/setup.js";
 import { VERSION } from "./version.js";
 import { bootLog } from "./logger.js";
+import { mkdirSync, writeFileSync, unlinkSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { homedir } from "node:os";
+
+// #640 + #474: the worker process (this file) is spawned by iii-exec
+// inside the engine. When `agentmemory stop` kills only the engine pid,
+// this worker can survive (detached spawn, signal not propagated, or a
+// wrapper script keeps it running) and reconnects to the next engine as
+// a duplicate worker. Write the worker pid alongside iii.pid so
+// `agentmemory stop` can reap us too.
+function workerPidfilePath(): string {
+  return join(homedir(), ".agentmemory", "worker.pid");
+}
+function writeWorkerPidfile(): void {
+  try {
+    const p = workerPidfilePath();
+    mkdirSync(dirname(p), { recursive: true });
+    writeFileSync(p, `${process.pid}\n`, { encoding: "utf-8" });
+  } catch {
+    // best-effort; stop still has the engine pidfile + port scan fallback
+  }
+}
+function clearWorkerPidfile(): void {
+  try {
+    unlinkSync(workerPidfilePath());
+  } catch {}
+}
 
 function hasGetMeter(
   sdk: unknown,
@@ -185,6 +215,8 @@ async function main() {
     },
   });
 
+  writeWorkerPidfile();
+
   const kv = new StateKV(sdk);
   const secret = getEnvVar("AGENTMEMORY_SECRET");
   const metricsStore = new MetricsStore(kv);
@@ -245,21 +277,21 @@ async function main() {
 
   if (isAutoCompressEnabled()) {
     bootLog(
-      `WARNING: AGENTMEMORY_AUTO_COMPRESS=true — every PostToolUse observation will be sent to your LLM provider for compression. This spends API tokens proportional to your session tool-use frequency (see #138). Set AGENTMEMORY_AUTO_COMPRESS=false to disable.`,
+      `WARNING: AGENTMEMORY_AUTO_COMPRESS=true — every PostToolUse observation will be sent to your LLM provider for compression. This spends API tokens proportional to your session tool-use frequency. Set AGENTMEMORY_AUTO_COMPRESS=false to disable.`,
     );
   } else {
     bootLog(
-      `Auto-compress: OFF (default, #138) — observations indexed via zero-LLM synthetic compression. Set AGENTMEMORY_AUTO_COMPRESS=true to opt-in to LLM-powered summaries (uses your API key).`,
+      `Auto-compress: OFF (default) — observations indexed via zero-LLM synthetic compression. Set AGENTMEMORY_AUTO_COMPRESS=true to opt-in to LLM-powered summaries (uses your API key).`,
     );
   }
 
   if (isContextInjectionEnabled()) {
     bootLog(
-      `WARNING: AGENTMEMORY_INJECT_CONTEXT=true — the PreToolUse and SessionStart hooks will inject up to ~4000 chars of memory context into every tool turn. On Claude Pro this burns session tokens proportional to your tool-call frequency (see #143). Set AGENTMEMORY_INJECT_CONTEXT=false to disable.`,
+      `WARNING: AGENTMEMORY_INJECT_CONTEXT=true — the PreToolUse and SessionStart hooks will inject up to ~4000 chars of memory context into every tool turn. On Claude Pro this burns session tokens proportional to your tool-call frequency. Set AGENTMEMORY_INJECT_CONTEXT=false to disable.`,
     );
   } else {
     bootLog(
-      `Context injection: OFF (default, #143) — hooks capture observations but do not inject context into Claude Code's conversation. Set AGENTMEMORY_INJECT_CONTEXT=true to opt-in (warning: expect your Claude Pro allocation to drain faster).`,
+      `Context injection: OFF (default) — hooks capture observations but do not inject context into Claude Code's conversation. Set AGENTMEMORY_INJECT_CONTEXT=true to opt-in (warning: expect your Claude Pro allocation to drain faster).`,
     );
   }
 
@@ -286,6 +318,7 @@ async function main() {
   registerSketchesFunction(sdk, kv);
   registerCrystallizeFunction(sdk, kv, provider);
   registerDiagnosticsFunction(sdk, kv);
+  registerMetricsFunctions(sdk, kv, metricsStore);
   registerFacetsFunction(sdk, kv);
   registerVerifyFunction(sdk, kv);
   registerLessonsFunctions(sdk, kv);
@@ -336,6 +369,7 @@ async function main() {
   registerSmartSearchFunction(sdk, kv, (query, limit) =>
     hybridSearch.search(query, limit),
   );
+  registerRecentSearchesSweepFunction(sdk, kv);
 
   registerApiTriggers(sdk, kv, secret, metricsStore, provider);
   registerEventTriggers(sdk, kv);
@@ -344,6 +378,11 @@ async function main() {
   const healthMonitor = registerHealthMonitor(sdk, kv);
 
   const indexPersistence = new IndexPersistence(kv, bm25Index, vectorIndex);
+  // Wire the persistence hook so delete paths can flush BM25/vector
+  // index mutations to disk. Without this, an in-memory remove can be
+  // lost across a hard process exit and the persisted snapshot
+  // restores the deleted entry at next boot.
+  setIndexPersistence(indexPersistence);
 
   const loaded = await indexPersistence.load().catch((err) => {
     console.warn(`[agentmemory] Failed to load persisted index:`, err);
@@ -447,7 +486,7 @@ async function main() {
         if (bm25Index.has(memory.id)) continue;
         bm25Index.add({
           id: memory.id,
-          sessionId: memory.sessionIds[0] ?? "memory",
+          sessionId: memory.sessionIds?.[0] ?? "memory",
           timestamp: memory.createdAt,
           type: "decision",
           title: memory.title,
@@ -461,7 +500,7 @@ async function main() {
       }
       if (backfilled > 0) {
         bootLog(
-          `Backfilled ${backfilled} memories into BM25 (legacy gap before #257)`,
+          `Backfilled ${backfilled} memories into BM25 (legacy index gap)`,
         );
         indexPersistence.scheduleSave();
       }
@@ -481,7 +520,7 @@ async function main() {
     `Ready. ${embeddingProvider ? "Triple-stream (BM25+Vector+Graph)" : "BM25+Graph"} search active.`,
   );
   bootLog(
-    `REST API: 124 endpoints at http://localhost:${config.restPort}/agentmemory/*`,
+    `REST API: 130 endpoints at http://localhost:${config.restPort}/agentmemory/*`,
   );
   bootLog(
     `MCP surface (opt-in via \`npx @agentmemory/mcp\`): ${getAllTools().length} tools · 6 resources · 3 prompts`,
@@ -528,6 +567,20 @@ async function main() {
     insightDecayTimer.unref();
   }
 
+  // #771: hourly TTL sweep for the followup-rate diagnostic. The
+  // recent-searches scope only needs the last entry per session;
+  // sweeping anything older than the retention window keeps the scope
+  // from growing unbounded across long-lived deployments.
+  const recentSearchesSweepTimer = setInterval(async () => {
+    try {
+      await sdk.trigger({
+        function_id: "mem::diagnostic::recent-searches-sweep",
+        payload: {},
+      });
+    } catch {}
+  }, 60 * 60 * 1000);
+  recentSearchesSweepTimer.unref();
+
   if (isConsolidationEnabled()) {
     const consolidationTimer = setInterval(async () => {
       try {
@@ -548,6 +601,7 @@ async function main() {
       console.warn(`[agentmemory] Failed to save index on shutdown:`, err);
     });
     await sdk.shutdown();
+    clearWorkerPidfile();
     process.exit(0);
   };
   process.on("SIGINT", shutdown);

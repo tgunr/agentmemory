@@ -21,6 +21,59 @@ import type { MetricsStore } from "../eval/metrics-store.js";
 import { safeAudit } from "./audit.js";
 import { logger } from "../logger.js";
 
+// Lesson injection threshold: a summary needs at least one of these to
+// auto-produce a lesson. Keeps the lessons tier useful without noise.
+const MIN_KEY_DECISIONS = 1;
+const MIN_NARRATIVE_LEN = 80;
+
+// #840: auto-create a lesson from high-quality summaries so the lessons
+// tier is populated without requiring a separate manual call. We only
+// fire when the summary has substance (keyDecisions or a narrative longer
+// than a tagline) so we don't pollute the lessons tier with noise. The
+// lesson-save crosses the function boundary, so we call sdk.trigger
+// rather than kv.invoke.
+async function maybeAutoSaveLesson(
+  sdk: ISdk,
+  summary: SessionSummary,
+  sessionId: string,
+): Promise<void> {
+  const hasSubstance =
+    summary.keyDecisions.length >= MIN_KEY_DECISIONS ||
+    (summary.narrative?.length ?? 0) >= MIN_NARRATIVE_LEN;
+
+  if (!hasSubstance) {
+    return;
+  }
+
+  const lessonContent =
+    summary.keyDecisions.length > 0
+      ? summary.keyDecisions.join("; ")
+      : summary.narrative!.slice(0, 280);
+
+  try {
+    await sdk.trigger({
+      function_id: "mem::lesson-save",
+      payload: {
+        content: lessonContent,
+        context: `session summary: ${summary.title}`,
+        confidence: Math.min(0.9, 0.6 + summary.keyDecisions.length * 0.05),
+        project: summary.project,
+        source: "consolidation",
+        sourceIds: [sessionId],
+      },
+    });
+    logger.info("Auto-lesson created from summary", {
+      sessionId,
+      title: summary.title,
+    });
+  } catch (err) {
+    logger.warn("Auto-lesson failed", {
+      sessionId,
+      error: err instanceof Error ? err.message : String(err),
+    });
+  }
+}
+
 // Per-chunk observation budget when a session is too large to fit in one
 // LLM call. Default ≈ 50k input tokens per chunk at ~110 tok/obs — fits
 // comfortably in 128k-window models. Override via SUMMARIZE_CHUNK_SIZE.
@@ -184,13 +237,33 @@ async function produceSummaryXml(
   return { response, mode: "chunked", chunks: chunks.length, skipped };
 }
 
+// #783: many LLMs (DeepSeek, GPT variants, some Anthropic responses)
+// wrap structured XML in markdown code fences or add conversational
+// text before/after. Strip those wrappers before the tag regex so a
+// well-formed summary doesn't get silently dropped as parse_failed.
+function stripXmlWrappers(raw: string): string {
+  if (!raw) return "";
+  let cleaned = raw.trim();
+  // ```xml ... ``` or ``` ... ``` fences (anywhere in the payload).
+  cleaned = cleaned.replace(/```\s*xml\s*\n?/gi, "");
+  cleaned = cleaned.replace(/```/g, "");
+  cleaned = cleaned.trim();
+  // If preamble / postamble surrounds the XML root, peel it off.
+  const rootMatch = cleaned.match(
+    /(<[a-zA-Z_][a-zA-Z0-9_-]*>[\s\S]*<\/[a-zA-Z_][a-zA-Z0-9_-]*>)/,
+  );
+  if (rootMatch && rootMatch[1]) return rootMatch[1].trim();
+  return cleaned;
+}
+
 function parseSummaryXml(
   xml: string,
   sessionId: string,
   project: string,
   obsCount: number,
 ): SessionSummary | null {
-  const title = getXmlTag(xml, "title");
+  const cleaned = stripXmlWrappers(xml);
+  const title = getXmlTag(cleaned, "title");
   if (!title) return null;
 
   return {
@@ -198,10 +271,10 @@ function parseSummaryXml(
     project,
     createdAt: new Date().toISOString(),
     title,
-    narrative: getXmlTag(xml, "narrative"),
-    keyDecisions: getXmlChildren(xml, "decisions", "decision"),
-    filesModified: getXmlChildren(xml, "files", "file"),
-    concepts: getXmlChildren(xml, "concepts", "concept"),
+    narrative: getXmlTag(cleaned, "narrative"),
+    keyDecisions: getXmlChildren(cleaned, "decisions", "decision"),
+    filesModified: getXmlChildren(cleaned, "files", "file"),
+    concepts: getXmlChildren(cleaned, "concepts", "concept"),
     observationCount: obsCount,
   };
 }
@@ -253,41 +326,59 @@ export function registerSummarizeFunction(
       }
 
       try {
-        const { response, mode, chunks } = await produceSummaryXml(
-          provider,
-          compressed,
-          sessionId,
-          session.project,
-        );
+        // #783: chunk-level produceSummaryXml retries internally, but
+        // the final merge used to parse once and bail. Wrap the
+        // produce-and-parse pair in the same 2-attempt loop so a
+        // markdown-wrapped or otherwise wrapped response gets a
+        // second roll-of-the-dice instead of dropping the summary.
+        let summary: SessionSummary | null = null;
+        let response = "";
+        let mode = "single";
+        let chunks = 1;
+        for (let attempt = 1; attempt <= 2; attempt++) {
+          const produced = await produceSummaryXml(
+            provider,
+            compressed,
+            sessionId,
+            session.project,
+          );
+          response = produced.response;
+          mode = produced.mode;
+          chunks = produced.chunks;
+          if (!response || !response.trim()) {
+            logger.warn("Empty provider response on summarize", {
+              sessionId,
+              provider: provider.name,
+              mode,
+              chunks,
+              observationCount: compressed.length,
+              attempt,
+            });
+            continue;
+          }
+          summary = parseSummaryXml(
+            response,
+            sessionId,
+            session.project,
+            compressed.length,
+          );
+          if (summary) break;
+          logger.warn("Failed to parse summary XML", { sessionId, attempt });
+        }
+
         if (!response || !response.trim()) {
           const latencyMs = Date.now() - startMs;
           if (metricsStore) {
             await metricsStore.record("mem::summarize", latencyMs, false);
           }
-          logger.warn("Empty provider response on summarize", {
-            sessionId,
-            provider: provider.name,
-            mode,
-            chunks,
-            observationCount: compressed.length,
-          });
           return { success: false, error: "empty_provider_response" };
         }
-        const summary = parseSummaryXml(
-          response,
-          sessionId,
-          session.project,
-          compressed.length,
-        );
 
         if (!summary) {
           const latencyMs = Date.now() - startMs;
           if (metricsStore) {
             await metricsStore.record("mem::summarize", latencyMs, false);
           }
-          logger.warn("Failed to parse summary XML", {
-            sessionId,
-          });
           return { success: false, error: "parse_failed" };
         }
 
@@ -341,6 +432,8 @@ export function registerSummarizeFunction(
           qualityScore,
           valid: validation.valid,
         });
+
+        await maybeAutoSaveLesson(sdk, summary, sessionId);
 
         return { success: true, summary, qualityScore };
       } catch (err) {

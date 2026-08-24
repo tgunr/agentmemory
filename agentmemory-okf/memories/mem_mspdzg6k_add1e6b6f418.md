@@ -1,0 +1,140 @@
+---
+type: Fact
+title: # Moving Home Folder to External Drive
+
+source: hermes
+session_id: 20260705_1158
+description: # Moving Home Folder to External Drive
+
+source: hermes
+session_id: 20260705_115828_749e97
+resource: hermes://session/20260705_115828_749e97
+
+# Conversation
+
+- **Session ID:** `20260705_115828_749e97`
+
+resource: agentmemory://memory/mem_mspdzg6k_add1e6b6f418
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/davec"]
+timestamp: 2026-08-12T01:04:18.807Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Moving Home Folder to External Drive
+
+source: hermes
+session_id: 20260705_115828_749e97
+resource: hermes://session/20260705_115828_749e97
+
+# Conversation
+
+- **Session ID:** `20260705_115828_749e97`
+- **Source:** tui
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-07-05T16:58:28Z
+- **Messages:** 63
+- **CWD:** `/Volumes/davec`
+- **Tokens:** 141492 in / 20499 out
+- **Est. cost:** $0.1964
+
+---
+
+### 👤 User — 2026-07-05T16:58:29Z
+
+I would like to move my home folder to the 4 TB external hard drive. I need to know the ramifications of that, the pros and cons, and the efficiency if I do that
+
+### 🤖 Assistant — 2026-07-05T16:58:40Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to understand the implications of moving their home folder to a 4TB external hard drive. Before I can give good advice, I should understand their current setup - what drives they have, where things are mounted, and how much space they're using.
+
+Let me gather some info about their system first.
+
+</details>
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "df -h / /Volumes/davec /Users/davec 2>/dev/null; echo \"---\"; diskutil list 2>/dev/null | head -40; echo \"---\"; du -sh /Users/davec 2>/dev/null & sleep 5 && kill %1 2>/dev/null; echo \"---\"; du -sh /Users/decast/Library 2>/dev/null; du -sh /Users/davec/Downloads /Users/davec/Desktop /Users/davec/Documents /Users/davec/Pictures /Users/davec/Movies /Users/davec/Music 2>/dev/null",
+  "timeout": 30
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "ls /Volumes/ 2>/dev/null; echo \"---\"; system_profiler SPUSBDataType 2>/dev/null | grep -A5 -i \"4 TB\\|4TB\\|4.0 TB\\|external\" | head -30",
+  "timeout": 15
+}
+```
+
+### 🤖 Assistant — 2026-07-05T16:58:48Z
+
+<details><summary>Reasoning</summary>
+
+**Evaluating macOS options**
+
+I think I need to find an answer for the user. It seems that there might be a tool failure due to some issue. I should gather the information safely. I'm unsure if I have the right skills for this or if relevant macOS integrations are available. When considering "move home folder" on macOS, I wonder if dotfile management applies. Maybe I could use the terminal for this operation without any background interference.
+
+</details>
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "df -h / /System/Volumes/Data /Users/davec /Volumes/4TB /Volumes/davec 2>/dev/null",
+  "background": false,
+  "timeout": 30,
+  "workdir": "/Volumes/davec/test_space_nonexistent_hopefully/..",
+  "pty": false,
+  "notify_on_complete": false,
+  "watch_patterns": []
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "diskutil info /Volumes/4TB 2>/dev/null; echo '---'; diskutil info /Volumes/davec 2>/dev/null",
+  "background": false,
+  "timeout": 30,
+  "workdir": "/Volumes/davec",
+  "pty": false,
+  "notify_on_complete": false,
+  "watch_patterns": []
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "du -sh /Users/davec/Downloads /Users/davec/Desktop /Users/davec/Documents /Users/davec/Pictures /Users/davec/Movies /Users/davec/Music /Users/davec/Library 2>/dev/null",
+  "background": false,
+  "timeout": 120,
+  "workdir": "/Volumes/davec",
+  "pty": false,
+  "notify_on_complete": false,
+  "watch_patterns": []
+}
+```
+
+### 🤖 Assistant — 2026-07-05T17:01:20Z
+
+<details><summary>Reasoning</summary>
+
+Now I have the full picture. Let me synthesize the ramifications, pros, cons, and efficiency impact for the user before any action. I should not start moving anything yet — this is a planning/assessment turn.
+
+Key facts gathered:
+- Home is on internal SSD at `/Users/davec` on `/System/Volumes/Data` (APFS, ~251GB, ~23GB free — already tight!)
+- External `/Volumes/4TB` is APFS, USB, **Solid State: Yes** (SSD, not HDD — this matters for performance), 4TB, ~224GB free
+- There's also a `/Volumes/davec` — likely another volume. Let me note that but not get sidetracked.
+- Home total is dominated by Library at 660GB (caches, app data, etc.), then Downloads 38GB, Pictures 16GB, Documents 7GB, Desktop 806MB, Music 1.2GB, Movies 12KB.
+
+Important: `/Volumes/4TB` only has **224.4 GB free** in the container — the home folder is going to need more than that just for Libr

@@ -1,0 +1,112 @@
+---
+type: Fact
+title: # Fixing Bluebubbles SSH terminal backend
+
+source: hermes
+session_id: 20260812_0
+description: # Fixing Bluebubbles SSH terminal backend
+
+source: hermes
+session_id: 20260812_081748_d67311
+resource: hermes://session/20260812_081748_d67311
+
+# Conversation
+
+- **Session ID:** `20260812_081748_d6731
+resource: agentmemory://memory/mem_msr8w9sc_67925cde409d
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-13T08:17:24.756Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Fixing Bluebubbles SSH terminal backend
+
+source: hermes
+session_id: 20260812_081748_d67311
+resource: hermes://session/20260812_081748_d67311
+
+# Conversation
+
+- **Session ID:** `20260812_081748_d67311`
+- **Source:** desktop
+- **Model:** tencent/hy3:free
+- **Started:** 2026-08-12T13:18:03Z
+- **Messages:** 312
+- **CWD:** `/Users/davec`
+- **Tokens:** 533055 in / 101461 out
+
+---
+
+### 👤 User — 2026-08-12T13:18:03Z
+
+Bluebubbles is going ape shit/
+
+### 👤 User — 2026-08-12T13:18:03Z
+
+Bluebubbles is going ape shit/
+
+### 🤖 Assistant — 2026-08-12T13:18:14Z
+
+<details><summary>Reasoning</summary>
+
+The user says "Bluebubbles is going ape shit/" - this is a vague statement about BlueBubbles (the iMessage bridge). They're likely experiencing issues with the BlueBubbles gateway. I should load the relevant skill (`bluebubbles-gateway`) since the memory says it's the canonical reference for troubleshooting.
+
+Let me load that skill first to understand the troubleshooting approach, and I should probably ask what specifically is wrong since "going ape shit" is vague. But the memory note says:
+
+"BlueBubbles/Tahoe iMessage bridge troubleshooting: canonical reference is skill `bluebubbles-gateway` — load it instead of re-deriving."
+
+So let me load the skill. But I also want to understand the current state. Let me load the skill and maybe check the system. But the user hasn't given specifics yet. Let me first load the skill to see what diagnostics are available.
+
+Actually, let me think about what the user needs. "Bluebubbles is going ape shit" - they're reporting it's broken/misbehaving. I should load the skill and start diagnosing. But I need to know what's happening. Since this is vague, I could either ask or start with diagnostics.
+
+Let me load the skill first to understand the troubleshooting methodology.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "bluebubbles-gateway"
+}
+```
+
+### 🤖 Assistant — 2026-08-12T13:18:14Z
+
+<details><summary>Reasoning</summary>
+
+The user says "Bluebubbles is going ape shit/" - this is a vague statement about BlueBubbles (the iMessage bridge). They're likely experiencing issues with the BlueBubbles gateway. I should load the relevant skill (`bluebubbles-gateway`) since the memory says it's the canonical reference for troubleshooting.
+
+Let me load that skill first to understand the troubleshooting approach, and I should probably ask what specifically is wrong since "going ape shit" is vague. But the memory note says:
+
+"BlueBubbles/Tahoe iMessage bridge troubleshooting: canonical reference is skill `bluebubbles-gateway` — load it instead of re-deriving."
+
+So let me load the skill. But I also want to understand the current state. Let me load the skill and maybe check the system. But the user hasn't given specifics yet. Let me first load the skill to see what diagnostics are available.
+
+Actually, let me think about what the user needs. "Bluebubbles is going ape shit" - they're reporting it's broken/misbehaving. I should load the skill and start diagnosing. But I need to know what's happening. Since this is vague, I could either ask or start with diagnostics.
+
+Let me load the skill first to understand the troubleshooting methodology.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "bluebubbles-gateway"
+}
+```
+
+### 🤖 Assistant — 2026-08-12T13:18:26Z
+
+<details><summary>Reasoning</summary>
+
+The user says "Bluebubbles is going ape shit/" — pretty vague but loaded with context from the skill. Let me diagnose. I need to figure out what's actually happening. Since the skill covers many failure modes, I should gather live evidence rather than guess.
+
+First step: check the BB server log signature and gateway log. But these are on the user's machine. Let me ask what symptom, or just start probing. Given the skill emphasizes distinguishing a real loop from stale display, I should gather live data.
+
+The user's message is terse. I should check the live state. Let me run some read-only probes: BB ping, gateway.log tail, BB main.log for the `any;-` signature. But I need to know where logs are. Let me think about what's accessible from this terminal.
+
+Actual

@@ -1,0 +1,90 @@
+---
+type: Fact
+title: # iOS app distribution without App Store
+
+source: hermes
+session_id: 20260724_05
+description: # iOS app distribution without App Store
+
+source: hermes
+session_id: 20260724_054458_0f2bf6
+resource: hermes://session/20260724_054458_0f2bf6
+
+# Conversation
+
+- **Session ID:** `20260724_054458_0f2bf6
+resource: agentmemory://memory/mem_mspcmgd7_91d6e0e89369
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-12T00:26:12.937Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# iOS app distribution without App Store
+
+source: hermes
+session_id: 20260724_054458_0f2bf6
+resource: hermes://session/20260724_054458_0f2bf6
+
+# Conversation
+
+- **Session ID:** `20260724_054458_0f2bf6`
+- **Source:** tui
+- **Model:** tencent/hy3:free
+- **Started:** 2026-07-24T10:44:59Z
+- **Messages:** 2
+- **CWD:** `/Users/davec`
+- **Tokens:** 20451 in / 725 out
+
+---
+
+### 👤 User — 2026-07-24T10:44:59Z
+
+do all ios apps have to go thru the app store?
+
+### 🤖 Assistant — 2026-07-24T10:45:11Z
+
+<details><summary>Reasoning</summary>
+
+The user is asking a question about whether all iOS apps have to go through the App Store. This is a general knowledge question, not really a task requiring tools. Let me answer it directly.
+
+The short answer: No, not all iOS apps have to go through the App Store. There are several exceptions:
+1. Enterprise distribution (Apple Developer Enterprise Program) - for internal company apps
+2. TestFlight - for beta testing (up to 10,000 testers)
+3. Ad-hoc distribution - for specific registered devices (limited to 100 devices)
+4. Apple Business Manager / Custom Apps - for specific business customers
+5. In the EU, under the Digital Markets Act, alternative app marketplaces/distribution are now allowed (iOS 17.4+)
+6. Developer mode for sideloading
+
+Let me give a clear, friendly answer. This doesn't need tools or skills
+
+</details>
+
+No — there are several legal ways to get an iOS app onto a device without it being published on the public App Store:
+
+**1. TestFlight (beta)**
+Apple's official beta platform. Apps go through a lightweight review (lighter than full App Store review) and can be distributed to up to 10,000 external testers. Still routed through Apple's servers, but not the public storefront.
+
+**2. Enterprise distribution (Apple Developer Enterprise Program)**
+For internal apps a company distributes to its own employees. No App Store, no public review, no device limit — but you must be the employer of the users, and Apple can revoke the cert if you misuse it (it's been abused for "sideloading services" in the past).
+
+**3. Ad-hoc distribution**
+Signed builds installed onto a fixed list of up to 100 registered device UDIDs. Common for small internal test groups. No review, but capped at 100 devices per year.
+
+**4. Apple Business Manager / Custom Apps**
+A developer can privately offer an app to specific businesses via ABM or Apple School Manager — it shows up in their organization's private catalog, not the public store.
+
+**5. EU alternative distribution (DMA)**
+Since iOS 17.4, in the European Union you can distribute apps through third-party marketplaces or even directly from your own website (web distribution), bypassing the App Store entirely. Apple still charges a Core Technology Fee and imposes notarization/security requirements, but the App Store is no longer the only gate. This is EU-only and tied to the user's region.
+
+**6. Developer sideloading**
+On your own dev device (with Developer Mode enabled), you can install apps you build yourself via Xcode or a free/paid signing cert — no store, no review. Obviously only for your own devices.
+
+---
+
+**What's NOT allowed:** outside the EU, you can't just publish an app on a random website and have any iPhone install it freely — the OS blocks unsigned/unapproved installs by default. The "no App Store" paths above all still require an Apple Developer account and some form of Apple-issued signing/certificate (except EU web distribution, which still needs Apple's notarization + a fee).
+
+So the practical summary: the *public* App Store isn't mandatory, but Apple's signing/account infrastructure basically is (with the EU being the real exception).
+
+Want me to dig into any one of these — e.g. the exact EU web-distribution rules, or what it takes to sideload your own dev builds?

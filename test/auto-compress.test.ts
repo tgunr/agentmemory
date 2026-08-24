@@ -80,6 +80,9 @@ describe("mem::observe auto-compress gate (#138)", () => {
     // state from an earlier test (and vice versa).
     vi.resetModules();
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
+    // Mask any AGENTMEMORY_AUTO_COMPRESS value from the user's
+    // ~/.agentmemory/.env so tests run in a controlled environment.
+    process.env["AGENTMEMORY_AUTO_COMPRESS"] = "";
   });
   afterEach(() => {
     delete process.env["AGENTMEMORY_AUTO_COMPRESS"];
@@ -144,6 +147,43 @@ describe("mem::observe auto-compress gate (#138)", () => {
 
     const compressCalls = sdk.triggered.filter((t) => t.id === "mem::compress");
     expect(compressCalls).toHaveLength(1);
+  });
+
+  it("post_tool_call alias (Hermes agentmemory_observer plugin) extracts tool I/O", async () => {
+    // Regression: the Hermes agentmemory_observer plugin fires a
+    // `post_tool_call` hook and the runtime only extracted tool_name/
+    // tool_input/tool_output for `post_tool_use`. That left every Hermes
+    // observation with empty tool I/O, so the LLM compressor emitted
+    // "no tool output provided" placeholders. The alias must be honoured:
+    // the extracted tool I/O surfaces in the stored (synthetic) record as
+    // title (from toolName) and files (from tool_input).
+    const { registerObserveFunction } = await import(
+      "../src/functions/observe.js"
+    );
+    const sdk = mockSdk();
+    const kv = mockKV();
+    registerObserveFunction(sdk as never, kv as never);
+
+    const payload = validPayload({
+      hookType: "post_tool_call",
+      data: {
+        tool_name: "Read",
+        tool_input: { file_path: "src/bar.ts" },
+        tool_output: "bar contents",
+      },
+    });
+    await sdk.trigger("mem::observe", payload);
+
+    const scope = `mem:obs:${payload.sessionId}`;
+    const stored = kv.store.get(scope);
+    expect(stored).toBeDefined();
+    const [entry] = Array.from(stored!.values());
+    const obs = entry as {
+      title?: string;
+      files?: string[];
+    };
+    expect(obs.title).toBe("Read");
+    expect(obs.files).toContain("src/bar.ts");
   });
 
   it("AGENTMEMORY_AUTO_COMPRESS=false explicitly: does NOT fire mem::compress", async () => {

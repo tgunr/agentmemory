@@ -1,0 +1,117 @@
+---
+type: Fact
+title: # .zshrc:307-314 ``` # Boomerang SSH Tunnel - Start on login BOOMERANG_SCRIPT="/
+description: # .zshrc:307-314 ``` # Boomerang SSH Tunnel - Start on login BOOMERANG_SCRIPT="/Us
+
+source: kilo
+session_id: 019c5c1e-6dd0-7338-b3ec-0845e727237c
+resource: kilo://task/019c5c1e-6dd0-7338-b3ec-0845e727
+resource: agentmemory://memory/mem_mspcodsu_023aaebd1998
+tags: ["okf", "okf-kilo", "kilo"]
+timestamp: 2026-08-12T00:27:42.875Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# .zshrc:307-314 ``` # Boomerang SSH Tunnel - Start on login BOOMERANG_SCRIPT="/Us
+
+source: kilo
+session_id: 019c5c1e-6dd0-7338-b3ec-0845e727237c
+resource: kilo://task/019c5c1e-6dd0-7338-b3ec-0845e727237c
+
+# Conversation
+
+- **Task ID:** `019c5c1e-6dd0-7338-b3ec-0845e727237c`
+- **Source:** kilo
+- **Started:** 2026-02-14T12:27:04Z
+- **Ended:** 2026-02-14T12:28:04Z
+- **Message blocks:** 7
+- **Tokens:** 144231 in / 653 out
+
+---
+
+### 👤 User — 2026-02-14T12:27:04Z
+
+.zshrc:307-314
+```
+# Boomerang SSH Tunnel - Start on login
+BOOMERANG_SCRIPT="/Users/davec/.boomerang/setup_tunnel.sh"
+if [[ -x "$BOOMERANG_SCRIPT" ]]; then
+    "$BOOMERANG_SCRIPT" start pve.local davec
+else
+    echo "Warning: Boomerang is not installed or setup_tunnel.sh is not executable"
+fi
+
+```
+
+This should be conditional for macos only
+
+### 🤖 Assistant — 2026-02-14T12:27:15Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to make the Boomerang SSH Tunnel startup conditional for macOS only. I need to read the .zshrc file to see the current content around lines 307-314 and then modify it to add a macOS check.
+
+Let me first read the file to get the exact context.
+
+</details>
+
+### 🤖 Assistant — 2026-02-14T12:27:23Z
+
+**Tool call: readFile**
+
+```json
+{
+  "path": ".zshrc",
+  "isOutsideWorkspace": false,
+  "content": "/Users/davec/.zshrc",
+  "reason": ""
+}
+```
+
+### 🤖 Assistant — 2026-02-14T12:27:33Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to make the Boomerang SSH Tunnel section conditional for macOS only. Looking at the file, I can see there are already several examples of macOS conditional checks using `[[ "$OSTYPE" == "darwin"* ]]` or `[[ $OSTYPE =~ "darwin" ]]`.
+
+I need to wrap lines 307-313 with a macOS conditional check. I'll use the same pattern that's already used in the file.
+
+</details>
+
+### 🤖 Assistant — 2026-02-14T12:27:42Z
+
+**Tool call: appliedDiff**
+
+```json
+{
+  "path": ".zshrc",
+  "diff": "@@ -304,10 +304,12 @@\n # Ruby Gems Path\n export PATH=\"/Library/Ruby/Gems/2.6.0/bin:$PATH\"\n \n-# Boomerang SSH Tunnel - Start on login\n-BOOMERANG_SCRIPT=\"/Users/davec/.boomerang/setup_tunnel.sh\"\n-if [[ -x \"$BOOMERANG_SCRIPT\" ]]; then\n-    \"$BOOMERANG_SCRIPT\" start pve.local davec\n-else\n-    echo \"Warning: Boomerang is not installed or setup_tunnel.sh is not executable\"\n+# Boomerang SSH Tunnel - Start on login (macOS only)\n+if [[ \"$OSTYPE\" == \"darwin\"* ]]; then\n+    BOOMERANG_SCRIPT=\"/Users/davec/.boomerang/setup_tunnel.sh\"\n+    if [[ -x \"$BOOMERANG_SCRIPT\" ]]; then\n+        \"$BOOMERANG_SCRIPT\" start pve.local davec\n+    else\n+        echo \"Warning: Boomerang is not installed or setup_tunnel.sh is not executable\"\n+    fi\n fi\n",
+  "isOutsideWorkspace": false,
+  "content": "@@ -304,10 +304,12 @@\n # Ruby Gems Path\n export PATH=\"/Library/Ruby/Gems/2.6.0/bin:$PATH\"\n \n-# Boomerang SSH Tunnel - Start on login\n-BOOMERANG_SCRIPT=\"/Users/davec/.boomerang/setup_tunnel.sh\"\n-if [[ -x \"$BOOMERANG_SCRIPT\" ]]; then\n-    \"$BOOMERANG_SCRIPT\" start pve.local davec\n-else\n-    echo \"Warning: Boomerang is not installed or setup_tunnel.sh is not executable\"\n+# Boomerang SSH Tunnel - Start on login (macOS only)\n+if [[ \"$OSTYPE\" == \"darwin\"* ]]; then\n+    BOOMERANG_SCRIPT=\"/Users/davec/.boomerang/setup_tunnel.sh\"\n+    if [[ -x \"$BOOMERANG_SCRIPT\" ]]; then\n+        \"$BOOMERANG_SCRIPT\" start pve.local davec\n+    else\n+        echo \"Warning: Boomerang is not installed or setup_tunnel.sh is not executable\"\n+    fi\n fi\n",
+  "isProtected": false,
+  "diffStats": {
+    "added": 8,
+    "removed": 6
+  }
+}
+```
+
+### 🤖 Assistant — 2026-02-14T12:27:52Z
+
+<details><summary>Reasoning</summary>
+
+The edit was successful. The Boomerang SSH Tunnel startup block is now wrapped in a macOS-only conditional check using `[[ "$OSTYPE" == "darwin"* ]]`, which is consistent with the pattern used elsewhere in the file (e.g., lines 52-54, 103-105, 163-165).
+
+Let me present the completion to the user.
+
+</details>
+
+### 🤖 Assistant — 2026-02-14T12:28:04Z
+
+Updated [`.zshrc:307-315`](.zshrc:307) to wrap the Boomerang SSH Tunnel startup in a macOS-only conditional:
+
+```zsh
+# Boomerang SSH Tunnel - Start on login (macOS only)
+if [[ "$OSTYPE

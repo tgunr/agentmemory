@@ -1,0 +1,103 @@
+---
+type: Fact
+title: # Duplicate skills and mcp servers to profiles
+
+source: hermes
+session_id: 20260
+description: # Duplicate skills and mcp servers to profiles
+
+source: hermes
+session_id: 20260813_081824_b6745e
+resource: hermes://session/20260813_081824_b6745e
+
+# Conversation
+
+- **Session ID:** `20260813_081824_
+resource: agentmemory://memory/mem_mssoo4vb_3ee37544d82d
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/davec"]
+timestamp: 2026-08-14T08:26:45.216Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Duplicate skills and mcp servers to profiles
+
+source: hermes
+session_id: 20260813_081824_b6745e
+resource: hermes://session/20260813_081824_b6745e
+
+# Conversation
+
+- **Session ID:** `20260813_081824_b6745e`
+- **Source:** desktop
+- **Model:** tencent/hy3:free
+- **Started:** 2026-08-13T13:18:25Z
+- **Messages:** 80
+- **CWD:** `/Volumes/davec`
+- **Tokens:** 153726 in / 62577 out
+
+---
+
+### 👤 User — 2026-08-13T13:18:25Z
+
+duplicate the skills and mcp servers of this profile to all the other profiles
+
+### 🤖 Assistant — 2026-08-13T13:18:38Z
+
+<details><summary>Reasoning</summary>
+
+The user wants me to duplicate the skills and MCP servers of "this profile" (the current profile, which is `default`) to all the other profiles.
+
+Let me first understand the environment. I need to:
+1. Find out what profiles exist
+2. Find out what skills and MCP servers the current profile (`default`) has
+3. Copy those skills and MCP server configs to all other profiles
+
+Let me start by exploring the structure. The Hermes config lives under `~/.hermes/`. Each profile has its own `skills/`, `plugins/`, `cron/`, and `memories/`. MCP servers are configured in `config.yaml`.
+
+Let me explore the filesystem to understand the layout. I should look at:
+- `~/.hermes/` structure
+- profiles directory
+- the config.yaml for the default profile
+- skills directories
+
+Let me do this with parallel independent calls. Actually, I need to first see the structure. Let me batch some read-only commands.
+
+Wait, the backend is ssh to a Darwin machine with user davec. But there's also memory saying ".hermes/ and .startup/ are git repos." and profiles live under `/Users/davec/.hermes/profiles/<name>/`. Also there's a shared KB at `~/sources/hermes-knowledge/skills` via `skills.external_dirs`.
+
+Let me explore first. I'll run terminal commands to look at the structure. Let me be careful about the VOLUME topology rules — /Volumes/work is local, /Volumes/davec is Samba. But ~/.hermes is probably on the local disk (home is /Users/davec). Let me check.
+
+Let me start by listing the profiles and the default profile's config and skills.
+
+I'll batch independent exploration commands.
+
+</details>
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "echo \"=== HOME ===\"; echo $HOME; echo \"=== ~/.hermes top ===\"; ls -la ~/.hermes 2>/dev/null; echo \"=== profiles ===\"; ls -la ~/.hermes/profiles 2>/dev/null; echo \"=== global config? ===\"; ls -la ~/.hermes/config.yaml 2>/dev/null; cat ~/.hermes/config.yaml 2>/dev/null | head -100"
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "echo \"=== default profile tree (depth 2) ===\"; find ~/.hermes/profiles/default -maxdepth 2 2>/dev/null | sort | head -200; echo \"=== default config.yaml (if exists) ===\"; find ~/.hermes/profiles/default -maxdepth 2 -name 'config.yaml' -o -maxdepth 2 -name '*.yaml' 2>/dev/null | head"
+}
+```
+
+### 🤖 Assistant — 2026-08-13T13:19:08Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to "duplicate the skills and mcp servers of this profile to all the other profiles." "This profile" = the current active profile = `default`. So I need to take the skills and MCP servers from `default` profile and copy them to all the OTHER profiles: ai, cc, develop, ollama, personal, ranch, shop, systems.
+
+But wait — there's an important nuance. The memory says "Prefers native Hermes mcp_servers over MCP Router proxy". And the global config.yaml at `~/.hermes/config.yaml` has the mcp_servers? Let me check. Actually, the profile config.yaml is what governs per-profile. Let me look at the default profile's config.yaml mcp_servers section and skills.
+
+Also, skills: where do skills live? There's a global `~/.hermes/skills` and per-profile `~/.hermes/profiles/<name>/skills`. The current profile is `default`. Its skills are at `~/.hermes/profiles/default/skills`. But wait, there might be skills also at the global level `~/.hermes/skills`. The user says "skills of this profile" — meaning the default profile's skills (per-profile skills dir).
+
+Hmm, but actually the SOUL.md and the way skills load — skills can be global or per-profile. Let me clarify what "this profile's skills" means. The 

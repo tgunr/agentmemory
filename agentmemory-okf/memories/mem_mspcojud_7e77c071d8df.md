@@ -1,0 +1,125 @@
+---
+type: Fact
+title: # Getting “EXO” is damaged and can’t be opened. You should move it to the Trash.
+description: # Getting “EXO” is damaged and can’t be opened. You should move it to the Trash.
+
+source: kilo
+session_id: 019d2567-6685-775d-ada9-c812de56f320
+resource: kilo://task/019d2567-6685-775d-ada9-c812de56f3
+resource: agentmemory://memory/mem_mspcojud_7e77c071d8df
+tags: ["okf", "okf-kilo", "kilo"]
+timestamp: 2026-08-12T00:27:50.697Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Getting “EXO” is damaged and can’t be opened. You should move it to the Trash.
+
+source: kilo
+session_id: 019d2567-6685-775d-ada9-c812de56f320
+resource: kilo://task/019d2567-6685-775d-ada9-c812de56f320
+
+# Conversation
+
+- **Task ID:** `019d2567-6685-775d-ada9-c812de56f320`
+- **Source:** kilo
+- **Started:** 2026-03-25T14:30:26Z
+- **Ended:** 2026-03-25T14:46:50Z
+- **Message blocks:** 21
+- **Tokens:** 700181 in / 3137 out
+
+---
+
+### 👤 User — 2026-03-25T14:30:26Z
+
+Getting “EXO” is damaged and can’t be opened. You should move it to the Trash." when i copy the mac app over to the macbook pro
+
+### 🤖 Assistant — 2026-03-25T14:30:44Z
+
+<details><summary>Reasoning</summary>
+
+The user is experiencing an issue where they get a "EXO is damaged and can't be opened" error when copying a macOS app to their MacBook Pro. This is a classic macOS code signing/quantine issue.
+
+Let me think about the possible sources of this problem:
+
+1. **Code signing issues** - The app may not be properly signed with a valid Apple Developer certificate
+2. **Quarantine attribute** - macOS adds a quarantine flag when downloading/copying apps from the internet
+3. **Gatekeeper/Notarization** - The app may not be notarized, which is required for distribution outside the App Store
+4. **App bundle integrity** - Files within the .app bundle may be corrupted or have incorrect permissions
+5. **Build configuration** - The Xcode build may not have produced a valid app bundle
+6. **Translocation issues** - macOS may be translocating the app due to security concerns
+7. **Extended attributes** - Extended attributes may be stripped or corrupted during copy
+
+The most likely sources are:
+1. **Quarantine attribute** - This is the most common cause of "damaged" errors when copying apps between machines
+2. **Code signing/notarization** - If the app is ad-hoc signed or not notarized, Gatekeeper will reject it
+
+Let me first examine the app structure and build script to understand the current state of the code signing and build process.
+
+</details>
+
+### 👤 User — 2026-03-25T14:30:50Z
+
+I'll analyze this macOS app distribution issue systematically. Let me start by examining the app structure and build configuration to identify the root cause.
+
+### 🤖 Assistant — 2026-03-25T14:30:51Z
+
+**Tool call: readFile**
+
+```json
+{
+  "batchFiles": [
+    {
+      "path": "app/EXO/build-dmg.sh",
+      "lineSnippet": "",
+      "isOutsideWorkspace": false,
+      "key": "app/EXO/build-dmg.sh",
+      "content": "/Users/davec/AI/exo/app/EXO/build-dmg.sh"
+    },
+    {
+      "path": "app/EXO/EXO.xcodeproj/project.pbxproj",
+      "lineSnippet": "",
+      "isOutsideWorkspace": false,
+      "key": "app/EXO/EXO.xcodeproj/project.pbxproj",
+      "content": "/Users/davec/AI/exo/app/EXO/EXO.xcodeproj/project.pbxproj"
+    },
+    {
+      "path": "app/EXO/EXO/EXO.entitlements",
+      "lineSnippet": "",
+      "isOutsideWorkspace": false,
+      "key": "app/EXO/EXO/EXO.entitlements",
+      "content": "/Users/davec/AI/exo/app/EXO/EXO/EXO.entitlements"
+    }
+  ]
+}
+```
+
+### 🤖 Assistant — 2026-03-25T14:31:03Z
+
+<details><summary>Reasoning</summary>
+
+Now I understand the issue. Looking at the build script and project configuration, I can identify the problem.
+
+The build script at lines 24-31 explicitly disables code signing:
+```bash
+xcodebuild \
+    -scheme EXO \
+    -configuration Release \
+    -derivedDataPath "$BUILD_DIR" \
+    -destination 'platform=macOS' \
+    CODE_SIGN_IDENTITY="" \
+    CODE_SIGNING_REQUIRED=NO \
+    CODE_SIGNING_ALLOWED=NO
+```
+
+This means the app is built **unsigned**. When you copy an unsigned macOS app from one machine to another (especially via network, external drives, AirDrop, etc.), macOS Gatekeeper will flag it as "damaged" because:
+1. It has no valid code signature
+2. The quarantine extended attribute is applied during transfer
+3. Gatekeeper cannot verify the app's integrity
+
+The "EXO is damaged and can't be opened" message is macOS Gatekeeper's way of saying the app failed security validation.
+
+Let me think about the 5-7 possible sources:
+
+1. **Quarantine attribute** - When copying files from external sources, macOS adds `com.apple.quarantine` extended attribute. For unsigned apps, this triggers Gateke

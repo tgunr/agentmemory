@@ -1,0 +1,109 @@
+---
+type: Fact
+title: # Hermes web UI source locations
+
+source: hermes
+session_id: 20260804_141612_969
+description: # Hermes web UI source locations
+
+source: hermes
+session_id: 20260804_141612_969e2e
+resource: hermes://session/20260804_141612_969e2e
+
+# Conversation
+
+- **Session ID:** `20260804_141612_969e2e`
+- **So
+resource: agentmemory://memory/mem_mspcmlbv_b643f5d5850a
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-12T00:26:19.370Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Hermes web UI source locations
+
+source: hermes
+session_id: 20260804_141612_969e2e
+resource: hermes://session/20260804_141612_969e2e
+
+# Conversation
+
+- **Session ID:** `20260804_141612_969e2e`
+- **Source:** tui
+- **Model:** tencent/hy3:free
+- **Started:** 2026-08-04T19:17:22Z
+- **Ended:** 2026-08-04T19:27:37Z
+- **Messages:** 33
+- **CWD:** `/Users/davec`
+- **Tokens:** 82073 in / 18132 out
+
+---
+
+### 👤 User — 2026-08-04T19:17:22Z
+
+It seems to me that the hermes-web UI sources should be in the same place as hermes-agent.
+
+### 🤖 Assistant — 2026-08-04T19:17:37Z
+
+<details><summary>Reasoning</summary>
+
+The user is making a claim/observation: "It seems to me that the hermes-web UI sources should be in the same place as hermes-agent."
+
+Let me think about what they're referring to. From my memory, I have notes:
+
+"Hermes TWO installs on this Mac: (1) git ~/.hermes/hermes-agent = `hermes update` + CLI shim; (2) stale venv /Users/davec/.venv (hermes 0.18.2) runs hermes-webui dashboard (/Users/davec/hermes-webui). `hermes update` does NOT touch dashboard venv."
+
+So the user is suggesting that the hermes-web UI sources should be in the same place as hermes-agent (i.e., under ~/.hermes/ somewhere, alongside hermes-agent).
+
+This is a statement/observation. The user seems to be asserting something. Let me investigate the actual state rather than just agreeing. Let me check:
+- Where is hermes-agent? ~/.hermes/hermes-agent (a git repo)
+- Where is hermes-webui? /Users/davec/hermes-webui
+
+The user thinks they should be in the same place. Let me verify the current state of both, and understand the actual layout.
+
+Let me look at the filesystem to confirm. I should be careful — this is the user making an observation, and they might be right or might be misunderstanding the architecture. Let me investigate.
+
+Let me check:
+1. ls -la ~/.hermes/ to see what's there
+2. Check the hermes-agent location
+3. Check the hermes-webui location
+
+Let me also reconsider — the user says "should be." This is a normative claim. They're suggesting that the web UI sources should live alongside hermes-agent. I should verify the actual situation and then respond with facts.
+
+Let me also recall the memory note that says the hermes-webui is a "stale venv" running a dashboard, and hermes update doesn't touch it. So there's an architectural separation: hermes-agent is the CLI/agent, hermes-webui is a separate dashboard.
+
+But actually, the question is whether the SOURCES should be co-located. Let me check what's actually on disk.
+
+Let me investigate before responding. I'll run a few independent
+
+</details>
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "echo \"=== ~/.hermes/ ===\"; ls -la ~/.hermes/ 2>/dev/null; echo; echo \"=== hermes-agent git? ===\"; ls -la ~/.hermes/hermes-agent 2>/dev/null | head -20; echo; echo \"=== hermes-webui ===\"; ls -la ~/hermes-webui 2>/dev/null | head -20; echo; echo \"=== ~/hermes-webui git? ===\"; cd ~/hermes-webui 2>/dev/null && git remote -v 2>/dev/null; cd ~ 2>/dev/null"
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "echo \"=== which hermes ===\"; which hermes; echo; echo \"=== hermes CLI source (where the shim points) ===\"; readlink -f $(which hermes) 2>/dev/null; echo; echo \"=== hermes config profiles dir ===\"; ls -la ~/.hermes/profiles 2>/dev/null | head; echo; echo \"=== any 'web'/'webui' under ~/.hermes ===\"; find ~/.hermes -maxdepth 2 -iname '*web*' 2>/dev/null"
+}
+```
+
+### 🤖 Assistant — 2026-08-04T19:17:48Z
+
+<details><summary>Reasoning</summary>
+
+Let me understand the actual layout. The user is saying "It seems to me that the hermes-web UI sources should be in the same place as hermes-agent."
+
+Let me figure out where things actually live:
+
+1. `hermes-agent` source: `/Users/davec/.hermes/hermes-agent/` — it's a git repo (`.git` is a file, 37 bytes — that's a submodule pointer or a .git file). Let me check what `.git` is. Actually it says `.git` "37 Jul 6 09:25" — 37 bytes is a gitdir pointer (submodule). The `.gitmodules` at `~/.hermes/.gitmodules` suggests submodules.
+
+2. `hermes-webui` source: `/Users/davec/hermes-webui/` — separate git repo, origin `ht

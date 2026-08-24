@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderViewerDocument } from "./document.js";
+import { timingSafeCompare } from "../auth.js";
 
 // Self-host the viewer favicon at /favicon.svg instead of an inline
 // data: URI so the viewer CSP can stay tight at `img-src 'self'`.
@@ -28,7 +29,9 @@ function loadViewerFavicon(): Buffer | null {
   return null;
 }
 
-const VIEWER_LISTEN_ADDR = process.env.VIEWER_LISTEN_ADDR || "127.0.0.1";
+// Favicon is static — load once at module init instead of one synchronous
+// disk read per /favicon.svg request.
+const VIEWER_FAVICON: Buffer | null = loadViewerFavicon();
 
 const ALLOWED_ORIGINS = (
   process.env.VIEWER_ALLOWED_ORIGINS ||
@@ -49,30 +52,55 @@ const ALLOWED_ORIGINS = (
 //
 // Explicit override via VIEWER_ALLOWED_HOSTS for the rare case of a
 // reverse-proxy in front of the viewer; defaults are computed from the
-// listen port at server-create time.
-const ALLOWED_HOSTS_OVERRIDE = (process.env.VIEWER_ALLOWED_HOSTS || "")
-  .split(",")
-  .map((h) => h.trim().toLowerCase())
-  .filter(Boolean);
+// listen port at server-create time. Read on each call (no module-level
+// caching) so tests can rotate the env var between startViewerServer()
+// and the first request. Note: `buildAllowedHosts` only re-runs on a
+// cache miss for the in-process `allowedHosts` set, so production env
+// changes after the first request require a restart.
+function readAllowedHostsOverride(): string[] {
+  return (process.env.VIEWER_ALLOWED_HOSTS || "")
+    .split(",")
+    .map((h) => h.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+export function resolveViewerHost(): string {
+  return process.env.AGENTMEMORY_VIEWER_HOST?.trim() || "127.0.0.1";
+}
+
+export function isLoopbackHost(host: string): boolean {
+  const h = host.trim().toLowerCase();
+  return h === "127.0.0.1" || h === "::1" || h === "localhost";
+}
 
 export function buildAllowedHosts(
   origins: string[],
   listenPort: number,
+  bindHost: string = "127.0.0.1",
 ): Set<string> {
   const hosts = new Set<string>();
-  for (const o of origins) {
-    try {
-      const parsed = new URL(o);
-      if (parsed.host) hosts.add(parsed.host.toLowerCase());
-    } catch {
-      // Skip invalid origin entries — the existing CORS path already
-      // tolerates them by simply not matching; mirror that here.
+  // When bind is loopback the listening socket is unreachable from the
+  // network, so it's safe to seed the allowlist from the CORS origins
+  // (which by default are localhost-based) plus the standard loopback
+  // hostnames on the actual listen port. When bind is non-loopback the
+  // listening socket is reachable from anywhere TCP can reach the
+  // process, and any of those loopback names becomes a spoofable Host
+  // header — so only explicit VIEWER_ALLOWED_HOSTS entries are trusted.
+  if (isLoopbackHost(bindHost)) {
+    for (const o of origins) {
+      try {
+        const parsed = new URL(o);
+        if (parsed.host) hosts.add(parsed.host.toLowerCase());
+      } catch {
+        // Skip invalid origin entries — the existing CORS path already
+        // tolerates them by simply not matching; mirror that here.
+      }
     }
+    hosts.add(`localhost:${listenPort}`);
+    hosts.add(`127.0.0.1:${listenPort}`);
+    hosts.add(`[::1]:${listenPort}`);
   }
-  hosts.add(`localhost:${listenPort}`);
-  hosts.add(`127.0.0.1:${listenPort}`);
-  hosts.add(`[::1]:${listenPort}`);
-  for (const h of ALLOWED_HOSTS_OVERRIDE) hosts.add(h);
+  for (const h of readAllowedHostsOverride()) hosts.add(h);
   return hosts;
 }
 
@@ -84,6 +112,21 @@ export function isHostAllowed(
   const lower = headerHost.toLowerCase().trim();
   if (!lower) return false;
   return allowed.has(lower);
+}
+
+// When bind is non-loopback the viewer is a bearer-authorized proxy
+// reachable from the network, so every request that would forward
+// upstream must also present the same bearer. Static routes (HTML,
+// favicon) stay open so a browser can fetch the shell — the JS inside
+// then has to provide a bearer for the API calls.
+export function requireInboundBearer(
+  authHeader: string | string[] | undefined,
+  secret: string,
+): boolean {
+  if (typeof authHeader !== "string") return false;
+  const match = /^Bearer\s+(\S+)\s*$/i.exec(authHeader);
+  if (!match) return false;
+  return timingSafeCompare(match[1], secret);
 }
 
 function corsHeaders(req: IncomingMessage): Record<string, string> {
@@ -131,7 +174,15 @@ function readBody(req: IncomingMessage): Promise<string> {
   });
 }
 
-const MAX_VIEWER_PORT_RETRIES = 10;
+// 0 = OS-assigned port. We never walk past it: if the OS can't give us
+// a port we fail loudly instead of silently shifting to port+1..+10,
+// which previously caused "viewer started on 3114 (fallback from 3113)"
+// to leave the user pointing their browser at 3113 and getting a hung
+// dashboard (the API on 3111 is fine, but the rendered viewer URL
+// baked into the page reads 3114).
+// 1 = retry the configured port exactly once (covers SO_REUSEADDR races
+// on hot-reload). Anything beyond that is a real conflict.
+const MAX_VIEWER_PORT_RETRIES = 1;
 
 let boundViewerPort: number | null = null;
 let viewerSkipped = false;
@@ -141,6 +192,13 @@ export function getBoundViewerPort(): number | null {
 }
 export function getViewerSkipped(): boolean {
   return viewerSkipped;
+}
+
+export class ViewerConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ViewerConfigError";
+  }
 }
 
 export function startViewerServer(
@@ -156,6 +214,28 @@ export function startViewerServer(
 
   const resolvedRestPort = restPort ?? port - 2;
   const requestedPort = port;
+  const host = resolveViewerHost();
+  let inboundSecret: string | null = null;
+
+  // Non-loopback bind turns the viewer into a network-reachable
+  // bearer-authorized proxy. Refuse to start unless the operator has
+  // both an inbound secret to authenticate callers against and an
+  // explicit Host header allowlist; otherwise the listening socket
+  // becomes an open relay to the local REST API.
+  if (!isLoopbackHost(host)) {
+    if (!secret) {
+      throw new ViewerConfigError(
+        `AGENTMEMORY_VIEWER_HOST=${host} requires AGENTMEMORY_SECRET to be set so the viewer can validate inbound bearer tokens. To fix: unset AGENTMEMORY_VIEWER_HOST to keep the safe loopback bind, or set AGENTMEMORY_SECRET. For Fly images, it is printed on first boot; see deploy/fly/README.md.`,
+      );
+    }
+    if (readAllowedHostsOverride().length === 0) {
+      throw new ViewerConfigError(
+        `AGENTMEMORY_VIEWER_HOST=${host} requires VIEWER_ALLOWED_HOSTS because non-loopback viewer binds only trust explicit Host headers. To fix: set VIEWER_ALLOWED_HOSTS to a comma-separated list of trusted Host header values (e.g. "localhost:3113" for fly proxy), or unset AGENTMEMORY_VIEWER_HOST to keep the safe loopback bind.`,
+      );
+    }
+    inboundSecret = secret;
+  }
+
   // Computed lazily on first request — `port` may be 0 here (OS-assigned)
   // or the EADDRINUSE retry loop below may bump us to a different port,
   // so we read the actual bound port from server.address() on first hit.
@@ -168,7 +248,7 @@ export function startViewerServer(
         addr && typeof addr === "object" && "port" in addr
           ? (addr.port as number)
           : port;
-      allowedHosts = buildAllowedHosts(ALLOWED_ORIGINS, actualPort);
+      allowedHosts = buildAllowedHosts(ALLOWED_ORIGINS, actualPort, host);
     }
     if (!isHostAllowed(req.headers.host, allowedHosts)) {
       res.writeHead(403, { "Content-Type": "text/plain" });
@@ -213,17 +293,28 @@ export function startViewerServer(
     }
 
     if (method === "GET" && pathname === "/favicon.svg") {
-      const favicon = loadViewerFavicon();
-      if (favicon) {
+      if (VIEWER_FAVICON) {
         res.writeHead(200, {
           "Content-Type": "image/svg+xml",
           "Cache-Control": "public, max-age=3600",
         });
-        res.end(favicon);
+        res.end(VIEWER_FAVICON);
         return;
       }
       res.writeHead(404, { "Content-Type": "text/plain" });
       res.end("favicon not found");
+      return;
+    }
+
+    if (
+      inboundSecret !== null &&
+      !requireInboundBearer(req.headers.authorization, inboundSecret)
+    ) {
+      res.writeHead(401, {
+        "Content-Type": "text/plain",
+        "WWW-Authenticate": 'Bearer realm="agentmemory-viewer"',
+      });
+      res.end("unauthorized");
       return;
     }
 
@@ -239,38 +330,73 @@ export function startViewerServer(
   let currentPort = requestedPort;
 
   const tryListen = (): void => {
-    server.listen(currentPort, VIEWER_LISTEN_ADDR);
+    server.listen(currentPort, host);
   };
 
   server.on("listening", () => {
     const addr = server.address();
-    boundViewerPort =
+    // `currentPort` is the value passed to `listen()` and stays 0 for
+    // ephemeral-port callers (tests, port=0). `server.address()` exposes
+    // the OS-assigned port — log that so the startup line is accurate.
+    const actualPort =
       addr && typeof addr === "object" && "port" in addr
         ? addr.port
         : currentPort;
+    boundViewerPort = actualPort;
     viewerSkipped = false;
-    if (currentPort === requestedPort) {
-      console.log(`[agentmemory] Viewer: http://localhost:${currentPort}`);
+    if (inboundSecret !== null) {
+      const allowedHosts = readAllowedHostsOverride().join(", ");
+      console.log(
+        `[agentmemory] Viewer: http://localhost:${actualPort} (bound to ${host}; inbound Bearer required; allowed Host headers: ${allowedHosts})`,
+      );
+      return;
+    }
+    if (actualPort === requestedPort) {
+      console.log(`[agentmemory] Viewer: http://localhost:${actualPort}`);
     } else {
       console.log(
-        `[agentmemory] Viewer started on http://localhost:${currentPort} (fallback from ${requestedPort})`,
+        `[agentmemory] Viewer started on http://localhost:${actualPort} (fallback from ${requestedPort})`,
       );
     }
   });
 
   server.on("error", (err: NodeJS.ErrnoException) => {
-    if (err.code === "EADDRINUSE" && attempt < MAX_VIEWER_PORT_RETRIES) {
+    if (
+      err.code === "EADDRINUSE" &&
+      inboundSecret === null &&
+      attempt < MAX_VIEWER_PORT_RETRIES
+    ) {
       attempt++;
-      currentPort = requestedPort + attempt;
+      // Reset state for the retry — the prior error handler below ran and
+      // marked the viewer as skipped, but a successful listen() on retry
+      // should clear that. Without this, a SO_REUSEADDR/TIME_WAIT race
+      // during hot-reload permanently leaves viewerSkipped=true even
+      // though the server is actually listening.
+      boundViewerPort = null;
+      viewerSkipped = false;
+      // Only retry the *same* port — never walk. SO_REUSEADDR races during
+      // hot-reload usually clear within a few hundred ms. The previous
+      // behavior of bumping to port+1, port+2, … port+10 hid the conflict
+      // and produced a UI that rendered on 3114 while the user expected 3113.
       setImmediate(tryListen);
       return;
     }
     if (err.code === "EADDRINUSE") {
+      // Final attempt failed. The server will NOT emit a "listening" event
+      // after this error, so it's safe to mark skipped. The retry path
+      // above returns early so the "listening" handler below can still
+      // clear viewerSkipped on a successful retry.
       boundViewerPort = null;
       viewerSkipped = true;
-      console.warn(
-        `[agentmemory] Viewer ports ${requestedPort}-${requestedPort + MAX_VIEWER_PORT_RETRIES} all in use, skipping viewer.`,
-      );
+      if (inboundSecret !== null) {
+        console.warn(
+          `[agentmemory] Viewer port ${requestedPort} is in use while bound to ${host}; not retrying because non-loopback viewer binds require VIEWER_ALLOWED_HOSTS to match the exact port. Free the port, choose another viewer port, or unset AGENTMEMORY_VIEWER_HOST to keep the safe loopback bind.`,
+        );
+      } else {
+        console.warn(
+          `[agentmemory] Viewer ports ${requestedPort}-${requestedPort + MAX_VIEWER_PORT_RETRIES} all in use, skipping viewer.`,
+        );
+      }
     } else {
       boundViewerPort = null;
       viewerSkipped = true;
@@ -313,7 +439,11 @@ async function proxyToRestApi(
   }
 
   const controller = new AbortController();
-  const fetchTimeout = setTimeout(() => controller.abort(), 10000);
+  const proxyTimeoutMs = Number.parseInt(
+    (typeof process !== "undefined" && process.env?.AGENTMEMORY_PROXY_TIMEOUT_MS) || "120000",
+    10,
+  );
+  const fetchTimeout = setTimeout(() => controller.abort(), proxyTimeoutMs);
   let upstream: Response;
   try {
     upstream = await fetch(upstreamUrl, {

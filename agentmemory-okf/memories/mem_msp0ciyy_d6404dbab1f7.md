@@ -1,0 +1,117 @@
+---
+type: Fact
+title: # Testing agentmemory fix
+
+source: hermes
+session_id: 20260616_213220_f3a419
+res
+description: # Testing agentmemory fix
+
+source: hermes
+session_id: 20260616_213220_f3a419
+resource: hermes://session/20260616_213220_f3a419
+
+# Conversation
+
+- **Session ID:** `20260616_213220_f3a419`
+- **Source:**
+resource: agentmemory://memory/mem_msp0ciyy_d6404dbab1f7
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/AI/agentmemory"]
+timestamp: 2026-08-11T18:42:34.371Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Testing agentmemory fix
+
+source: hermes
+session_id: 20260616_213220_f3a419
+resource: hermes://session/20260616_213220_f3a419
+
+# Conversation
+
+- **Session ID:** `20260616_213220_f3a419`
+- **Source:** tui
+- **Model:** kilo-auto/balanced
+- **Started:** 2026-06-17T02:38:14Z
+- **Ended:** 2026-06-17T03:19:06Z
+- **Messages:** 193
+- **CWD:** `/Volumes/AI/agentmemory`
+- **Tokens:** 576 in / 25106 out
+- **Est. cost:** $0.3682
+
+---
+
+### 👤 User — 2026-06-17T02:38:15Z
+
+resume the session we were using to test agentmemory
+
+### 🤖 Assistant — 2026-06-17T02:38:57Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to "resume the session we were using to test agentmemory".
+Looking at the available tools, I can use `session_search` to find the relevant session.
+I should search for "agentmemory" to find the session they are referring to.
+
+Let's do a `session_search` with query "agentmemory".
+
+</details>
+
+**Tool call: session_search**
+
+```json
+{
+  "query": "agentmemory",
+  "limit": 3
+}
+```
+
+### 🤖 Assistant — 2026-06-17T02:38:57Z
+
+<details><summary>Reasoning</summary>
+
+I found 3 sessions related to "agentmemory".
+The most recent one is from today (June 16, 2026 at 12:38 PM) titled "Using REDIS for agentmemory".
+The user asked to "resume the session we were using to test agentmemory".
+Looking at the results:
+1. `20260616_160624_319696` - "Using REDIS for agentmemory" (June 16, 2026 at 12:38 PM) - This is today! It has "still 58, do you mean for me to stop all hermes processes or just the one i am test" and testing agentmemory wrapper and sessions.
+2. `20260611_160250_c14435` - "Checking the current directory" (June 11, 2026 at 03:52 PM)
+3. `20260611_155108_9f3fe5` - "Agentmemory" (June 11, 2026 at 03:51 PM)
+
+The user likely means the most recent one, which is `20260616_160624_319696` titled "Using REDIS for agentmemory", or maybe the one from June 11. Let's look at the end of the June 16 session. The last message from the user was "what about all the hermes --tui running, i was testing in one of those, not the deaktop".
+
+Let me scroll further into that session to see where it left off, or I can just inform the user that I found the recent session about testing agentmemory with REDIS and ask if this is the one they want to resume, or I can just load the session state.
+
+Wait, `session_search` can read the whole session if I pass `session_id`. Let's do that to get the full context of the most recent one.
+
+</details>
+
+**Tool call: session_search**
+
+```json
+{
+  "session_id": "20260616_160624_319696"
+}
+```
+
+### 🤖 Assistant — 2026-06-17T02:38:57Z
+
+<details><summary>Reasoning</summary>
+
+The user was testing agentmemory in a `hermes --tui` session, not the Desktop app.
+The last message from the user was: "what about all the hermes --tui running, i was testing in one of those, not the deaktop"
+
+I need to address this. The user is asking if they need to quit the `hermes --tui` processes as well, since they were testing in one of those, not the desktop.
+
+Let's check the wrapper script logic. The `agentmemory-wrapper.sh` is run by the Hermes gateway or TUI when it starts up and connects to the MCP server. Actually, MCP servers are typically started by the Hermes gateway or the TUI app when it initializes. If the TUI is already running, it has already started the MCP server and won't restart it.
+
+Let me check how the TUI or gateway starts MCP servers.
+Actually, if the user is running `hermes --tui`, the MCP server is started when that specific TUI process starts. If they want to test a new session with the updated wrapper, they need to restart the specific `hermes --tui` process they are using, or at least the gateway that manages the MCP connections.
+
+Let me look at the processes:
+```
+davec            14320  13.4  0.4 467274912 121504 s000  S+    3:50PM   1:51.89 /Users/davec/.local/bin/node --expose-gc /Users/davec/.hermes/hermes-agent/ui-tui/dist/entry.js
+davec            14321   4.6  0.2 435657488  70576 s000  S+    3:50PM   0:28.90 /Users/davec/.hermes/hermes-agent/venv/bin/python3 -m tui_gateway.entry
+davec            14213   0.0  0.2 435427328  63184 s000  S+    3:50PM   0:02

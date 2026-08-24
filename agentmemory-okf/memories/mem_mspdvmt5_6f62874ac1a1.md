@@ -1,0 +1,161 @@
+---
+type: Fact
+title: # Profile icon pulse indicator for finished/pending sessions
+
+source: hermes
+ses
+description: # Profile icon pulse indicator for finished/pending sessions
+
+source: hermes
+session_id: 20260717_095353_971eb2
+resource: hermes://session/20260717_095353_971eb2
+
+# Conversation
+
+- **Session ID:** `20
+resource: agentmemory://memory/mem_mspdvmt5_6f62874ac1a1
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-12T01:01:20.791Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Profile icon pulse indicator for finished/pending sessions
+
+source: hermes
+session_id: 20260717_095353_971eb2
+resource: hermes://session/20260717_095353_971eb2
+
+# Conversation
+
+- **Session ID:** `20260717_095353_971eb2`
+- **Source:** tui
+- **Model:** kilo-auto/balanced
+- **Started:** 2026-07-17T14:53:53Z
+- **Messages:** 276
+- **CWD:** `/Users/davec`
+- **Tokens:** 114891 in / 28822 out
+- **Est. cost:** $0.3274
+
+---
+
+### 👤 User — 2026-07-17T14:53:53Z
+
+The profile icons in desktop need an indicator when a session has finished e.g. When hermes sends a notification that session has finished, or when a session is needing the user to confim a command. The icon should pulse its selected color when notification is finished and should pulse its border when needing comfirmation. The pulse color should alternate between the selected (bright color) and unselected (dim color).
+
+### 👤 User — 2026-07-17T14:53:53Z
+
+The profile icons in desktop need an indicator when a session has finished e.g. When hermes sends a notification that session has finished, or when a session is needing the user to confim a command. The icon should pulse its selected color when notification is finished and should pulse its border when needing comfirmation. The pulse color should alternate between the selected (bright color) and unselected (dim color).
+
+### 🤖 Assistant — 2026-07-17T14:54:03Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to add visual indicators to profile icons in the Hermes desktop GUI:
+1. When a session has finished → pulse the selected color (bright ↔ dim)
+2. When a session needs user confirmation → pulse the border
+3. Pulse alternates between selected (bright) and unselected (dim) colors
+
+Let me first look at the hermes-webui skill since this is about the desktop GUI, and also check the hermes-agent skill for guidance. Let me also look at the desktop app code to understand the current profile icon implementation.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "hermes-webui"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "pattern": "profile*icon*",
+  "target": "files",
+  "path": "/Applications/Hermes*"
+}
+```
+
+### 🤖 Assistant — 2026-07-17T14:54:03Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to add visual indicators to profile icons in the Hermes desktop GUI:
+1. When a session has finished → pulse the selected color (bright ↔ dim)
+2. When a session needs user confirmation → pulse the border
+3. Pulse alternates between selected (bright) and unselected (dim) colors
+
+Let me first look at the hermes-webui skill since this is about the desktop GUI, and also check the hermes-agent skill for guidance. Let me also look at the desktop app code to understand the current profile icon implementation.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "hermes-webui"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "pattern": "profile*icon*",
+  "target": "files",
+  "path": "/Applications/Hermes*"
+}
+```
+
+### 🤖 Assistant — 2026-07-17T14:54:08Z
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "find /Applications ~/Library -name \"Hermes.app\" -maxdepth 4 2>/dev/null | head -5; echo \"---\"; ls -d /Applications/Hermes* 2>/dev/null; echo \"---\"; pgrep -fl \"Hermes.app\" | head -3"
+}
+```
+
+### 🤖 Assistant — 2026-07-17T14:55:12Z
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "ls -d /Applications/Hermes* 2>/dev/null; ls -d \"/Applications/Hermes.app\" 2>/dev/null; pgrep -fl \"Hermes\" 2>/dev/null | head -5",
+  "timeout": 15
+}
+```
+
+### 🤖 Assistant — 2026-07-17T14:55:16Z
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "DESKTOP=\"/Users/davec/.hermes/hermes-agent/apps/desktop\"; ls -la \"$DESKTOP\"; echo \"---\"; find \"$DESKTOP\" -name \"*.tsx\" -o -name \"*.ts\" -o -name \"*.jsx\" -o -name \"*.js\" 2>/dev/null | grep -iE \"profile|sidebar\" | head -20",
+  "timeout": 15
+}
+```
+
+### 🤖 Assistant — 2026-07-17T14:55:20Z
+
+**Tool call: read_file**
+
+```json
+{
+  "path": "/Users/davec/.hermes/hermes-agent/apps/desktop/src/app/chat/sidebar/profile-switcher.tsx"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "pattern": "profile",
+  "target": "files",
+  "path": "/Users/davec/.hermes/hermes-agent/a

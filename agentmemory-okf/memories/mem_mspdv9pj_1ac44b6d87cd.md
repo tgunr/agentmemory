@@ -1,0 +1,218 @@
+---
+type: Fact
+title: # Hermes Image And Video Configuration
+
+source: hermes
+session_id: 20260622_0453
+description: # Hermes Image And Video Configuration
+
+source: hermes
+session_id: 20260622_045332_ef5422
+resource: hermes://session/20260622_045332_ef5422
+
+# Conversation
+
+- **Session ID:** `20260622_045332_ef5422`
+
+resource: agentmemory://memory/mem_mspdv9pj_1ac44b6d87cd
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/davec"]
+timestamp: 2026-08-12T01:01:03.828Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Hermes Image And Video Configuration
+
+source: hermes
+session_id: 20260622_045332_ef5422
+resource: hermes://session/20260622_045332_ef5422
+
+# Conversation
+
+- **Session ID:** `20260622_045332_ef5422`
+- **Source:** tui
+- **Model:** kilo-auto/balanced
+- **Started:** 2026-06-22T09:53:34Z
+- **Ended:** 2026-06-22T10:47:47Z
+- **Messages:** 104
+- **CWD:** `/Volumes/davec`
+- **Tokens:** 246 in / 15092 out
+- **Est. cost:** $0.2286
+
+---
+
+### 👤 User — 2026-06-22T09:53:34Z
+
+How do I configure Hermes to generate and analyze images and videos. What specific settings are involved?
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+The user is asking about configuring Hermes Agent for image and video generation/analysis. This is about configuring Hermes itself, so I should load the `hermes-agent` skill first as instructed, and also check the Hermes docs.
+
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "hermes-agent"
+}
+```
+
+**Tool call: web_extract**
+
+```json
+{
+  "urls": [
+    "https://hermes-agent.nousresearch.com/docs/features/media-generation",
+    "https://hermes-agent.nousresearch.com/docs/features/ai-providers"
+  ]
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+The web extraction failed. Let me use the browser to check the docs instead.
+
+</details>
+
+**Tool call: web_search**
+
+```json
+{
+  "query": "hermes-agent.nousresearch.com image generation video generation vision configuration"
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+Good, I found the relevant documentation URLs. Let me fetch those specific pages to get accurate details about image generation and video generation configuration.
+
+</details>
+
+**Tool call: browser_navigate**
+
+```json
+{
+  "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/image-generation"
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+I got the image generation page. Let me get the full content and also check the vision and video generation pages.
+
+</details>
+
+**Tool call: browser_snapshot**
+
+```json
+{
+  "full": true
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+Let me scroll down to get the rest of the image generation page, and also check the Vision & Image Paste page and the video generation docs.
+
+</details>
+
+**Tool call: browser_scroll**
+
+```json
+{
+  "direction": "down"
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+Let me get the full snapshot now after scrolling.
+
+</details>
+
+**Tool call: browser_snapshot**
+
+```json
+{
+  "full": true
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+The snapshot keeps getting truncated. Let me use JavaScript to extract the text content from the page, and also navigate to the Vision & Image Paste page to get that info too.
+
+</details>
+
+**Tool call: browser_console**
+
+```json
+{
+  "expression": "document.querySelector('article').innerText"
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+Great, I have the full image generation page. Now let me get the Vision & Image Paste page and the video generation info.
+
+</details>
+
+**Tool call: browser_navigate**
+
+```json
+{
+  "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/vision-image-paste"
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+The URL was slightly wrong - let me try the correct URL structure and also look at the video generation docs. Let me check the page title from the sidebar - it says "Vision & Image Paste" so the URL might be slightly different. Let me also look at the developer guide for video generation.
+
+
+</details>
+
+**Tool call: browser_navigate**
+
+```json
+{
+  "url": "https://hermes-agent.nousresearch.com/docs/features/media-vision"
+}
+```
+
+**Tool call: web_search**
+
+```json
+{
+  "query": "site:hermes-agent.nousresearch.com vision video generation configuration"
+}
+```
+
+### 🤖 Assistant — 2026-06-22T09:56:06Z
+
+<details><summary>Reasoning</summary>
+
+Let me get the tools refer

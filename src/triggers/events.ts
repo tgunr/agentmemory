@@ -5,11 +5,23 @@ import { StateKV } from "../state/kv.js";
 import { isReflectEnabled } from "../functions/slots.js";
 import { isGraphExtractionEnabled } from "../config.js";
 import { logger } from "../logger.js";
+import { resolveSessionTitle } from "../state/hermes-sessions.js";
 
 export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
   sdk.registerFunction(
     "event::session::started",
-    async (data: { sessionId: string; project: string; cwd: string }) => {
+    async (data: {
+      sessionId: string;
+      project: string;
+      cwd: string;
+      title?: string;
+    }) => {
+      // Prefer the Hermes/Kilo session title, then any explicit title.
+      const title = resolveSessionTitle(
+        data.sessionId,
+        process.env.HERMES_STATE_DB,
+        typeof data.title === "string" ? data.title : undefined,
+      );
       const session: Session = {
         id: data.sessionId,
         project: data.project,
@@ -17,6 +29,8 @@ export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
         startedAt: new Date().toISOString(),
         status: "active",
         observationCount: 0,
+        ...(title ? { summary: title } : {}),
+        ...(title ? { firstPrompt: title } : {}),
       };
       await kv.set(KV.sessions, data.sessionId, session);
       const contextResult = await sdk.trigger<
@@ -48,9 +62,13 @@ export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
     const summary = await sdk.trigger({ function_id: "mem::summarize", payload: data });
     if (isReflectEnabled()) {
       try {
-        sdk.triggerVoid("mem::slot-reflect", { sessionId: data.sessionId });
+        sdk.trigger({
+          function_id: "mem::slot-reflect",
+          payload: { sessionId: data.sessionId },
+          action: TriggerAction.Void(),
+        });
       } catch (err) {
-        logger.warn("slot-reflect triggerVoid failed", {
+        logger.warn("slot-reflect trigger failed", {
           sessionId: data.sessionId,
           error: err instanceof Error ? err.message : String(err),
         });
@@ -63,10 +81,14 @@ export function registerEventTriggers(sdk: ISdk, kv: StateKV): void {
         );
         const compressed = observations.filter((o) => o.title);
         if (compressed.length > 0) {
-          sdk.triggerVoid("mem::graph-extract", { observations: compressed });
+          sdk.trigger({
+            function_id: "mem::graph-extract",
+            payload: { observations: compressed },
+            action: TriggerAction.Void(),
+          });
         }
       } catch (err) {
-        logger.warn("graph-extract triggerVoid failed", {
+        logger.warn("graph-extract trigger failed", {
           sessionId: data.sessionId,
           error: err instanceof Error ? err.message : String(err),
         });
