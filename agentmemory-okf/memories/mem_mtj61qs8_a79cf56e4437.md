@@ -1,0 +1,104 @@
+---
+type: Fact
+title: # Fixing Ollama Model Issues
+
+source: hermes
+session_id: claude__3bd20a82-491e-4
+description: # Fixing Ollama Model Issues
+
+source: hermes
+session_id: claude__3bd20a82-491e-4a0c-89f7-1f88cafa2612
+resource: hermes://session/claude__3bd20a82-491e-4a0c-89f7-1f88cafa2612
+
+# Conversation
+
+- **Sessi
+resource: agentmemory://memory/mem_mtj61qs8_a79cf56e4437
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-09-01T21:15:14.106Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Fixing Ollama Model Issues
+
+source: hermes
+session_id: claude__3bd20a82-491e-4a0c-89f7-1f88cafa2612
+resource: hermes://session/claude__3bd20a82-491e-4a0c-89f7-1f88cafa2612
+
+# Conversation
+
+- **Session ID:** `claude__3bd20a82-491e-4a0c-89f7-1f88cafa2612`
+- **Source:** claude
+- **Model:** None
+- **Started:** 2025-05-18T12:50:38Z
+- **Ended:** 2025-05-18T14:54:35Z
+- **Messages:** 12
+- **CWD:** `/Users/davec`
+
+---
+
+### 👤 User — 2025-05-18T12:50:39Z
+
+Hwo do fix this
+
+_Attachments: image.png_
+
+### 🤖 Assistant — 2025-05-18T12:50:49Z
+
+The user is asking how to fix an error message they've received. The error says: "Sorry, your request has been rejected. Here is the error message: registry.ollama.ai/taozhiyuai/llama-3-8b-lexi-uncensored:f16 does not support tools"
+
+This appears to be an error related to Ollama, which is an open-source tool for running large language models locally. The specific error indicates that the user is trying to use a model called "llama-3-8b-lexi-uncensored:f16" from the Ollama registry, but it seems this model version doesn't support some tools functionality they're trying to use.
+
+To help the user fix this issue, I'll need to:
+1. Explain what the error means
+2. Provide potential solutions to fix it
+
+Let me draft a response that addresses these points.It looks like you're trying to use a specific Ollama model called "llama-3-8b-lexi-uncensored:f16" but encountering an error because this model doesn't support tools functionality.
+
+Here are some ways to fix this:
+
+1. Use a different model version that supports tools. The ":f16" suffix indicates you're using a 16-bit floating point quantized version - try using a different quantization or the base model.
+
+2. If you specifically need this model, you can run it without tools functionality. Remove any tool-related parameters from your API calls.
+
+3. Check the Ollama documentation or model card to see if there's an alternative version of this model that supports the tools you need.
+
+4. Update Ollama to the latest version, as newer versions might have improved tool support.
+
+You can try running:
+```
+ollama pull registry.ollama.ai/taozhiyuai/llama-3-8b-lexi-uncensored
+```
+Without the ":f16" suffix to get the base model, which might have better tool support.
+
+### 👤 User — 2025-05-18T12:55:27Z
+
+can i use mcp tools with ollama?
+
+### 🤖 Assistant — 2025-05-18T12:55:38Z
+
+The question is about using "mcp tools" with Ollama. Based on context, it seems the user is asking if they can use some tools known as "mcp tools" with the Ollama platform for running local LLMs.
+
+MCP might refer to "Machine Control Protocol" or "Model Control Protocol" in this context, but I don't have specific knowledge about "mcp tools" in relation to Ollama. Ollama is a platform for running local large language models, and it has its own API and functionality.
+
+Let me consider what the user might be asking about:
+
+1. They could be asking about tools that are part of some system called MCP
+2. They could be referring to Model Control Protocol tools
+3. They could be referring to using external tools or plugins with Ollama models
+
+I should provide information about Ollama's capabilities for tool/function calling and integration with external tools, while acknowledging that I'm not certain what specific "mcp tools" they're referring to.Currently, Ollama has limited built-in support for tools/function calling compared to hosted API services like OpenAI or Anthropic. The error message you received ("does not support tools") indicates this limitation.
+
+As of my last update in October 2024:
+
+1. Ollama's native function calling support is limited to specific models that have been fine-tuned for it
+2. Most open-source models on Ollama don't have robust tools integration built in
+
+If you're referring to FastMCP tools (like those shown in this conversation with me), these aren't directly compatible with Ollama. FastMCP tools are part of Anthropic's ecosystem.
+
+For tool usage with Ollama, you have a few options:
+
+1. Use a framework like LangChain or LlamaIndex that can add tool capabilities on top of Ollama
+2. Look for specific models in the Ollama library that mention tool or function c

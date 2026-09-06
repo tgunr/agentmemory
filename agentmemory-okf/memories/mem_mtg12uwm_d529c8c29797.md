@@ -1,0 +1,112 @@
+---
+type: Fact
+title: # Run cross-profile-skills command
+
+source: hermes
+session_id: 20260827_054258_2
+description: # Run cross-profile-skills command
+
+source: hermes
+session_id: 20260827_054258_2196fc
+resource: hermes://session/20260827_054258_2196fc
+
+# Conversation
+
+- **Session ID:** `20260827_054258_2196fc`
+- **
+resource: agentmemory://memory/mem_mtg12uwm_d529c8c29797
+tags: ["okf", "okf-hermes", "hermes", "hermes://session/20260827_054258_2196fc"]
+timestamp: 2026-08-30T16:32:49.564Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Run cross-profile-skills command
+
+source: hermes
+session_id: 20260827_054258_2196fc
+resource: hermes://session/20260827_054258_2196fc
+
+# Conversation
+
+- **Session ID:** `20260827_054258_2196fc`
+- **Source:** desktop
+- **Model:** hy3-free
+- **Started:** 2026-08-27T10:43:02Z
+- **Ended:** 2026-08-30T15:12:41Z
+- **Messages:** 100
+- **Tokens:** 107602 in / 61599 out
+
+---
+
+### 👤 User — 2026-08-27T10:43:03Z
+
+[IMPORTANT: The user has invoked the "cross-profile-skills" skill, indicating they want you to follow its instructions. The full skill content is loaded below.]
+
+---
+name: cross-profile-skills
+description: Share a single knowledge/skill library across multiple Hermes profiles via `skills.external_dirs`. Covers setup, common pitfalls, and workflow for umbrella skills that appear in default plus named profiles (cc, cnc, ai, etc.). Also covers DUPLICATING a profile's live config (global `config.yaml` mcp_servers + global `skills/`) into every other profile.
+version: 1.1.0
+author: davec
+tags: [hermes, profiles, skills, cross-profile, knowledge-base, mcp]
+---
+
+# Cross-Profile Skills
+
+Pattern for sharing one knowledge library across multiple Hermes profiles without copying content into each profile's local `skills/` directory. Also covers the "duplicate this profile's servers + skills into all profiles" task.
+
+## When to Use
+
+- Knowledge that belongs to no single profile (Vectric CAM shared across CNC, CC, and general use)
+- Team-wide conventions, workflows, or reference docs needed by several named profiles
+- Domain knowledge (materials, feeds, tooling, software workflows) that isn't persona-specific
+- Avoiding divergent copies across profile-local `skills/` directories
+- "Copy this profile's MCP servers and skills into all the other profiles"
+
+## Architecture
+
+```
+~/sources/hermes-knowledge/skills/      # single source of truth, git-tracked
+└── <domain-category>/
+    └── <umbrella-skill-name>/
+        ├── SKILL.md                    # umbrella entry point
+        ├── references/<topic>.md       # domain knowledge
+        ├── templates/<name>.<ext>      # starters/boilerplate
+        └── scripts/<name>.<ext>        # re-runnable probes/validators
+
+~/.hermes/config.yaml                   # GLOBAL / default profile — external_dirs
+~/.hermes/profiles/<name>/config.yaml   # each profile — external_dirs
+```
+
+Each profile's `config.yaml` points to the same directory:
+
+```yaml
+skills:
+  external_dirs:
+    - ~/sources/hermes-knowledge/skills
+```
+
+## Setup Steps
+
+1. **Create the shared source directory**: pick a stable location under `~/sources/` or similar (user prefers `sources/` as the code/AI/scripts home).
+2. **Build the umbrella skill** there: `SKILL.md` + `references/` + optional `templates/` and `scripts/`. Use umbrella naming (e.g. `vectric-cam` not `vectric-aspire`).
+3. **Add `external_dirs` to each profile's config.yaml** that should see the shared library.
+4. **Verify** with `hermes -p <profile> skills list | grep <skill-name>`.
+5. **Restart/`/reset`** sessions in each profile to pick up the new index.
+
+## How Edits Work
+
+- `skill_manage` updates write to wherever the skill is found, including external dirs.
+- Since the shared dir is writable across profiles, a fix in any profile propagates to all.
+- If the same skill name exists locally in a profile AND externally, the **local version wins** (shadowing). Useful when you need profile-specific overrides.
+- If a configured directory doesn't exist, Hermes ignores it silently.
+
+## Source of truth: GLOBAL config ≠ per-profile config
+
+The desktop app runs on the **global** `~/.hermes/config.yaml`, NOT `profiles/default/config.yaml`.
+When the user says "this profile" / "duplicate this profile's servers", the live config is the global one.
+
+| Path | What it is | `mcp_servers` count (this user) |
+|---|---|---|
+| `~/.hermes/config.yaml` | **Global** config the desktop app + default gateway run. Source of truth for the live session. | 21 (agentmemory standalone + comfyui + desktop-commander + git + basic-memory + context7 + brave-search + apple-mcp + macos-community + browser-tools + iMCP + sequential-thinking + puppeteer + 

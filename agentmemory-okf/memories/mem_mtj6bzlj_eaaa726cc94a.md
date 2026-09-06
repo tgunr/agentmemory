@@ -1,0 +1,139 @@
+---
+type: Fact
+title: # Supermicro Power Supply Troubleshooting
+
+source: claude
+session_id: 31ea6caa-4
+description: # Supermicro Power Supply Troubleshooting
+
+source: claude
+session_id: 31ea6caa-4c59-411f-8ec9-7cd365b03bac
+resource: claude://conversation/31ea6caa-4c59-411f-8ec9-7cd365b03bac
+
+# Conversation
+
+- **Ses
+resource: agentmemory://memory/mem_mtj6bzlj_eaaa726cc94a
+tags: ["okf", "okf-claude", "claude", "claude://conversation/31ea6caa-4c59-411f-8ec9-7cd365b03bac"]
+timestamp: 2026-09-01T21:23:12.123Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Supermicro Power Supply Troubleshooting
+
+source: claude
+session_id: 31ea6caa-4c59-411f-8ec9-7cd365b03bac
+resource: claude://conversation/31ea6caa-4c59-411f-8ec9-7cd365b03bac
+
+# Conversation
+
+- **Session ID:** `31ea6caa-4c59-411f-8ec9-7cd365b03bac`
+- **Source:** claude
+- **Started:** 2025-06-05T19:09:58Z
+- **Messages:** 12
+
+---
+
+### 👤 User — 2025-06-05T19:10:01Z
+
+help me troubleshoot a. supermicro pws-1k28P-sq power supply
+
+---
+
+### 🤖 Assistant — 2025-06-05T19:10:10Z
+
+I'll help you troubleshoot your Supermicro PWS-1K28P-SQ power supply. This is a 1280W 80+ Platinum redundant power supply commonly used in Supermicro servers.
+
+Let me start with some basic diagnostic questions:
+
+**What specific issues are you experiencing?**
+- Is the PSU completely dead (no fans, no LEDs)?
+- Are there any LED indicators showing on the PSU?
+- Is the server not powering on, or is it shutting down unexpectedly?
+- Are you getting any error messages or beep codes?
+
+**Basic troubleshooting steps to try:**
+
+**Power and connections:**
+- Verify the AC power cord is securely connected
+- Check that the wall outlet is providing power (test with another device)
+- Ensure the PSU power switch (if present) is in the ON position
+- Verify all internal power connectors are firmly seated
+
+**LED diagnostics:**
+The PWS-1K28P-SQ typically has status LEDs:
+- Green LED: Normal operation
+- Red LED: Fault condition
+- No LED: No AC power or PSU failure
+
+**If you have a redundant PSU setup:**
+- Try swapping the positions of your PSUs to isolate if it's a specific unit
+- Check if the server runs on just one PSU
+
+**Advanced checks:**
+- Look for any obvious physical damage, burning smells, or unusual noises
+- If you have a multimeter, you can test the AC input voltage
+- Check the server's system event log for PSU-related errors
+
+What symptoms are you seeing, and have you tried any of these steps already?
+
+---
+
+### 👤 User — 2025-06-05T19:10:50Z
+
+no fans, only orange led when cord plugged in
+
+---
+
+### 🤖 Assistant — 2025-06-05T19:11:00Z
+
+That orange LED with no fan activity indicates a fault condition in the PSU. Here's how to diagnose this further:
+
+**What the orange LED means:**
+- The PSU is receiving AC power (that's why the LED is on)
+- But there's an internal fault preventing normal operation
+- The PSU is in a protective shutdown state
+
+**Next troubleshooting steps:**
+
+**1. Check the load:**
+- Disconnect all internal power cables from the motherboard and drives
+- With no load connected, plug in AC power and see if the LED changes or fans start
+- If it works with no load, you may have an overcurrent condition or short circuit in your system
+
+**2. Test the power-on signal:**
+- The PSU needs a "power good" signal from the motherboard to fully start
+- You can manually test this by shorting pins on the 24-pin connector
+- **Caution:** Only do this if you're comfortable working with electronics
+
+**3. Try a different AC source:**
+- Test with a different power outlet
+- Try a different AC power cord if you have one
+- Some PSUs are sensitive to voltage fluctuations
+
+**4. Check for physical issues:**
+- Look inside the PSU (if warranty allows) for any visible damage, bulging capacitors, or burn marks
+- Listen for any clicking or buzzing sounds when plugged in
+
+**If you have a redundant setup:**
+- Remove this PSU completely and see if the server runs on the other PSU alone
+- This confirms whether the issue is with this specific unit
+
+The orange LED with no fan activity strongly suggests an internal PSU failure. If the above steps don't resolve it, the PSU likely needs replacement. How long has this PSU been in service, and did this happen suddenly or gradually?
+
+---
+
+### 👤 User — 2025-06-05T19:14:33Z
+
+happened after lightning strike,Under no load, the orange LED and fans run.
+
+---
+
+### 🤖 Assistant — 2025-06-05T19:14:44Z
+
+That's very telling information. A lightning strike followed by the PSU working under no load but failing under load strongly suggests **partial damage to the PSU's protection circuits or power regulation**.
+
+**What likely happened:**
+The lightning strike damaged some internal components, leaving the PSU partially functional. It can handle its o

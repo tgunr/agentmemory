@@ -1,0 +1,85 @@
+---
+type: Fact
+title: # LM Studio and Ollama Model Compatibility
+
+source: hermes
+session_id: claude__4
+description: # LM Studio and Ollama Model Compatibility
+
+source: hermes
+session_id: claude__4bcb5de4-d068-4d87-8ad0-18b8b302cb18
+resource: hermes://session/claude__4bcb5de4-d068-4d87-8ad0-18b8b302cb18
+
+# Conversat
+resource: agentmemory://memory/mem_mtj61uxe_09e687ffb580
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-09-01T21:15:19.488Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# LM Studio and Ollama Model Compatibility
+
+source: hermes
+session_id: claude__4bcb5de4-d068-4d87-8ad0-18b8b302cb18
+resource: hermes://session/claude__4bcb5de4-d068-4d87-8ad0-18b8b302cb18
+
+# Conversation
+
+- **Session ID:** `claude__4bcb5de4-d068-4d87-8ad0-18b8b302cb18`
+- **Source:** claude
+- **Model:** None
+- **Started:** 2025-06-12T14:55:20Z
+- **Ended:** 2025-06-12T14:55:38Z
+- **Messages:** 2
+- **CWD:** `/Users/davec`
+
+---
+
+### 👤 User — 2025-06-12T14:55:22Z
+
+Can LM Studio share models with OLAMA?
+
+### 🤖 Assistant — 2025-06-12T14:55:38Z
+
+The user is asking about LM Studio and OLAMA (which I think they mean OLLAMA, a common misspelling). This is about whether these two local AI model management tools can share models. 
+
+This is a technical question about how these tools work and whether they can interoperate. Since my knowledge cutoff is January 2025, I should have relatively current information about both tools, but let me think about what I know:
+
+1. LM Studio is a desktop application for running local LLMs
+2. OLLAMA (which they likely meant) is a command-line tool for running local LLMs
+
+The question is whether they can share models - meaning can models downloaded/installed in one be used by the other.
+
+This is a stable technical topic that doesn't change rapidly, so I don't need to search for this. I can answer based on my knowledge.
+
+Both tools typically store models in different formats and locations:
+- LM Studio usually works with GGUF files and has its own model storage location
+- Ollama has its own model format and storage system
+
+However, there are ways they can potentially share models, like using the same GGUF files or through manual file management.
+
+I should provide a direct answer about model sharing capabilities between these tools.LM Studio and Ollama (I assume you meant Ollama rather than "OLAMA") can share models in some ways, but they don't automatically share model storage by default.
+
+**How they can share models:**
+
+1. **GGUF files**: Both tools can work with GGUF format models. You can manually point LM Studio to GGUF files that Ollama has downloaded, or vice versa.
+
+2. **Manual file management**: You can copy model files between their respective storage locations, though you'll need to know where each tool stores its models.
+
+3. **Import/export**: LM Studio allows you to import models from custom locations, so you could potentially import models that Ollama has downloaded.
+
+**Limitations:**
+
+- **Different storage systems**: Each tool has its own preferred storage location and organization method
+- **Model formats**: While both support GGUF, they may have different naming conventions or metadata requirements
+- **No automatic detection**: Neither tool automatically detects models installed by the other
+
+**Practical approach:**
+If you want to avoid downloading the same models twice, you could:
+- Choose one tool as your primary model downloader
+- Manually configure the other to use those model files
+- Use symbolic links (on Unix systems) to point one tool's model directory to the other's
+
+The most seamless experience typically comes from using each tool independently with its own model downloads, unless storage space is a major concern.

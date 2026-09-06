@@ -1,0 +1,89 @@
+---
+type: Fact
+title: # Connector Identification and Sourcing
+
+source: grok
+session_id: b58c979f-d6af-
+description: # Connector Identification and Sourcing
+
+source: grok
+session_id: b58c979f-d6af-4e2c-8848-5554ee2f644c
+resource: grok://conversation/b58c979f-d6af-4e2c-8848-5554ee2f644c
+
+# Conversation
+
+- **Session I
+resource: agentmemory://memory/mem_mtj6eis2_3e49e955d738
+tags: ["okf", "okf-grok", "grok", "grok://conversation/b58c979f-d6af-4e2c-8848-5554ee2f644c"]
+timestamp: 2026-09-01T21:25:10.307Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Connector Identification and Sourcing
+
+source: grok
+session_id: b58c979f-d6af-4e2c-8848-5554ee2f644c
+resource: grok://conversation/b58c979f-d6af-4e2c-8848-5554ee2f644c
+
+# Conversation
+
+- **Session ID:** `b58c979f-d6af-4e2c-8848-5554ee2f644c`
+- **Source:** grok
+- **Started:** 2025-03-10T20:06:52Z
+- **Messages:** 4
+
+---
+
+### 👤 User — 2025-03-10T20:06:52Z
+
+What kind of connector is this and where do I find one?
+
+---
+
+### 🤖 Assistant — 2025-03-10T20:06:58Z
+
+Based on the image provided, the connector appears to be a type of multi-pin header or Molex Mini-Fit Jr. connector, commonly used in electronics for power or signal connections. It has a white plastic housing with multiple pins (likely 4 pins in this case) and is attached to a ribbon cable with a yellow wire visible. These connectors are often found in computer hardware, such as internal power supplies, motherboards, or peripheral devices, but they are also used in various other electronic applications like automotive systems or industrial equipment.
+
+### Identification:
+- The connector looks like a polarized, locking-type connector, which ensures a secure fit and prevents incorrect insertion.
+- The number of pins (4 in this case) and the ribbon cable suggest it could be part of a power or data interface.
+- The Molex Mini-Fit Jr. series or a similar JST connector (e.g., JST XH or VH series) are common candidates. The exact type would depend on the pin spacing (pitch), which is hard to determine precisely from the image but is typically 2.5mm or 2.54mm for these connectors.
+
+### Where to Find One:
+To replace or source a similar connector, you can look at the following options:
+1. **Electronics Suppliers**:
+   - **DigiKey**: Offers a wide range of Molex Mini-Fit Jr. and JST connectors with various pin counts.
+   - **Mouser Electronics**: Stocks similar multi-pin connectors and compatible crimp terminals.
+   - **RS Components** or **Farnell**: Good for international shipping and a variety of connector types.
+
+2. **Specialty Retailers**:
+   - **Adafruit** or **SparkFun**: These sites cater to hobbyists and often carry connectors with pre-attached wires or kits.
+   - **Amazon**: Search for "Molex Mini-Fit Jr. connector" or "JST connector 4-pin" to find compatible parts.
+
+3. **Salvage or Reuse**:
+   - Check old computer power supplies, motherboards, or discarded electronics for a matching connector to salvage.
+   - Online forums or marketplaces like eBay might have used or surplus parts.
+
+### Recommendations:
+- To confirm the exact type, measure the pin pitch (distance between pins) with a caliper or ruler (likely 2.5mm or 2.54mm) and count the pins accurately.
+- Ensure you get the matching housing, pins, and crimp tool if you plan to assemble it yourself. For example, Molex Mini-Fit Jr. requires specific crimp terminals and a compatible crimping tool.
+- If you're unsure about the exact model or application, providing more context (e.g., the device it's from) could help narrow it down. Alternatively, I can offer to search the web for more precise matches if you'd like!
+
+Let me know if you need further assistance or want me to generate a diagram of a similar connector for reference!
+
+---
+
+### 👤 User — 2025-03-10T20:08:28Z
+
+Here is the pin spacing
+
+---
+
+### 🤖 Assistant — 2025-03-10T20:08:39Z
+
+Thank you for providing the second image. The new image gives a closer view of the connector and its pin spacing, which helps refine the identification. The connector appears to be a small, multi-pin header with a white plastic housing and a ribbon cable with a yellow wire. The pin spacing seems to be around 2.54mm (0.1 inches), which is a common pitch for many electronic connectors, such as those in the JST or Molex families.
+
+### Updated Identification:
+Based on the pin spacing and the overall design, this connector is likely a **JST XH connector** with a 2.54mm pitch. The JST XH series is widely used in electronics, especially in hobbyist projects, 3D printers, drones, and other small devices. The connector in the image appears to have 4 pins, and the snug fit into a molded slot suggests it is part of a custom or proprietary assembly, possibly for a motor, se

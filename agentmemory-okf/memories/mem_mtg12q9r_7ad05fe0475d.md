@@ -1,0 +1,108 @@
+---
+type: Fact
+title: # 20260826_035224_5b8ea1
+
+source: hermes
+session_id: 20260826_035224_5b8ea1
+reso
+description: # 20260826_035224_5b8ea1
+
+source: hermes
+session_id: 20260826_035224_5b8ea1
+resource: hermes://session/20260826_035224_5b8ea1
+
+# Conversation
+
+- **Session ID:** `20260826_035224_5b8ea1`
+- **Source:** 
+resource: agentmemory://memory/mem_mtg12q9r_7ad05fe0475d
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-30T16:32:43.524Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# 20260826_035224_5b8ea1
+
+source: hermes
+session_id: 20260826_035224_5b8ea1
+resource: hermes://session/20260826_035224_5b8ea1
+
+# Conversation
+
+- **Session ID:** `20260826_035224_5b8ea1`
+- **Source:** tui
+- **Model:** /Users/davec/MCP_Local/turboquant-mlx-work/qwen3-14b-tq4
+- **Started:** 2026-08-26T08:52:24Z
+- **Ended:** 2026-08-26T11:40:22Z
+- **Messages:** 79
+- **CWD:** `/Users/davec`
+
+---
+
+### 👤 User — 2026-08-25T19:52:10Z
+
+look for turboquant model in 7B to 10B range and install it like /tq14
+
+### 👤 User — 2026-08-25T19:54:17Z
+
+[System: The active model for this chat has changed to tencent/hy3:free via provider nous. From this point forward, use this runtime metadata when answering questions about what model/provider is active.]
+
+### 👤 User — 2026-08-25T19:54:21Z
+
+continue
+
+### 🤖 Assistant — 2026-08-25T19:55:54Z
+
+<details><summary>Reasoning</summary>
+
+The user wants to find a TurboQuant model in the 7B-10B range and install it like /tq14. Let me understand what /tq14 does:
+
+1. `/tq14` runs `tq_switch.sh 14` which:
+   - Tears down any running TurboQuant serve
+   - Starts the 14B TQ4 model on port :8000 using `turboquant_mlx.serve`
+   - Waits for it to come up
+
+The 14B model is at `/Users/davec/MCP_Local/turboquant-mlx-work/qwen3-14b-tq4`. It was converted with `--streaming` per the memory note: "replacement is Qwen/Qwen3-14B-TQ4 (128K native, YaRN factor 4.0, non-gated Apache 2.0, convert with --streaming on 32GB)".
+
+So I need to:
+1. Find a TurboQuant model in 7B-10B range
+2. Convert it like the 14B was done (with --streaming)
+3. Add it to the config.yaml
+4. Create a `/tq7` or `/tq8` quick command and a switch option
+
+Let me first understand the conversion process. The memory says the 14B was converted. Let me look at how the 14B model was converted - look at the conversion scripts and any notes.
+
+Let me check:
+- The convert.py / convert_streaming.py scripts
+- The existing qwen3-14b-tq4 directory to see what format it's in
+- Whether there's a TurboQuant model already in 7B-10B range on HuggingFace
+
+TurboQuant models: The TurboQuant repo. Let me search. The model cards mention Qwen, Qwen2.5, Qwen3. There's the "Qwen3-14B-TQ4" model. Let me search HuggingFace for turboquant models in 7B-10B.
+
+Actually, TurboQuant is a quantization method from the turboquant-mlx repo. The models are converted from base models using their convert scripts. So "find a TurboQuant model in 7B-10B range" means find a base model (like Qwen3-8B) and convert it to TurboQuant TQ4.
+
+Let me think about what's available. The repo supports Qwen models. Qwen3-8B exists. There may be a Qwen3.5-8B or similar. Let me search HuggingFace.
+
+Let me also look at the conversion scripts to understand the --streaming flag and what base models are supported.
+
+Let me look at:
+1. convert_streaming.py
+2. The qwen3-14b-tq4 directory structure
+3. Search HuggingFace for turboquant 7B-10B
+
+Let me also check the memory note again: "Both in profiles/ollama/config.yaml turboquant provider (:8080=14B, :8083=27B via LaunchAgent)". Wait, the config shows `:8000` for both 14B and 27B, but memory says :8080 and :8083. There's a discrepancy. The config.yaml (current) shows `api: http://127.0.0.1:8000/v1` for turboquant. And tq_switch.sh uses PORT=8000 for both. So the memory note about :8080/:8083 may be stale. The current reality is :8000.
+
+OK so the plan:
+1. Identify a good 7-10B base model and convert to TurboQuant TQ4.
+2. Look at convert_streaming.py to understand the conversion.
+3. The 14B conversion: "convert with --streaming". 
+
+Let me look at the conversion process and what models are available. Let me start by examining the conversion scripts and the existing converted model.
+
+Let me think about which model. The user said "turboquant model in 7B to 10B range". TurboQuant is a KV-cache quantization + speculative method? Actually TurboQuant-MLX is a quantization library for MLX that does "turbo" quantization. The TQ4 means 4-bit. The model cards suggest it works for Qwen3, Qwen2.5, etc.
+
+For 7-10B, good candidates:
+- Qwen3-8B (Apache 2.0, non-gated) — matches the 14B choice nicely
+- Qwen2.5-7B / Qwen2.5-

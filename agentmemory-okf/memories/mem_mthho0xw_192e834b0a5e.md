@@ -1,0 +1,61 @@
+---
+type: Fact
+title: # Robot Spouse: Clarification Needed
+
+source: grok
+session_id: 3d551353-f626-4c8
+description: # Robot Spouse: Clarification Needed
+
+source: grok
+session_id: 3d551353-f626-4c8c-8652-54fb3ed6ff4a
+resource: grok://conversation/3d551353-f626-4c8c-8652-54fb3ed6ff4a
+
+# Conversation
+
+- **Session ID:*
+resource: agentmemory://memory/mem_mthho0xw_192e834b0a5e
+tags: ["okf", "okf-grok", "grok", "grok://conversation/3d551353-f626-4c8c-8652-54fb3ed6ff4a"]
+timestamp: 2026-08-31T17:04:57.196Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Robot Spouse: Clarification Needed
+
+source: grok
+session_id: 3d551353-f626-4c8c-8652-54fb3ed6ff4a
+resource: grok://conversation/3d551353-f626-4c8c-8652-54fb3ed6ff4a
+
+# Conversation
+
+- **Session ID:** `3d551353-f626-4c8c-8652-54fb3ed6ff4a`
+- **Source:** grok
+- **Started:** 2025-03-05T17:54:01Z
+- **Messages:** 4
+
+---
+
+### 👤 User — 2025-03-05T17:54:01Z
+
+I have to give the robot spouse.
+
+---
+
+### 🤖 Assistant — 2025-03-05T17:54:01Z
+
+It sounds like you might be saying "I have to give the robot's spouse," but I’m not quite sure what you mean. Could you clarify what you’re asking or what task you’d like help with? I’m here to assist!
+
+---
+
+### 👤 User — 2025-03-05T17:55:10Z
+
+Ask any of it.
+
+---
+
+### 🤖 Assistant — 2025-03-05T17:55:10Z
+
+I think you might mean "ask anything of it," but I’m still a bit confused. Are you trying to say you want me to ask the robot spouse something, or do you need help with a task related to it? Just give me a little more to work with, and I’ll get right to helping you!
+
+---

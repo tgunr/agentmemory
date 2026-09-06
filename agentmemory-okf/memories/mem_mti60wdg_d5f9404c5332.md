@@ -1,0 +1,110 @@
+---
+type: Fact
+title: # Exploring MCP Minecraft Proxy Servers
+
+source: claude
+session_id: a9005534-f99
+description: # Exploring MCP Minecraft Proxy Servers
+
+source: claude
+session_id: a9005534-f99d-48a2-b307-96f64fcbf369
+resource: claude://conversation/a9005534-f99d-48a2-b307-96f64fcbf369
+
+# Conversation
+
+- **Sessi
+resource: agentmemory://memory/mem_mti60wdg_d5f9404c5332
+tags: ["okf", "okf-claude", "claude", "claude://conversation/a9005534-f99d-48a2-b307-96f64fcbf369"]
+timestamp: 2026-09-01T04:26:48.605Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Exploring MCP Minecraft Proxy Servers
+
+source: claude
+session_id: a9005534-f99d-48a2-b307-96f64fcbf369
+resource: claude://conversation/a9005534-f99d-48a2-b307-96f64fcbf369
+
+# Conversation
+
+- **Session ID:** `a9005534-f99d-48a2-b307-96f64fcbf369`
+- **Source:** claude
+- **Started:** 2025-02-27T00:02:18Z
+- **Messages:** 2
+
+---
+
+### 👤 User — 2025-02-27T00:02:18Z
+
+show some mcp servers
+
+---
+
+### 🤖 Assistant — 2025-02-27T00:02:40Z
+
+I'd be happy to show you some MCP (Minecraft proxy) servers. Let me get a list of available MCP servers for you.
+```
+This block is not supported on your current device yet.
+```
+
+
+
+I don't see any MCP servers currently running in the Docker containers. Let me search for some popular MCP server options that you could install:
+```
+This block is not supported on your current device yet.
+```
+
+
+
+Here are some MCP (Model Control Protocol) servers you can install:
+
+1. **Filesystem Access MCP Server**
+   - Allows access to the filesystem
+   - Version 2025.1.14
+
+2. **Cloudflare API MCP Server**
+   - For interacting with Cloudflare API
+   - Version 0.1.7
+
+3. **GitHub API MCP Server**
+   - For using the GitHub API
+   - Version 2025.1.23
+
+4. **Notion Integration MCP Server**
+   - For Notion integration
+   - Version 0.0.42
+
+5. **Brave Search API MCP Server**
+   - For Brave Search API integration
+   - Version 0.6.2
+
+6. **Sequential Thinking MCP Server**
+   - For sequential thinking and problem solving
+   - Version 0.6.2
+
+7. **Browser Automation MCP Server**
+   - Uses Puppeteer for browser automation
+   - Version 0.6.2
+
+8. **Meta MCP Server**
+   - A MCP server that can install other MCP servers
+   - Version 0.5.0
+
+9. **PostgreSQL MCP Server**
+   - For interacting with PostgreSQL databases
+   - Version 0.6.2
+
+10. **Slack MCP Server**
+    - For interacting with Slack
+    - Version 2025.1.17
+
+Would you like me to install any of these MCP servers for you? Or would you prefer more information about a specific one?
+
+`[tool_use: list-containers]`
+`[tool_result]` All Docker Containers: b02f20c3df8b - onefinity-firmware-sdcard-image-1 - exited 9096e1aa9f89 - onefinity-firmware-image-build-1 - exited 07ebed17634c - onefinity-firmware-avr-build-1 - exited cc5e8e99b255 - onefinity-firmware-bbserial-build-1 - exited bf1ac987f78d - hopeful_visvesvaraya - exited 5c465daff2bb - buildx_buildkit_pensive_aryabhata0 - running  Debug Info: Listing all Docker containers
+`[tool_use: fetch]` https://www.npmjs.com/search?q=mcp%20server
+`[tool_result]` Contents of https://www.npmjs.com/search?q=mcp%20server: MCP server for filesystem access  published version 2025.1.14, a month ago1 dependents licensed under $MIT  MCP server for interacting with Cloudflare API  published version 0.1.7, 3 months ago0 dependents licensed under $MIT  MCP server for using the GitHub API  published version 2025.1.23, a month ago3 dependents licensed under $MIT  MCP s
+
+---

@@ -1,0 +1,110 @@
+---
+type: Fact
+title: # TQ debug
+
+source: hermes
+session_id: 20260826_074003_574fea
+resource: hermes:/
+description: # TQ debug
+
+source: hermes
+session_id: 20260826_074003_574fea
+resource: hermes://session/20260826_074003_574fea
+
+# Conversation
+
+- **Session ID:** `20260826_074003_574fea`
+- **Source:** tui
+- **Model:
+resource: agentmemory://memory/mem_mtg12s7w_68a9fee0f30e
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-08-30T16:32:46.055Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# TQ debug
+
+source: hermes
+session_id: 20260826_074003_574fea
+resource: hermes://session/20260826_074003_574fea
+
+# Conversation
+
+- **Session ID:** `20260826_074003_574fea`
+- **Source:** tui
+- **Model:** hy3-free
+- **Started:** 2026-08-26T12:40:14Z
+- **Ended:** 2026-08-27T16:59:44Z
+- **Messages:** 127
+- **CWD:** `/Users/davec`
+- **Tokens:** 139133 in / 58750 out
+
+---
+
+### 👤 User — 2026-08-26T12:40:14Z
+
+hello
+
+### 👤 User — 2026-08-26T13:00:41Z
+
+[System: The active model for this chat has changed to hy3-free via provider opencode-free. From this point forward, use this runtime metadata when answering questions about what model/provider is active.]
+
+### 👤 User — 2026-08-26T13:01:36Z
+
+the turboquant model 14B is not responding after /tq14 /new , it just hangs forever
+
+### 🤖 Assistant — 2026-08-26T13:02:24Z
+
+<details><summary>Reasoning</summary>
+
+The user says the turboquant model 14B is not responding after `/tq14 /new`, it just hangs forever. Let me recall what I know from memory about this setup.
+
+From memory:
+- Hermes 2-Mac: models on mini.local (32GB). 
+- `/tq14` (14B) = Qwen/Qwen3-14B-TQ4 (128K native, YaRN 4.0) via `tq_switch.sh 14` on :8080. kv-bits REMOVED to fix Metal deadlock in TurboQuantKVCache.
+- CURRENT LIVE STATE (verified 2026-08-26): 14B TQ4 on :8080 via `tq_switch.sh 14` (kv-bits REMOVED to fix Metal deadlock); 27B (serve_vlm) on :8083 via LaunchAgent com.turboquant.serve. Both generating OK.
+- Provider `api:` ports in config must match live ports or /model shows unreachable.
+- Slash cmds /tg14 /tg27 /reset only appear if registered in quick_commands.
+
+So `/tq14` is a slash command that presumably switches the model. `/new` likely starts a new chat. But the model hangs forever.
+
+The connection: Hermes connects to the model server on mini.local:8080. The user is reporting that after issuing `/tq14 /new`, the model just hangs.
+
+Possible causes:
+1. The 14B server on :8080 isn't running anymore (crashed, or the LaunchAgent died).
+2. The provider config port doesn't match.
+3. The Metal deadlock issue (kv-bits) — but that was fixed.
+
+Let me actually diagnose this rather than guess. I should:
+1. Check if the server on :8080 is responding.
+2. Check the tq_switch.sh state.
+3. Check the Hermes provider config.
+
+The user is on the pro.local viewer, but the agent runtime is on mini.local. I'm actually running in the ssh terminal environment here. Let me check where I am.
+
+Actually, the system says terminal backend is ssh, OS Darwin 27.0.0, User davec, Home /Users/davec. Working directory /Users/davec. But the actual machines: pro.local is the viewer (GUI), mini.local (32GB) has models, gateway, MCP, cua-driver.
+
+Wait - but I'm connected via ssh. Where does this ssh go? It says "This ssh environment". Let me think. The memory says Hermes needs `hermes computer-use install` on mini.local. The gateway runs on mini.local from `hermes-agent/.venv/bin/python`.
+
+But `/tq14` slash command - is that a Hermes quick_command? The memory says "Slash cmds /tg14 /tg27 /reset only appear if registered in quick_commands (active profile config.yaml + global)." So `/tq14` would be a quick_command.
+
+Hmm, but the user typed `/tq14 /new`. Actually `/new` might be a separate command. Let me think about what `/tq14` does. It likely switches the active model to the 14B. The 14B server runs on mini.local:8080.
+
+So the hang could be:
+- The 14B server on mini.local:8080 is down or hung.
+- The connection from the gateway (which runs Hermes) to the model server is failing.
+
+Wait, where does Hermes run? The gateway plists run on mini.local. The model server also runs on mini.local (the 32GB machine). So both should be on the same machine.
+
+Let me actually investigate. I should:
+1. Check if the model server on port 8080 is up and responding on mini.local.
+2. Check tq_switch.sh.
+
+But I'm not sure if this ssh session is on pro.local or mini.local. Given the terminal backend info, let me check `hostname` and network.
+
+Actually, let me be systematic. Let me first check where I am, and whether I can reach mini.local:8080.
+
+Let me run a few diagnostic commands in parallel:
+

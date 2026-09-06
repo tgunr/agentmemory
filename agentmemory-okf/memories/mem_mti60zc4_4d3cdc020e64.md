@@ -1,0 +1,119 @@
+---
+type: Fact
+title: # Programming Monitor Portrait Display Options
+
+source: claude
+session_id: b370f
+description: # Programming Monitor Portrait Display Options
+
+source: claude
+session_id: b370fb29-d7f7-431c-9e7e-d540c637baea
+resource: claude://conversation/b370fb29-d7f7-431c-9e7e-d540c637baea
+
+# Conversation
+
+- 
+resource: agentmemory://memory/mem_mti60zc4_4d3cdc020e64
+tags: ["okf", "okf-claude", "claude", "claude://conversation/b370fb29-d7f7-431c-9e7e-d540c637baea"]
+timestamp: 2026-09-01T04:26:52.430Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Programming Monitor Portrait Display Options
+
+source: claude
+session_id: b370fb29-d7f7-431c-9e7e-d540c637baea
+resource: claude://conversation/b370fb29-d7f7-431c-9e7e-d540c637baea
+
+# Conversation
+
+- **Session ID:** `b370fb29-d7f7-431c-9e7e-d540c637baea`
+- **Source:** claude
+- **Started:** 2025-06-03T15:05:37Z
+- **Messages:** 6
+
+---
+
+### 👤 User — 2025-06-03T15:05:37Z
+
+locate a programming monitor capable of portrait display for documents with HDMI or Displayport
+
+---
+
+### 🤖 Assistant — 2025-06-03T15:06:19Z
+
+I'll help you find programming monitors that can rotate to portrait mode and have HDMI or DisplayPort connectivity. Let me search for current options and specifications.
+```
+This block is not supported on your current device yet.
+```
+
+Let me get more detailed information about specific monitor models mentioned in the search results.
+```
+This block is not supported on your current device yet.
+```
+
+Now let me search for other competitive monitors with portrait capability.
+```
+This block is not supported on your current device yet.
+```
+
+Let me get more detailed specifications and pricing information.
+```
+This block is not supported on your current device yet.
+```
+
+Based on my research, I've found several excellent programming monitors capable of portrait display with HDMI or DisplayPort connectivity. Here are the top recommendations:
+
+## **BenQ RD240Q** - **Best for Programming Specifically**
+
+The BenQ RD240Q is a 24.1-inch monitor specifically designed for programmers with a 2560 x 1600 WQXGA resolution and a 16:10 aspect ratio that provides extra vertical space ideal for coding. 
+
+**Key Features:**
+- 24.1" IPS panel with 2560 x 1600 resolution
+- Full 90° rotation to portrait mode with auto-rotation detection
+- Connectivity: HDMI, DisplayPort, and USB-C (90W power delivery)
+- Advanced Coding Modes with dedicated Coding HotKey for optimized programming environments
+- Fully adjustable stand with height, tilt, swivel, and pivot adjustments
+- **Price:** Around $400-500
+
+## **Dell UltraSharp U2723QE** - **Best Overall Value**
+
+The Dell U2723QE is rated as the best vertical monitor by RTINGS and TechRadar, featuring a 27-inch 4K display that easily rotates into portrait mode.
+
+**Key Features:**
+- 27" IPS Black panel with 3840 x 2160 4K resolution
+- Full tilt, swivel, pivot, and vertical extension adjustment capabilities with 90° rotation
+- Connectivity: HDMI 2.0, DisplayPort 1.4, USB-C (90W power delivery)
+- Integrated USB hub with multiple USB-A and USB-C ports, plus Ethernet
+- 2000:1 contrast ratio thanks to IPS Black technology
+- **Price:** Around $430-580
+
+## **ASUS ProArt PA279CRV** - **Best for Creators**
+
+The ASUS ProArt PA279CRV offers professional-level features without the premium price tag, with excellent color space coverage and factory calibration.
+
+**Key Features:**
+- 27" IPS panel with portrait rotation capability
+- USB-C connectivity with 96W power delivery and daisy-chaining support
+- Excellent color space coverage with factory calibration and Calman verification
+- Monitor arm allows easy switching between landscape and portrait modes
+
+## **Other Notable Options:**
+
+**BenQ RD280UA & RD320U:** Larger options in the RD series with 28.2" and 32" screens respectively, featuring 4K+ UHD resolution and 3:2 aspect ratios perfect for coding
+
+**Dell U2725QE:** An upcoming updated version of the U2723QE expected with 120Hz refresh rate
+
+## **Key Considerations:**
+
+1. **Size for Portrait Use:** Monitors in the 24 to 28-inch range offer the best balance between visibility and comfort for portrait orientation, as larger monitors can cause neck strain
+
+2. **Aspect Ratio:** The 16:10 aspect ratio (like the BenQ RD240Q) or 3:2 ratios provide more vertical workspace compared to standard 16:9 monitors
+
+3. **Connectivity:** All recommended monitors include both HDMI and DisplayPort, with most also offering USB-C for single-cable solutions.
+
+For programming specifically, the **BenQ RD240Q** stands out with its coding-optimized features, while the **Dell U2723QE** offers the best overall value with 4K resolution and extensive connectivity options.
+
+`[tool_use: web_search]` programming monitor portrait rotation HDM

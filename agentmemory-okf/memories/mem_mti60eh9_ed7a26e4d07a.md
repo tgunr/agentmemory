@@ -1,0 +1,104 @@
+---
+type: Fact
+title: # Plex Photo Organization Guide
+
+source: claude
+session_id: 6116364e-66cd-446c-9
+description: # Plex Photo Organization Guide
+
+source: claude
+session_id: 6116364e-66cd-446c-9bbe-b0a99afe9ff8
+resource: claude://conversation/6116364e-66cd-446c-9bbe-b0a99afe9ff8
+
+# Conversation
+
+- **Session ID:**
+resource: agentmemory://memory/mem_mti60eh9_ed7a26e4d07a
+tags: ["okf", "okf-claude", "claude", "claude://conversation/6116364e-66cd-446c-9bbe-b0a99afe9ff8"]
+timestamp: 2026-09-01T04:26:25.409Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Plex Photo Organization Guide
+
+source: claude
+session_id: 6116364e-66cd-446c-9bbe-b0a99afe9ff8
+resource: claude://conversation/6116364e-66cd-446c-9bbe-b0a99afe9ff8
+
+# Conversation
+
+- **Session ID:** `6116364e-66cd-446c-9bbe-b0a99afe9ff8`
+- **Source:** claude
+- **Started:** 2025-06-24T20:05:10Z
+- **Messages:** 2
+
+---
+
+### 👤 User — 2025-06-24T20:05:10Z
+
+What is the recommended way to organize photos in plex media server
+
+---
+
+### 🤖 Assistant — 2025-06-24T20:05:30Z
+
+The user is asking about how to organize photos in Plex Media Server. This is a technical question about media server organization, and I should be able to provide a comprehensive answer about Plex's photo organization best practices based on my knowledge. Let me think through the key aspects:
+
+1. Folder structure recommendations
+2. Naming conventions
+3. Metadata considerations
+4. Library setup
+5. Best practices for different photo types
+
+This doesn't require a web search since this is established technical knowledge about how Plex works with photos, and the core organizational principles haven't changed significantly.For organizing photos in Plex Media Server, here are the recommended approaches:
+
+## Folder Structure
+
+**Basic hierarchy:**
+```
+Photos/
+├── Family Events/
+│   ├── 2024 Christmas/
+│   ├── 2024 Summer Vacation/
+│   └── 2023 Wedding/
+├── Travel/
+│   ├── Italy 2024/
+│   ├── Japan 2023/
+│   └── Local Adventures/
+└── Portraits/
+    ├── Family Photos/
+    └── Professional Shoots/
+```
+
+**Date-based organization** (alternative):
+```
+Photos/
+├── 2024/
+│   ├── 01 January/
+│   ├── 02 February/
+│   └── 12 December/
+├── 2023/
+└── 2022/
+```
+
+## Key Best Practices
+
+**File naming:** Use descriptive folder names rather than relying on individual file names. Plex reads folder names as album titles, so "2024 Hawaii Trip" is better than generic date folders.
+
+**Image formats:** Stick to common formats like JPEG, PNG, TIFF, and HEIC. Plex handles these well and can generate thumbnails efficiently.
+
+**Metadata preservation:** Keep EXIF data intact when possible. Plex can use this information for sorting and displaying photos with location and camera details.
+
+**Resolution considerations:** Plex will generate multiple thumbnail sizes, so high-resolution originals are fine. The server handles the optimization automatically.
+
+## Library Setup
+
+Create separate photo libraries for different types of collections if you have large volumes. For example, you might have separate libraries for "Family Photos," "Professional Photography," and "Travel Pictures."
+
+**Avoid deep nesting** beyond 3-4 folder levels, as this can make navigation cumbersome in the Plex interface.
+
+The most important principle is consistency in your naming and organization scheme, whatever approach you choose. This makes browsing and finding photos much easier through Plex's interface.
+
+---

@@ -1,0 +1,97 @@
+---
+type: Fact
+title: # Schools Near Brownsburg, Indiana Starting with S-A-C
+
+source: claude
+session_i
+description: # Schools Near Brownsburg, Indiana Starting with S-A-C
+
+source: claude
+session_id: 0fcc8972-9549-4ac9-80f3-317ce0adb3e1
+resource: claude://conversation/0fcc8972-9549-4ac9-80f3-317ce0adb3e1
+
+# Conversa
+resource: agentmemory://memory/mem_mtj6bpb3_83d19aed97b3
+tags: ["okf", "okf-claude", "claude", "claude://conversation/0fcc8972-9549-4ac9-80f3-317ce0adb3e1"]
+timestamp: 2026-09-01T21:22:58.794Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Schools Near Brownsburg, Indiana Starting with S-A-C
+
+source: claude
+session_id: 0fcc8972-9549-4ac9-80f3-317ce0adb3e1
+resource: claude://conversation/0fcc8972-9549-4ac9-80f3-317ce0adb3e1
+
+# Conversation
+
+- **Session ID:** `0fcc8972-9549-4ac9-80f3-317ce0adb3e1`
+- **Source:** claude
+- **Started:** 2025-05-22T15:42:49Z
+- **Messages:** 6
+
+---
+
+### 👤 User — 2025-05-22T15:42:49Z
+
+Name schools near Brownsburg, Indiana that start with the letters S-A-C.
+
+---
+
+### 🤖 Assistant — 2025-05-22T15:44:22Z
+
+The user is asking for schools near Brownsburg, Indiana that start with the letters S-A-C. I think they mean schools whose names start with those letters sequentially, like "Sacred Heart" or "Saint..." etc. Let me search for schools in the Brownsburg, Indiana area to find ones that start with those letters.
+
+I should search for schools near Brownsburg, Indiana and then look for ones that start with S-A-C.
+```
+This block is not supported on your current device yet.
+```
+
+
+
+I see I found mention of Saint Malachy Catholic School. Let me search more specifically for schools that start with "S", "A", and "C" letters near Brownsburg.
+```
+This block is not supported on your current device yet.
+```
+
+
+
+Let me search for schools starting with "A" and "C" near Brownsburg to see if there are any other schools that fit the S-A-C pattern.
+```
+This block is not supported on your current device yet.
+```
+
+
+```
+This block is not supported on your current device yet.
+```
+
+
+
+Based on my search results, I found one school near Brownsburg, Indiana that starts with the letters "S-A-C":
+
+**Saint Malachy Catholic School** (also known as St. Malachy Catholic School)
+
+This school is located directly in Brownsburg, Indiana. Here are the key details I found:
+
+- **Location**: 7410 N County Road 1000 E, Brownsburg, IN 46112
+- **Type**: Private Catholic school
+- **Grades**: Pre-K through 8th grade
+- **Student Population**: 402 students
+- **Student-Teacher Ratio**: 14 to 1
+- **Tuition**: $5,509 for the highest grade offered
+
+The school is fully accredited by the Indiana State Department of Education and the North Central Association. It offers a comprehensive academic program enriched with art, computer, music, physical education, and Spanish (K-8). Students at St. Malachy have consistently ranked in the upper percentiles of standardized achievement tests.
+
+I found one school that fits the S-A-C pattern with "Cardinal Elementary School" (starting with "C") which is part of the Brownsburg Community School Corporation, but no schools starting specifically with "A" were prominently mentioned in my search results for the Brownsburg area.
+
+`[tool_use: web_search]` schools near Brownsburg Indiana starting with S A C
+`[tool_result]` New to Brownsburg Schools? Your enrollment starts here.  ... BCSC families and students can download the STOPit app anytime for helpful resources and to report a concern - anytime! ... As the fastest growing school corporation in the state, BCSC continues to address the growth while also lowering the school tax rate for eleven consecutive years. BHS is in the midst of a renovation of the Senior Ac
+`[tool_use: web_search]` "Saint Malachy" Catholic School Brownsburg Indiana
+`[tool_result]` Malachy Catholic School is a highly ... in BROWNSBURG, IN. It has 402 students in grades PK, K-8 with a student-teacher ratio of 14 to 1. Tuition is $5,509 for the highest grade offered. Compare St. Malachy Catholic School to Other Schools ... Student-Teacher Ratio may not be indicative of class size. It is calculated using the reported number of students and full-time equivalent teachers. ... Tui
+`[tool_use: web_search]` schools starting with A near Brownsburg Indiana
+`[tool_result]` View School Calendars, School Hours and Delay Schedules · New to Brownsburg Schools? Your enrollment starts here  New to Brownsburg Schools? Your enrollment starts here.  ... BCSC families and students can download the STOPit app anytime for helpful resources and to report a concern - anytime! ... As the fastest growing school corporation in the state, BCSC continues to address the growth while al
+`[tool_use: web_search]` schools starting with C near Brownsburg Indiana
+`[t

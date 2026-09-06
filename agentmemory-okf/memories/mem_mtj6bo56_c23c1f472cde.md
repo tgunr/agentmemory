@@ -1,0 +1,126 @@
+---
+type: Fact
+title: # Ball Screw 1610 vs 1616 Identification
+
+source: claude
+session_id: 09eefe60-27
+description: # Ball Screw 1610 vs 1616 Identification
+
+source: claude
+session_id: 09eefe60-27fd-4481-a39c-28754dd1ab28
+resource: claude://conversation/09eefe60-27fd-4481-a39c-28754dd1ab28
+
+# Conversation
+
+- **Sess
+resource: agentmemory://memory/mem_mtj6bo56_c23c1f472cde
+tags: ["okf", "okf-claude", "claude", "claude://conversation/09eefe60-27fd-4481-a39c-28754dd1ab28"]
+timestamp: 2026-09-01T21:22:57.294Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Ball Screw 1610 vs 1616 Identification
+
+source: claude
+session_id: 09eefe60-27fd-4481-a39c-28754dd1ab28
+resource: claude://conversation/09eefe60-27fd-4481-a39c-28754dd1ab28
+
+# Conversation
+
+- **Session ID:** `09eefe60-27fd-4481-a39c-28754dd1ab28`
+- **Source:** claude
+- **Started:** 2025-06-10T15:31:35Z
+- **Messages:** 6
+
+---
+
+### 👤 User — 2025-06-10T15:31:35Z
+
+How to tell difference between 1610 and 1616 ball screw?
+
+---
+
+### 🤖 Assistant — 2025-06-10T15:31:45Z
+
+The main differences between 1610 and 1616 ball screws relate to their specifications:
+
+**Lead/Pitch:**
+- 1610: 10mm lead (10mm travel per revolution)
+- 1616: 16mm lead (16mm travel per revolution)
+
+**Speed vs Precision Trade-off:**
+- 1610: Higher precision, slower movement, better for applications requiring fine positioning
+- 1616: Faster movement, slightly less precision, better for applications needing quicker travel
+
+**Physical Identification:**
+- Both typically have 16mm diameter shafts
+- The lead difference means different thread pitches are visible on the screw shaft
+- 1616 will have wider-spaced threads compared to 1610
+- Part numbers or markings on the screw or nut assembly should indicate the specification
+
+**Performance Characteristics:**
+- 1610: Higher resolution per step, more backdrive resistance
+- 1616: Faster positioning, requires less rotational speed for same linear speed
+
+**Applications:**
+- 1610: 3D printers, CNC machines where precision is critical
+- 1616: Larger CNC machines, applications where speed is more important than ultra-fine resolution
+
+To definitively identify which you have, check for part markings, measure the thread pitch with calipers, or test the travel distance per revolution if the screw is already installed in a system.
+
+---
+
+### 👤 User — 2025-06-10T15:51:22Z
+
+what ball screw is used in the onefinity x50?
+
+---
+
+### 🤖 Assistant — 2025-06-10T15:51:34Z
+
+I'll search for information about the ball screw specifications used in the Onefinity X50 CNC machine.
+```
+This block is not supported on your current device yet.
+```
+
+Based on the search results, the Onefinity X50 uses a **1616 ball screw** on the X-axis.
+
+The X-50 features a 1616 Ball Screw that delivers 60% more speed compared to the 1610 version used in the X-35 series. 
+
+Key specifications for the Onefinity X50 ball screw:
+- **X-axis**: 1616 ball screw (16mm diameter, 16mm lead/pitch)
+- **Y-axes**: The Y-rails use 35mm hollow linear motion shafts but the search results don't specify if they use 1610 or 1616 ball screws
+- **Benefits**: The 1616 ball screw delivers 60% more speed than the 1610 version
+
+Onefinity offers replacement ball screws and notes there are two different versions (1610 and 1616) with different thread length and pitch, with the 1616 version specifically intended for the X-rail.
+
+The 1616 specification means 16mm travel per revolution, making it faster than the 1610 (10mm per revolution) used in their X-35 series machines.
+
+`[tool_use: web_search]` Onefinity X50 ball screw specifications
+`[tool_result]` Is there a list of common bolt sizes for the X-50 series? I just see the X-35 series in a post from 2021. Specifically, I need to replace a screw holding on the X Gantry Ball Nut. The head is starting to strip and I’d like to buy a replacement bolt before extracting this bolt.  Is there a list of common bolt sizes for the X-50 series? I just see the X-35 series in a post from 2021. Specifically, I
+
+---
+
+### 👤 User — 2025-06-10T15:57:15Z
+
+If my machine has a 16mm ball screw and I have set the motor setting to 16mm/rev tell it to move 10 millimeters but it has a 1610 ball screw, how far will it move?
+
+---
+
+### 🤖 Assistant — 2025-06-10T15:57:22Z
+
+If your machine actually has a 1610 ball screw (10mm lead) but your motor settings are configured for 16mm/rev, and you command it to move 10mm, it will move **6.25mm**.
+
+Here's the calculation:
+
+**What happens:**
+- Your controller calculates: "To move 10mm at 16mm/rev, I need 10÷16 = 0.625 revolutions"
+- The motor turns 0.625 revolutions
+- But the actual 1610 ball screw moves: 0.625 × 10mm = **6.25mm**
+
+**The math:**
+- Commanded distance: 10mm
+- Controller setting: 16mm/rev
+- Actual ball screw

@@ -1,0 +1,99 @@
+---
+type: Fact
+title: # Location of MurmurType Models
+
+source: hermes
+session_id: claude__04fd4e4b-ddb
+description: # Location of MurmurType Models
+
+source: hermes
+session_id: claude__04fd4e4b-ddb2-476f-b08a-97fc50454acf
+resource: hermes://session/claude__04fd4e4b-ddb2-476f-b08a-97fc50454acf
+
+# Conversation
+
+- **Se
+resource: agentmemory://memory/mem_mtj617zw_35be737df6c0
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-09-01T21:14:49.783Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Location of MurmurType Models
+
+source: hermes
+session_id: claude__04fd4e4b-ddb2-476f-b08a-97fc50454acf
+resource: hermes://session/claude__04fd4e4b-ddb2-476f-b08a-97fc50454acf
+
+# Conversation
+
+- **Session ID:** `claude__04fd4e4b-ddb2-476f-b08a-97fc50454acf`
+- **Source:** claude
+- **Model:** None
+- **Started:** 2025-05-27T15:51:00Z
+- **Ended:** 2025-05-27T16:49:56Z
+- **Messages:** 14
+- **CWD:** `/Users/davec`
+
+---
+
+### 👤 User — 2025-05-27T15:51:01Z
+
+Where does the Mac OS application MurmurType keep its models stored?
+
+### 🤖 Assistant — 2025-05-27T15:51:29Z
+
+The user is asking about a specific macOS application called "MurmurType" and where it stores its models. I don't have specific information about this application in my knowledge base. Let me think about what this might be:
+
+1. The name "MurmurType" suggests it might be related to typing, speech-to-text, or some kind of text processing application
+2. The mention of "models" suggests it might use machine learning models, possibly for speech recognition, text prediction, or similar functionality
+3. Since it's a macOS application, the models would likely be stored in standard macOS application data locations
+
+However, I don't have specific knowledge about this particular application. I should search for information about it to provide an accurate answer.I don't have specific information about MurmurType in my knowledge base. Let me search for details about this macOS application and where it stores its models.
+```
+This block is not supported on your current device yet.
+```
+
+I can see from the search results that they are all about Ollama (a tool for running local AI models) rather than "MurmurType." The search results don't seem to be relevant to the specific application the user asked about. Let me try a more specific search for "MurmurType" to see if I can find information about this particular application.Let me search more specifically for the MurmurType application:
+```
+This block is not supported on your current device yet.
+```
+
+Now I have found information about MurmurType! From the search results, I can see that:
+
+1. MurmurType is a speech-to-text transcription app for macOS
+2. It uses OpenAI's Whisper technology
+3. According to the Setapp description, it stores data locally on your device: "Your data — API keys, transcriptions, and audio files — is stored locally on your device"
+4. It's developed by Sagoskattis (as mentioned in the app info result)
+
+However, I still don't have the specific information about where exactly on macOS the models are stored. Let me search for more specific information about MurmurType's file storage locations.Let me search for more specific information about MurmurType's storage locations:
+```
+This block is not supported on your current device yet.
+```
+
+Now I have good information about MurmurType and general macOS storage patterns. Based on what I've found:
+
+1. MurmurType is a speech-to-text app that uses OpenAI's Whisper technology
+2. It stores data locally on the device (API keys, transcriptions, and audio files)
+3. The typical location for macOS app data is in the `~/Library/Application Support` directory
+4. Apps typically create a subfolder named after themselves or using their bundle identifier
+
+Since MurmurType is developed by Sagoskattis and stores its data locally, the models would likely be stored in one of the standard macOS application data directories. Let me provide this information to the user.Based on my research, MurmurType is a speech-to-text transcription app for macOS that uses OpenAI's Whisper technology. The app stores its data locally on your device, including API keys, transcriptions, and audio files.
+
+For MurmurType's models and other application data, they would typically be stored in the standard macOS application data location:
+
+**`~/Library/Application Support/`**
+
+Within this directory, MurmurType likely creates its own subfolder. The exact folder name could be:
+- `MurmurType`
+- `com.sagoskattis.murmurtype` (using the app's bundle identifier)
+- Or a similar variation
+
+To access this location:
+
+1. **Using Finder:**
+   - Open Finder
+   - Press `Cmd + Shift + G` (Go to Folder)
+   - Type: 

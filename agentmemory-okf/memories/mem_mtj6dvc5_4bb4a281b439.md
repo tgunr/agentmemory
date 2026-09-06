@@ -1,0 +1,34 @@
+---
+type: Fact
+title: # Claude project: Not
+
+source: claude
+session_id: 3cf3fee0-e4a9-439b-9a9f-10cf01
+description: # Claude project: Not
+
+source: claude
+session_id: 3cf3fee0-e4a9-439b-9a9f-10cf01ed5006
+resource: claude://project/3cf3fee0-e4a9-439b-9a9f-10cf01ed5006
+
+# Claude project: Not
+
+- **Project ID:** `3cf3fe
+resource: agentmemory://memory/mem_mtj6dvc5_4bb4a281b439
+tags: ["okf", "okf-claude", "claude", "claude://project/3cf3fee0-e4a9-439b-9a9f-10cf01ed5006"]
+timestamp: 2026-09-01T21:24:39.932Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Claude project: Not
+
+source: claude
+session_id: 3cf3fee0-e4a9-439b-9a9f-10cf01ed5006
+resource: claude://project/3cf3fee0-e4a9-439b-9a9f-10cf01ed5006
+
+# Claude project: Not
+
+- **Project ID:** `3cf3fee0-e4a9-439b-9a9f-10cf01ed5006`
+- **Created:** 2025-02-15T11:47:13Z
+- **Description:** Goal is to create a female personality Chatbot that can interact with the user. the Chatbot can recall previous conversations and respond to current message using the previous messages as context and to create topics for new  conversations.

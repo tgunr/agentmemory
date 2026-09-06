@@ -1,0 +1,116 @@
+---
+type: Fact
+title: # Resolving Zed Editor's Language Model Completion Error
+
+source: hermes
+session
+description: # Resolving Zed Editor's Language Model Completion Error
+
+source: hermes
+session_id: claude__ff242905-4050-437a-88e7-d1dc5056e2d7
+resource: hermes://session/claude__ff242905-4050-437a-88e7-d1dc5056e2d
+resource: agentmemory://memory/mem_mtj63j9u_53e7eafd7040
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-09-01T21:16:37.669Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Resolving Zed Editor's Language Model Completion Error
+
+source: hermes
+session_id: claude__ff242905-4050-437a-88e7-d1dc5056e2d7
+resource: hermes://session/claude__ff242905-4050-437a-88e7-d1dc5056e2d7
+
+# Conversation
+
+- **Session ID:** `claude__ff242905-4050-437a-88e7-d1dc5056e2d7`
+- **Source:** claude
+- **Model:** None
+- **Started:** 2025-05-28T13:41:48Z
+- **Ended:** 2025-05-28T13:46:04Z
+- **Messages:** 4
+- **CWD:** `/Users/davec`
+
+---
+
+### 👤 User — 2025-05-28T13:41:49Z
+
+How to resolve this zed error : Error interacting with language model
+cloud language model completion failed after 3 retries with status 500 Internal Server Error: INTERNAL SERVER ERROR
+
+### 🤖 Assistant — 2025-05-28T13:42:20Z
+
+This Zed editor error indicates that the AI language model service is experiencing server issues. Here are several ways to resolve it:
+
+## Immediate fixes to try:
+
+**Check your internet connection** - Ensure you have a stable connection and can access other online services.
+
+**Wait and retry** - Server 500 errors are often temporary. Wait a few minutes and try your request again.
+
+**Restart Zed** - Close and reopen the editor to reset the connection to the language model service.
+
+## Configuration fixes:
+
+**Switch language models** - If you're using one model (like Claude or GPT), try switching to another in Zed's settings:
+- Open Settings (Cmd/Ctrl + ,)
+- Look for AI/Assistant settings
+- Try a different model provider
+
+**Check API keys** - If you're using your own API keys:
+- Verify they're correctly entered in settings
+- Ensure the keys haven't expired
+- Check if you have remaining credits/quota
+
+**Update Zed** - Make sure you're running the latest version, as connection issues are often fixed in updates.
+
+## If the problem persists:
+
+**Check Zed's status page** - Look for any announced service outages on Zed's website or GitHub.
+
+**Try without AI features** - Temporarily disable the language model integration to continue coding while the issue resolves.
+
+**Contact support** - If none of these work, report the issue on Zed's GitHub repository or support channels.
+
+The 500 error specifically means there's an issue on the server side rather than with your setup, so it's likely temporary and will resolve on its own.
+
+### 👤 User — 2025-05-28T13:45:50Z
+
+Which Olam model support tools to use MCP servers?
+
+### 🤖 Assistant — 2025-05-28T13:46:04Z
+
+I believe you're asking about **Ollama** models and MCP (Model Context Protocol) server support.
+
+Currently, **Ollama models do not natively support MCP servers**. Here's the situation:
+
+## Current MCP Support:
+- **Claude (Anthropic)** - Full native MCP support
+- **OpenAI models** - Through MCP client implementations
+- **Other major API providers** - Various levels of support through integrations
+
+## Ollama Limitations:
+- Ollama focuses on running local models efficiently
+- No built-in MCP protocol support
+- Models run locally without the integration framework needed for MCP
+
+## Potential Workarounds:
+
+**Use MCP-compatible clients** that can work with Ollama:
+- Some community projects are working on bridging Ollama with MCP
+- Custom implementations that translate between MCP and Ollama's API
+
+**Hybrid approach**:
+- Use Claude or OpenAI for MCP-enabled tasks
+- Use Ollama for general local inference
+- Switch between them based on whether you need tool access
+
+**Wait for development**:
+- The MCP ecosystem is rapidly evolving
+- Community solutions for Ollama integration may emerge
+
+If you specifically need tool usage and MCP server integration, you'll currently need to use Claude or OpenAI models rather than local Ollama models. The trade-off is between local privacy/control (Ollama) versus advanced tool integration capabilities (cloud models with MCP).
+
+Are you looking to use MCP for a specific use case? I might be able to suggest alternative approaches.

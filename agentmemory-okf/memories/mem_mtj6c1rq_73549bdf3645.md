@@ -1,0 +1,98 @@
+---
+type: Fact
+title: # Removing Unwanted UCO2 Audio Device
+
+source: claude
+session_id: 34eb66fd-cd3e-
+description: # Removing Unwanted UCO2 Audio Device
+
+source: claude
+session_id: 34eb66fd-cd3e-4d55-8cc9-11e1bc3083aa
+resource: claude://conversation/34eb66fd-cd3e-4d55-8cc9-11e1bc3083aa
+
+# Conversation
+
+- **Session
+resource: agentmemory://memory/mem_mtj6c1rq_73549bdf3645
+tags: ["okf", "okf-claude", "claude", "claude://conversation/34eb66fd-cd3e-4d55-8cc9-11e1bc3083aa"]
+timestamp: 2026-09-01T21:23:14.948Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Removing Unwanted UCO2 Audio Device
+
+source: claude
+session_id: 34eb66fd-cd3e-4d55-8cc9-11e1bc3083aa
+resource: claude://conversation/34eb66fd-cd3e-4d55-8cc9-11e1bc3083aa
+
+# Conversation
+
+- **Session ID:** `34eb66fd-cd3e-4d55-8cc9-11e1bc3083aa`
+- **Source:** claude
+- **Started:** 2025-08-06T14:07:11Z
+- **Messages:** 12
+- **Summary:** **Conversation Overview**
+
+The user encountered an issue on their Macintosh where a sound device called "UCO2" was constantly being set as the default microphone device. Through troubleshooting, they identified that this audio device was part of their Thunderbolt dock, specifically a GenesysLogic USB 3.1 hub (USB Vendor ID: 0x05e3, USB Product ID: 0x0626). Claude initially suggested several methods to disable the device through Audio MIDI Setup and System Preferences, but the user found no option to turn off the device directly. When the user requested a solution using AppleScript or Shortcuts to automatically switch back to their preferred audio device, Claude provided both AppleScript and shell script solutions using the SwitchAudioSource command-line tool. The user then asked about using user defaults to solve the problem, but Claude explained that macOS doesn't expose audio device preferences through the defaults system in a way that would prevent automatic USB audio device detection. Finally, the user requested a LaunchAgent solution for background monitoring and automatic switching. Claude created a comprehensive LaunchAgent setup including a monitoring shell script that checks for UCO2 every 5 seconds and switches back to preferred devices, a proper plist file for the LaunchAgent, and an installer script to automate the setup process. The solution includes logging capabilities, automatic startup on login, and management commands for controlling the service.
+
+---
+
+### 👤 User — 2025-08-06T14:07:12Z
+
+on my Macintosh running Mac OS, I have a sound device called UCO2 that's constantly being set as the microphone device. How do I get rid of this sound device? I am not seeing defied it anywhere.
+
+---
+
+### 🤖 Assistant — 2025-08-06T14:07:27Z
+
+The UCO2 device sounds like it could be related to a USB audio interface or virtual audio driver that's being automatically recognized by macOS. Here are several ways to identify and remove it:
+
+## First, identify what UCO2 is:
+
+1. **Check Audio MIDI Setup:**
+   - Open Applications → Utilities → Audio MIDI Setup
+   - Look for the UCO2 device in the list
+   - Right-click on it to see if there's a "Remove Device" option
+
+2. **Check System Information:**
+   - Hold Option and click the Apple menu → System Information
+   - Go to Hardware → USB or Hardware → Audio
+   - Look for any devices that might correspond to UCO2
+
+## Common removal methods:
+
+3. **Check for related software:**
+   - Look in Applications for any audio software you may have installed
+   - Check Login Items in System Preferences → Users & Groups → Login Items
+   - Look for any audio-related startup items
+
+4. **Remove kernel extensions (if applicable):**
+   - Open Terminal and run: `kextstat | grep -i audio`
+   - Look for any third-party audio drivers
+   - If you find suspicious ones, you may need to remove them from `/Library/Extensions/` or `/System/Library/Extensions/`
+
+5. **Check for virtual audio drivers:**
+   - UCO2 might be from software like Loopback, SoundFlower, or similar virtual audio tools
+   - If you have any of these installed, uninstall them properly using their uninstallers
+
+6. **Reset audio preferences:**
+   - Delete `/Library/Preferences/Audio/` folder contents (requires admin password)
+   - Restart your Mac
+
+Have you installed any audio recording software, virtual instruments, or audio interfaces recently? That might give us a clue about what's creating this UCO2 device.
+
+---
+
+### 👤 User — 2025-08-06T14:11:32Z
+
+It looks like it might be the sound device on my Thunderbolt dark. How do I disable it?
+
+---
+
+### 🤖 Assistant — 2025-08-06T14:11:48Z
+
+Ah, that makes perfect sense! Many Thunderbolt docks have built-in audio interfaces that macOS automatically detects. Here are several ways to disable the audio portion of your Thunderbolt dock:
+
+## Option 1: D

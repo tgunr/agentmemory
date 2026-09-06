@@ -1,0 +1,84 @@
+---
+type: Fact
+title: # MCP Server Access
+
+source: claude
+session_id: d92d0118-6dc1-4278-b6e8-eed1f856
+description: # MCP Server Access
+
+source: claude
+session_id: d92d0118-6dc1-4278-b6e8-eed1f85696ab
+resource: claude://conversation/d92d0118-6dc1-4278-b6e8-eed1f85696ab
+
+# Conversation
+
+- **Session ID:** `d92d0118-6
+resource: agentmemory://memory/mem_mtj6dgpw_d8145063403c
+tags: ["okf", "okf-claude", "claude", "claude://conversation/d92d0118-6dc1-4278-b6e8-eed1f85696ab"]
+timestamp: 2026-09-01T21:24:20.898Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# MCP Server Access
+
+source: claude
+session_id: d92d0118-6dc1-4278-b6e8-eed1f85696ab
+resource: claude://conversation/d92d0118-6dc1-4278-b6e8-eed1f85696ab
+
+# Conversation
+
+- **Session ID:** `d92d0118-6dc1-4278-b6e8-eed1f85696ab`
+- **Source:** claude
+- **Started:** 2025-07-07T17:54:45Z
+- **Messages:** 10
+- **Summary:** **Conversation Overview**
+
+The user inquired about Claude's access to MCP (Model Context Protocol) servers, seeking to understand the available integrations and capabilities. Claude identified several accessible servers including Atlassian (Confluence and Jira), Google Workspace (Gmail, Calendar, Drive), web tools for search and fetching, analysis tools for JavaScript execution, and an artifacts system for creating documents and applications. The conversation then focused specifically on which servers are bridged through the MCP bridge system versus running locally.
+
+The user requested a comprehensive list of bridged servers with descriptions, leading to an exploration of the bridge infrastructure's capabilities. Through bridge statistics queries, Claude discovered that while 225 total MCP servers and 88 OpenAPI servers are catalogued in the system, only 2 servers are currently running locally with 5 tools available. The user questioned the source of the "225 servers" figure, prompting Claude to clarify that this information came directly from the bridge_stats function response. A bridge discovery scan revealed only 17 actively discoverable MCP servers and 0 OpenAPI servers, highlighting the distinction between the total server catalog, actively discoverable servers, and currently running servers providing tools.
+
+**Tool Knowledge**
+
+The MCP bridge remote system provides two key functions for infrastructure inspection. The bridge_stats function returns comprehensive statistics showing total servers (225 MCP, 88 OpenAPI), currently running servers (2), and available tools (5), along with endpoint counts (2,175 OpenAPI endpoints). The bridge_discover function performs active scanning and found only 17 MCP servers, significantly fewer than the catalog total, indicating it discovers actively reachable servers rather than the full registry. This reveals a three-tier architecture: the complete server catalog maintained by the bridge system, the subset of servers that respond to active discovery scans, and the minimal number actually running and providing accessible tools. The discovery function appears to use different mechanisms for MCP versus OpenAPI servers, as it found zero OpenAPI servers despite the stats showing 88 online. These bridge functions provide limited introspection capabilities and don't return detailed server inventories or descriptions of available services.
+
+---
+
+### 👤 User — 2025-07-07T17:54:46Z
+
+what mcp servers do you have access to?
+
+---
+
+### 🤖 Assistant — 2025-07-07T17:54:59Z
+
+The user is asking about MCP (Model Context Protocol) servers that I have access to. Looking at the functions available to me, I can see there are several tools/servers available:
+
+1. Atlassian tools - for Confluence and Jira
+2. Artifacts tool
+3. Analysis tool (REPL)
+4. Web search and web fetch
+5. Google Drive search and fetch
+6. Google Calendar tools
+7. Gmail tools
+8. There's also a bridge stats and bridge discover function for MCP bridge remote
+
+Let me give them a comprehensive overview of what I have access to.I have access to several MCP servers that provide different capabilities:
+
+**Atlassian Server** - Full integration with Atlassian products:
+- Confluence: search, read pages, create/update pages and comments, manage spaces
+- Jira: view/create/edit issues, search with JQL, manage transitions, add comments
+
+**Google Workspace Server** - Integration with Google services:
+- Gmail: search messages, read threads, access profile
+- Google Calendar: list events, find free time, fetch specific events
+- Google Drive: search files, fetch document contents
+
+**Web Tools Server** - Internet access:
+- Web search capabilities
+- Web page fetching for specific URLs
+
+**Analysis Tool** - JavaScript execution environment for:
+- Complex calculations and data analysis
+- File processing (CSV

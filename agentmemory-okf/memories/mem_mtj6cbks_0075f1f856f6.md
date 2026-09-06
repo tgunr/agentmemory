@@ -1,0 +1,146 @@
+---
+type: Fact
+title: # Checking MCP Server Installation
+
+source: claude
+session_id: 5927b886-9039-443
+description: # Checking MCP Server Installation
+
+source: claude
+session_id: 5927b886-9039-443b-9203-6ac98b4148db
+resource: claude://conversation/5927b886-9039-443b-9203-6ac98b4148db
+
+# Conversation
+
+- **Session ID
+resource: agentmemory://memory/mem_mtj6cbks_0075f1f856f6
+tags: ["okf", "okf-claude", "claude", "claude://conversation/5927b886-9039-443b-9203-6ac98b4148db"]
+timestamp: 2026-09-01T21:23:27.655Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Checking MCP Server Installation
+
+source: claude
+session_id: 5927b886-9039-443b-9203-6ac98b4148db
+resource: claude://conversation/5927b886-9039-443b-9203-6ac98b4148db
+
+# Conversation
+
+- **Session ID:** `5927b886-9039-443b-9203-6ac98b4148db`
+- **Source:** claude
+- **Started:** 2025-02-27T00:11:00Z
+- **Messages:** 10
+
+---
+
+### 👤 User — 2025-02-27T00:11:01Z
+
+which mcp servers have been installed
+
+---
+
+### 🤖 Assistant — 2025-02-27T00:11:11Z
+
+Let me check which MCP servers are currently installed on your system.
+```
+This block is not supported on your current device yet.
+```
+
+
+
+I can see several Docker containers in your system, but it appears that no MCP servers have been installed yet. 
+
+The containers I see are mostly related to Onefinity firmware builds and a few other containers:
+- onefinity-firmware-sdcard-image-1 (exited)
+- onefinity-firmware-image-build-1 (exited)
+- onefinity-firmware-avr-build-1 (exited)
+- onefinity-firmware-bbserial-build-1 (exited)
+- hopeful_visvesvaraya (exited)
+- buildx_buildkit_pensive_aryabhata0 (running)
+
+Would you like me to help you install a specific MCP server?
+
+`[tool_use: list-containers]`
+`[tool_result]` All Docker Containers: b02f20c3df8b - onefinity-firmware-sdcard-image-1 - exited 9096e1aa9f89 - onefinity-firmware-image-build-1 - exited 07ebed17634c - onefinity-firmware-avr-build-1 - exited cc5e8e99b255 - onefinity-firmware-bbserial-build-1 - exited bf1ac987f78d - hopeful_visvesvaraya - exited 5c465daff2bb - buildx_buildkit_pensive_aryabhata0 - running  Debug Info: Listing all Docker containers
+
+---
+
+### 👤 User — 2025-02-27T00:11:30Z
+
+yes, *mcp-installer*
+
+---
+
+### 🤖 Assistant — 2025-02-27T00:11:39Z
+
+I'll help you install the mcp-installer server. Let me do that for you now:
+```
+This block is not supported on your current device yet.
+```
+
+
+
+Great! The mcp-installer has been successfully installed via uvx. 
+
+To use it, you'll need to restart the app. Once you've restarted, the mcp-installer server will be available for use.
+
+`[tool_use: install_repo_mcp_server]`
+`[tool_result]` Installed MCP server via uvx successfully! Tell the user to restart the app
+
+---
+
+### 👤 User — 2025-02-27T00:12:38Z
+
+which mcp servers have been installed
+
+---
+
+### 🤖 Assistant — 2025-02-27T00:12:50Z
+
+I'll check which MCP (Management Control Panel) servers have been installed. Let me run a command to list the Docker containers, which should show us what's currently running.
+```
+This block is not supported on your current device yet.
+```
+
+
+
+Based on the list of Docker containers, I don't see any specific MCP servers currently installed or running. Here's what I do see:
+
+1. Several containers related to "onefinity-firmware" that appear to be build containers, but they're currently in an "exited" state:
+   - onefinity-firmware-sdcard-image-1
+   - onefinity-firmware-image-build-1
+   - onefinity-firmware-avr-build-1
+   - onefinity-firmware-bbserial-build-1
+
+2. Two other containers:
+   - hopeful_visvesvaraya (exited)
+   - buildx_buildkit_pensive_aryabhata0 (running)
+
+None of these appear to be MCP servers specifically. Would you like me to help you install an MCP server, or is there a specific server you're looking for that might be running under a different name?
+
+`[tool_use: list-containers]`
+`[tool_result]` All Docker Containers: b02f20c3df8b - onefinity-firmware-sdcard-image-1 - exited 9096e1aa9f89 - onefinity-firmware-image-build-1 - exited 07ebed17634c - onefinity-firmware-avr-build-1 - exited cc5e8e99b255 - onefinity-firmware-bbserial-build-1 - exited bf1ac987f78d - hopeful_visvesvaraya - exited 5c465daff2bb - buildx_buildkit_pensive_aryabhata0 - running  Debug Info: Listing all Docker containers
+
+---
+
+### 👤 User — 2025-02-27T00:13:30Z
+
+getting errors
+
+_Attachments: CleanShot 20250226 at 18.13.012x.png_
+
+---
+
+### 🤖 Assistant — 2025-02-27T00:16:42Z
+
+I notice you're getting a couple of error messages in your interface:
+
+1. "Could not attach to MCP server mcp-installer"
+2. "Could not attach to MCP server filesystem-mcp"
+
+These errors indicate that the system is trying to connect to MCP servers that should be running but aren't available. Let's try to install these MCP servers.
+
+I'll 
