@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-09-08T08:00:51.204Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-09-09T08:01:16.989Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -1954,7 +1954,64 @@ _Exported 2026-09-08T08:00:51.204Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session cron_4146a8cc1cca_20260908_013015](sessions/cron-4146a8cc1cca-20260908-013015.md) — 4 obs
 * [Session cron_4146a8cc1cca_20260908_020019](sessions/cron-4146a8cc1cca-20260908-020019.md) — 10 obs
 * [Session cron_4146a8cc1cca_20260908_023024](sessions/cron-4146a8cc1cca-20260908-023024.md) — 5 obs
-* [Session cron_4146a8cc1cca_20260908_030030](sessions/cron-4146a8cc1cca-20260908-030030.md) — 3 obs
+* [Session cron_4146a8cc1cca_20260908_030030](sessions/cron-4146a8cc1cca-20260908-030030.md) — 11 obs
+* [Session cron_4b310d35c4fd_20260908_030029](sessions/cron-4b310d35c4fd-20260908-030029.md) — 1 obs
+* [Session cron_9dfd463ca7d0_20260908_030029](sessions/cron-9dfd463ca7d0-20260908-030029.md) — 1 obs
+* [Session cron_df2ba22a5941_20260908_031732](sessions/cron-df2ba22a5941-20260908-031732.md) — 2 obs
+* [Session cron_4146a8cc1cca_20260908_033034](sessions/cron-4146a8cc1cca-20260908-033034.md) — 9 obs
+* [Session cron_4146a8cc1cca_20260908_040039](sessions/cron-4146a8cc1cca-20260908-040039.md) — 10 obs
+* [Session cron_4146a8cc1cca_20260908_043044](sessions/cron-4146a8cc1cca-20260908-043044.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260908_050049](sessions/cron-4146a8cc1cca-20260908-050049.md) — 8 obs
+* [Session cron_4146a8cc1cca_20260908_053054](sessions/cron-4146a8cc1cca-20260908-053054.md) — 11 obs
+* [Session cron_4146a8cc1cca_20260908_060058](sessions/cron-4146a8cc1cca-20260908-060058.md) — 15 obs
+* [Session cron_4146a8cc1cca_20260908_063003](sessions/cron-4146a8cc1cca-20260908-063003.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260908_070008](sessions/cron-4146a8cc1cca-20260908-070008.md) — 19 obs
+* [Session cron_4146a8cc1cca_20260908_073011](sessions/cron-4146a8cc1cca-20260908-073011.md) — 18 obs
+* [Session cron_a9b330e497a5_20260908_080015](sessions/cron-a9b330e497a5-20260908-080015.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_080015](sessions/cron-4146a8cc1cca-20260908-080015.md) — 7 obs
+* [Session 20260908_080657_4397c7](sessions/20260908-080657-4397c7.md) — 13 obs
+* [Session cron_4146a8cc1cca_20260908_083019](sessions/cron-4146a8cc1cca-20260908-083019.md) — 16 obs
+* [Session cron_d83aeb5238b5_20260908_090025](sessions/cron-d83aeb5238b5-20260908-090025.md) — 3 obs
+* [Session cron_4146a8cc1cca_20260908_090026](sessions/cron-4146a8cc1cca-20260908-090026.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260908_093027](sessions/cron-4146a8cc1cca-20260908-093027.md) — 8 obs
+* [Session cron_4146a8cc1cca_20260908_100030](sessions/cron-4146a8cc1cca-20260908-100030.md) — 6 obs
+* [Session 20260908_100109_7c2af9](sessions/20260908-100109-7c2af9.md) — 38 obs
+* [Session cron_4146a8cc1cca_20260908_103032](sessions/cron-4146a8cc1cca-20260908-103032.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_110036](sessions/cron-4146a8cc1cca-20260908-110036.md) — 4 obs
+* [Session cron_4146a8cc1cca_20260908_113039](sessions/cron-4146a8cc1cca-20260908-113039.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260908_120043](sessions/cron-4146a8cc1cca-20260908-120043.md) — 4 obs
+* [Session cron_4146a8cc1cca_20260908_123047](sessions/cron-4146a8cc1cca-20260908-123047.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_130052](sessions/cron-4146a8cc1cca-20260908-130052.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260908_133056](sessions/cron-4146a8cc1cca-20260908-133056.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260908_140059](sessions/cron-4146a8cc1cca-20260908-140059.md) — 4 obs
+* [Session cron_4146a8cc1cca_20260908_143003](sessions/cron-4146a8cc1cca-20260908-143003.md) — 4 obs
+* [Session cron_4146a8cc1cca_20260908_150007](sessions/cron-4146a8cc1cca-20260908-150007.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_153011](sessions/cron-4146a8cc1cca-20260908-153011.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_160014](sessions/cron-4146a8cc1cca-20260908-160014.md) — 10 obs
+* [Session cron_4146a8cc1cca_20260908_163019](sessions/cron-4146a8cc1cca-20260908-163019.md) — 8 obs
+* [Session cron_4146a8cc1cca_20260908_170023](sessions/cron-4146a8cc1cca-20260908-170023.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_173028](sessions/cron-4146a8cc1cca-20260908-173028.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260908_180033](sessions/cron-4146a8cc1cca-20260908-180033.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_183038](sessions/cron-4146a8cc1cca-20260908-183038.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260908_190043](sessions/cron-4146a8cc1cca-20260908-190043.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260908_193047](sessions/cron-4146a8cc1cca-20260908-193047.md) — 8 obs
+* [Session cron_4146a8cc1cca_20260908_200052](sessions/cron-4146a8cc1cca-20260908-200052.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260908_203056](sessions/cron-4146a8cc1cca-20260908-203056.md) — 3 obs
+* [Session cron_4146a8cc1cca_20260908_210001](sessions/cron-4146a8cc1cca-20260908-210001.md) — 6 obs
+* [Session cron_579965e2d62f_20260908_210001](sessions/cron-579965e2d62f-20260908-210001.md) — 2 obs
+* [Session cron_4146a8cc1cca_20260908_213006](sessions/cron-4146a8cc1cca-20260908-213006.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260908_220010](sessions/cron-4146a8cc1cca-20260908-220010.md) — 13 obs
+* [Session cron_4146a8cc1cca_20260908_223015](sessions/cron-4146a8cc1cca-20260908-223015.md) — 8 obs
+* [Session cron_4146a8cc1cca_20260908_230020](sessions/cron-4146a8cc1cca-20260908-230020.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260908_233024](sessions/cron-4146a8cc1cca-20260908-233024.md) — 6 obs
+* [Session cron_4146a8cc1cca_20260909_000029](sessions/cron-4146a8cc1cca-20260909-000029.md) — 9 obs
+* [Session cron_4146a8cc1cca_20260909_003034](sessions/cron-4146a8cc1cca-20260909-003034.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260909_010039](sessions/cron-4146a8cc1cca-20260909-010039.md) — 7 obs
+* [Session cron_4146a8cc1cca_20260909_013043](sessions/cron-4146a8cc1cca-20260909-013043.md) — 8 obs
+* [Session cron_4146a8cc1cca_20260909_020048](sessions/cron-4146a8cc1cca-20260909-020048.md) — 5 obs
+* [Session cron_4146a8cc1cca_20260909_023053](sessions/cron-4146a8cc1cca-20260909-023053.md) — 4 obs
+* [Session cron_4146a8cc1cca_20260909_030058](sessions/cron-4146a8cc1cca-20260909-030058.md) — 1 obs
+* [Session cron_4b310d35c4fd_20260909_030058](sessions/cron-4b310d35c4fd-20260909-030058.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -22768,3 +22825,235 @@ session_id: cron_df2ba22a5941](memories/mem_mtqyxozo_dfe69c28b8ae.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_mtqyxpb2_b91159880523.md)
+* [Memory: # Apple Music is missing a feature to add all…
+
+source: hermes
+session_id: 20260](memories/mem_mtsed0vj_82ddbf417c9d.md)
+* [Memory: # How much does it cost to file small claims in…
+
+source: hermes
+session_id: 202](memories/mem_mtsed1cf_c4b3a9da4d99.md)
+* [Memory: # How much rainfall in Willis TX yesterday?
+
+source: hermes
+session_id: 20260907](memories/mem_mtsed1pu_18691a370bc1.md)
+* [Memory: # Important-mail monitor · Sep 07 03:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed24r_9e5a85b3fac0.md)
+* [Memory: # Important-mail monitor · Sep 07 04:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed2gq_275e01f3c0ca.md)
+* [Memory: # Important-mail monitor · Sep 07 04:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed2tl_d5ba424eaf19.md)
+* [Memory: # Important-mail monitor · Sep 07 05:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed34z_322c45e2c386.md)
+* [Memory: # Important-mail monitor · Sep 07 05:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed3hd_3922f0b34ec2.md)
+* [Memory: # Important-mail monitor · Sep 07 06:03
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed3us_292ae99de751.md)
+* [Memory: # Important-mail monitor · Sep 07 06:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed474_8c0f960857a9.md)
+* [Memory: # Important-mail monitor · Sep 07 07:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed4hk_0a4892605d7b.md)
+* [Memory: # Important-mail monitor · Sep 07 07:33
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed4t0_658e1de2e855.md)
+* [Memory: # Important-mail monitor · Sep 07 08:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed54h_b0e57dca77e0.md)
+* [Memory: # Important-mail monitor · Sep 07 08:32
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed5g8_6daeb3526bae.md)
+* [Memory: # Important-mail monitor · Sep 07 09:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed5uk_270dd0da4b5d.md)
+* [Memory: # Important-mail monitor · Sep 07 09:33
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed66d_f42e2f05516c.md)
+* [Memory: # Important-mail monitor · Sep 07 10:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed6hk_7905fd541bf0.md)
+* [Memory: # Important-mail monitor · Sep 07 10:33
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed6u5_e2ccb114d064.md)
+* [Memory: # Important-mail monitor · Sep 07 11:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed761_44f15cb171a9.md)
+* [Memory: # Important-mail monitor · Sep 07 11:30
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed7ll_3fc0598163e2.md)
+* [Memory: # Important-mail monitor · Sep 07 12:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed7x6_4f9f78df14b0.md)
+* [Memory: # Important-mail monitor · Sep 07 12:33
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed893_64346fb6603b.md)
+* [Memory: # Important-mail monitor · Sep 07 13:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed8lg_32ff4780da22.md)
+* [Memory: # Important-mail monitor · Sep 07 13:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed8xp_6a0ced33376b.md)
+* [Memory: # Important-mail monitor · Sep 07 14:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed9ah_4d1a84e446d5.md)
+* [Memory: # Important-mail monitor · Sep 07 14:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed9mh_ee95bef777f7.md)
+* [Memory: # Important-mail monitor · Sep 07 15:03
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsed9xx_3d7d756b528b.md)
+* [Memory: # Important-mail monitor · Sep 07 15:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtseda94_8030437f1178.md)
+* [Memory: # Important-mail monitor · Sep 07 16:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedak1_a6d88e3da239.md)
+* [Memory: # Important-mail monitor · Sep 07 16:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedavc_bfce7a69c90b.md)
+* [Memory: # Important-mail monitor · Sep 07 17:04
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedb6v_54413f0c7de2.md)
+* [Memory: # Important-mail monitor · Sep 07 17:32
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedbiy_12230483b494.md)
+* [Memory: # Important-mail monitor · Sep 07 18:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedbx6_730ed0fe29b6.md)
+* [Memory: # Important-mail monitor · Sep 07 18:30
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedc9u_eaf319f41aeb.md)
+* [Memory: # Important-mail monitor · Sep 07 19:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedcnz_070fe63ed872.md)
+* [Memory: # Important-mail monitor · Sep 07 19:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedcys_82169daedb80.md)
+* [Memory: # Important-mail monitor · Sep 07 20:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtseddag_417ea04fac47.md)
+* [Memory: # Important-mail monitor · Sep 07 20:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtseddob_714f69aab818.md)
+* [Memory: # Important-mail monitor · Sep 07 21:03
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsede0b_3c1fd5e36d99.md)
+* [Memory: # Important-mail monitor · Sep 07 21:32
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsededv_3b02374a72d8.md)
+* [Memory: # Important-mail monitor · Sep 07 22:05
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedepv_3ea5f1ea7f98.md)
+* [Memory: # Important-mail monitor · Sep 07 22:32
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedf3g_9586e21978e4.md)
+* [Memory: # Important-mail monitor · Sep 07 23:03
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedfgb_a5dfaefcde60.md)
+* [Memory: # Important-mail monitor · Sep 07 23:33
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedftn_0b862fd8edab.md)
+* [Memory: # Important-mail monitor · Sep 08 00:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedg63_bae0a8020278.md)
+* [Memory: # Important-mail monitor · Sep 08 00:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedgg9_e98aa182e4b3.md)
+* [Memory: # Important-mail monitor · Sep 08 01:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedgqo_68650c60462c.md)
+* [Memory: # Important-mail monitor · Sep 08 01:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedh4s_2444b2e35c11.md)
+* [Memory: # Important-mail monitor · Sep 08 02:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedhgh_5f35fa000d96.md)
+* [Memory: # Important-mail monitor · Sep 08 02:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedhrk_efcbdbcb3323.md)
+* [Memory: # Important-mail monitor · Sep 08 03:04
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtsedi46_f3211c2d8fa5.md)
+* [Memory: # hermes-conversations-okf-mirror · Sep 08 03:01
+
+source: hermes
+session_id: cro](memories/mem_mtsediey_74dcbe21873c.md)
+* [Memory: # Evening wind-down · Sep 07 21:02
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_mtsedipl_2a45d5fa0ef8.md)
+* [Memory: # agentmemory-okf-mirror · Sep 08 03:02
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_mtsedj14_f71f5064cb82.md)
+* [Memory: # Morning briefing · Sep 07 08:04
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_mtsedjca_883e5db15c4a.md)
+* [Memory: # Workday start reminder · Sep 07 09:00
+
+source: hermes
+session_id: cron_d83aeb5](memories/mem_mtsedjoc_c351372b54ef.md)
+* [Memory: # nightly-okf-index · Sep 07 03:18
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_mtsedjzq_5ab09e80e2a5.md)
+* [Memory: # cron_df2ba22a5941_20260908_031732
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_mtsedka1_f31d95f8aa77.md)
