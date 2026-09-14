@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-09-13T08:01:16.392Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-09-14T08:00:32.135Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -2226,6 +2226,11 @@ _Exported 2026-09-13T08:01:16.392Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session cron_4146a8cc1cca_20260913_000029](sessions/cron-4146a8cc1cca-20260913-000029.md) — 7 obs
 * [Session cron_4146a8cc1cca_20260913_003032](sessions/cron-4146a8cc1cca-20260913-003032.md) — 5 obs
 * [Session 20260913_003358_913bc6](sessions/20260913-003358-913bc6.md) — 23 obs
+* [Session cron_4b310d35c4fd_20260913_030057](sessions/cron-4b310d35c4fd-20260913-030057.md) — 1 obs
+* [Session cron_9dfd463ca7d0_20260913_030056](sessions/cron-9dfd463ca7d0-20260913-030056.md) — 2 obs
+* [Session cron_df2ba22a5941_20260913_031801](sessions/cron-df2ba22a5941-20260913-031801.md) — 3 obs
+* [Session 20260913_133442_df14f6](sessions/20260913-133442-df14f6.md) — 52 obs
+* [Session cron_579965e2d62f_20260913_210024](sessions/cron-579965e2d62f-20260913-210024.md) — 5 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -24289,3 +24294,215 @@ session_id: cron_df2ba22a5941](memories/mem_mty456o1_5db855aa3436.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_mty456z4_1fafbafa2f01.md)
+* [Memory: # Build usage meter for Hermes or menu bar
+
+source: hermes
+session_id: 20260903_](memories/mem_mtzjl3pr_bed82071d7c6.md)
+* [Memory: # French polish vs epoxy pros cons
+
+source: hermes
+session_id: 20260911_132154_a](memories/mem_mtzjl45r_892ca268515f.md)
+* [Memory: # Build usage meter for Hermes or menu bar #2
+
+source: hermes
+session_id: 202609](memories/mem_mtzjl4ib_df2bc1c1843a.md)
+* [Memory: # Find Hermes Kilo model token usage
+
+source: hermes
+session_id: 20260913_003358](memories/mem_mtzjl4v0_1e342b716d51.md)
+* [Memory: # Important-mail monitor · Sep 12 03:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl593_a6b56699a941.md)
+* [Memory: # Important-mail monitor · Sep 12 04:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl5l5_447edd889744.md)
+* [Memory: # Important-mail monitor · Sep 12 04:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl63v_3c6b28e5df42.md)
+* [Memory: # Important-mail monitor · Sep 12 05:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl704_f07261d01418.md)
+* [Memory: # Important-mail monitor · Sep 12 05:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl7cn_9efe8694bea2.md)
+* [Memory: # Important-mail monitor · Sep 12 06:00
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl7p4_0ea794f4cf84.md)
+* [Memory: # Important-mail monitor · Sep 12 06:30
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl80k_91002c58bc71.md)
+* [Memory: # Important-mail monitor · Sep 12 07:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl8bv_c52badb2eba9.md)
+* [Memory: # Important-mail monitor · Sep 12 07:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl8o1_ffa93d88b3f3.md)
+* [Memory: # Important-mail monitor · Sep 12 08:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl8zt_30926f8ad667.md)
+* [Memory: # Important-mail monitor · Sep 12 08:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl9al_1a3abcf7e473.md)
+* [Memory: # Important-mail monitor · Sep 12 09:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl9m4_85294492f24c.md)
+* [Memory: # Important-mail monitor · Sep 12 09:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjl9x3_d97795670b37.md)
+* [Memory: # Important-mail monitor · Sep 12 10:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjla7p_b43c884c2dd5.md)
+* [Memory: # Important-mail monitor · Sep 12 10:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlamn_d72e553cc967.md)
+* [Memory: # Important-mail monitor · Sep 12 11:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlaxt_bede8a6f9b81.md)
+* [Memory: # Important-mail monitor · Sep 12 11:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlb9j_88697aaf2c78.md)
+* [Memory: # Important-mail monitor · Sep 12 12:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlbjs_0688465a4423.md)
+* [Memory: # Important-mail monitor · Sep 12 12:32
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlbu3_a9ba3bb49ec8.md)
+* [Memory: # Important-mail monitor · Sep 12 13:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlc4z_8d1af664bb45.md)
+* [Memory: # Important-mail monitor · Sep 12 13:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlcff_e646927c70ea.md)
+* [Memory: # Important-mail monitor · Sep 12 14:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlcpm_2e1e6bfc94b7.md)
+* [Memory: # Important-mail monitor · Sep 12 14:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjld09_ece8e1a600e8.md)
+* [Memory: # Important-mail monitor · Sep 12 15:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjldan_0965f9b1a494.md)
+* [Memory: # Important-mail monitor · Sep 12 15:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjldld_fd97ac97ca98.md)
+* [Memory: # Important-mail monitor · Sep 12 16:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjldwa_8d1740b7af86.md)
+* [Memory: # Important-mail monitor · Sep 12 16:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjle5w_1e7b205c8575.md)
+* [Memory: # Important-mail monitor · Sep 12 17:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlefi_296b0f71e300.md)
+* [Memory: # Important-mail monitor · Sep 12 17:33
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlepn_4f3298dfa15c.md)
+* [Memory: # Important-mail monitor · Sep 12 18:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlf0s_d605cdce95e8.md)
+* [Memory: # Important-mail monitor · Sep 12 18:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlfby_3f2779d1432b.md)
+* [Memory: # Important-mail monitor · Sep 12 19:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlfnu_4be14c45ae9e.md)
+* [Memory: # Important-mail monitor · Sep 12 19:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlfyb_c46e277b5058.md)
+* [Memory: # Important-mail monitor · Sep 12 20:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlg8q_a858274279dd.md)
+* [Memory: # Important-mail monitor · Sep 12 20:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlgjk_d6794f58f587.md)
+* [Memory: # Important-mail monitor · Sep 12 21:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlgu9_74efcf6c8ae0.md)
+* [Memory: # Important-mail monitor · Sep 12 21:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlh6f_2950b347d1b9.md)
+* [Memory: # Important-mail monitor · Sep 12 22:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlhh5_be29775fd2a7.md)
+* [Memory: # Important-mail monitor · Sep 12 22:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlhs2_413521104493.md)
+* [Memory: # Important-mail monitor · Sep 12 23:02
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjli2k_73fedd79e1ef.md)
+* [Memory: # Important-mail monitor · Sep 12 23:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlicx_849378462e94.md)
+* [Memory: # Important-mail monitor · Sep 13 00:01
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjlinl_48e0b052c034.md)
+* [Memory: # Important-mail monitor · Sep 13 00:31
+
+source: hermes
+session_id: cron_4146a8c](memories/mem_mtzjliym_6c211479c49b.md)
+* [Memory: # hermes-conversations-okf-mirror · Sep 13 03:01
+
+source: hermes
+session_id: cro](memories/mem_mtzjlj94_2ca69e03db24.md)
+* [Memory: # Evening wind-down · Sep 12 21:00
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_mtzjljje_80b98924a0e5.md)
+* [Memory: # agentmemory-okf-mirror · Sep 13 03:04
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_mtzjljty_8c77c12ea42d.md)
+* [Memory: # Morning briefing · Sep 12 08:00
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_mtzjlk4m_c844023752c3.md)
+* [Memory: # nightly-okf-index · Sep 12 03:18
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_mtzjlkh3_70c8ec4dafb5.md)
+* [Memory: # cron_df2ba22a5941_20260913_031801
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_mtzjlksl_d690bb879b2e.md)
