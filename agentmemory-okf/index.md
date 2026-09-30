@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-09-29T08:01:15.268Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-09-30T08:01:02.049Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -1719,7 +1719,7 @@ _Exported 2026-09-29T08:01:15.268Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session cron_4146a8cc1cca_20260830_093006](sessions/cron-4146a8cc1cca-20260830-093006.md) — 3 obs
 * [Session cron_4146a8cc1cca_20260830_100007](sessions/cron-4146a8cc1cca-20260830-100007.md) — 2 obs
 * [Session cron_4146a8cc1cca_20260830_103015](sessions/cron-4146a8cc1cca-20260830-103015.md) — 4 obs
-* [Session 20260830_105235_9cc2d6](sessions/20260830-105235-9cc2d6.md) — 471 obs
+* [Session 20260830_105235_9cc2d6](sessions/20260830-105235-9cc2d6.md) — 500 obs
 * [Session 20260830_110521_05cb8f](sessions/20260830-110521-05cb8f.md) — 77 obs
 * [Session 20260830_112935_546aed](sessions/20260830-112935-546aed.md) — 117 obs
 * [Session 20260830_122233_0a645a](sessions/20260830-122233-0a645a.md) — 388 obs
@@ -2510,7 +2510,7 @@ _Exported 2026-09-29T08:01:15.268Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20260924_093549_969c82](sessions/20260924-093549-969c82.md) — 15 obs
 * [Session 20260924_094430_4009bb](sessions/20260924-094430-4009bb.md) — 16 obs
 * [Session 20260924_101301_9370e6](sessions/20260924-101301-9370e6.md) — 7 obs
-* [Session 20260924_151957_591aa2](sessions/20260924-151957-591aa2.md) — 86 obs
+* [Session 20260924_151957_591aa2](sessions/20260924-151957-591aa2.md) — 103 obs
 * [Session 7fdc3902cca3](sessions/7fdc3902cca3.md) — 10 obs
 * [Session 20260925_085829_c4afc2](sessions/20260925-085829-c4afc2.md) — 2 obs
 * [Session 20260925_095139_830bf9](sessions/20260925-095139-830bf9.md) — 48 obs
@@ -2843,7 +2843,21 @@ _Exported 2026-09-29T08:01:15.268Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20260928_100132_5e24b1](sessions/20260928-100132-5e24b1.md) — 152 obs
 * [Session 20260928_142501_d2d441](sessions/20260928-142501-d2d441.md) — 34 obs
 * [Session 20260928_142501_a7aa37](sessions/20260928-142501-a7aa37.md) — 19 obs
-* [Session cron_9dfd463ca7d0_20260929_030049](sessions/cron-9dfd463ca7d0-20260929-030049.md) — 2 obs
+* [Session cron_9dfd463ca7d0_20260929_030049](sessions/cron-9dfd463ca7d0-20260929-030049.md) — 3 obs
+* [Session 20260929_063744_ca6fb0](sessions/20260929-063744-ca6fb0.md) — 140 obs
+* [Session cron_579965e2d62f_20260929_064817](sessions/cron-579965e2d62f-20260929-064817.md) — 4 obs
+* [Session cron_a9b330e497a5_20260929_065343](sessions/cron-a9b330e497a5-20260929-065343.md) — 11 obs
+* [Session cron_df2ba22a5941_20260929_065448](sessions/cron-df2ba22a5941-20260929-065448.md) — 4 obs
+* [Session cron_d83aeb5238b5_20260929_065549](sessions/cron-d83aeb5238b5-20260929-065549.md) — 5 obs
+* [Session 20260928_073419_a59040](sessions/20260928-073419-a59040.md) — 30 obs
+* [Session 20260929_071815_cfed8c](sessions/20260929-071815-cfed8c.md) — 27 obs
+* [Session cron_a9b330e497a5_20260929_080050](sessions/cron-a9b330e497a5-20260929-080050.md) — 9 obs
+* [Session cron_d83aeb5238b5_20260929_090049](sessions/cron-d83aeb5238b5-20260929-090049.md) — 8 obs
+* [Session 20260929_130141_613c62](sessions/20260929-130141-613c62.md) — 36 obs
+* [Session 20260929_130601_fe5560](sessions/20260929-130601-fe5560.md) — 198 obs
+* [Session 20260929_150528_e8d109](sessions/20260929-150528-e8d109.md) — 169 obs
+* [Session 20260929_152019_133ab0](sessions/20260929-152019-133ab0.md) — 58 obs
+* [Session cron_579965e2d62f_20260929_210049](sessions/cron-579965e2d62f-20260929-210049.md) — 4 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -26056,3 +26070,4 @@ session_id: cron_df2ba22a5941](memories/mem_mul67z7g_8e5af891b761.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_mul67zhr_63a224316758.md)
+* [Memory: FIXED: Hermes quick commands (type: exec) silently dropped their arguments, so '](memories/mem_mun4q2qk_8246ebc67152.md)
