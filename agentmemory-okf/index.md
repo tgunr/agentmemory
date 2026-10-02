@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-01T08:00:10.437Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-10-02T08:01:08.307Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -2850,7 +2850,7 @@ _Exported 2026-10-01T08:00:10.437Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session cron_df2ba22a5941_20260929_065448](sessions/cron-df2ba22a5941-20260929-065448.md) — 4 obs
 * [Session cron_d83aeb5238b5_20260929_065549](sessions/cron-d83aeb5238b5-20260929-065549.md) — 5 obs
 * [Session 20260928_073419_a59040](sessions/20260928-073419-a59040.md) — 30 obs
-* [Session 20260929_071815_cfed8c](sessions/20260929-071815-cfed8c.md) — 27 obs
+* [Session 20260929_071815_cfed8c](sessions/20260929-071815-cfed8c.md) — 55 obs
 * [Session cron_a9b330e497a5_20260929_080050](sessions/cron-a9b330e497a5-20260929-080050.md) — 9 obs
 * [Session cron_d83aeb5238b5_20260929_090049](sessions/cron-d83aeb5238b5-20260929-090049.md) — 8 obs
 * [Session 20260929_130141_613c62](sessions/20260929-130141-613c62.md) — 36 obs
@@ -2883,6 +2883,44 @@ _Exported 2026-10-01T08:00:10.437Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20260930_172045_df2bfc](sessions/20260930-172045-df2bfc.md) — 1 obs
 * [Session 20260930_195248_61be6d](sessions/20260930-195248-61be6d.md) — 4 obs
 * [Session cron_579965e2d62f_20260930_210100](sessions/cron-579965e2d62f-20260930-210100.md) — 9 obs
+* [Session cron_9dfd463ca7d0_20261001_030000](sessions/cron-9dfd463ca7d0-20261001-030000.md) — 1 obs
+* [Session cron_df2ba22a5941_20261001_031701](sessions/cron-df2ba22a5941-20261001-031701.md) — 7 obs
+* [Session 20261001_044252_3e3144](sessions/20261001-044252-3e3144.md) — 2 obs
+* [Session 20261001_072859_fa346e](sessions/20261001-072859-fa346e.md) — 360 obs
+* [Session 20260930_101929_95321f](sessions/20260930-101929-95321f.md) — 226 obs
+* [Session cron_a9b330e497a5_20261001_080016](sessions/cron-a9b330e497a5-20261001-080016.md) — 4 obs
+* [Session cron_d83aeb5238b5_20261001_090100](sessions/cron-d83aeb5238b5-20261001-090100.md) — 2 obs
+* [Session 20261001_122432_0d184a](sessions/20261001-122432-0d184a.md) — 56 obs
+* [Session 20261001_123652_e706be](sessions/20261001-123652-e706be.md) — 172 obs
+* [Session 20261001_124334_7cc652](sessions/20261001-124334-7cc652.md) — 206 obs
+* [Session 20261001_124419_525b39](sessions/20261001-124419-525b39.md) — 6 obs
+* [Session 20261001_132750_ad16bd](sessions/20261001-132750-ad16bd.md) — 132 obs
+* [Session 20261001_120542_df63e6](sessions/20261001-120542-df63e6.md) — 11 obs
+* [Session 20261001_141756_f51cea](sessions/20261001-141756-f51cea.md) — 79 obs
+* [Session 20261001_144102_5219f9](sessions/20261001-144102-5219f9.md) — 187 obs
+* [Session 20261001_160452_8d9aec](sessions/20261001-160452-8d9aec.md) — 2 obs
+* [Session 20261001_161429_749c7a](sessions/20261001-161429-749c7a.md) — 178 obs
+* [Session 20261001_170117_bb89aa](sessions/20261001-170117-bb89aa.md) — 26 obs
+* [Session 20261001_204738_d98ba2](sessions/20261001-204738-d98ba2.md) — 2 obs
+* [Session cron_579965e2d62f_20261001_210100](sessions/cron-579965e2d62f-20261001-210100.md) — 10 obs
+* [Session 20261001_234813_608314](sessions/20261001-234813-608314.md) — 144 obs
+* [Session 20261001_235916_a57f67](sessions/20261001-235916-a57f67.md) — 119 obs
+* [Session 20261002_001337_11a65b](sessions/20261002-001337-11a65b.md) — 46 obs
+* [Session 20261002_001337_fe479f](sessions/20261002-001337-fe479f.md) — 187 obs
+* [Session 20261002_002841_3b850e](sessions/20261002-002841-3b850e.md) — 39 obs
+* [Session 20261002_003846_0e64e1](sessions/20261002-003846-0e64e1.md) — 60 obs
+* [Session 20261002_004400_0ab9d9](sessions/20261002-004400-0ab9d9.md) — 63 obs
+* [Session 20261002_005726_5d9b48](sessions/20261002-005726-5d9b48.md) — 19 obs
+* [Session 20261002_011838_908e51](sessions/20261002-011838-908e51.md) — 34 obs
+* [Session 20261002_012002_5c93fd](sessions/20261002-012002-5c93fd.md) — 7 obs
+* [Session 20261002_013907_040a87](sessions/20261002-013907-040a87.md) — 23 obs
+* [Session 20261002_015057_d9c344](sessions/20261002-015057-d9c344.md) — 87 obs
+* [Session 20261002_015329_60e768](sessions/20261002-015329-60e768.md) — 43 obs
+* [Session 20261002_015723_3de3f1](sessions/20261002-015723-3de3f1.md) — 39 obs
+* [Session 20261002_020829_e592e5](sessions/20261002-020829-e592e5.md) — 108 obs
+* [Session 20261002_023016_485f30](sessions/20261002-023016-485f30.md) — 2 obs
+* [Session 20261002_023304_bccec3](sessions/20261002-023304-bccec3.md) — 62 obs
+* [Session 20261002_023757_bc54f9](sessions/20261002-023757-bc54f9.md) — 2 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -26329,3 +26367,162 @@ session_id: cron_df2ba22a5941](memories/mem_munu2oaa_896efc60e51e.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_munu2onf_8b6d243d47f7.md)
+* [Memory: # Fixing Hermes Desktop Startup Font Size
+
+source: hermes
+session_id: 20260715_0](memories/mem_mup9gqi2_58f86eac5d18.md)
+* [Memory: # 20260730_052105_b2cb06
+
+source: hermes
+session_id: 20260730_052105_b2cb06
+reso](memories/mem_mup9gr19_d2f53f678482.md)
+* [Memory: # Find MacOS binary and symlink to Applications
+
+source: hermes
+session_id: 2026](memories/mem_mup9groj_14d59f665864.md)
+* [Memory: # Integrate Ring cameras with Apple TV
+
+source: hermes
+session_id: 20260925_1603](memories/mem_mup9gs21_7ad9d745c903.md)
+* [Memory: # Enable shell command execution with
+
+source: hermes
+session_id: 20260929_13060](memories/mem_mup9gsi6_7b26cc5cf6af.md)
+* [Memory: # Fix error in task t_9d82b48b
+
+source: hermes
+session_id: 20260929_152019_133ab](memories/mem_mup9gsxm_d7e4b6fa90f5.md)
+* [Memory: # Fork or branch keeping last 4 messages
+
+source: hermes
+session_id: 20260930_04](memories/mem_mup9gtch_aed395a4a2d0.md)
+* [Memory: # Reinstate kilo usage meter
+
+source: hermes
+session_id: 20260930_051512_f7ea36
+](memories/mem_mup9gtqy_6a493d7e7804.md)
+* [Memory: # Fix error in task t_9d82b48b #2
+
+source: hermes
+session_id: 20260930_051825_0b](memories/mem_mup9gu5m_12e1c2ad5c3c.md)
+* [Memory: # Fix Hermes update reporting errors
+
+source: hermes
+session_id: 20260930_053127](memories/mem_mup9gukx_5e7be0026214.md)
+* [Memory: # Error in t_08fc10a2 workspace
+
+source: hermes
+session_id: 20260930_060532_5f86](memories/mem_mup9guzk_89d6ba3f598f.md)
+* [Memory: # Integrate session gateway, profile, and project context
+
+source: hermes
+sessio](memories/mem_mup9gvem_197d824eaa2c.md)
+* [Memory: # Add projects to status bar and commit
+
+source: hermes
+session_id: 20260930_061](memories/mem_mup9gvre_ccea66279e01.md)
+* [Memory: # Troubleshoot Hermes Desktop errors
+
+source: hermes
+session_id: 20260930_062027](memories/mem_mup9gw7c_b8051a443e80.md)
+* [Memory: # Integrate session gateway, profile, and project context #2
+
+source: hermes
+ses](memories/mem_mup9gwjr_42e1b75b6fb3.md)
+* [Memory: # Add gateway, profile, and project to the bottom rail
+
+source: hermes
+session_i](memories/mem_mup9gwya_9263c3ad1bcb.md)
+* [Memory: # Build the project popup and switching flow
+
+source: hermes
+session_id: 2026093](memories/mem_mup9gxbq_445563a34655.md)
+* [Memory: # Add gateway, profile, and project to the bottom rail #2
+
+source: hermes
+sessio](memories/mem_mup9gxpm_54bb9ad34a4a.md)
+* [Memory: # Build the project popup and switching flow #2
+
+source: hermes
+session_id: 2026](memories/mem_mup9gy43_9d325accbd89.md)
+* [Memory: # Add gateway, profile, and project to the bottom rail #3
+
+source: hermes
+sessio](memories/mem_mup9gyi0_49b98fe44d0f.md)
+* [Memory: # Build the project popup and switching flow #3
+
+source: hermes
+session_id: 2026](memories/mem_mup9gywb_df1337145ca2.md)
+* [Memory: # Find Hermes kanban log t_b5f9be1e
+
+source: hermes
+session_id: 20260930_093810_](memories/mem_mup9gzaj_92c2639881c2.md)
+* [Memory: # Preprocess images and convert formats for training
+
+source: hermes
+session_id:](memories/mem_mup9gzo6_3f6ba1fba8a8.md)
+* [Memory: # Train image classification model on prepared dataset
+
+source: hermes
+session_i](memories/mem_mup9h02x_1926a5cd63ac.md)
+* [Memory: # Update .zshrc configuration
+
+source: hermes
+session_id: 20260930_113326_e1d831](memories/mem_mup9h0gh_0a842f5d268c.md)
+* [Memory: # Update Hermes configs, memory, and skills
+
+source: hermes
+session_id: 20260930](memories/mem_mup9h0uk_a829e61049da.md)
+* [Memory: # Show projects in TUI status bar
+
+source: hermes
+session_id: 20260930_150722_b0](memories/mem_mup9h189_7a349ace71ba.md)
+* [Memory: # Revisit open-source OCR benchmark article
+
+source: hermes
+session_id: 20260930](memories/mem_mup9h1mv_7711e0bf9207.md)
+* [Memory: # Navigate to imgtagplus
+
+source: hermes
+session_id: 20260930_153322_2fbd67
+reso](memories/mem_mup9h21r_b940f03909b1.md)
+* [Memory: # Configure service for all interfaces
+
+source: hermes
+session_id: 20260930_1536](memories/mem_mup9h2gt_3641cc6b068e.md)
+* [Memory: # Write commit message for config.yaml
+
+source: hermes
+session_id: 20260930_1720](memories/mem_mup9h2u5_20d6ff6b5e42.md)
+* [Memory: # Update service debugging skill
+
+source: hermes
+session_id: 20260930_195248_61b](memories/mem_mup9h33n_6585c0f7e69b.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 01 03:05
+
+source: hermes
+session_id: cro](memories/mem_mup9h3iq_7d689139411e.md)
+* [Memory: # Evening wind-down · Sep 30 21:03
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_mup9h3x0_17aaa97c49a1.md)
+* [Memory: # agentmemory-okf-mirror · Oct 01 03:00
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_mup9h4bw_255cec076b1b.md)
+* [Memory: # Morning briefing · Sep 30 08:01
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_mup9h4qg_905ecb7284fe.md)
+* [Memory: # Workday start reminder · Sep 30 09:01
+
+source: hermes
+session_id: cron_d83aeb5](memories/mem_mup9h52p_f3c219a6bfcc.md)
+* [Memory: # nightly-okf-index · Sep 30 03:18
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_mup9h5hb_c1995ca9b5cb.md)
+* [Memory: # cron_df2ba22a5941_20261001_031701
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_mup9h5vr_bea7956f6f93.md)
