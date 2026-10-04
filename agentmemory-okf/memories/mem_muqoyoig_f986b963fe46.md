@@ -1,0 +1,157 @@
+---
+type: Fact
+title: # Investigate stuck task t_9a0b8774
+
+source: hermes
+session_id: 20261001_124419_
+description: # Investigate stuck task t_9a0b8774
+
+source: hermes
+session_id: 20261001_124419_525b39
+resource: hermes://session/20261001_124419_525b39
+
+# Conversation
+
+- **Session ID:** `20261001_124419_525b39`
+- *
+resource: agentmemory://memory/mem_muqoyoig_f986b963fe46
+tags: ["okf", "okf-hermes", "hermes", "/Volumes/www"]
+timestamp: 2026-10-02T08:18:49.465Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Investigate stuck task t_9a0b8774
+
+source: hermes
+session_id: 20261001_124419_525b39
+resource: hermes://session/20261001_124419_525b39
+
+# Conversation
+
+- **Session ID:** `20261001_124419_525b39`
+- **Source:** desktop
+- **Model:** free-mix
+- **Started:** 2026-10-01T17:44:19Z
+- **Messages:** 14
+- **CWD:** `/Volumes/www`
+- **Tokens:** 40048 in / 3489 out
+
+---
+
+### 👤 User — 2026-10-01T17:44:19Z
+
+task t_9a0b8774 seems to be stuck
+
+### 🤖 Assistant — 2026-10-01T17:44:43Z
+
+<details><summary>Reasoning</summary>
+
+Let me look at the task.
+
+</details>
+
+**Tool call: kanban_show**
+
+```json
+{
+  "task_id": "t_9a0b8774"
+}
+```
+
+### 🤖 Assistant — 2026-10-01T17:44:48Z
+
+<details><summary>Reasoning</summary>
+
+The task is running with a worker pid 61470, heartbeats recent. Last heartbeat at 1790876633. Let me check current time and the process.
+
+Wait — the user says it "seems to be stuck". But interestingly, I might actually BE the worker? No, I'm in a desktop session. Let me check the process and time.
+
+Actually, note the workspace path /Users/davec/Work/spotlights/DXF and prior work was in ~/Desktop/DXF/imgtagplus-fork. Let me check liveness.
+
+</details>
+
+**Tool call: execute_code**
+
+```json
+{
+  "code": "import time, subprocess\nprint(\"now\", int(time.time()), \"gap_since_last_hb\", int(time.time())-1790876633)\nprint(subprocess.run([\"ps\",\"-o\",\"pid,etime,stat,command\",\"-p\",\"61470\"],capture_output=True,text=True).stdout)\n"
+}
+```
+
+### 🤖 Assistant — 2026-10-01T17:44:51Z
+
+<details><summary>Reasoning</summary>
+
+The task isn't actually stuck — it started 8 minutes ago and heartbeats are current (55s ago). Let me report that. Maybe check the worker log briefly for progress.
+
+Let me check if there's a log to see progress.
+
+</details>
+
+**Tool call: execute_code**
+
+```json
+{
+  "code": "from hermes_tools import terminal\nimport glob\nr=terminal(\"ls -lt ~/.hermes/kanban/runs/ 2>/dev/null | head; find ~/.hermes -name '*55*' -newermt '-20 min' -maxdepth 4 2>/dev/null | head -20\")\nprint(r['output'][:3000])\n"
+}
+```
+
+### 🤖 Assistant — 2026-10-01T17:44:56Z
+
+<details><summary>Reasoning</summary>
+
+Let me diagnose. Task started 1790876209, now ~1790876700, so ~8 minutes elapsed. Last heartbeat 55s ago. Process alive, state Ss (sleeping). So it's not actually stuck — it's just been running ~8 minutes and still heartbeating.
+
+Let me check the log file for the task to see what it's doing.
+
+</details>
+
+**Tool call: execute_code**
+
+```json
+{
+  "code": "from hermes_tools import terminal\nr=terminal(\"ls -la ~/.hermes/kanban/logs/ | tail -5; echo ---; ls -lt ~/.hermes/kanban/logs/t_9a0b8774* 2>/dev/null; echo ---; tail -40 ~/.hermes/kanban/logs/t_9a0b8774.log 2>/dev/null\")\nprint(r['output'][:4000])\n"
+}
+```
+
+### 🤖 Assistant — 2026-10-01T17:45:00Z
+
+<details><summary>Reasoning</summary>
+
+The task is not actually stuck — the worker process (PID 61470) is alive, heartbeating every 60s, and actively working. Last heartbeat 55s ago. The log shows active reasoning about the change. So it's working, just long (8 min in, context compressed twice).
+
+Let me verify the heartbeat is still fresh right now.
+
+</details>
+
+**Tool call: execute_code**
+
+```json
+{
+  "code": "import time\nfrom hermes_tools import terminal\nr=terminal(\"stat -f '%Sm %N' -t '%H:%M:%S' ~/.hermes/kanban/logs/t_9a0b8774.log; date +%H:%M:%S\")\nprint(r['output'])\n"
+}
+```
+
+### 🤖 Assistant — 2026-10-01T17:45:04Z
+
+<details><summary>Reasoning</summary>
+
+The task is running actively — heartbeats recent, log updated at 12:45:00 (just now), PID alive at 8min elapsed. The "stuck" impression comes from context compaction (compressed 2 times). So it's not stuck; it's working but thrashing on compaction. Let me report.
+
+Let me double-check current log tail to see if it's still producing output.
+
+</details>
+
+**Tool call: execute_code**
+
+```json
+{
+  "code": "import time\nfrom hermes_tools import terminal\ntime.sleep(45)\nr=terminal(\"stat -f '%Sm %z' -t '%H:%M:%S' ~/.hermes/kanban/logs/t_9a0b8774.log; date +%H:%M:%S; tail -c 700 ~/.hermes/kanban/logs/t_9a0b8774.log\")\nprint(r['output'])\n"
+}
+```
+
+### 🤖 Assistant — 2026-10-01T17:45:54Z
+
+<details>

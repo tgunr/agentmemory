@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-02T08:01:08.307Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-10-04T08:04:51.612Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -2903,8 +2903,8 @@ _Exported 2026-10-02T08:01:08.307Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20261001_170117_bb89aa](sessions/20261001-170117-bb89aa.md) — 26 obs
 * [Session 20261001_204738_d98ba2](sessions/20261001-204738-d98ba2.md) — 2 obs
 * [Session cron_579965e2d62f_20261001_210100](sessions/cron-579965e2d62f-20261001-210100.md) — 10 obs
-* [Session 20261001_234813_608314](sessions/20261001-234813-608314.md) — 144 obs
-* [Session 20261001_235916_a57f67](sessions/20261001-235916-a57f67.md) — 119 obs
+* [Session 20261001_234813_608314](sessions/20261001-234813-608314.md) — 168 obs
+* [Session 20261001_235916_a57f67](sessions/20261001-235916-a57f67.md) — 136 obs
 * [Session 20261002_001337_11a65b](sessions/20261002-001337-11a65b.md) — 46 obs
 * [Session 20261002_001337_fe479f](sessions/20261002-001337-fe479f.md) — 187 obs
 * [Session 20261002_002841_3b850e](sessions/20261002-002841-3b850e.md) — 39 obs
@@ -2913,14 +2913,27 @@ _Exported 2026-10-02T08:01:08.307Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20261002_005726_5d9b48](sessions/20261002-005726-5d9b48.md) — 19 obs
 * [Session 20261002_011838_908e51](sessions/20261002-011838-908e51.md) — 34 obs
 * [Session 20261002_012002_5c93fd](sessions/20261002-012002-5c93fd.md) — 7 obs
-* [Session 20261002_013907_040a87](sessions/20261002-013907-040a87.md) — 23 obs
+* [Session 20261002_013907_040a87](sessions/20261002-013907-040a87.md) — 24 obs
 * [Session 20261002_015057_d9c344](sessions/20261002-015057-d9c344.md) — 87 obs
-* [Session 20261002_015329_60e768](sessions/20261002-015329-60e768.md) — 43 obs
-* [Session 20261002_015723_3de3f1](sessions/20261002-015723-3de3f1.md) — 39 obs
-* [Session 20261002_020829_e592e5](sessions/20261002-020829-e592e5.md) — 108 obs
+* [Session 20261002_015329_60e768](sessions/20261002-015329-60e768.md) — 74 obs
+* [Session 20261002_015723_3de3f1](sessions/20261002-015723-3de3f1.md) — 54 obs
+* [Session 20261002_020829_e592e5](sessions/20261002-020829-e592e5.md) — 118 obs
 * [Session 20261002_023016_485f30](sessions/20261002-023016-485f30.md) — 2 obs
 * [Session 20261002_023304_bccec3](sessions/20261002-023304-bccec3.md) — 62 obs
 * [Session 20261002_023757_bc54f9](sessions/20261002-023757-bc54f9.md) — 2 obs
+* [Session cron_9dfd463ca7d0_20261002_030059](sessions/cron-9dfd463ca7d0-20261002-030059.md) — 1 obs
+* [Session cron_df2ba22a5941_20261002_031801](sessions/cron-df2ba22a5941-20261002-031801.md) — 3 obs
+* [Session cron_a9b330e497a5_20261002_080101](sessions/cron-a9b330e497a5-20261002-080101.md) — 3 obs
+* [Session cron_d83aeb5238b5_20261002_090059](sessions/cron-d83aeb5238b5-20261002-090059.md) — 3 obs
+* [Session cron_b99b9d2f2fcd_20261002_090100](sessions/cron-b99b9d2f2fcd-20261002-090100.md) — 15 obs
+* [Session 20261002_115823_a61847](sessions/20261002-115823-a61847.md) — 3 obs
+* [Session 20261002_121819_22e0de](sessions/20261002-121819-22e0de.md) — 38 obs
+* [Session 20261002_122234_92ac79](sessions/20261002-122234-92ac79.md) — 1 obs
+* [Session 20261002_133503_36febf](sessions/20261002-133503-36febf.md) — 5 obs
+* [Session cron_df2ba22a5941_20261003_070226](sessions/cron-df2ba22a5941-20261003-070226.md) — 5 obs
+* [Session cron_9dfd463ca7d0_20261003_070225](sessions/cron-9dfd463ca7d0-20261003-070225.md) — 3 obs
+* [Session 20261003_075113_dd7f02](sessions/20261003-075113-dd7f02.md) — 0 obs
+* [Session cron_9dfd463ca7d0_20261004_030009](sessions/cron-9dfd463ca7d0-20261004-030009.md) — 3 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -26526,3 +26539,582 @@ session_id: cron_df2ba22a5941](memories/mem_mup9h5hb_c1995ca9b5cb.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_mup9h5vr_bea7956f6f93.md)
+* [Memory: # 180d00109d43
+
+source: hermes
+session_id: 180d00109d43
+resource: hermes://sessi](memories/mem_muqoxtvy_da72d4408f24.md)
+* [Memory: # Hermes Desktop Project Management
+
+source: hermes
+session_id: 20260706_123133_](memories/mem_muqoxub7_cfa88be4754e.md)
+* [Memory: # Hermes Desktop Project Management #2
+
+source: hermes
+session_id: 20260706_1339](memories/mem_muqoxuqm_54025a3f22b1.md)
+* [Memory: # 20260718_084855_083384
+
+source: hermes
+session_id: 20260718_084855_083384
+reso](memories/mem_muqoxv4q_b4cfa2c96064.md)
+* [Memory: # 20260728_172854_00df48
+
+source: hermes
+session_id: 20260728_172854_00df48
+reso](memories/mem_muqoxvkx_c689013512fe.md)
+* [Memory: # Create grid-patterned transparent circular hole PNG mask
+
+source: hermes
+sessi](memories/mem_muqoxw2a_0891a5ff1fc8.md)
+* [Memory: # Moving code to scripts folder
+
+source: hermes
+session_id: 20260806_080449_9e65](memories/mem_muqoxwh3_e05b6a312540.md)
+* [Memory: # Verifying --help full usage output
+
+source: hermes
+session_id: 20260806_081527](memories/mem_muqoxwvf_42ab81eb8f04.md)
+* [Memory: # Perforated mask hole size radius or diameter
+
+source: hermes
+session_id: 20260](memories/mem_muqoxx9w_7dac57bdc316.md)
+* [Memory: # Dynamic Image Editing Slider App
+
+source: hermes
+session_id: 20260806_084129_e](memories/mem_muqoxxnm_0279e7f49589.md)
+* [Memory: # Getting current working directory
+
+source: hermes
+session_id: 20260807_100805_](memories/mem_muqoxy2h_3f161996d2fe.md)
+* [Memory: # Image app margin and dimension fixes
+
+source: hermes
+session_id: 20260807_1100](memories/mem_muqoxyjs_70fb826fa621.md)
+* [Memory: # Image, grid and margin size constraints
+
+source: hermes
+session_id: 20260807_1](memories/mem_muqoxyyj_d7ab0dd15c50.md)
+* [Memory: # Running Python Apps on iOS
+
+source: hermes
+session_id: 20260807_122331_2d0ec6
+](memories/mem_muqoxzbr_74dc80a54bf3.md)
+* [Memory: # Merge branch into main default branch
+
+source: hermes
+session_id: 20260807_122](memories/mem_muqoxzoc_c3509161b2ab.md)
+* [Memory: # Local web preview server stopped
+
+source: hermes
+session_id: 20260807_123516_e](memories/mem_muqoy02p_9799f233fbd2.md)
+* [Memory: # Self-leveling epoxy bed project template setup
+
+source: hermes
+session_id: 202](memories/mem_muqoy0h5_ded969218e0b.md)
+* [Memory: # Self-Leveling Rotating Epoxy Bed System
+
+source: hermes
+session_id: 20260808_0](memories/mem_muqoy0wb_00681ec3d3d2.md)
+* [Memory: # Calculating Minimum Perforated Mask Size
+
+source: hermes
+session_id: 20260808_](memories/mem_muqoy1ba_22bba3a666a6.md)
+* [Memory: # 20260814_152141_44cc59
+
+source: hermes
+session_id: 20260814_152141_44cc59
+reso](memories/mem_muqoy1rn_5ad6e76335e2.md)
+* [Memory: # Save grok_report.pdf as note
+
+source: hermes
+session_id: 20260815_063849_f70bb](memories/mem_muqoy26j_1c0ac86e7b54.md)
+* [Memory: # Fix broken hermes endpoints
+
+source: hermes
+session_id: 20260822_095657_6e74af](memories/mem_muqoy2mr_b5ca2ae4074f.md)
+* [Memory: # Fix broken hermes endpoints #2
+
+source: hermes
+session_id: 20260822_103133_6ba](memories/mem_muqoy2zv_af510e520ddf.md)
+* [Memory: # Add all slash commands to all profiles
+
+source: hermes
+session_id: 20260822_12](memories/mem_muqoy3dq_c0ed34159753.md)
+* [Memory: # Combine Project Leveler into TiltPal project
+
+source: hermes
+session_id: 20260](memories/mem_muqoy3t4_b425afef8c5f.md)
+* [Memory: # Resolve duplicate Telegram bot token conflicts
+
+source: hermes
+session_id: 202](memories/mem_muqoy4e3_c322396dbf96.md)
+* [Memory: # Use Kilo Jev router
+
+source: hermes
+session_id: 20260928_065934_a495fd
+resourc](memories/mem_muqoy4u5_f5358b80eb75.md)
+* [Memory: # Bot Chat
+
+source: hermes
+session_id: 20260928_073419_a59040
+resource: hermes:/](memories/mem_muqoy58r_9c9d1f11a278.md)
+* [Memory: # DXF QuickLook (Desktop/DXF)
+
+source: hermes
+session_id: 20260928_074606_6c31eb](memories/mem_muqoy5nb_d47397e6f5c8.md)
+* [Memory: # Compare Apple FM vs Kilo Auto Small compression session times
+
+source: hermes
+](memories/mem_muqoy63x_37b47287168c.md)
+* [Memory: # Identify model version
+
+source: hermes
+session_id: 20260928_093518_7cffab
+reso](memories/mem_muqoy6hm_03f76df01502.md)
+* [Memory: # Identify AI model
+
+source: hermes
+session_id: 20260928_094525_89c5b1
+resource:](memories/mem_muqoy6vg_c8c8f34f2fd6.md)
+* [Memory: # Classify pattern image
+
+source: hermes
+session_id: 20260928_100132_5e24b1
+reso](memories/mem_muqoy79l_6e353169b5b1.md)
+* [Memory: # Add gradient, solid, and outline modes to DXF-colorizer
+
+source: hermes
+sessio](memories/mem_muqoy7nk_97000b9441ad.md)
+* [Memory: # Find upright back reclining easy chair
+
+source: hermes
+session_id: 20260929_07](memories/mem_muqoy82f_dcc05ae62b3e.md)
+* [Memory: # Locate app in project folder
+
+source: hermes
+session_id: 20260929_130141_613c6](memories/mem_muqoy8gu_8d05d3e0181e.md)
+* [Memory: # Enable shell command execution with
+
+source: hermes
+session_id: 20260929_13060](memories/mem_muqoy8vs_04ed54dda8a1.md)
+* [Memory: # Add gradient, solid, and outline modes to DXF-colorizer #2
+
+source: hermes
+ses](memories/mem_muqoy98j_fb89cbaf7f6f.md)
+* [Memory: # Fix /optimize & /classify writing MCP flags to the wrong config.yaml #4
+
+sourc](memories/mem_muqoy9n8_10a81a781997.md)
+* [Memory: # Enable shell command execution with #2
+
+source: hermes
+session_id: 20260929_14](memories/mem_muqoya13_7c550c1bb7d1.md)
+* [Memory: # Add projects to bottom bar
+
+source: hermes
+session_id: 20260929_150528_e8d109
+](memories/mem_muqoyafh_eb2e49dfed31.md)
+* [Memory: # Fix error in task t_9d82b48b
+
+source: hermes
+session_id: 20260929_152019_133ab](memories/mem_muqoyau3_66574dafa3b4.md)
+* [Memory: # Fork or branch keeping last 4 messages
+
+source: hermes
+session_id: 20260930_04](memories/mem_muqoyb85_40510d41ac39.md)
+* [Memory: # Preprocess images and convert formats for training (develop 2)
+
+source: hermes](memories/mem_muqoybmd_c974c0b0410f.md)
+* [Memory: # Preprocess images and convert formats for training #2
+
+source: hermes
+session_](memories/mem_muqoybzk_2d91f33c66d9.md)
+* [Memory: # Preprocess images and convert formats for training #3
+
+source: hermes
+session_](memories/mem_muqoyccj_791a013a197a.md)
+* [Memory: # Preprocess images and convert formats for training #4
+
+source: hermes
+session_](memories/mem_muqoycpv_a702464d2efe.md)
+* [Memory: # Preprocess images and convert formats for training #5
+
+source: hermes
+session_](memories/mem_muqoyd2l_45705c985189.md)
+* [Memory: # Preprocess images and convert formats for training #6
+
+source: hermes
+session_](memories/mem_muqoydey_5fe67e5b9093.md)
+* [Memory: # Preprocess images and convert formats for training #7
+
+source: hermes
+session_](memories/mem_muqoydpu_13160e3f4bb2.md)
+* [Memory: # Preprocess images and convert formats for training #8
+
+source: hermes
+session_](memories/mem_muqoye2h_8cb17a1e6511.md)
+* [Memory: # Preprocess images and convert formats for training #9
+
+source: hermes
+session_](memories/mem_muqoyeew_dda57782789f.md)
+* [Memory: # Preprocess images and convert formats for training #10
+
+source: hermes
+session](memories/mem_muqoyeqw_f97d256a42a9.md)
+* [Memory: # Preprocess images and convert formats for training #11
+
+source: hermes
+session](memories/mem_muqoyf2y_37f44a0beac0.md)
+* [Memory: # Preprocess images and convert formats for training #12
+
+source: hermes
+session](memories/mem_muqoyfch_6a89f7146e1d.md)
+* [Memory: # Preprocess images and convert formats for training #13
+
+source: hermes
+session](memories/mem_muqoyfov_561b35ecdea1.md)
+* [Memory: # Preprocess images and convert formats for training #14
+
+source: hermes
+session](memories/mem_muqoyg1r_e3a34e39fd6b.md)
+* [Memory: # Preprocess images and convert formats for training #15
+
+source: hermes
+session](memories/mem_muqoygdv_45bf583b053b.md)
+* [Memory: # Preprocess images and convert formats for training #16
+
+source: hermes
+session](memories/mem_muqoygrv_120ed73372b5.md)
+* [Memory: # Preprocess images and convert formats for training #17
+
+source: hermes
+session](memories/mem_muqoyh8e_f883f8d6167f.md)
+* [Memory: # Preprocess images and convert formats for training #18
+
+source: hermes
+session](memories/mem_muqoyho7_c20aae198daf.md)
+* [Memory: # Preprocess images and convert formats for training #19
+
+source: hermes
+session](memories/mem_muqoyi42_acc215ece005.md)
+* [Memory: # Preprocess images and convert formats for training #20
+
+source: hermes
+session](memories/mem_muqoyihn_30f6d36f9191.md)
+* [Memory: # Preprocess images and convert formats for training #21
+
+source: hermes
+session](memories/mem_muqoyiz3_bba6e5f1b1a9.md)
+* [Memory: # Preprocess images and convert formats for training #22
+
+source: hermes
+session](memories/mem_muqoyjcj_76c0ffb388fe.md)
+* [Memory: # Preprocess images and convert formats for training #23
+
+source: hermes
+session](memories/mem_muqoyjor_1a02f861eeaf.md)
+* [Memory: # Automate spaced top-layer duplication in G-code
+
+source: hermes
+session_id: 20](memories/mem_muqoyk1f_6a9a57395b0b.md)
+* [Memory: # Navigate to imgtagplus
+
+source: hermes
+session_id: 20260930_153322_2fbd67
+reso](memories/mem_muqoykel_0df4440b5710.md)
+* [Memory: # Configure service for all interfaces
+
+source: hermes
+session_id: 20260930_1536](memories/mem_muqoyksz_6aaf2c6f5468.md)
+* [Memory: # Document Kilo agent memory integration
+
+source: hermes
+session_id: 20261001_04](memories/mem_muqoyl6x_924681035fbe.md)
+* [Memory: # Find PrusaSlicer plugin creation guide
+
+source: hermes
+session_id: 20261001_07](memories/mem_muqoylll_6dea5df9dd7b.md)
+* [Memory: # Consequences of changing Canva task models
+
+source: hermes
+session_id: 2026100](memories/mem_muqoym22_76d308482037.md)
+* [Memory: # Fork and baseline the imgtagplus repository
+
+source: hermes
+session_id: 202610](memories/mem_muqoymgw_64711a446c6d.md)
+* [Memory: # Implement PNG, SVG, and DXF classification support (develop 2)
+
+source: hermes](memories/mem_muqoymuu_cd33e4fa98ab.md)
+* [Memory: # Implement PNG, SVG, and DXF classification support #2 (develop 2)
+
+source: her](memories/mem_muqoyncl_9e9459f79250.md)
+* [Memory: # Permit any folder the user selects as the folder to scan, there is no need for](memories/mem_muqoynow_f1e16518d20c.md)
+* [Memory: # Implement PNG, SVG, and DXF classification support
+
+source: hermes
+session_id:](memories/mem_muqoyo48_7f16dc29784e.md)
+* [Memory: # Investigate stuck task t_9a0b8774
+
+source: hermes
+session_id: 20261001_124419_](memories/mem_muqoyoig_f986b963fe46.md)
+* [Memory: # Diagnose t_5054147f rate limiting
+
+source: hermes
+session_id: 20261001_132750_](memories/mem_muqoyoxv_886e2f361a42.md)
+* [Memory: # Implement PNG, SVG, and DXF classification support #2
+
+source: hermes
+session_](memories/mem_muqoypes_0a542883ea5a.md)
+* [Memory: # Add tag editing and feedback persistence
+
+source: hermes
+session_id: 20261001_](memories/mem_muqoypte_905782a77d08.md)
+* [Memory: # Compare Kanban goals and sessions
+
+source: hermes
+session_id: 20261001_160452_](memories/mem_muqoyq80_3b1016f15034.md)
+* [Memory: # Add tag editing and feedback persistence #2
+
+source: hermes
+session_id: 202610](memories/mem_muqoyqmy_2b34392fc50a.md)
+* [Memory: # Top iOS/macOS apps for NTAG 215 inventory
+
+source: hermes
+session_id: 20261001](memories/mem_muqoyr13_7757c0b15db8.md)
+* [Memory: # Update Hermes workspace and research skills
+
+source: hermes
+session_id: 202610](memories/mem_muqoyrfo_8054d638d3c3.md)
+* [Memory: # Unblock task t_5dcb6595
+
+source: hermes
+session_id: 20261001_234813_608314
+res](memories/mem_muqoyrs4_06a303e5b64a.md)
+* [Memory: # Minimize session token usage
+
+source: hermes
+session_id: 20261001_235916_a57f6](memories/mem_muqoys6p_9647af641139.md)
+* [Memory: # Independently verify tag CRUD, persistence, precedence, and scan-time feedback](memories/mem_muqoysj0_3d9e50c3ea3f.md)
+* [Memory: # Validate the complete image-tagging workflow
+
+source: hermes
+session_id: 20261](memories/mem_muqoysxl_32ef0bf4557d.md)
+* [Memory: # Fix _refresh_scan_feedback demoting user-confirmed tags to unvetted (loses con](memories/mem_muqoytbv_2e66593a3ca8.md)
+* [Memory: # Understand Kanban card behavior on relaunch
+
+source: hermes
+session_id: 202610](memories/mem_muqoytne_841f669e8673.md)
+* [Memory: # Switch profiles with truncated profile rail
+
+source: hermes
+session_id: 202610](memories/mem_muqoytzw_b0bc6b640930.md)
+* [Memory: # KanBan example and triage explanation
+
+source: hermes
+session_id: 20261002_011](memories/mem_muqoyuem_c6bd8d9a22f0.md)
+* [Memory: # Clarify /token-audit and /optimize pruning
+
+source: hermes
+session_id: 2026100](memories/mem_muqoyutd_47e84e709a45.md)
+* [Memory: # Move session 20261002_011838_908e51 to profile and project
+
+source: hermes
+ses](memories/mem_muqoyv54_e36c602099e9.md)
+* [Memory: # Create category tags for image files
+
+source: hermes
+session_id: 20261002_0150](memories/mem_muqoyvjj_aa6d073a0801.md)
+* [Memory: # Fix missing yaml module error
+
+source: hermes
+session_id: 20261002_015329_60e7](memories/mem_muqoyvxf_0ab94f6df8f1.md)
+* [Memory: # Python version complexity and installation clutter
+
+source: hermes
+session_id:](memories/mem_muqoywc5_b9eee6f3b487.md)
+* [Memory: # Review profiles for Kanban and yhier
+
+source: hermes
+session_id: 20261002_0208](memories/mem_muqoywq0_6a7f78619e0c.md)
+* [Memory: # Review profiles for Kanban and yhier #2
+
+source: hermes
+session_id: 20261002_0](memories/mem_muqoyx78_a775475c2691.md)
+* [Memory: # Write .bash_profile commit message
+
+source: hermes
+session_id: 20261002_023016](memories/mem_muqoyxm8_8115af7bdcf1.md)
+* [Memory: # Create category tags for image files #2
+
+source: hermes
+session_id: 20261002_0](memories/mem_muqoyy15_e1fff31e5ad3.md)
+* [Memory: # Update Hermes config and skill guidance
+
+source: hermes
+session_id: 20261002_0](memories/mem_muqoyyco_073c5f4aef5e.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 02 03:06
+
+source: hermes
+session_id: cro](memories/mem_muqoyyxp_56d42fdac2a6.md)
+* [Memory: # Evening wind-down · Sep 30 21:03
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_muqoyzcs_b1376010ae87.md)
+* [Memory: # Evening wind-down · Oct 01 21:02
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_muqoyzoo_a117cd3cb02a.md)
+* [Memory: # agentmemory-okf-mirror · Oct 02 03:01
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_muqoz03l_8d2f27f22876.md)
+* [Memory: # Morning briefing · Oct 01 08:00
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_muqoz0f9_a3ca3debf967.md)
+* [Memory: # Workday start reminder · Oct 01 09:01
+
+source: hermes
+session_id: cron_d83aeb5](memories/mem_muqoz0th_4c4530679382.md)
+* [Memory: # nightly-okf-index · Oct 01 03:17
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_muqoz181_89d64b7a0ab8.md)
+* [Memory: # cron_df2ba22a5941_20261002_031801
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_muqoz1kv_4cc3e3cea0b5.md)
+* [Memory: # How to send messages to the Hermes gateway
+
+source: hermes
+session_id: 2026061](memories/mem_muscppuz_43aa1bd905b7.md)
+* [Memory: # Resolve duplicate Telegram bot token conflicts
+
+source: hermes
+session_id: 202](memories/mem_muscpqkc_2c9dfdff291b.md)
+* [Memory: # Fork or branch keeping last 4 messages
+
+source: hermes
+session_id: 20260930_04](memories/mem_muscpqub_79d90d80d1a6.md)
+* [Memory: # Reinstate kilo usage meter
+
+source: hermes
+session_id: 20260930_051512_f7ea36
+](memories/mem_muscpr4o_5a28a75dc79c.md)
+* [Memory: # Fix error in task t_9d82b48b #2
+
+source: hermes
+session_id: 20260930_051825_0b](memories/mem_muscpree_d54bc05862fd.md)
+* [Memory: # Error in t_08fc10a2 workspace
+
+source: hermes
+session_id: 20260930_060532_5f86](memories/mem_muscprnz_ae7d92e32c2e.md)
+* [Memory: # Add projects to status bar and commit
+
+source: hermes
+session_id: 20260930_061](memories/mem_muscprxk_5e72aa551e62.md)
+* [Memory: # Troubleshoot Hermes Desktop errors
+
+source: hermes
+session_id: 20260930_062027](memories/mem_muscps7o_17dab89e30a8.md)
+* [Memory: # Find Hermes kanban log t_b5f9be1e
+
+source: hermes
+session_id: 20260930_093810_](memories/mem_muscpsha_9abcf1c648b4.md)
+* [Memory: # Automate spaced top-layer duplication in G-code
+
+source: hermes
+session_id: 20](memories/mem_muscpsqx_e82eab6f3234.md)
+* [Memory: # Revisit open-source OCR benchmark article
+
+source: hermes
+session_id: 20260930](memories/mem_muscpt0c_f669b40ae374.md)
+* [Memory: # Navigate to imgtagplus
+
+source: hermes
+session_id: 20260930_153322_2fbd67
+reso](memories/mem_muscpt9t_b392b0a2296a.md)
+* [Memory: # Configure service for all interfaces
+
+source: hermes
+session_id: 20260930_1536](memories/mem_muscptj7_bbcfd3655856.md)
+* [Memory: # Update service debugging skill
+
+source: hermes
+session_id: 20260930_195248_61b](memories/mem_muscptsp_32af3fc996e2.md)
+* [Memory: # Unblock task t_5dcb6595
+
+source: hermes
+session_id: 20261001_234813_608314
+res](memories/mem_muscpu2n_66388bd18057.md)
+* [Memory: # Minimize session token usage
+
+source: hermes
+session_id: 20261001_235916_a57f6](memories/mem_muscpuc9_38a9af9ea31f.md)
+* [Memory: # Validate the complete image-tagging workflow
+
+source: hermes
+session_id: 20261](memories/mem_muscpulu_038d7a895f64.md)
+* [Memory: # KanBan example and triage explanation
+
+source: hermes
+session_id: 20261002_011](memories/mem_muscpuve_3b1dcadd54cd.md)
+* [Memory: # Move session 20261002_011838_908e51 to profile and project
+
+source: hermes
+ses](memories/mem_muscpv4w_a88d6acb0492.md)
+* [Memory: # Fix missing yaml module error
+
+source: hermes
+session_id: 20261002_015329_60e7](memories/mem_muscpveh_cac8d3ab493e.md)
+* [Memory: # Python version complexity and installation clutter
+
+source: hermes
+session_id:](memories/mem_muscpvo4_a0679aec760a.md)
+* [Memory: # Review profiles for Kanban and yhier
+
+source: hermes
+session_id: 20261002_0208](memories/mem_muscpvxi_e27adc5f1f10.md)
+* [Memory: # List default profile projects
+
+source: hermes
+session_id: 20261002_115823_a618](memories/mem_muscpw73_e5118beca1fb.md)
+* [Memory: # Investigate task t_f8d7ce26 blockage
+
+source: hermes
+session_id: 20261002_1218](memories/mem_muscpwh8_6c6a1be46a39.md)
+* [Memory: # Use skill-library-maintenance
+
+source: hermes
+session_id: 20261002_122234_92ac](memories/mem_muscpwr5_180bf857a61a.md)
+* [Memory: # Determine best time for adoption
+
+source: hermes
+session_id: 20261002_133503_3](memories/mem_muscpx0c_163e7c359dc6.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 03 07:10
+
+source: hermes
+session_id: cro](memories/mem_muscpxb2_09ac28425e35.md)
+* [Memory: # Evening wind-down · Oct 02 21:53
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_muscpxkt_632107016b4e.md)
+* [Memory: # cron_9dfd463ca7d0_20261003_070225
+
+source: hermes
+session_id: cron_9dfd463ca7d](memories/mem_muscpxup_44d3282e254d.md)
+* [Memory: # Morning briefing · Oct 02 08:01
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_muscpy4b_bd01e9747c4c.md)
+* [Memory: # Workday start reminder · Oct 02 09:01
+
+source: hermes
+session_id: cron_d83aeb5](memories/mem_muscpydv_98814eb97ff9.md)
+* [Memory: # nightly-okf-index · Oct 02 03:19
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_muscpynu_05c46d8b14a0.md)
+* [Memory: # cron_df2ba22a5941_20261003_070226
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_muscpyxg_600c746d10b5.md)
