@@ -1,0 +1,114 @@
+---
+type: Fact
+title: # B/C: Kilo Free replaces turboquant; clear default_wordir
+
+source: hermes
+sessi
+description: # B/C: Kilo Free replaces turboquant; clear default_wordir
+
+source: hermes
+session_id: 20261002_021311_1cf2f5
+resource: hermes://session/20261002_021311_1cf2f5
+
+# Conversation
+
+- **Session ID:** `2026
+resource: agentmemory://memory/mem_mutjspkr_afab37d7ded8
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-10-04T08:17:31.357Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# B/C: Kilo Free replaces turboquant; clear default_wordir
+
+source: hermes
+session_id: 20261002_021311_1cf2f5
+resource: hermes://session/20261002_021311_1cf2f5
+
+# Conversation
+
+- **Session ID:** `20261002_021311_1cf2f5`
+- **Source:** desktop
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-10-02T07:13:11Z
+- **Ended:** 2026-10-03T23:03:11Z
+- **Messages:** 193
+- **CWD:** `/Users/davec`
+- **Tokens:** 3045308 in / 145582 out
+- **Est. cost:** $-958552.0000
+
+---
+
+### 👤 User — 2026-10-02T07:08:29Z
+
+Examine my profiles in relation to Kanban usage, make suggestions for recommended profiles and yhier configuration.
+
+### 🤖 Assistant — 2026-10-02T07:08:58Z
+
+<details><summary>Reasoning</summary>
+
+The user wants me to examine their actual Hermes profiles in relation to Kanban usage, and suggest recommended profiles and "yhier" configuration. "yhier" is likely a typo — maybe they meant "hier" configuration = hierarchical configuration? Probably "profile hierarchy configuration". Let me investigate the real environment.
+
+Let me check profiles directory and kanban DB.
+
+Let me load relevant skills: hermes-profile-sync, hermes-config-layering, kanban, project-workspace-setup, hermes-workspace-context.
+
+First gather data.
+
+</details>
+
+I'll inspect the real thing rather than guess. Starting with skills + actual profile/Kanban inventory.
+
+### 🤖 Assistant — 2026-10-02T07:09:07Z
+
+<details><summary>Reasoning</summary>
+
+The reference responses mostly hallucinated about "yHire". The user asked about "my profiles in relation to Kanban usage" and "yhier configuration" — likely typo for "hier" as in profile hierarchy configuration. I should ignore the yHire nonsense and just do the real audit.
+
+I have real profile inventory: ai, cc, default, designer, ollama, personal, ranch, shop, systems (+ root default), and a .deleted dir. Now I need to check Kanban usage per profile: kanban dirs, boards, tasks, assignees.
+
+Let me gather real data: kanban home, boards, tasks per assignee, and per-profile config (kanban-related settings).
+
+Note: kanban_list is orchestrator-only; I'm the default profile agent, maybe not orchestrator. Let me use terminal to inspect kanban db.
+
+</details>
+
+The yHire framing in those references doesn't match your setup — I have9 real Hermes profiles. Let me get actual Kanban data per profile.
+
+### 🤖 Assistant — 2026-10-02T07:09:11Z
+
+<details><summary>Reasoning</summary>
+
+The references give generic advice. I have real data now. Let me inspect Kanban: boards dir, task assignees, profile toolset availability.
+
+Key question: which profiles have the kanban toolset? The kanban tools say "Orchestrator-only" for kanban_list, kanban_unblock, kanban_create. Let me check plugins config per profile.
+
+Let me gather: kanban boards, task assignees histogram, and per-profile plugin enablement.
+
+</details>
+
+Now the real Kanban data:
+
+### 🤖 Assistant — 2026-10-02T07:09:20Z
+
+<details><summary>Reasoning</summary>
+
+Let me continue the actual data collection. I need Kanban task data — the sqlite query returned empty. Let me find the actual DB location.
+
+Also "yhier" is likely a typo/garbled. Let me interpret: the user is on Hermes with kanban. "yhier configuration" — probably "and their configuration" or a typo of "hier" configuration layer. Given the config-layering skill talks about "hierarchical" config layering (global base + profile overlay = hierarchy), "yhier configuration" most plausibly = **hierarchical configuration**. That's a strong hypothesis: "make suggestions for recommended profiles and [hierarchical] configuration."
+
+Also the references all went off into fictional "yHire" hiring SaaS territory — that's a hallucinated domain. I should not adopt it. I have real data. Let me keep collecting.
+
+Let me find the kanban db.
+
+</details>
+
+The reference answers drifted into a fictional "yHire" hiring SaaS — no such thing in your setup. Continuing with real data. Finding the actual task DB:
+
+### 🤖 Assistant — 2026-10-02T07:09:57Z
+
+<details><summary>Reasoning</summary>
+
+I have real data. Let me analyze and give a profile-by-profile recommendation. Let me also check per-profile dispatcher config (kanban dispatch

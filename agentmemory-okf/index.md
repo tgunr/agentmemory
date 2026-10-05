@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-04T08:04:51.612Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-10-05T08:00:18.873Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -2915,7 +2915,7 @@ _Exported 2026-10-04T08:04:51.612Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20261002_012002_5c93fd](sessions/20261002-012002-5c93fd.md) — 7 obs
 * [Session 20261002_013907_040a87](sessions/20261002-013907-040a87.md) — 24 obs
 * [Session 20261002_015057_d9c344](sessions/20261002-015057-d9c344.md) — 87 obs
-* [Session 20261002_015329_60e768](sessions/20261002-015329-60e768.md) — 74 obs
+* [Session 20261002_015329_60e768](sessions/20261002-015329-60e768.md) — 134 obs
 * [Session 20261002_015723_3de3f1](sessions/20261002-015723-3de3f1.md) — 54 obs
 * [Session 20261002_020829_e592e5](sessions/20261002-020829-e592e5.md) — 118 obs
 * [Session 20261002_023016_485f30](sessions/20261002-023016-485f30.md) — 2 obs
@@ -2933,7 +2933,19 @@ _Exported 2026-10-04T08:04:51.612Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session cron_df2ba22a5941_20261003_070226](sessions/cron-df2ba22a5941-20261003-070226.md) — 5 obs
 * [Session cron_9dfd463ca7d0_20261003_070225](sessions/cron-9dfd463ca7d0-20261003-070225.md) — 3 obs
 * [Session 20261003_075113_dd7f02](sessions/20261003-075113-dd7f02.md) — 0 obs
-* [Session cron_9dfd463ca7d0_20261004_030009](sessions/cron-9dfd463ca7d0-20261004-030009.md) — 3 obs
+* [Session cron_9dfd463ca7d0_20261004_030009](sessions/cron-9dfd463ca7d0-20261004-030009.md) — 21 obs
+* [Session cron_df2ba22a5941_20261004_031711](sessions/cron-df2ba22a5941-20261004-031711.md) — 8 obs
+* [Session cron_a9b330e497a5_20261004_080010](sessions/cron-a9b330e497a5-20261004-080010.md) — 5 obs
+* [Session cron_b99b9d2f2fcd_20261004_090009](sessions/cron-b99b9d2f2fcd-20261004-090009.md) — 17 obs
+* [Session cron_579965e2d62f_20261004_210009](sessions/cron-579965e2d62f-20261004-210009.md) — 10 obs
+* [Session 20261004_225025_0a04a6](sessions/20261004-225025-0a04a6.md) — 151 obs
+* [Session 20261004_233515_2ac5e9](sessions/20261004-233515-2ac5e9.md) — 42 obs
+* [Session smoke_designer_probe](sessions/smoke-designer-probe.md) — 1 obs
+* [Session 20261005_010820_5efcee](sessions/20261005-010820-5efcee.md) — 68 obs
+* [Session 20261005_012759_d8e5b3](sessions/20261005-012759-d8e5b3.md) — 119 obs
+* [Session 20261005_014523_2ae9d9](sessions/20261005-014523-2ae9d9.md) — 1 obs
+* [Session 20261005_021022_78c10e](sessions/20261005-021022-78c10e.md) — 62 obs
+* [Session cron_4b310d35c4fd_20261005_021246](sessions/cron-4b310d35c4fd-20261005-021246.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -27118,3 +27130,134 @@ session_id: cron_df2ba22a5941](memories/mem_muscpynu_05c46d8b14a0.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_muscpyxg_600c746d10b5.md)
+* [Memory: # Automate spaced top-layer duplication in G-code
+
+source: hermes
+session_id: 20](memories/mem_mutjsji1_d363585e9ef7.md)
+* [Memory: # Find PrusaSlicer plugin creation guide
+
+source: hermes
+session_id: 20261001_07](memories/mem_mutjsk2s_06864a7606b8.md)
+* [Memory: # Consequences of changing Canva task models
+
+source: hermes
+session_id: 2026100](memories/mem_mutjskgo_29b95d3f8325.md)
+* [Memory: # Investigate stuck task t_9a0b8774
+
+source: hermes
+session_id: 20261001_124419_](memories/mem_mutjskv9_2791b4078932.md)
+* [Memory: # Diagnose t_5054147f rate limiting
+
+source: hermes
+session_id: 20261001_132750_](memories/mem_mutjsl9k_8fc0e3b8b4fc.md)
+* [Memory: # Top iOS/macOS apps for NTAG 215 inventory
+
+source: hermes
+session_id: 20261001](memories/mem_mutjslmj_2527e9af255c.md)
+* [Memory: # Unblock task t_5dcb6595
+
+source: hermes
+session_id: 20261001_234813_608314
+res](memories/mem_mutjslza_f597c8afb7a7.md)
+* [Memory: # Minimize session token usage
+
+source: hermes
+session_id: 20261001_235916_a57f6](memories/mem_mutjsm8z_ea125d1ba318.md)
+* [Memory: # Understand Kanban card behavior on relaunch
+
+source: hermes
+session_id: 202610](memories/mem_mutjsmnj_122899ea6004.md)
+* [Memory: # Switch profiles with truncated profile rail
+
+source: hermes
+session_id: 202610](memories/mem_mutjsn1h_3f61c13a1e40.md)
+* [Memory: # KanBan example and triage explanation
+
+source: hermes
+session_id: 20261002_011](memories/mem_mutjsnd5_025b3c679141.md)
+* [Memory: # Clarify /token-audit and /optimize pruning
+
+source: hermes
+session_id: 2026100](memories/mem_mutjsnr1_c43c7982ee67.md)
+* [Memory: # Move session 20261002_011838_908e51 to profile and project
+
+source: hermes
+ses](memories/mem_mutjso1s_357c226d1df7.md)
+* [Memory: # Fix missing yaml module error
+
+source: hermes
+session_id: 20261002_015329_60e7](memories/mem_mutjsofi_f60dfc4ab5ed.md)
+* [Memory: # Python version complexity and installation clutter
+
+source: hermes
+session_id:](memories/mem_mutjsoso_72328ff86421.md)
+* [Memory: # Review profiles for Kanban and yhier
+
+source: hermes
+session_id: 20261002_0208](memories/mem_mutjsp6b_f30cb526bc8d.md)
+* [Memory: # B/C: Kilo Free replaces turboquant; clear default_wordir
+
+source: hermes
+sessi](memories/mem_mutjspkr_afab37d7ded8.md)
+* [Memory: # List default profile projects
+
+source: hermes
+session_id: 20261002_115823_a618](memories/mem_mutjspvx_f3ee1a10af1e.md)
+* [Memory: # Investigate task t_f8d7ce26 blockage
+
+source: hermes
+session_id: 20261002_1218](memories/mem_mutjsqaa_4775123b11e5.md)
+* [Memory: # Use skill-library-maintenance
+
+source: hermes
+session_id: 20261002_122234_92ac](memories/mem_mutjsqof_57ef3112511a.md)
+* [Memory: # Move session 20261002_011838_908e51 to default profile
+
+source: hermes
+session](memories/mem_mutjsr2n_cda433a349d2.md)
+* [Memory: # 20261002_131050_13df23
+
+source: hermes
+session_id: 20261002_131050_13df23
+reso](memories/mem_mutjsrfu_c50ae6798eb6.md)
+* [Memory: # Determine best time for adoption
+
+source: hermes
+session_id: 20261002_133503_3](memories/mem_mutjsrtj_e10669810db4.md)
+* [Memory: # Optimize agent dispatch and memory integration
+
+source: hermes
+session_id: 202](memories/mem_mutjss7v_ff34983ecccb.md)
+* [Memory: # Fix emails in profiles
+
+source: hermes
+session_id: 20261003_075438_45490a
+reso](memories/mem_mutjssma_af207ebf654c.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 04 03:05
+
+source: hermes
+session_id: cro](memories/mem_mutjst1t_c50582e261e6.md)
+* [Memory: # Evening wind-down · Oct 03 21:00
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_mutjstfv_e34cdfd4dd34.md)
+* [Memory: # agentmemory-okf-mirror · Oct 03 07:12
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_mutjstty_a18010b3178b.md)
+* [Memory: # cron_9dfd463ca7d0_20261004_030009
+
+source: hermes
+session_id: cron_9dfd463ca7d](memories/mem_mutjsu6z_5a7096a8d6a6.md)
+* [Memory: # Morning briefing · Oct 03 08:00
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_mutjsukl_21ec25434bb7.md)
+* [Memory: # nightly-okf-index · Oct 03 07:12
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_mutjsuvq_378c984f7e73.md)
+* [Memory: # cron_df2ba22a5941_20261004_031711
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_mutjsv9j_f68f30385779.md)
