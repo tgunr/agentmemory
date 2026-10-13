@@ -1,0 +1,115 @@
+---
+type: Fact
+title: # @url:`https://hermes.polymicro.net` is not…
+
+source: hermes
+session_id: 202610
+description: # @url:`https://hermes.polymicro.net` is not…
+
+source: hermes
+session_id: 20261006_211759_b05d16
+resource: hermes://session/20261006_211759_b05d16
+
+# Conversation
+
+- **Session ID:** `20261006_211759_b
+resource: agentmemory://memory/mem_mv3jy7tx_4fe06d76a5c8
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec/Desktop"]
+timestamp: 2026-10-11T08:19:30.057Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# @url:`https://hermes.polymicro.net` is not…
+
+source: hermes
+session_id: 20261006_211759_b05d16
+resource: hermes://session/20261006_211759_b05d16
+
+# Conversation
+
+- **Session ID:** `20261006_211759_b05d16`
+- **Source:** desktop
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-10-07T02:17:59Z
+- **Ended:** 2026-10-10T14:02:56Z
+- **Messages:** 746
+- **CWD:** `/Users/davec/Desktop`
+- **Tokens:** 1163889 in / 115249 out
+- **Est. cost:** $-368151.0000
+
+---
+
+### 👤 User — 2026-10-07T02:17:59Z
+
+@url:`https://hermes.polymicro.net` is not responding again, look to your memories as this has happened before.
+
+--- Context Warnings ---
+- @url:`https://hermes.polymicro.net`: no content extracted
+
+### 👤 User — 2026-10-07T02:17:59Z
+
+@url:`https://hermes.polymicro.net` is not responding again, look to your memories as this has happened before.
+
+--- Context Warnings ---
+- @url:`https://hermes.polymicro.net`: no content extracted
+
+### 🤖 Assistant — 2026-10-07T02:18:10Z
+
+<details><summary>Reasoning</summary>
+
+The user says https://hermes.polymicro.net is not responding "again" and points to my memories since this has happened before. This looks like a reverse-proxy outage on their LAN. There's a skill `reverse-proxy-debug` / `reverse-proxy-triage` for diagnosing proxied host 503s. I should load that skill first, and also check memory.
+
+Let me search memory and load the skill. The available skill list includes:
+- reverse-proxy-debug: Diagnose subdomain/reverse-proxy outages (503/502).
+- reverse-proxy-triage: Diagnose a proxied host 503 tracing NAT→proxy→backend.
+
+I should load one. The URL failed to extract content — "no content extracted". Probably 503/502 or connection refused.
+
+Also memory mentions "reverse-proxy-debug: Diagnose subdomain/reverse-proxy outages (503/502)" — but my memory notes don't include specifics yet beyond what's in the system prompt. Memory is 96% full with the entries shown. The user says "look to your memories as this has happened before" — so I should search memory. The memory tool only has add/replace/remove operations... but there's also agentmemory MCP tools (memory_recall, memory_smart_search) deferred via tool_search. That's probably where past incident notes live.
+
+Let me:
+1. Load skill reverse-proxy-debug (or triage).
+2. Use agentmemory memory_recall / memory_smart_search for "hermes.polymicro.net not responding".
+3. Diagnose: curl the URL, check the reverse proxy.
+
+Let me batch: skill_view + tool_search for agentmemory recall tools. Then run terminal curl checks.
+
+Actually the skills: both reverse-proxy-debug and reverse-proxy-triage seem relevant. Let me load reverse-proxy-debug first — "Diagnose subdomain/reverse-proxy outages (503/502)". That matches.
+
+Batch: skill_view('reverse-proxy-debug'), tool_search(['agentmemory recall search past observations']).
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "reverse-proxy-debug"
+}
+```
+
+**Tool call: tool_search**
+
+```json
+{
+  "queries": [
+    "agentmemory recall past session observations search"
+  ]
+}
+```
+
+### 🤖 Assistant — 2026-10-07T02:18:10Z
+
+<details><summary>Reasoning</summary>
+
+The user says https://hermes.polymicro.net is not responding "again" and points to my memories since this has happened before. This looks like a reverse-proxy outage on their LAN. There's a skill `reverse-proxy-debug` / `reverse-proxy-triage` for diagnosing proxied host 503s. I should load that skill first, and also check memory.
+
+Let me search memory and load the skill. The available skill list includes:
+- reverse-proxy-debug: Diagnose subdomain/reverse-proxy outages (503/502).
+- reverse-proxy-triage: Diagnose a proxied host 503 tracing NAT→proxy→backend.
+
+I should load one. The URL failed to extract content — "no content extracted". Probably 503/502 or connection refused.
+
+Also memory mentions "reverse-proxy-debug: Diagnose subdomain/reverse-proxy outages (503/502)" — but my memory notes don't include specifics yet beyond what's in the system prompt. Memory is 96% full with the entries shown. The user says "look to your memories as this has happened before" — so I should search memory. The memory tool only has add/

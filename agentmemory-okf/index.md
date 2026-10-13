@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-11T08:01:11.028Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-10-13T08:10:01.224Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -3466,6 +3466,10 @@ _Exported 2026-10-11T08:01:11.028Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20261010_124753_a8bc94](sessions/20261010-124753-a8bc94.md) — 30 obs
 * [Session 20261010_125129_b40f5d](sessions/20261010-125129-b40f5d.md) — 158 obs
 * [Session cron_579965e2d62f_20261010_210058](sessions/cron-579965e2d62f-20261010-210058.md) — 1 obs
+* [Session cron_4b310d35c4fd_20261011_030058](sessions/cron-4b310d35c4fd-20261011-030058.md) — 1 obs
+* [Session cron_9dfd463ca7d0_20261011_030058](sessions/cron-9dfd463ca7d0-20261011-030058.md) — 1 obs
+* [Session cron_df2ba22a5941_20261011_031800](sessions/cron-df2ba22a5941-20261011-031800.md) — 4 obs
+* [Session cron_9dfd463ca7d0_20261013_030039](sessions/cron-9dfd463ca7d0-20261013-030039.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -28163,3 +28167,138 @@ session_id: cron_df2ba22a5941](memories/mem_mv24kybh_8656e1be7ace.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_mv24kyms_35489dfac1bf.md)
+* [Memory: # Use Kilo Jev router
+
+source: hermes
+session_id: 20260928_065934_a495fd
+resourc](memories/mem_mv3jy4sl_a1a74b9fdd28.md)
+* [Memory: # Find PrusaSlicer plugin creation guide
+
+source: hermes
+session_id: 20261001_07](memories/mem_mv3jy5ch_69fbd71c2418.md)
+* [Memory: # Set up Home Assistant with Ring cameras
+
+source: hermes
+session_id: 20261002_1](memories/mem_mv3jy5t9_16bba110e964.md)
+* [Memory: # Build and run imgtagplus server #2
+
+source: hermes
+session_id: 20261006_023315](memories/mem_mv3jy690_06d149bc3fd3.md)
+* [Memory: # Reduce chatty responses and duplicate conclusions
+
+source: hermes
+session_id: ](memories/mem_mv3jy6nz_b14bce1aabc3.md)
+* [Memory: # imgtagplus error
+
+source: hermes
+session_id: 20261006_035053_a8bfca
+resource: ](memories/mem_mv3jy70r_d90874db863b.md)
+* [Memory: # go to project imgtagplus
+
+source: hermes
+session_id: 20261006_204552_3122a0
+re](memories/mem_mv3jy7f4_e93e46f48054.md)
+* [Memory: # @url:`https://hermes.polymicro.net` is not…
+
+source: hermes
+session_id: 202610](memories/mem_mv3jy7tx_4fe06d76a5c8.md)
+* [Memory: # Texas Eviction #10
+
+source: hermes
+session_id: 20261008_104847_65a740
+resource](memories/mem_mv3jy8a5_5fedba6e8c0f.md)
+* [Memory: # imgtagplus tag filter
+
+source: hermes
+session_id: 20261008_123109_5e5bc2
+resou](memories/mem_mv3jy8pe_3fc71701c487.md)
+* [Memory: # Check compaction is using jev
+
+source: hermes
+session_id: 20261009_025220_8552](memories/mem_mv3jy928_69145d2d48d7.md)
+* [Memory: # Eviction video #2
+
+source: hermes
+session_id: 20261009_102626_d38c56
+resource:](memories/mem_mv3jy9ig_d1972f38de39.md)
+* [Memory: # Missing timestamps in watched videos
+
+source: hermes
+session_id: 20261009_1030](memories/mem_mv3jy9xe_0756261f11ec.md)
+* [Memory: # Setup project workspace
+
+source: hermes
+session_id: 20261010_091114_24f91a
+res](memories/mem_mv3jya99_0a6bc4490814.md)
+* [Memory: # Finish merge into tg/main
+
+source: hermes
+session_id: 20261010_094002_645406
+r](memories/mem_mv3jyan6_d3cb044a92b3.md)
+* [Memory: # Fix state 8000 character limit error
+
+source: hermes
+session_id: 20261010_0956](memories/mem_mv3jyb27_aacd7708ba9b.md)
+* [Memory: # Fix context window showing 65k
+
+source: hermes
+session_id: 20261010_100757_256](memories/mem_mv3jybgr_26e7e2d860f1.md)
+* [Memory: # Finish merge into tg/main #2
+
+source: hermes
+session_id: 20261010_100902_57acf](memories/mem_mv3jybv5_72843c936109.md)
+* [Memory: # Finish rebase successfully
+
+source: hermes
+session_id: 20261010_104956_448f3e
+](memories/mem_mv3jyca2_614b42c985db.md)
+* [Memory: # Reorganize project folder structure
+
+source: hermes
+session_id: 20261010_11265](memories/mem_mv3jycp2_5f4773a7adfc.md)
+* [Memory: # Generalize /project-workspace-setup or create /project-cnc
+
+source: hermes
+ses](memories/mem_mv3jyd3b_81a5a52fb501.md)
+* [Memory: # Create AGENTS.md for multiboard
+
+source: hermes
+session_id: 20261010_113107_10](memories/mem_mv3jydhg_bf082173d10f.md)
+* [Memory: # Multiboard Stack
+
+source: hermes
+session_id: 20261010_123854_7d7598
+resource: ](memories/mem_mv3jydw5_8337ab70edc2.md)
+* [Memory: # Multiboard project
+
+source: hermes
+session_id: 20261010_124753_a8bc94
+resource](memories/mem_mv3jye8s_bbf10b25c945.md)
+* [Memory: # Restore projects popup in bottom status bar
+
+source: hermes
+session_id: 202610](memories/mem_mv3jyenj_1844614c9c09.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 11 03:01
+
+source: hermes
+session_id: cro](memories/mem_mv3jyf71_9034c0305326.md)
+* [Memory: # Evening wind-down · Oct 10 21:02
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_mv3jyfkw_546b87889a1e.md)
+* [Memory: # agentmemory-okf-mirror · Oct 11 03:02
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_mv3jyfzw_0e40af9cb33c.md)
+* [Memory: # Morning briefing · Oct 10 08:00
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_mv3jygeh_561d11132454.md)
+* [Memory: # nightly-okf-index · Oct 10 03:27
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_mv3jygt6_4ce029c7e21b.md)
+* [Memory: # cron_df2ba22a5941_20261011_031800
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_mv3jyh8c_583a588e715c.md)
