@@ -1,0 +1,217 @@
+---
+type: Fact
+title: # Check compaction is using jev
+
+source: hermes
+session_id: 20261009_025220_8552
+description: # Check compaction is using jev
+
+source: hermes
+session_id: 20261009_025220_855283
+resource: hermes://session/20261009_025220_855283
+
+# Conversation
+
+- **Session ID:** `20261009_025220_855283`
+- **Sou
+resource: agentmemory://memory/mem_mvdjziam_292c1ade785f
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec/.hermes"]
+timestamp: 2026-10-18T08:18:12.060Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Check compaction is using jev
+
+source: hermes
+session_id: 20261009_025220_855283
+resource: hermes://session/20261009_025220_855283
+
+# Conversation
+
+- **Session ID:** `20261009_025220_855283`
+- **Source:** desktop
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-10-09T07:52:21Z
+- **Ended:** 2026-10-10T14:40:21Z
+- **Messages:** 59
+- **CWD:** `/Users/davec/.hermes`
+- **Tokens:** 301504 in / 26007 out
+- **Est. cost:** $-85110.0000
+
+---
+
+### 👤 User — 2026-10-09T07:52:21Z
+
+check the compaction is using jev
+
+### 🤖 Assistant — 2026-10-09T07:52:27Z
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 50,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes",
+  "pattern": "compaction|compact.*model|jev"
+}
+```
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "autonomous-ai-agents/hermes-session-hygiene"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:52:32Z
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 50,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes",
+  "pattern": "compaction|compactor|summary.*model|summariz"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "limit": 200,
+  "offset": 1,
+  "path": "/Users/davec/.hermes/config.yaml"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:52:41Z
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "autonomous-ai-agents/local-model-providers"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:52:48Z
+
+<details><summary>Reasoning</summary>
+
+Reviewing config to confirm compaction uses apple-fm system instead of jev-router, and checking auxiliary compression settings.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "file_path": "references/apple-fm-compression-backend.md",
+  "name": "autonomous-ai-agents/local-model-providers"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 50,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes/config.yaml",
+  "pattern": "jev|typesafe|router|providers:|compression"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:52:55Z
+
+**Tool call: read_file**
+
+```json
+{
+  "limit": 130,
+  "offset": 742,
+  "path": "/Users/davec/.hermes/config.yaml"
+}
+```
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "autonomous-ai-agents/model-selection-routing"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:53:04Z
+
+<details><summary>Reasoning</summary>
+
+Analyzing configuration sections to verify if compaction uses the Jev model and comparing provider settings against requirements.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "research/provider-catalogs"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "limit": 20,
+  "offset": 166,
+  "path": "/Users/davec/.hermes/config.yaml"
+}
+```
+
+**Tool call: read_file**
+
+```json
+{
+  "limit": 15,
+  "offset": 33,
+  "path": "/Users/davec/.hermes/config.yaml"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:53:17Z
+
+<details><summary>Reasoning</summary>
+
+Checking the provider configuration to verify compaction is not using jev and reviewing the jev provider entry.Verifying compaction uses kilo-auto/efficient instead of jev and checking profile-level settings.
+
+</details>
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "grep -A4 -E '^compression:|^  compression:' ~/.hermes/config.yaml; echo \"---AUX---\"; grep -A5 'auxiliary:' ~/.hermes/config.yaml | head -n 30; echo \"---PROFILES---\"; ls ~/.hermes/profiles/ 2>/dev/null; echo \"---JEV-GREP---\"; grep -ri 'jev\\|typesafe' ~/.hermes/config.yaml ~/.hermes/profiles/*/config.yaml 2>/dev/null || echo \"no jev match in any config\""
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:53:23Z
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "for f in ~/.hermes/config.yaml ~/.hermes/profiles/*/config.yaml; do echo \"== $f ==\"; python3 -c \"import yaml,sys; cfg=yaml.safe_load(open(sys.argv[1])); print('top compression:', cfg.get('compression')); print('aux compression:', (cfg.get('auxiliary') or {}).get('compression')); provs=list((cfg.get('providers') or {}).keys()); print('providers:', provs)\" \"$f\" 2>&1; echo; done\ngrep -n \"typesafe\\|jev-router\\|jev\" -ri ~/.hermes/skills/research/provider-catalogs/ | head -n 20"
+}
+```
+
+### 🤖 Assistant — 2026-10-09T07:53:37Z
+
+<details><summary>Reasoning</summary>
+
+Reviewing compaction configs and provider catalogs to confirm jev-ro
