@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-21T08:00:25.085Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-10-22T08:00:26.301Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -4806,7 +4806,7 @@ _Exported 2026-10-21T08:00:25.085Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session evt_149a991ff001hW7fgLFsWSAX7g](sessions/evt-149a991ff001hw7fglfswsax7g.md) — 1 obs
 * [Session evt_149a9ca23002eILODChWggiymn](sessions/evt-149a9ca23002eilodchwggiymn.md) — 1 obs
 * [Session evt_149a9ca25001BnEbs53DObMXGe](sessions/evt-149a9ca25001bnebs53dobmxge.md) — 1 obs
-* [Session 20261017_064742_588773](sessions/20261017-064742-588773.md) — 274 obs
+* [Session 20261017_064742_588773](sessions/20261017-064742-588773.md) — 297 obs
 * [Session evt_149b1c983001IOy52xundO6MeM](sessions/evt-149b1c983001ioy52xundo6mem.md) — 1 obs
 * [Session evt_149b1cd73001OdOYbVC93tNqfG](sessions/evt-149b1cd73001odoybvc93tnqfg.md) — 1 obs
 * [Session evt_149b1efd00010pBpPXW6Yi7P9L](sessions/evt-149b1efd00010pbppxw6yi7p9l.md) — 1 obs
@@ -6553,7 +6553,7 @@ _Exported 2026-10-21T08:00:25.085Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session evt_158a4373c001yZn1RbihaNq64y](sessions/evt-158a4373c001yzn1rbihanq64y.md) — 1 obs
 * [Session evt_158a44f080022uR33c2qfOEnVt](sessions/evt-158a44f080022ur33c2qfoenvt.md) — 1 obs
 * [Session evt_158a44f1b001jR58K4TDczVHm8](sessions/evt-158a44f1b001jr58k4tdczvhm8.md) — 1 obs
-* [Session 20261020_042909_69904a](sessions/20261020-042909-69904a.md) — 8 obs
+* [Session 20261020_042909_69904a](sessions/20261020-042909-69904a.md) — 18 obs
 * [Session evt_158add634001Whu7DUXUKKc9o1](sessions/evt-158add634001whu7duxukkc9o1.md) — 1 obs
 * [Session evt_158adde9f001VxO6fA3HGg7yXp](sessions/evt-158adde9f001vxo6fa3hgg7yxp.md) — 1 obs
 * [Session evt_158adff97001aTl4FUkHVnPzhi](sessions/evt-158adff97001atl4fukhvnpzhi.md) — 1 obs
@@ -7057,6 +7057,17 @@ _Exported 2026-10-21T08:00:25.085Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20261020_201045_f39581](sessions/20261020-201045-f39581.md) — 2 obs
 * [Session cron_579965e2d62f_20261020_210009](sessions/cron-579965e2d62f-20261020-210009.md) — 10 obs
 * [Session 20261020_231047_a7d18d](sessions/20261020-231047-a7d18d.md) — 2 obs
+* [Session cron_4b310d35c4fd_20261021_030009](sessions/cron-4b310d35c4fd-20261021-030009.md) — 3 obs
+* [Session cron_9dfd463ca7d0_20261021_030009](sessions/cron-9dfd463ca7d0-20261021-030009.md) — 1 obs
+* [Session cron_df2ba22a5941_20261021_031713](sessions/cron-df2ba22a5941-20261021-031713.md) — 7 obs
+* [Session 20261021_033005_284670](sessions/20261021-033005-284670.md) — 56 obs
+* [Session 20261021_072819_f04629](sessions/20261021-072819-f04629.md) — 25 obs
+* [Session cron_a9b330e497a5_20261021_080008](sessions/cron-a9b330e497a5-20261021-080008.md) — 6 obs
+* [Session cron_b99b9d2f2fcd_20261021_090007](sessions/cron-b99b9d2f2fcd-20261021-090007.md) — 92 obs
+* [Session cron_d83aeb5238b5_20261021_090007](sessions/cron-d83aeb5238b5-20261021-090007.md) — 8 obs
+* [Session 20261021_093202_8d0edd](sessions/20261021-093202-8d0edd.md) — 64 obs
+* [Session cron_579965e2d62f_20261021_210006](sessions/cron-579965e2d62f-20261021-210006.md) — 6 obs
+* [Session cron_4b310d35c4fd_20261022_030006](sessions/cron-4b310d35c4fd-20261022-030006.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -32283,3 +32294,55 @@ session_id: cron_df2ba22a5941](memories/mem_mvgevcvl_c6026275dd5f.md)
 
 source: hermes
 session_id: cron_df2ba22a594](memories/mem_mvgevd9g_2d65df44035a.md)
+* [Memory: # Research Kilo Desktop stuck Configuring Protocols
+
+source: hermes
+session_id: ](memories/mem_mvhua3l7_c55634ffc833.md)
+* [Memory: # Create Carlton security consulting site
+
+source: hermes
+session_id: 20261018_0](memories/mem_mvhua3ym_b5262ad26bd1.md)
+* [Memory: # Write a single concise git commit message (one… #4
+
+source: hermes
+session_id:](memories/mem_mvhua4d8_aa4e469a9c2a.md)
+* [Memory: # Find local model for offline diagnosis
+
+source: hermes
+session_id: 20261020_04](memories/mem_mvhua4pd_cc8e56bd98ef.md)
+* [Memory: # Commit message for hermes-agent submodule
+
+source: hermes
+session_id: 20261020](memories/mem_mvhua514_011a4d938182.md)
+* [Memory: # Commit message for hermes-agent change
+
+source: hermes
+session_id: 20261020_23](memories/mem_mvhua5g4_8eaa5babb502.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 21 03:00
+
+source: hermes
+session_id: cro](memories/mem_mvhua5v7_eb8a30c82d26.md)
+* [Memory: # Evening wind-down · Oct 20 21:03
+
+source: hermes
+session_id: cron_579965e2d62f](memories/mem_mvhua69i_771f7c84c9c5.md)
+* [Memory: # agentmemory-okf-mirror · Oct 21 03:00
+
+source: hermes
+session_id: cron_9dfd463](memories/mem_mvhua6oo_7cee1d152c6d.md)
+* [Memory: # Morning briefing · Oct 20 08:00
+
+source: hermes
+session_id: cron_a9b330e497a5_](memories/mem_mvhua707_ea6e00180520.md)
+* [Memory: # Workday start reminder · Oct 20 09:00
+
+source: hermes
+session_id: cron_d83aeb5](memories/mem_mvhua7e8_db8c5ee11be3.md)
+* [Memory: # nightly-okf-index · Oct 20 03:19
+
+source: hermes
+session_id: cron_df2ba22a5941](memories/mem_mvhua7qi_d3eae9efb995.md)
+* [Memory: # cron_df2ba22a5941_20261021_031713
+
+source: hermes
+session_id: cron_df2ba22a594](memories/mem_mvhua83w_0bd66b14fada.md)
