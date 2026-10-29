@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-27T08:00:50.353Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-10-29T08:00:41.036Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -4806,7 +4806,7 @@ _Exported 2026-10-27T08:00:50.353Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session evt_149a991ff001hW7fgLFsWSAX7g](sessions/evt-149a991ff001hw7fglfswsax7g.md) — 1 obs
 * [Session evt_149a9ca23002eILODChWggiymn](sessions/evt-149a9ca23002eilodchwggiymn.md) — 1 obs
 * [Session evt_149a9ca25001BnEbs53DObMXGe](sessions/evt-149a9ca25001bnebs53dobmxge.md) — 1 obs
-* [Session 20261017_064742_588773](sessions/20261017-064742-588773.md) — 323 obs
+* [Session 20261017_064742_588773](sessions/20261017-064742-588773.md) — 333 obs
 * [Session evt_149b1c983001IOy52xundO6MeM](sessions/evt-149b1c983001ioy52xundo6mem.md) — 1 obs
 * [Session evt_149b1cd73001OdOYbVC93tNqfG](sessions/evt-149b1cd73001odoybvc93tnqfg.md) — 1 obs
 * [Session evt_149b1efd00010pBpPXW6Yi7P9L](sessions/evt-149b1efd00010pbppxw6yi7p9l.md) — 1 obs
@@ -7065,7 +7065,7 @@ _Exported 2026-10-27T08:00:50.353Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session cron_a9b330e497a5_20261021_080008](sessions/cron-a9b330e497a5-20261021-080008.md) — 6 obs
 * [Session cron_b99b9d2f2fcd_20261021_090007](sessions/cron-b99b9d2f2fcd-20261021-090007.md) — 92 obs
 * [Session cron_d83aeb5238b5_20261021_090007](sessions/cron-d83aeb5238b5-20261021-090007.md) — 8 obs
-* [Session 20261021_093202_8d0edd](sessions/20261021-093202-8d0edd.md) — 139 obs
+* [Session 20261021_093202_8d0edd](sessions/20261021-093202-8d0edd.md) — 334 obs
 * [Session cron_579965e2d62f_20261021_210006](sessions/cron-579965e2d62f-20261021-210006.md) — 6 obs
 * [Session cron_4b310d35c4fd_20261022_030006](sessions/cron-4b310d35c4fd-20261022-030006.md) — 2 obs
 * [Session cron_9dfd463ca7d0_20261022_030006](sessions/cron-9dfd463ca7d0-20261022-030006.md) — 1 obs
@@ -7331,6 +7331,259 @@ _Exported 2026-10-27T08:00:50.353Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-ae1a5b948491b8b77d70f559dd306964d65a32edfc28edb0ddf32cb16bcf1f6e](sessions/local-ae1a5b948491b8b77d70f559dd306964d65a32edfc28edb0ddf32cb16bcf1f6e.md) — 33 obs
 * [Session local-de5a578d0d195eabca33b1b9ea598d12db0f26701ed04673175da8f6a147d807](sessions/local-de5a578d0d195eabca33b1b9ea598d12db0f26701ed04673175da8f6a147d807.md) — 4 obs
 * [Session local-48ac6252c99b236a4f11692235cd3981bcd39df6ec26dc5ad6a50675c27c04b9](sessions/local-48ac6252c99b236a4f11692235cd3981bcd39df6ec26dc5ad6a50675c27c04b9.md) — 1 obs
+* [Session local-cb1a1b6ff03c5ac03774f8c7e44ea74d13bd8c64c2504d65bef6c39d3b860cf1](sessions/local-cb1a1b6ff03c5ac03774f8c7e44ea74d13bd8c64c2504d65bef6c39d3b860cf1.md) — 1 obs
+* [Session local-209b024e3f6a257e424b5b24d05332c3080712906c729081bc69867754833c21](sessions/local-209b024e3f6a257e424b5b24d05332c3080712906c729081bc69867754833c21.md) — 2 obs
+* [Session local-c9d35c2869b9b67b427a4e416cc2291a79051ef7ada94aa6c1315811dacd34d6](sessions/local-c9d35c2869b9b67b427a4e416cc2291a79051ef7ada94aa6c1315811dacd34d6.md) — 3 obs
+* [Session local-2907f266f82d01ad279c968c07edb8427f571b93d661239054b1bdbdbcc42019](sessions/local-2907f266f82d01ad279c968c07edb8427f571b93d661239054b1bdbdbcc42019.md) — 11 obs
+* [Session local-b416e4da8cfab0e50b2e3b5e785e140acd0b559af1716bf2f718236217a0bd4f](sessions/local-b416e4da8cfab0e50b2e3b5e785e140acd0b559af1716bf2f718236217a0bd4f.md) — 26 obs
+* [Session local-d93586bc89fd9e0fbe2c18339d54d1797b8868703ec428024987aea35d96b626](sessions/local-d93586bc89fd9e0fbe2c18339d54d1797b8868703ec428024987aea35d96b626.md) — 9 obs
+* [Session local-414641016b4e745fbeee4d88decc87910269b2a015567786ac0f701872496539](sessions/local-414641016b4e745fbeee4d88decc87910269b2a015567786ac0f701872496539.md) — 200 obs
+* [Session local-cf8cb43bf32867a5df233c1f526ddbbf0f7cb12e61d101bcebec5d122bf039eb](sessions/local-cf8cb43bf32867a5df233c1f526ddbbf0f7cb12e61d101bcebec5d122bf039eb.md) — 27 obs
+* [Session evt_17f2424f3002DV8nqQ2Bkm6Bjp](sessions/evt-17f2424f3002dv8nqq2bkm6bjp.md) — 1 obs
+* [Session evt_17f242995001MkWOQuu1IcQres](sessions/evt-17f242995001mkwoquu1icqres.md) — 1 obs
+* [Session evt_17f24a257001wvK9fWRTJWXT4w](sessions/evt-17f24a257001wvk9fwrtjwxt4w.md) — 1 obs
+* [Session ses_e80dbdb0cffezeCBf5uQUpc580](sessions/ses-e80dbdb0cffezecbf5uqupc580.md) — 1 obs
+* [Session evt_17f24c2b10018PTlN2ul54H5Hb](sessions/evt-17f24c2b10018ptln2ul54h5hb.md) — 1 obs
+* [Session evt_17f24f4ab001oIrKZBmKwYUeJJ](sessions/evt-17f24f4ab001oirkzbmkwyuejj.md) — 1 obs
+* [Session evt_17f250c7000191keumhe4k0OYB](sessions/evt-17f250c7000191keumhe4k0oyb.md) — 1 obs
+* [Session evt_17f253fb2001kRvv8WITD0MAeU](sessions/evt-17f253fb2001krvv8witd0maeu.md) — 1 obs
+* [Session evt_17f255aeb001JtQtmyeFkIytg9](sessions/evt-17f255aeb001jtqtmyefkiytg9.md) — 1 obs
+* [Session evt_17f25707b001hU1TEZ53vQ9IMk](sessions/evt-17f25707b001hu1tez53vq9imk.md) — 1 obs
+* [Session evt_17f25b38d001C62949Py0NpLSA](sessions/evt-17f25b38d001c62949py0nplsa.md) — 1 obs
+* [Session evt_17f25ffa9001q4jWrcNf9GIDjf](sessions/evt-17f25ffa9001q4jwrcnf9gidjf.md) — 1 obs
+* [Session evt_17f26ec31001Z4fndFz7sVOAFW](sessions/evt-17f26ec31001z4fndfz7svoafw.md) — 1 obs
+* [Session evt_17f2732b7001Y7WyZZO54MKTnd](sessions/evt-17f2732b7001y7wyzzo54mktnd.md) — 1 obs
+* [Session evt_17f27aed2001p98ybKRpgXikHG](sessions/evt-17f27aed2001p98ybkrpgxikhg.md) — 1 obs
+* [Session evt_17f27d1ec001u2rAK3c1DLitGq](sessions/evt-17f27d1ec001u2rak3c1dlitgq.md) — 1 obs
+* [Session evt_17f27ee22001vWD232w21Y0jCe](sessions/evt-17f27ee22001vwd232w21y0jce.md) — 1 obs
+* [Session evt_17f28596d001G54Jn7V2dhVOlF](sessions/evt-17f28596d001g54jn7v2dhvolf.md) — 1 obs
+* [Session evt_17f285e29001TFv64nFu1bFMk7](sessions/evt-17f285e29001tfv64nfu1bfmk7.md) — 1 obs
+* [Session evt_17f287a68001qE8xHFg0FmIMHF](sessions/evt-17f287a68001qe8xhfg0fmimhf.md) — 1 obs
+* [Session evt_17f28d72d001JhV4zL14aiIbB1](sessions/evt-17f28d72d001jhv4zl14aiibb1.md) — 1 obs
+* [Session evt_17f28e3b0001JAk4sqAeIPPpPa](sessions/evt-17f28e3b0001jak4sqaeippppa.md) — 1 obs
+* [Session ses_e80d7a693ffeaM63zPq3h6A2dB](sessions/ses-e80d7a693ffeam63zpq3h6a2db.md) — 3 obs
+* [Session evt_17f28f4270013UhwLCr4Gm42Wm](sessions/evt-17f28f4270013uhwlcr4gm42wm.md) — 1 obs
+* [Session evt_17f2908be001O9ra9XSem4P6uG](sessions/evt-17f2908be001o9ra9xsem4p6ug.md) — 1 obs
+* [Session evt_17f290b25001WsH5v0v6fXPb19](sessions/evt-17f290b25001wsh5v0v6fxpb19.md) — 1 obs
+* [Session evt_17f291be4001n7Y3hPYjHTiHJe](sessions/evt-17f291be4001n7y3hpyjhtihje.md) — 1 obs
+* [Session evt_17f292545001ooQdAa5lSLFJE4](sessions/evt-17f292545001ooqdaa5lslfje4.md) — 1 obs
+* [Session evt_17f29255a001I3zxLN7d43U0Zf](sessions/evt-17f29255a001i3zxln7d43u0zf.md) — 1 obs
+* [Session evt_17f292a41001WgnuijP7zI0GwO](sessions/evt-17f292a41001wgnuijp7zi0gwo.md) — 1 obs
+* [Session evt_17f292a4e001XvSivtrludRVGv](sessions/evt-17f292a4e001xvsivtrludrvgv.md) — 1 obs
+* [Session evt_17f29319000178CzRumOCy9G3T](sessions/evt-17f29319000178czrumocy9g3t.md) — 1 obs
+* [Session evt_17f294409001L6F55eqc3wBjPH](sessions/evt-17f294409001l6f55eqc3wbjph.md) — 1 obs
+* [Session evt_17f298b430012QbsUStkEBKZV3](sessions/evt-17f298b430012qbsustkebkzv3.md) — 1 obs
+* [Session evt_17f29b5ad001yH6iJH1B4GT54j](sessions/evt-17f29b5ad001yh6ijh1b4gt54j.md) — 1 obs
+* [Session evt_17f29e48b001JCycq1go7OiykS](sessions/evt-17f29e48b001jcycq1go7oiyks.md) — 1 obs
+* [Session evt_17f29faca001dCrEplpYuwBD5U](sessions/evt-17f29faca001dcreplpyuwbd5u.md) — 1 obs
+* [Session evt_17f2a3fba0016b2IehcDUn9RzN](sessions/evt-17f2a3fba0016b2iehcdun9rzn.md) — 1 obs
+* [Session evt_17f2a67e6001fiEBf221R1rHyp](sessions/evt-17f2a67e6001fiebf221r1rhyp.md) — 1 obs
+* [Session evt_17f2a8057001MrMGpI6ojjxPdb](sessions/evt-17f2a8057001mrmgpi6ojjxpdb.md) — 1 obs
+* [Session evt_17f2a98fd001hBhq8wh7d92CWC](sessions/evt-17f2a98fd001hbhq8wh7d92cwc.md) — 1 obs
+* [Session evt_17f2aaea5001NnqE6pSyVuVRbz](sessions/evt-17f2aaea5001nnqe6psyvuvrbz.md) — 1 obs
+* [Session evt_17f2acb200013BqlkMcgGL20Ty](sessions/evt-17f2acb200013bqlkmcggl20ty.md) — 1 obs
+* [Session evt_17f2adf2d0017qsoFyeH6z0BGx](sessions/evt-17f2adf2d0017qsofyeh6z0bgx.md) — 1 obs
+* [Session evt_17f2af67b001wabXkzlj7RE8P7](sessions/evt-17f2af67b001wabxkzlj7re8p7.md) — 1 obs
+* [Session evt_17f2b1348001URuGl8BtWgcbJI](sessions/evt-17f2b1348001urugl8btwgcbji.md) — 1 obs
+* [Session evt_17f2b2d18001zzghQM45YtfRbr](sessions/evt-17f2b2d18001zzghqm45ytfrbr.md) — 1 obs
+* [Session evt_17f2b989d0016ZxkYAiz8h8G2o](sessions/evt-17f2b989d0016zxkyaiz8h8g2o.md) — 1 obs
+* [Session evt_17f2bd483001b0d2MJcMprEDi1](sessions/evt-17f2bd483001b0d2mjcmpredi1.md) — 1 obs
+* [Session evt_17f2bee76001KpAIjNZCKxoyvP](sessions/evt-17f2bee76001kpaijnzckxoyvp.md) — 1 obs
+* [Session evt_17f2c4c3d001xmbP95En3KiSGE](sessions/evt-17f2c4c3d001xmbp95en3kisge.md) — 1 obs
+* [Session evt_17f2c60cb001Bxyuy9QY8e82eD](sessions/evt-17f2c60cb001bxyuy9qy8e82ed.md) — 1 obs
+* [Session evt_17f2c77df001WEwybH2nyEqpLc](sessions/evt-17f2c77df001wewybh2nyeqplc.md) — 1 obs
+* [Session evt_17f2ca007001SlPfvthmxLFM7X](sessions/evt-17f2ca007001slpfvthmxlfm7x.md) — 1 obs
+* [Session evt_17f2cba9c001U0ctXRsxuRVIZO](sessions/evt-17f2cba9c001u0ctxrsxurvizo.md) — 1 obs
+* [Session evt_17f2d0e33001MR0W4pcO6snZLW](sessions/evt-17f2d0e33001mr0w4pco6snzlw.md) — 1 obs
+* [Session evt_17f2d23ae001jw6kOiazbRYzKR](sessions/evt-17f2d23ae001jw6koiazbryzkr.md) — 1 obs
+* [Session evt_17f2d3aee001H6Y6mbIzNKu8KW](sessions/evt-17f2d3aee001h6y6mbiznku8kw.md) — 1 obs
+* [Session evt_17f2d572a001jy74D4r3RS54F2](sessions/evt-17f2d572a001jy74d4r3rs54f2.md) — 1 obs
+* [Session evt_17f2d7d6b002oYoPwYY0NgBfT5](sessions/evt-17f2d7d6b002oyopwyy0ngbft5.md) — 1 obs
+* [Session evt_17f2d7d70001uuhk70k5eM0e7t](sessions/evt-17f2d7d70001uuhk70k5em0e7t.md) — 1 obs
+* [Session evt_17f2d8041001qNL3ptaQUIHbgl](sessions/evt-17f2d8041001qnl3ptaquihbgl.md) — 1 obs
+* [Session evt_17f2d8b62001Q5KWKB6KyPfua6](sessions/evt-17f2d8b62001q5kwkb6kypfua6.md) — 1 obs
+* [Session evt_17f365ac20016qAqpKO302x3h4](sessions/evt-17f365ac20016qaqpko302x3h4.md) — 1 obs
+* [Session evt_17f365b58001BHXCt4gzi32oeD](sessions/evt-17f365b58001bhxct4gzi32oed.md) — 1 obs
+* [Session evt_17f3673f2001jlVogP0z7by5iS](sessions/evt-17f3673f2001jlvogp0z7by5is.md) — 1 obs
+* [Session evt_17f36b8cf001ufgV4mOBUlYYfk](sessions/evt-17f36b8cf001ufgv4mobulyyfk.md) — 1 obs
+* [Session evt_17f36d2b6001lT1HWsjFLFT6M6](sessions/evt-17f36d2b6001lt1hwsjflft6m6.md) — 1 obs
+* [Session evt_17f36f0e3001rQeyijd1ZT4mG0](sessions/evt-17f36f0e3001rqeyijd1zt4mg0.md) — 1 obs
+* [Session evt_17f3709f6001ui5n1XwjtMwZ01](sessions/evt-17f3709f6001ui5n1xwjtmwz01.md) — 1 obs
+* [Session evt_17f371c33001I934qxLBhkVvzy](sessions/evt-17f371c33001i934qxlbhkvvzy.md) — 1 obs
+* [Session evt_17f373357001JnZCrrsjMiFGyO](sessions/evt-17f373357001jnzcrrsjmifgyo.md) — 1 obs
+* [Session evt_17f3755960019HKJxq0wzgW32X](sessions/evt-17f3755960019hkjxq0wzgw32x.md) — 1 obs
+* [Session evt_17f376cf0001um2dJMLvVWQUdm](sessions/evt-17f376cf0001um2djmlvvwqudm.md) — 1 obs
+* [Session evt_17f378a2b001BMTn0cJcdJl2HH](sessions/evt-17f378a2b001bmtn0cjcdjl2hh.md) — 1 obs
+* [Session evt_17f37a25b001dWs3wTekk9BAVd](sessions/evt-17f37a25b001dws3wtekk9bavd.md) — 1 obs
+* [Session evt_17f38126e001O7A4nHkfwBLcyO](sessions/evt-17f38126e001o7a4nhkfwblcyo.md) — 1 obs
+* [Session evt_17f383276001c1QYgKNMWsCzda](sessions/evt-17f383276001c1qygknmwsczda.md) — 1 obs
+* [Session evt_17f3854b6001bvObRkxNu9ghdm](sessions/evt-17f3854b6001bvobrkxnu9ghdm.md) — 1 obs
+* [Session evt_17f38acd3001R3woC03QzpGNmg](sessions/evt-17f38acd3001r3woc03qzpgnmg.md) — 1 obs
+* [Session evt_17f38c345001HIhc2GnpmLlPU0](sessions/evt-17f38c345001hihc2gnpmllpu0.md) — 1 obs
+* [Session evt_17f38c34b001qysw3Wup6khT3O](sessions/evt-17f38c34b001qysw3wup6kht3o.md) — 1 obs
+* [Session evt_17f3a0e89001BEFJvPdYzR9XEf](sessions/evt-17f3a0e89001befjvpdyzr9xef.md) — 1 obs
+* [Session evt_17f3a0f120019x7DJipQmQ2APj](sessions/evt-17f3a0f120019x7djipqmq2apj.md) — 1 obs
+* [Session evt_17f3a2a59001iXRjs6yTcAtEFM](sessions/evt-17f3a2a59001ixrjs6ytcatefm.md) — 1 obs
+* [Session evt_17f3a5b480011D7uZ8z2TQFWj6](sessions/evt-17f3a5b480011d7uz8z2tqfwj6.md) — 1 obs
+* [Session evt_17f3ab081001nET3cbTFKqaaQE](sessions/evt-17f3ab081001net3cbtfkqaaqe.md) — 1 obs
+* [Session evt_17f3adac9001pL96h1KMrfblGW](sessions/evt-17f3adac9001pl96h1kmrfblgw.md) — 1 obs
+* [Session evt_17f3af8270026k4bwppRF45XyX](sessions/evt-17f3af8270026k4bwpprf45xyx.md) — 1 obs
+* [Session evt_17f3af82d001RbTo12xCcETPSe](sessions/evt-17f3af82d001rbto12xccetpse.md) — 1 obs
+* [Session evt_17f3b87fe001Odf0ugg09LWom5](sessions/evt-17f3b87fe001odf0ugg09lwom5.md) — 1 obs
+* [Session evt_17f3b887c001QAjBKQdVFQULnr](sessions/evt-17f3b887c001qajbkqdvfqulnr.md) — 1 obs
+* [Session evt_17f3bb6af001MMW4OLNz8NWsUj](sessions/evt-17f3bb6af001mmw4olnz8nwsuj.md) — 1 obs
+* [Session evt_17f3bdd3b00140cLaz6idjichd](sessions/evt-17f3bdd3b00140claz6idjichd.md) — 1 obs
+* [Session evt_17f3c0621001R5Nu6Jr7dVbd5o](sessions/evt-17f3c0621001r5nu6jr7dvbd5o.md) — 1 obs
+* [Session evt_17f3c283e001Ppc1tO25YAMYcv](sessions/evt-17f3c283e001ppc1to25yamycv.md) — 1 obs
+* [Session evt_17f3c2847001EduWfvACi8eEeG](sessions/evt-17f3c2847001eduwfvaci8eeeg.md) — 1 obs
+* [Session evt_17f40e4e7001JJkDG96PDFdUoZ](sessions/evt-17f40e4e7001jjkdg96pdfduoz.md) — 1 obs
+* [Session evt_17f40e519001hBsMF10yrpCI2z](sessions/evt-17f40e519001hbsmf10yrpci2z.md) — 1 obs
+* [Session evt_17f40e99c001ig3PXPmFKpXjq6](sessions/evt-17f40e99c001ig3pxpmfkpxjq6.md) — 1 obs
+* [Session ses_e80bf1b28ffelNuw7mfUe0PH0l](sessions/ses-e80bf1b28ffelnuw7mfue0ph0l.md) — 2 obs
+* [Session evt_17f410587001MniBdWpdp2pTjt](sessions/evt-17f410587001mnibdwpdp2ptjt.md) — 1 obs
+* [Session evt_17f4118c3001cYf2mQwI8ePyGy](sessions/evt-17f4118c3001cyf2mqwi8epygy.md) — 1 obs
+* [Session evt_17f412c04001xoNKu0iSDE2Wb1](sessions/evt-17f412c04001xonku0isde2wb1.md) — 1 obs
+* [Session evt_17f415208001oPxrXEJruvT0mm](sessions/evt-17f415208001opxrxejruvt0mm.md) — 1 obs
+* [Session evt_17f417a6c001GGKKJB377W9d9l](sessions/evt-17f417a6c001ggkkjb377w9d9l.md) — 1 obs
+* [Session evt_17f41b458001WiROSY6WEbRo1p](sessions/evt-17f41b458001wirosy6webro1p.md) — 1 obs
+* [Session evt_17f41d2a7001HEz4SToGAWVBa3](sessions/evt-17f41d2a7001hez4stogawvba3.md) — 1 obs
+* [Session evt_17f423a65001jxWy3Sw9qbS2hu](sessions/evt-17f423a65001jxwy3sw9qbs2hu.md) — 1 obs
+* [Session evt_17f424f1900169mgNMVhDGDoa8](sessions/evt-17f424f1900169mgnmvhdgdoa8.md) — 1 obs
+* [Session evt_17f426307001JQwaRBhol81r63](sessions/evt-17f426307001jqwarbhol81r63.md) — 1 obs
+* [Session evt_17f42d3ba001Dx7XVMdg0SOXnB](sessions/evt-17f42d3ba001dx7xvmdg0soxnb.md) — 1 obs
+* [Session evt_17f42ed23001EexWWTHIa8YUMn](sessions/evt-17f42ed23001eexwwthia8yumn.md) — 1 obs
+* [Session evt_17f43556c001qK4jZUqHGnJop2](sessions/evt-17f43556c001qk4jzuqhgnjop2.md) — 1 obs
+* [Session evt_17f4369e20017koz82d2QxSrVj](sessions/evt-17f4369e20017koz82d2qxsrvj.md) — 1 obs
+* [Session evt_17f438389001Iw3KkJqcuB8M4h](sessions/evt-17f438389001iw3kkjqcub8m4h.md) — 1 obs
+* [Session evt_17f439c410017WrwpF6sGnvk3x](sessions/evt-17f439c410017wrwpf6sgnvk3x.md) — 1 obs
+* [Session evt_17f43b196001vggMyzvF6N2vzZ](sessions/evt-17f43b196001vggmyzvf6n2vzz.md) — 1 obs
+* [Session evt_17f43ca17001AuYwepcBRIOnF6](sessions/evt-17f43ca17001auywepcbrionf6.md) — 1 obs
+* [Session evt_17f43e8670010Dt4VOERmDYJ7f](sessions/evt-17f43e8670010dt4voermdyj7f.md) — 1 obs
+* [Session evt_17f442055001N6NDMQvuhHKg71](sessions/evt-17f442055001n6ndmqvuhhkg71.md) — 1 obs
+* [Session evt_17f4434d4001w9BT12TQT7apOE](sessions/evt-17f4434d4001w9bt12tqt7apoe.md) — 1 obs
+* [Session evt_17f446776001RXVx0B8tOa1ZaC](sessions/evt-17f446776001rxvx0b8toa1zac.md) — 1 obs
+* [Session evt_17f44ae58001GVCtpdWFooZ7um](sessions/evt-17f44ae58001gvctpdwfooz7um.md) — 1 obs
+* [Session evt_17f44c395001CYwMPT0K3kwlPy](sessions/evt-17f44c395001cywmpt0k3kwlpy.md) — 1 obs
+* [Session evt_17f450f92001BGnvHQ8C2ejuJI](sessions/evt-17f450f92001bgnvhq8c2ejuji.md) — 1 obs
+* [Session evt_17f461244001q8QTm8DAM8l6VN](sessions/evt-17f461244001q8qtm8dam8l6vn.md) — 1 obs
+* [Session evt_17f465cdd001ujei36QUERPAx6](sessions/evt-17f465cdd001ujei36querpax6.md) — 1 obs
+* [Session evt_17f4671570011jRhU4nkNIcYTa](sessions/evt-17f4671570011jrhu4nknicyta.md) — 1 obs
+* [Session evt_17f468b3b001YXdFcazcac33gk](sessions/evt-17f468b3b001yxdfcazcac33gk.md) — 1 obs
+* [Session evt_17f468b4a0017x83RkhyKqs0GQ](sessions/evt-17f468b4a0017x83rkhykqs0gq.md) — 1 obs
+* [Session evt_17f469061001cppKx4OE77TCe9](sessions/evt-17f469061001cppkx4oe77tce9.md) — 1 obs
+* [Session evt_17f4d2387001WqF7JDhrlgPugZ](sessions/evt-17f4d2387001wqf7jdhrlgpugz.md) — 1 obs
+* [Session evt_17f4d2444001uZ2HM9jXJkZl78](sessions/evt-17f4d2444001uz2hm9jxjkzl78.md) — 1 obs
+* [Session evt_17f4d3ea0002AkPsNKVOVgiw4z](sessions/evt-17f4d3ea0002akpsnkvovgiw4z.md) — 1 obs
+* [Session evt_17f4d3eb7001IHjN5UV9lmspqv](sessions/evt-17f4d3eb7001ihjn5uv9lmspqv.md) — 1 obs
+* [Session evt_17f5457f5001iUVkWg0aQiRjNp](sessions/evt-17f5457f5001iuvkwg0aqirjnp.md) — 1 obs
+* [Session evt_17f5458ac001FHWvDjio2aA8OJ](sessions/evt-17f5458ac001fhwvdjio2aa8oj.md) — 1 obs
+* [Session evt_17f547055002xxusfL9TR3H7lL](sessions/evt-17f547055002xxusfl9tr3h7ll.md) — 1 obs
+* [Session evt_17f547080001pNFp4EaOECmkzh](sessions/evt-17f547080001pnfp4eaoecmkzh.md) — 1 obs
+* [Session evt_17f5547a2001smdmbEIsoz7ev9](sessions/evt-17f5547a2001smdmbeisoz7ev9.md) — 1 obs
+* [Session evt_17f5547d80010KfSpRErqezSgt](sessions/evt-17f5547d80010kfsprerqezsgt.md) — 1 obs
+* [Session evt_17f5548ce001fAKf4VD0Oa5ALj](sessions/evt-17f5548ce001fakf4vd0oa5alj.md) — 1 obs
+* [Session ses_e80aab861ffeO9GlSEkGu2n5DM](sessions/ses-e80aab861ffeo9glsekgu2n5dm.md) — 1 obs
+* [Session evt_17f556eb9001bkFjJfq8QrcqYF](sessions/evt-17f556eb9001bkfjjfq8qrcqyf.md) — 1 obs
+* [Session evt_17f56d31d0015mB8flbZdztHDS](sessions/evt-17f56d31d0015mb8flbzdzthds.md) — 1 obs
+* [Session evt_17f56eaff00100UarpHMljrn0N](sessions/evt-17f56eaff00100uarphmljrn0n.md) — 1 obs
+* [Session evt_17f56fc5c001hDEZQ6S9XPnCYS](sessions/evt-17f56fc5c001hdezq6s9xpncys.md) — 1 obs
+* [Session evt_17f570fbd001Plz7HfYERKot1q](sessions/evt-17f570fbd001plz7hfyerkot1q.md) — 1 obs
+* [Session evt_17f57b558001xWoX1ngCFH4q8U](sessions/evt-17f57b558001xwox1ngcfh4q8u.md) — 1 obs
+* [Session evt_17f57eb4c001pNnIur0eLT0W5k](sessions/evt-17f57eb4c001pnniur0elt0w5k.md) — 1 obs
+* [Session evt_17f580daa001wOAz6wAyfBlxdE](sessions/evt-17f580daa001woaz6wayfblxde.md) — 1 obs
+* [Session evt_17f5821fe001BMP6N9GBwD4otS](sessions/evt-17f5821fe001bmp6n9gbwd4ots.md) — 1 obs
+* [Session evt_17f583714001oi8eyZwIJhi4QI](sessions/evt-17f583714001oi8eyzwijhi4qi.md) — 1 obs
+* [Session evt_17f585fbf001lbeXKwq3iANNK1](sessions/evt-17f585fbf001lbexkwq3iannk1.md) — 1 obs
+* [Session evt_17f58770c0025YH0TDdabu7FiR](sessions/evt-17f58770c0025yh0tddabu7fir.md) — 1 obs
+* [Session evt_17f587712001XBQOjvjcS4lJwE](sessions/evt-17f587712001xbqojvjcs4ljwe.md) — 1 obs
+* [Session evt_17f5879f2001715ATuJLm7pz3g](sessions/evt-17f5879f2001715atujlm7pz3g.md) — 1 obs
+* [Session evt_17f5dc3a0001JGfK5vl9MuKC1P](sessions/evt-17f5dc3a0001jgfk5vl9mukc1p.md) — 1 obs
+* [Session evt_17f5dc483001anmuIIjq1JiDQ4](sessions/evt-17f5dc483001anmuiijq1jidq4.md) — 1 obs
+* [Session evt_17f5dc850001HwqrwzTIKRoMGG](sessions/evt-17f5dc850001hwqrwztikromgg.md) — 1 obs
+* [Session ses_e80a23c64ffeQy0UQ7JwmKg5zB](sessions/ses-e80a23c64ffeqy0uq7jwmkg5zb.md) — 1 obs
+* [Session evt_17f5ddf46001X9QDeEknQkCAX5](sessions/evt-17f5ddf46001x9qdeeknqkcax5.md) — 1 obs
+* [Session evt_17f5df45c002rn1l8nGwZgIMNd](sessions/evt-17f5df45c002rn1l8ngwzgimnd.md) — 1 obs
+* [Session evt_17f5df45f001K0m76oQwQsnEAI](sessions/evt-17f5df45f001k0m76oqwqsneai.md) — 1 obs
+* [Session evt_17f5e3f62001F6m9EYDjZ59hU5](sessions/evt-17f5e3f62001f6m9eydjz59hu5.md) — 1 obs
+* [Session evt_17f5e3fd7001IGo0EIcO2zk94X](sessions/evt-17f5e3fd7001igo0eico2zk94x.md) — 1 obs
+* [Session evt_17f5e448f001ggI2McqEoAAvg5](sessions/evt-17f5e448f001ggi2mcqeoaavg5.md) — 1 obs
+* [Session evt_17f5e5722001D7BWcnVheTfPKF](sessions/evt-17f5e5722001d7bwcnvhetfpkf.md) — 1 obs
+* [Session evt_17f5e6e98001BFQjO3qYtSseEe](sessions/evt-17f5e6e98001bfqjo3qytsseee.md) — 1 obs
+* [Session evt_17f5e82f5001LtnKqPdMjMJIIp](sessions/evt-17f5e82f5001ltnkqpdmjmjiip.md) — 1 obs
+* [Session evt_17f5e989e001A7JId9rD3Kk3vx](sessions/evt-17f5e989e001a7jid9rd3kk3vx.md) — 1 obs
+* [Session evt_17f5eb15e001BbOAzWqLFrftVf](sessions/evt-17f5eb15e001bboazwqlfrftvf.md) — 1 obs
+* [Session evt_17f5ee009001avTnfQmsVMiR4v](sessions/evt-17f5ee009001avtnfqmsvmir4v.md) — 1 obs
+* [Session evt_17f5ef2d4001LNv19QSUzofVa1](sessions/evt-17f5ef2d4001lnv19qsuzofva1.md) — 1 obs
+* [Session evt_17f5f09e4001Cp55n0vaaEWc1k](sessions/evt-17f5f09e4001cp55n0vaaewc1k.md) — 1 obs
+* [Session evt_17f5f1ca1001TkTzrhxK1W74WM](sessions/evt-17f5f1ca1001tktzrhxk1w74wm.md) — 1 obs
+* [Session evt_17f5f3386001sIDSs6EgZKXOxU](sessions/evt-17f5f3386001sidss6egzkxoxu.md) — 1 obs
+* [Session evt_17f5f4605001ON0ajgNVMyTP2D](sessions/evt-17f5f4605001on0ajgnvmytp2d.md) — 1 obs
+* [Session evt_17f5f6394001WI6JuAV1lcFrqS](sessions/evt-17f5f6394001wi6juav1lcfrqs.md) — 1 obs
+* [Session evt_17f5f81ad001gucGPdh0N4F3Po](sessions/evt-17f5f81ad001gucgpdh0n4f3po.md) — 1 obs
+* [Session evt_17f5f9736001ojmSqReJkTwIW5](sessions/evt-17f5f9736001ojmsqrejktwiw5.md) — 1 obs
+* [Session evt_17f5faae9001FlNYRLopf9VYX6](sessions/evt-17f5faae9001flnyrlopf9vyx6.md) — 1 obs
+* [Session evt_17f5fc5f7001UGK3b174Stz3zS](sessions/evt-17f5fc5f7001ugk3b174stz3zs.md) — 1 obs
+* [Session evt_17f5fdd5b001Df9AcBbwTPg850](sessions/evt-17f5fdd5b001df9acbbwtpg850.md) — 1 obs
+* [Session evt_17f5ff370001dsLelIUZOGM3gE](sessions/evt-17f5ff370001dsleliuzogm3ge.md) — 1 obs
+* [Session evt_17f6006fa001zK8Pfmy8wIhbyw](sessions/evt-17f6006fa001zk8pfmy8wihbyw.md) — 1 obs
+* [Session evt_17f601ecf001t05270txei8Q3U](sessions/evt-17f601ecf001t05270txei8q3u.md) — 1 obs
+* [Session evt_17f60615e001GdKs5lV0fggPga](sessions/evt-17f60615e001gdks5lv0fggpga.md) — 1 obs
+* [Session evt_17f608ad6001sf0vKh7v7NTd5c](sessions/evt-17f608ad6001sf0vkh7v7ntd5c.md) — 1 obs
+* [Session evt_17f60a0a400167viYOnz96GLX4](sessions/evt-17f60a0a400167viyonz96glx4.md) — 1 obs
+* [Session evt_17f60b659001EowR678DRlZL4o](sessions/evt-17f60b659001eowr678drlzl4o.md) — 1 obs
+* [Session evt_17f60cfe0001m9Xvy5iGb81WNl](sessions/evt-17f60cfe0001m9xvy5igb81wnl.md) — 1 obs
+* [Session evt_17f60cfe6001Rk1BC31NEVznBq](sessions/evt-17f60cfe6001rk1bc31nevznbq.md) — 1 obs
+* [Session evt_17f61c1ca0011qzH4qTcbFnOgi](sessions/evt-17f61c1ca0011qzh4qtcbfnogi.md) — 1 obs
+* [Session evt_17f61c24e001yEnm5m1MbxZFuj](sessions/evt-17f61c24e001yenm5m1mbxzfuj.md) — 1 obs
+* [Session evt_17f61dec900166yRBetLQaJxLd](sessions/evt-17f61dec900166yrbetlqajxld.md) — 1 obs
+* [Session evt_17f61f73d001SnlNf9Qt9ZK8pg](sessions/evt-17f61f73d001snlnf9qt9zk8pg.md) — 1 obs
+* [Session evt_17f620c52001Vvu2QWhMM6BN6y](sessions/evt-17f620c52001vvu2qwhmm6bn6y.md) — 1 obs
+* [Session evt_17f622c47001zKmkUk4M6uH3W1](sessions/evt-17f622c47001zkmkuk4m6uh3w1.md) — 1 obs
+* [Session evt_17f62448b001rcu3lCinyG0ymK](sessions/evt-17f62448b001rcu3lcinyg0ymk.md) — 1 obs
+* [Session evt_17f625b9a001nO7Ls32ve7Jy65](sessions/evt-17f625b9a001no7ls32ve7jy65.md) — 1 obs
+* [Session evt_17f625b99001NWOxqbMlEh5Ol9](sessions/evt-17f625b99001nwoxqbmleh5ol9.md) — 1 obs
+* [Session evt_17f64faa0001IIEo5if9cvGAE0](sessions/evt-17f64faa0001iieo5if9cvgae0.md) — 1 obs
+* [Session evt_17f64fb47001SBe1R56jSkV7kE](sessions/evt-17f64fb47001sbe1r56jskv7ke.md) — 1 obs
+* [Session evt_17f64fbc1001lzmzjWkWmIln6L](sessions/evt-17f64fbc1001lzmzjwkwmiln6l.md) — 1 obs
+* [Session evt_17f65351c001i7l6U6dPOTKch3](sessions/evt-17f65351c001i7l6u6dpotkch3.md) — 1 obs
+* [Session evt_17f65352a0014sdeQ6oeQxXBqx](sessions/evt-17f65352a0014sdeq6oeqxxbqx.md) — 1 obs
+* [Session evt_17f653531001Y1jWZy1LPk2Bm0](sessions/evt-17f653531001y1jwzy1lpk2bm0.md) — 1 obs
+* [Session evt_17f653532001ZTbz80nNCAMxtj](sessions/evt-17f653532001ztbz80nncamxtj.md) — 1 obs
+* [Session evt_17f6535a7001fxPteZQDCEBIhf](sessions/evt-17f6535a7001fxptezqdcebihf.md) — 1 obs
+* [Session ses_e809acae5ffes0PMI41UlJHn83](sessions/ses-e809acae5ffes0pmi41uljhn83.md) — 1 obs
+* [Session evt_17f6545c0001EJ0RYqRxpnSGIC](sessions/evt-17f6545c0001ej0ryqrxpnsgic.md) — 1 obs
+* [Session evt_17f655665001SKFvwDLdgUTygJ](sessions/evt-17f655665001skfvwdldgutygj.md) — 1 obs
+* [Session evt_17f6562eb001T6TQOAyG37ohL6](sessions/evt-17f6562eb001t6tqoayg37ohl6.md) — 1 obs
+* [Session evt_17f65726a001GgtqSQpkIs5M08](sessions/evt-17f65726a001ggtqsqpkis5m08.md) — 1 obs
+* [Session evt_17f65819c001TRkHYUBmh9cyaB](sessions/evt-17f65819c001trkhyubmh9cyab.md) — 1 obs
+* [Session evt_17f6590010011WVdy27RU5wtSf](sessions/evt-17f6590010011wvdy27ru5wtsf.md) — 1 obs
+* [Session evt_17f659ce0001XbBqIjx5DrzcyC](sessions/evt-17f659ce0001xbbqijx5drzcyc.md) — 1 obs
+* [Session evt_17f65ac51001CmH5ua3LhGMC5W](sessions/evt-17f65ac51001cmh5ua3lhgmc5w.md) — 1 obs
+* [Session evt_17f65c0fe001gdeeuZKNwdpKES](sessions/evt-17f65c0fe001gdeeuzknwdpkes.md) — 1 obs
+* [Session evt_17f65cfd9001YvouCp2TpdEN43](sessions/evt-17f65cfd9001yvoucp2tpden43.md) — 1 obs
+* [Session evt_17f6653d6001bHLPImtk3ZDDNa](sessions/evt-17f6653d6001bhlpimtk3zddna.md) — 1 obs
+* [Session evt_17f6653df001nGTjPUEy87CtG5](sessions/evt-17f6653df001ngtjpuey87ctg5.md) — 1 obs
+* [Session ses_e809b0566ffeyR0wkr9whEQLrX](sessions/ses-e809b0566ffeyr0wkr9wheqlrx.md) — 1 obs
+* [Session evt_17f665482001yjTWmHGYmm8rG7](sessions/evt-17f665482001yjtwmhgymm8rg7.md) — 1 obs
+* [Session evt_17f67520e001hVzCA4SDcj1C5U](sessions/evt-17f67520e001hvzca4sdcj1c5u.md) — 1 obs
+* [Session evt_17f678125001OF5iLa3ZYA3ES8](sessions/evt-17f678125001of5ila3zya3es8.md) — 1 obs
+* [Session evt_17f6781290013UxHWOTDhqx9X3](sessions/evt-17f6781290013uxhwotdhqx9x3.md) — 1 obs
+* [Session evt_17f6785af0017oh9YJ57HRIVZM](sessions/evt-17f6785af0017oh9yj57hrivzm.md) — 1 obs
+* [Session local-c011c9abd1b54d0d2d2186ff8c540b40744b4384d8cc262c446f9fbf89528d3e](sessions/local-c011c9abd1b54d0d2d2186ff8c540b40744b4384d8cc262c446f9fbf89528d3e.md) — 137 obs
+* [Session local-4f311d8df3596994a02bf02398c28bfa0ccb00befeef7a160df337bbd0ffa54c](sessions/local-4f311d8df3596994a02bf02398c28bfa0ccb00befeef7a160df337bbd0ffa54c.md) — 11 obs
+* [Session local-05eac4d694006e3efb66922f733381a41c2602fc2a1d2a4a59441cdb274476eb](sessions/local-05eac4d694006e3efb66922f733381a41c2602fc2a1d2a4a59441cdb274476eb.md) — 24 obs
+* [Session local-513b631d6a88dad15f29360760f1a97a48f656f26061d79b4c34dde2f8e62a99](sessions/local-513b631d6a88dad15f29360760f1a97a48f656f26061d79b4c34dde2f8e62a99.md) — 54 obs
+* [Session local-9e61504a9e921664faec1499a07ceb52fe8ede8baab3e8bce610e056a55d0369](sessions/local-9e61504a9e921664faec1499a07ceb52fe8ede8baab3e8bce610e056a55d0369.md) — 3 obs
+* [Session local-acc7b1b28c8606c1208207b194b2e11452b4002aa149635699173b12eeb4d0ac](sessions/local-acc7b1b28c8606c1208207b194b2e11452b4002aa149635699173b12eeb4d0ac.md) — 25 obs
+* [Session local-03df3b8fbea0cd363df33aa504e53e0f929b740c314800b2ba1abab0d9be7856](sessions/local-03df3b8fbea0cd363df33aa504e53e0f929b740c314800b2ba1abab0d9be7856.md) — 101 obs
+* [Session local-9b1009b542589ad319a6d68009eb64873d7920e0afb5fac6ca13a58b09ff88e8](sessions/local-9b1009b542589ad319a6d68009eb64873d7920e0afb5fac6ca13a58b09ff88e8.md) — 95 obs
+* [Session local-9a7e82eea8af49579a1ddbcca83f6578a1c73e7768c7f4d653eab8bf1fd75b17](sessions/local-9a7e82eea8af49579a1ddbcca83f6578a1c73e7768c7f4d653eab8bf1fd75b17.md) — 4 obs
+* [Session 20261028_223908_69d0b0](sessions/20261028-223908-69d0b0.md) — 79 obs
+* [Session 20261028_235215_14d8a8](sessions/20261028-235215-14d8a8.md) — 33 obs
+* [Session 20261029_000838_cbf46d](sessions/20261029-000838-cbf46d.md) — 51 obs
+* [Session 20261029_001345_20e34b](sessions/20261029-001345-20e34b.md) — 26 obs
+* [Session 20261029_010915_e2b06b](sessions/20261029-010915-e2b06b.md) — 34 obs
+* [Session local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52e8](sessions/local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52e8.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -32839,3 +33092,59 @@ session_id: loc](memories/mem_mvozhwx8_fd7e1230366a.md)
 
 source: hermes
 session_id: local-fa10daa5ef7](memories/mem_mvozhxa7_65e193355cb0.md)
+* [Memory: # Fix TurboQuant gateway restart failure on :8000
+
+source: hermes
+session_id: 20](memories/mem_mvqext77_4a61d322ad13.md)
+* [Memory: # Fill out ARAG will interview
+
+source: hermes
+session_id: 20261022_070118_69eb5](memories/mem_mvqextj4_dd5601383ba4.md)
+* [Memory: # Clean malformed ~/.hermes/.env lines
+
+source: hermes
+session_id: 20261022_0900](memories/mem_mvqextuu_53136d311da3.md)
+* [Memory: # Fix error shown in screenshot
+
+source: hermes
+session_id: 20261022_090155_b317](memories/mem_mvqexu6u_ff1a16e47a10.md)
+* [Memory: # Fill out form for Kilo
+
+source: hermes
+session_id: 20261022_113856_84c2ca
+reso](memories/mem_mvqexuhg_e055c236ffaa.md)
+* [Memory: # local-209b024e3f6a257e424b5b24d05332c3080712906c729081bc69867754833c21
+
+source](memories/mem_mvqexuvx_f94fc0c331d2.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 27 03:00
+
+source: hermes
+session_id: loc](memories/mem_mvqexv8l_38f868d20497.md)
+* [Memory: # Workday start reminder · Oct 26 09:01
+
+source: hermes
+session_id: local-5c1299](memories/mem_mvqexvla_9bd299982dc0.md)
+* [Memory: # Find uncensored bottles on Kilo
+
+source: hermes
+session_id: local-62f7e4da81c7](memories/mem_mvqexvy0_e7b8ab4ee544.md)
+* [Memory: # Morning briefing · Oct 26 08:01
+
+source: hermes
+session_id: local-ae84482c600f](memories/mem_mvqexwbr_8c71736631f5.md)
+* [Memory: # nightly-okf-index · Oct 26 03:21
+
+source: hermes
+session_id: local-b05aa39d4b1](memories/mem_mvqexwoq_b4d9fe0813c3.md)
+* [Memory: # Why agent is not running
+
+source: hermes
+session_id: local-b37270c7139091a7e8c](memories/mem_mvqexx13_94f38e36291b.md)
+* [Memory: # agentmemory-okf-mirror · Oct 27 03:01
+
+source: hermes
+session_id: local-cb1a1b](memories/mem_mvqexxe0_66031ba83692.md)
+* [Memory: # Evening wind-down · Oct 26 21:01
+
+source: hermes
+session_id: local-de5a578d0d1](memories/mem_mvqexxpp_cd2a9247dcc0.md)
