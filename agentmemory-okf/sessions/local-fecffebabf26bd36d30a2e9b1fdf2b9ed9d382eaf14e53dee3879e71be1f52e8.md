@@ -19,4 +19,4 @@ session_id: local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52
 
 ## Observations
 
-* [observation](observations/local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52e8/obs_mvt97bch_87b5f9dd6c8e.md)
+* [Hermes OKF Mirror Tool](observations/local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52e8/obs_mvt97bch_87b5f9dd6c8e.md)
