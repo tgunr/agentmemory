@@ -1,0 +1,29 @@
+---
+type: FileRead
+title: "Read session_commands.py" with offset
+description: Reading session_commands.py with offset=120
+resource: agentmemory://observation/obs_mvwi81vg_f2adda63de61
+tags: ["Session Commander", "fileread"]
+timestamp: 2026-10-31T14:36:28.920097+00:00
+source: agentmemory
+session_id: local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844
+importance: 7
+confidence: 1
+---
+# Summary
+
+The agent read file session_commands.py with offset 120 to limit the amount of lines read to 165, resulting in a partial file being returned.
+
+## Facts
+- Limit = 45, Offset = 120
+- File truncated
+- Total lines: 534
+- Total lines loaded: 165
+
+## Concepts
+- Session Commander
+
+## Files
+- `/Users/davec/.hermes/hermes-agent/gateway/session_commands.py`
+
+_Importance: 7 · Confidence: 1_

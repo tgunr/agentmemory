@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-10-31T08:01:12.136Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-01T09:00:23.907Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -7608,14 +7608,14 @@ _Exported 2026-10-31T08:01:12.136Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-c8a85ec4f99159d5e9a22d0a909820eccacdf89f0f36a1b8a6092810518dc464](sessions/local-c8a85ec4f99159d5e9a22d0a909820eccacdf89f0f36a1b8a6092810518dc464.md) — 2 obs
 * [Session 20261029_214447_b74594](sessions/20261029-214447-b74594.md) — 15 obs
 * [Session 20261029_220539_dbece7](sessions/20261029-220539-dbece7.md) — 23 obs
-* [Session 20261029_231630_f90a63](sessions/20261029-231630-f90a63.md) — 200 obs
+* [Session 20261029_231630_f90a63](sessions/20261029-231630-f90a63.md) — 330 obs
 * [Session 20261029_233055_974394](sessions/20261029-233055-974394.md) — 224 obs
 * [Session 20261030_001120_f8c5f7](sessions/20261030-001120-f8c5f7.md) — 32 obs
 * [Session 20261030_004614_797bda](sessions/20261030-004614-797bda.md) — 7 obs
 * [Session 20261030_014458_fc51f2](sessions/20261030-014458-fc51f2.md) — 20 obs
 * [Session local-5d8e04478820bc3618128d156cf2b65d204e0f4422da80c6a710f5bd7d7777f7](sessions/local-5d8e04478820bc3618128d156cf2b65d204e0f4422da80c6a710f5bd7d7777f7.md) — 13 obs
 * [Session local-322dca4000fd653e6f1fda146974665f38b61e17af9f79333d32b15327b89fdc](sessions/local-322dca4000fd653e6f1fda146974665f38b61e17af9f79333d32b15327b89fdc.md) — 12 obs
-* [Session local-5f21df6e0d37aa0be3f21982ea90776a250afe8e05aa9497317ec4cef073fc91](sessions/local-5f21df6e0d37aa0be3f21982ea90776a250afe8e05aa9497317ec4cef073fc91.md) — 58 obs
+* [Session local-5f21df6e0d37aa0be3f21982ea90776a250afe8e05aa9497317ec4cef073fc91](sessions/local-5f21df6e0d37aa0be3f21982ea90776a250afe8e05aa9497317ec4cef073fc91.md) — 63 obs
 * [Session evt_18d601573001ZJHCRVp5JThrmw](sessions/evt-18d601573001zjhcrvp5jthrmw.md) — 1 obs
 * [Session evt_18d6017900017SlX29ijWEQSjf](sessions/evt-18d6017900017slx29ijweqsjf.md) — 1 obs
 * [Session ses_e729fea90ffeN1MzB8pVLJYmsG](sessions/ses-e729fea90ffen1mzb8pvljymsg.md) — 12 obs
@@ -7939,7 +7939,7 @@ _Exported 2026-10-31T08:01:12.136Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session evt_18f1e546d0016HzP2gBicmLFCZ](sessions/evt-18f1e546d0016hzp2gbicmlfcz.md) — 1 obs
 * [Session evt_18f1e54f6001lBAL8KbBAFQC6c](sessions/evt-18f1e54f6001lbal8kbbafqc6c.md) — 1 obs
 * [Session evt_18f1e55e4001syu1KrzEbqx3CP](sessions/evt-18f1e55e4001syu1krzebqx3cp.md) — 1 obs
-* [Session ses_e70e1abadffexIrITY5SliZmVc](sessions/ses-e70e1abadffexirity5slizmvc.md) — 2 obs
+* [Session ses_e70e1abadffexIrITY5SliZmVc](sessions/ses-e70e1abadffexirity5slizmvc.md) — 3 obs
 * [Session evt_18f1e6afc001iTWP76esaJrbnX](sessions/evt-18f1e6afc001itwp76esajrbnx.md) — 1 obs
 * [Session evt_18f1ea507001jTB8vEAJcE8Yh1](sessions/evt-18f1ea507001jtb8veajce8yh1.md) — 1 obs
 * [Session evt_18f1ebc8000150ZzK7z24cJgtG](sessions/evt-18f1ebc8000150zzk7z24cjgtg.md) — 1 obs
@@ -7977,6 +7977,46 @@ _Exported 2026-10-31T08:01:12.136Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session evt_18f243fd4001rex7JYYU4GFa9u](sessions/evt-18f243fd4001rex7jyyu4gfa9u.md) — 1 obs
 * [Session local-1fb6a5a9b63386167bbc9bda365d39f4ffbed69723f80a1c80433eec28f6681a](sessions/local-1fb6a5a9b63386167bbc9bda365d39f4ffbed69723f80a1c80433eec28f6681a.md) — 3 obs
 * [Session local-207ce5ebb7c459c0a38a3ff671095bb5b32a77804ae1456ed6d55b771b4a79af](sessions/local-207ce5ebb7c459c0a38a3ff671095bb5b32a77804ae1456ed6d55b771b4a79af.md) — 2 obs
+* [Session local-9b66124c4ed7530a3f82448ca10d5cc06e8602f7008d188d6025870cc31f6389](sessions/local-9b66124c4ed7530a3f82448ca10d5cc06e8602f7008d188d6025870cc31f6389.md) — 1 obs
+* [Session local-da4d988ebef3fd6244502675458e3b1c8009b68fe98f046829706b9acdc2a7b5](sessions/local-da4d988ebef3fd6244502675458e3b1c8009b68fe98f046829706b9acdc2a7b5.md) — 2 obs
+* [Session local-2d6a645cd3f3483338ff9185e927b4eb987d941f4fee231ff762f8b22227cf04](sessions/local-2d6a645cd3f3483338ff9185e927b4eb987d941f4fee231ff762f8b22227cf04.md) — 14 obs
+* [Session local-57a4506dc22c36b8867a1f3f0ee739a6c759b503e78178bd1ed01c6192ad7d30](sessions/local-57a4506dc22c36b8867a1f3f0ee739a6c759b503e78178bd1ed01c6192ad7d30.md) — 26 obs
+* [Session local-922e38c1e2fcc4a37bf6d75af5e5ad5d678d4e358aa149db2fd5543125af03e2](sessions/local-922e38c1e2fcc4a37bf6d75af5e5ad5d678d4e358aa149db2fd5543125af03e2.md) — 63 obs
+* [Session local-b4f44b0edab54099e0baaee2f9270a776bfc2cecbea576c504c796d3bc88662a](sessions/local-b4f44b0edab54099e0baaee2f9270a776bfc2cecbea576c504c796d3bc88662a.md) — 108 obs
+* [Session local-ed0c0a7d24e64e4d15234e09288ba6272aa62ac29e0296c321232b0f08a0b936](sessions/local-ed0c0a7d24e64e4d15234e09288ba6272aa62ac29e0296c321232b0f08a0b936.md) — 67 obs
+* [Session local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844](sessions/local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844.md) — 226 obs
+* [Session local-eec846478a97d3de760f55ce5ddef6be7296067833f6f57783fcf2fe845b7f82](sessions/local-eec846478a97d3de760f55ce5ddef6be7296067833f6f57783fcf2fe845b7f82.md) — 9 obs
+* [Session local-1bd42e92b2ba3c5acec47be25992c3991b859afb3302d7c4c136f74c99533faa](sessions/local-1bd42e92b2ba3c5acec47be25992c3991b859afb3302d7c4c136f74c99533faa.md) — 32 obs
+* [Session local-f2e524bd5d3cfd4334c418b91ffebb661855b4cf3e42d35c11951a4633bce792](sessions/local-f2e524bd5d3cfd4334c418b91ffebb661855b4cf3e42d35c11951a4633bce792.md) — 157 obs
+* [Session local-45260ea5a0f60ca408ae8c47c8e3d918a531255a14a72fc06d8c02c6f380ae79](sessions/local-45260ea5a0f60ca408ae8c47c8e3d918a531255a14a72fc06d8c02c6f380ae79.md) — 96 obs
+* [Session local-51e2a04cb989820714e5ea88c5207ccb9659ce0da41ea61938d9da57394e8f5c](sessions/local-51e2a04cb989820714e5ea88c5207ccb9659ce0da41ea61938d9da57394e8f5c.md) — 42 obs
+* [Session local-3e140115fa5d0f8d79b0b0d66a75b1a9bb9f93977fb8d92d9edb1f39b3fb3435](sessions/local-3e140115fa5d0f8d79b0b0d66a75b1a9bb9f93977fb8d92d9edb1f39b3fb3435.md) — 255 obs
+* [Session evt_194095806001cM1aiwgnn1tA8L](sessions/evt-194095806001cm1aiwgnn1ta8l.md) — 1 obs
+* [Session evt_194095ada001IqGe8CQ4W1lDt5](sessions/evt-194095ada001iqge8cq4w1ldt5.md) — 1 obs
+* [Session evt_19409756c001y1zLy8SDPAjhH3](sessions/evt-19409756c001y1zly8sdpajhh3.md) — 1 obs
+* [Session evt_194098cc2001vivJ3Ye1f30Pxc](sessions/evt-194098cc2001vivj3ye1f30pxc.md) — 1 obs
+* [Session evt_19409a1aa001bJb17dxTOvJJ8a](sessions/evt-19409a1aa001bjb17dxtovjj8a.md) — 1 obs
+* [Session evt_19409da66001mXFA6U8IxmXxWk](sessions/evt-19409da66001mxfa6u8ixmxxwk.md) — 1 obs
+* [Session evt_19409ee72002I1tPyASmD9DGI5](sessions/evt-19409ee72002i1tpyasmd9dgi5.md) — 1 obs
+* [Session evt_19409ee780015wMHyIrjDkEaQ5](sessions/evt-19409ee780015wmhyirjdkeaq5.md) — 1 obs
+* [Session evt_1940a7d3b0015PTpFyv9KFY6WH](sessions/evt-1940a7d3b0015ptpfyv9kfy6wh.md) — 1 obs
+* [Session evt_1940a7e0c001DxU5jw6jwAGOcy](sessions/evt-1940a7e0c001dxu5jw6jwagocy.md) — 1 obs
+* [Session evt_1940aa3a7001kxT419JgwP7rsP](sessions/evt-1940aa3a7001kxt419jgwp7rsp.md) — 1 obs
+* [Session evt_1940ac0750012ihPbMt6L5cEhR](sessions/evt-1940ac0750012ihpbmt6l5cehr.md) — 1 obs
+* [Session evt_1940ade80001cFd4P4UfIISost](sessions/evt-1940ade80001cfd4p4ufiisost.md) — 1 obs
+* [Session evt_1940af526001V3iNTSZN5CuixZ](sessions/evt-1940af526001v3intszn5cuixz.md) — 1 obs
+* [Session evt_1940b122f001W3B5yOlGb7o0Um](sessions/evt-1940b122f001w3b5yolgb7o0um.md) — 1 obs
+* [Session evt_1940b2d660011GbjdrftFPmER2](sessions/evt-1940b2d660011gbjdrftfpmer2.md) — 1 obs
+* [Session evt_1940b42c6001A5scyz9x27bUAx](sessions/evt-1940b42c6001a5scyz9x27buax.md) — 1 obs
+* [Session evt_1940b7630001Q9fNFT5g4HdO1D](sessions/evt-1940b7630001q9fnft5g4hdo1d.md) — 1 obs
+* [Session evt_1940c1d46001cvPBK3Gr69BDpf](sessions/evt-1940c1d46001cvpbk3gr69bdpf.md) — 1 obs
+* [Session evt_1940c3def001Rn7L1TjPK1eaIi](sessions/evt-1940c3def001rn7l1tjpk1eaii.md) — 1 obs
+* [Session evt_1940c5317001eLGrXrJH6zjzQk](sessions/evt-1940c5317001elgrxrjh6zjzqk.md) — 1 obs
+* [Session evt_1940c649e002vjQfDWF3s0DV0i](sessions/evt-1940c649e002vjqfdwf3s0dv0i.md) — 1 obs
+* [Session evt_1940c64a7001urIwA9U2uhTn5D](sessions/evt-1940c64a7001uriwa9u2uhtn5d.md) — 1 obs
+* [Session local-6015392bac2447fba91c08dcc2b00d0cecfd07ce6940bf233580153a9dd37671](sessions/local-6015392bac2447fba91c08dcc2b00d0cecfd07ce6940bf233580153a9dd37671.md) — 4 obs
+* [Session local-53c95770c268e40e1c55555b5eb7eb355a4e27692a18747bcdccecddb03c542b](sessions/local-53c95770c268e40e1c55555b5eb7eb355a4e27692a18747bcdccecddb03c542b.md) — 4 obs
+* [Session local-40f125c7dcf5a5200018309668afa09f1e29e495c1917c03f1d063785e683000](sessions/local-40f125c7dcf5a5200018309668afa09f1e29e495c1917c03f1d063785e683000.md) — 41 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -33611,3 +33651,172 @@ source](memories/mem_mvt9taro_2b1eefcb536b.md)
 
 source: hermes
 session_id: loc](memories/mem_mvt9tb6i_c4454e6f74dc.md)
+* [Memory: # Agentmemory check
+
+source: hermes
+session_id: 0f34d0593386
+resource: hermes://](memories/mem_mvw4pt38_4475eb7998ea.md)
+* [Memory: # imgtagplus: viewer tagging UX (Option A) + browse fix + JS lint gate
+
+source: ](memories/mem_mvw4ptrk_21c3d48d9d82.md)
+* [Memory: # Fast-jev compaction: wire Jev key + jevmodel endpoint
+
+source: hermes
+session_](memories/mem_mvw4pu7h_ad97071f7008.md)
+* [Memory: # Skip tank and dpool unmounts at shutdown
+
+source: hermes
+session_id: 20261029_](memories/mem_mvw4puil_7b674f9cee8f.md)
+* [Memory: # Restore vmbr0 for WebUI on 8080
+
+source: hermes
+session_id: 20261029_001345_20](memories/mem_mvw4puw0_69312e7b255d.md)
+* [Memory: # Review dmesg boot logs for issues
+
+source: hermes
+session_id: 20261029_010915_](memories/mem_mvw4pvaj_24279cfc726a.md)
+* [Memory: # dmesg exam
+
+source: hermes
+session_id: 20261029_214447_b74594
+resource: hermes](memories/mem_mvw4pvpn_4c8667a9a17f.md)
+* [Memory: # Find Confluence alternatives besides Docmost
+
+source: hermes
+session_id: 20261](memories/mem_mvw4pw4a_89e1fb7fe58e.md)
+* [Memory: # Fix missing profiles in status bar
+
+source: hermes
+session_id: 20261029_231630](memories/mem_mvw4pwj7_c2357891bfb3.md)
+* [Memory: # Understand long COVID definition
+
+source: hermes
+session_id: 20261029_231734_2](memories/mem_mvw4pwyq_45a908713ed0.md)
+* [Memory: # Add Move to profile menu item
+
+source: hermes
+session_id: 20261029_233055_9743](memories/mem_mvw4pxda_9eb155aca9df.md)
+* [Memory: # Slash command: rename session from conversation
+
+source: hermes
+session_id: 20](memories/mem_mvw4pxrl_96ff9228e19a.md)
+* [Memory: # Kill all Hermes processes
+
+source: hermes
+session_id: 20261030_004614_797bda
+r](memories/mem_mvw4py62_e8eaadfcc409.md)
+* [Memory: # Add Move to profile menu item #2
+
+source: hermes
+session_id: 20261030_014235_5](memories/mem_mvw4pyka_d8a23755e694.md)
+* [Memory: # Remove icon from Telegram chat list
+
+source: hermes
+session_id: local-0dd15b06](memories/mem_mvw4pz19_9d6a24669645.md)
+* [Memory: # Evening wind-down · Oct 30 21:01
+
+source: hermes
+session_id: local-1fb6a5a9b63](memories/mem_mvw4pzgl_756d029957b4.md)
+* [Memory: # hermes-conversations-okf-mirror · Oct 31 03:01
+
+source: hermes
+session_id: loc](memories/mem_mvw4pzwd_7a2552a911d8.md)
+* [Memory: # Fix Hermes desktop backend email down
+
+source: hermes
+session_id: local-230964](memories/mem_mvw4q08e_941d49b067cf.md)
+* [Memory: # local-23b69c30600cc3abc38a72358b5d7d1af1d620227f3f5d0a5fdb9c17e915f677
+
+source](memories/mem_mvw4q0oc_b69a3f64b0d7.md)
+* [Memory: # Workday start reminder · Oct 30 09:00
+
+source: hermes
+session_id: local-322dca](memories/mem_mvw4q13c_05f1845f954c.md)
+* [Memory: # local-3691c1e028ee72515912944a3c7d6f754bcc22a8a615449ca9458afcb8583b2b
+
+source](memories/mem_mvw4q1ec_0e8fa9b75d98.md)
+* [Memory: # Explain always allow permission scope
+
+source: hermes
+session_id: local-3b96af](memories/mem_mvw4q1s7_b992e4e35686.md)
+* [Memory: # Print current working directory #2
+
+source: hermes
+session_id: local-43f14f6ca](memories/mem_mvw4q26p_cd0a28294672.md)
+* [Memory: # Build Telegram bot-detection auto-reply app #3
+
+source: hermes
+session_id: loc](memories/mem_mvw4q2lo_a6cd049125bd.md)
+* [Memory: # Build Telegram bot-detection auto-reply app #2
+
+source: hermes
+session_id: loc](memories/mem_mvw4q2yd_7a68d2f832ce.md)
+* [Memory: # local-5413aa2c7ce5c08ad5a454ae9db120d78145b91d1be73635d8071491a4c81a43
+
+source](memories/mem_mvw4q3c6_24a319f01355.md)
+* [Memory: # Resolve git stashes in ~/.hermes/hermes-agent
+
+source: hermes
+session_id: loca](memories/mem_mvw4q3n4_e691a3b13f62.md)
+* [Memory: # Create second Telegram account with one number
+
+source: hermes
+session_id: loc](memories/mem_mvw4q422_5c633bcf5739.md)
+* [Memory: # Restore print button for box item
+
+source: hermes
+session_id: local-809603915d](memories/mem_mvw4q4gz_13a93866b610.md)
+* [Memory: # Workday start reminder · Oct 29 09:00
+
+source: hermes
+session_id: local-851693](memories/mem_mvw4q4ww_df6462ce0f44.md)
+* [Memory: # nightly-okf-index · Oct 29 03:17
+
+source: hermes
+session_id: local-99e77f32861](memories/mem_mvw4q5ab_287a0caddb9f.md)
+* [Memory: # agentmemory-okf-mirror · Oct 31 03:01
+
+source: hermes
+session_id: local-9b6612](memories/mem_mvw4q5pz_b0c83474a5da.md)
+* [Memory: # Friendly greeting from user
+
+source: hermes
+session_id: local-9ea5f2ca6e71ecd0](memories/mem_mvw4q63j_98e9dc2bad0a.md)
+* [Memory: # chore: sync hermes-agent config and gateway control skill
+
+source: hermes
+sess](memories/mem_mvw4q6hl_6632fcec8a6c.md)
+* [Memory: # Summarize config and skill doc changes
+
+source: hermes
+session_id: local-bbe62](memories/mem_mvw4q6sf_a6c3e591eab7.md)
+* [Memory: # Summarize Apple News article
+
+source: hermes
+session_id: local-c1ef1e4658f72d4](memories/mem_mvw4q77s_6579780c09a9.md)
+* [Memory: # Evening wind-down · Oct 29 21:01
+
+source: hermes
+session_id: local-c8a85ec4f99](memories/mem_mvw4q7nf_288491015c35.md)
+* [Memory: # local-da4d988ebef3fd6244502675458e3b1c8009b68fe98f046829706b9acdc2a7b5
+
+source](memories/mem_mvw4q81r_971fb794520d.md)
+* [Memory: # Build Telegram bot-detection auto-reply app
+
+source: hermes
+session_id: local-](memories/mem_mvw4q8e8_c4fda1017724.md)
+* [Memory: # local-ddec62a235a08451ee5a3611f272b26c36daf65de8e9a313fd3a728b5d77bc07
+
+source](memories/mem_mvw4q8sn_8333c79d4150.md)
+* [Memory: # Testing the bot locally
+
+source: hermes
+session_id: local-e49df9712a3e9a279be8](memories/mem_mvw4q970_1db95a8f4d3d.md)
+* [Memory: # local-f8c13521a8b17c71a5c5bc1d83e7ebcf1455ab34d42ecdfc48c9329980830877
+
+source](memories/mem_mvw4q9lz_a0f42d8da1e6.md)
+* [Memory: # Morning briefing · Oct 29 08:00
+
+source: hermes
+session_id: local-f939a6074f58](memories/mem_mvw4qa0y_7361e7efe27d.md)
+* [Memory: Hermes auxiliary compression model on this host: kilo-auto/small (kilocode) pinn](memories/mem_mvw9chij_3a8276a3ceb5.md)
