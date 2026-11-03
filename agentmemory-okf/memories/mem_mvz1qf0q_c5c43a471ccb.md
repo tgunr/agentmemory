@@ -1,0 +1,160 @@
+---
+type: Fact
+title: # Add /projects command to switch projects
+
+source: hermes
+session_id: local-afb
+description: # Add /projects command to switch projects
+
+source: hermes
+session_id: local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844
+resource: hermes://session/local-afb6403797bc02f9ec96f2658
+resource: agentmemory://memory/mem_mvz1qf0q_c5c43a471ccb
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec/.hermes/hermes-agent"]
+timestamp: 2026-11-02T09:18:10.686Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Add /projects command to switch projects
+
+source: hermes
+session_id: local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844
+resource: hermes://session/local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844
+
+# Conversation
+
+- **Session ID:** `local-afb6403797bc02f9ec96f2658cc21ca41d2ed03d9c675693830e4d14e0ef3844`
+- **Source:** local
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-10-31T11:50:39Z
+- **Ended:** 2026-11-01T16:19:47Z
+- **Messages:** 601
+- **CWD:** `/Users/davec/.hermes/hermes-agent`
+- **Tokens:** 1078313 in / 116753 out
+- **Est. cost:** $-257513.0000
+
+---
+
+### 👤 User — 2026-10-31T11:51:30Z
+
+why is there not a /projects to show and switch projects?
+
+### 👤 User — 2026-10-31T11:51:30Z
+
+why is there not a /projects to show and switch projects?
+
+### 🤖 Assistant — 2026-10-31T11:51:39Z
+
+<details><summary>Reasoning</summary>
+
+The user asks why there isn't a /projects slash command to show and switch projects. Let me check the codebase for slash commands and projects.
+
+Let me search.
+
+</details>
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 60,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes/hermes-agent/hermes_cli",
+  "pattern": "\"projects\"|/projects|project_switch|desktop_project"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 40,
+  "output_mode": "files_only",
+  "path": "/Users/davec/.hermes/hermes-agent",
+  "pattern": "projects",
+  "target": "files"
+}
+```
+
+### 🤖 Assistant — 2026-10-31T11:51:46Z
+
+<details><summary>Reasoning</summary>
+
+Let me look for project tooling: tools with project_switch, desktop_project tool, and whether a slash command exists. Let's grep for "project" in commands.py registry and in tools.
+
+</details>
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 40,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes/hermes-agent/hermes_cli/commands.py",
+  "pattern": "project"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 40,
+  "output_mode": "files_only",
+  "path": "/Users/davec/.hermes/hermes-agent",
+  "pattern": "project_switch|project_create|desktop_project"
+}
+```
+
+### 🤖 Assistant — 2026-10-31T11:51:53Z
+
+<details><summary>Reasoning</summary>
+
+So projects exist as a tool (`desktop_project` in tools/project_tools.py) and a desktop UI feature, and there's a DB `hermes_cli/projects_db.py`. But no slash command. Let me check project_tools.py and whether CLI has any project support, and check git log for recent "projects" commits — memory notes "desktop Projects live in ~/.hermes/projects.db". Let me check project_tools.py briefly and see if there's a `hermes projects` CLI subcommand.
+
+</details>
+
+**Tool call: read_file**
+
+```json
+{
+  "limit": 80,
+  "path": "/Users/davec/.hermes/hermes-agent/tools/project_tools.py"
+}
+```
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 30,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes/hermes-agent/hermes_cli/subcommands",
+  "pattern": "^def |add_parser\\("
+}
+```
+
+### 🤖 Assistant — 2026-10-31T11:51:59Z
+
+<details><summary>Reasoning</summary>
+
+So: no slash command, no `hermes projects` subcommand. Projects are a desktop-only feature: `project` toolset, desktop sidebar, projects.db. The CLI/TUI has no surface.
+
+Now: the user's question is "why is there not a /projects to show and switch projects?" They likely want one. But first answer why: because Projects are shipped as a GUI-only capability — the toolset is off `_HERMES_CORE_TOOLS` and only the GUI gateway folds it in; the slash registry has no project entry, and there's no `hermes projects` subcommand either. So nothing exposes it in TUI/messaging.
+
+Check whether the project toolset is enabled in their config, and whether their TUI sessions even get project tools. Also check git log to see if maybe upstream added one recently. Let me check quickly: grep toolsets.py for project, and check redis the TUI gateway platform value ("tui"). If TUI platform isn't treated as GUI, then /projects also can't work without a backend that supports it.
+
+Let me check _load_enabled_toolsets and platform gating.
+
+</details>
+
+**Tool call: search_files**
+
+```json
+{
+  "limit": 30,
+  "output_mode": "content",
+  "path": "/Users/davec/.hermes/hermes-agent/toolsets.py",
+  "pattern": "projec

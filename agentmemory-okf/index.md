@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-02T09:01:04.860Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-03T09:01:09.241Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -7582,7 +7582,7 @@ _Exported 2026-11-02T09:01:04.860Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20261028_235215_14d8a8](sessions/20261028-235215-14d8a8.md) — 33 obs
 * [Session 20261029_000838_cbf46d](sessions/20261029-000838-cbf46d.md) — 51 obs
 * [Session 20261029_001345_20e34b](sessions/20261029-001345-20e34b.md) — 26 obs
-* [Session 20261029_010915_e2b06b](sessions/20261029-010915-e2b06b.md) — 34 obs
+* [Session 20261029_010915_e2b06b](sessions/20261029-010915-e2b06b.md) — 44 obs
 * [Session local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52e8](sessions/local-fecffebabf26bd36d30a2e9b1fdf2b9ed9d382eaf14e53dee3879e71be1f52e8.md) — 1 obs
 * [Session local-328b5f5feaf2f700ca4ae9da226081561795e103ceaaebf254f8dd3245426e95](sessions/local-328b5f5feaf2f700ca4ae9da226081561795e103ceaaebf254f8dd3245426e95.md) — 1 obs
 * [Session local-99e77f328617ab8803ce6ed079798b4244ca08cd20e6e7876d9d009ca2e47b72](sessions/local-99e77f328617ab8803ce6ed079798b4244ca08cd20e6e7876d9d009ca2e47b72.md) — 2 obs
@@ -8400,6 +8400,18 @@ _Exported 2026-11-02T09:01:04.860Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-c9beff26412f5598141bf0c176fc9ca7ae7e74806e6b899855d5975d5ac95c94](sessions/local-c9beff26412f5598141bf0c176fc9ca7ae7e74806e6b899855d5975d5ac95c94.md) — 9 obs
 * [Session local-2c9a62733df7a73a0669d332ea1dd15a88ae0292b428e14d7becc9571c7b2faf](sessions/local-2c9a62733df7a73a0669d332ea1dd15a88ae0292b428e14d7becc9571c7b2faf.md) — 8 obs
 * [Session local-019aed9ff8f5b2c6ecc639fc3d360fa057387b305ee308810aa6a916fbb9de8a](sessions/local-019aed9ff8f5b2c6ecc639fc3d360fa057387b305ee308810aa6a916fbb9de8a.md) — 2 obs
+* [Session local-f7ffb0083ff5f6edaec5005f30da1518c8a7db47b38f5d1514331cd944d16c2e](sessions/local-f7ffb0083ff5f6edaec5005f30da1518c8a7db47b38f5d1514331cd944d16c2e.md) — 1 obs
+* [Session local-dcbaced5ef75da49e6200d23c48aa8a13d34e7fd47d0ffae361c522c1fb41f04](sessions/local-dcbaced5ef75da49e6200d23c48aa8a13d34e7fd47d0ffae361c522c1fb41f04.md) — 2 obs
+* [Session local-b2dcb2f537fa00bc626b3d85c154de6590c84951127b801d9e48c0c3cf23a913](sessions/local-b2dcb2f537fa00bc626b3d85c154de6590c84951127b801d9e48c0c3cf23a913.md) — 17 obs
+* [Session local-3f022c20a46473e8a346c3e95c957fe4ab927b314de30ca5a6644b5481f184a0](sessions/local-3f022c20a46473e8a346c3e95c957fe4ab927b314de30ca5a6644b5481f184a0.md) — 34 obs
+* [Session local-5223db1b6df1614dd4c5beef1e2b688cd97deef204faf073777d96c8b69e7a39](sessions/local-5223db1b6df1614dd4c5beef1e2b688cd97deef204faf073777d96c8b69e7a39.md) — 10 obs
+* [Session local-3127f23d8f7a7ba63ee6aa71ae7cfc509fb07d6b79959b6d3e431aa0985ccb9d](sessions/local-3127f23d8f7a7ba63ee6aa71ae7cfc509fb07d6b79959b6d3e431aa0985ccb9d.md) — 5 obs
+* [Session local-963de24bf52e42184aef3b00f56239d39578dd7fd1e8786ad97c80a9aef0de4e](sessions/local-963de24bf52e42184aef3b00f56239d39578dd7fd1e8786ad97c80a9aef0de4e.md) — 28 obs
+* [Session 20261030_014348_d4bddf](sessions/20261030-014348-d4bddf.md) — 71 obs
+* [Session local-84924181f2b8f5385af1d974cbcb819f851702ed9d8cc3ec9f480e0336829d57](sessions/local-84924181f2b8f5385af1d974cbcb819f851702ed9d8cc3ec9f480e0336829d57.md) — 22 obs
+* [Session local-0a9137e7c546315901cb94023c668db3d91910c2152362023aca71d72dbbadbf](sessions/local-0a9137e7c546315901cb94023c668db3d91910c2152362023aca71d72dbbadbf.md) — 191 obs
+* [Session local-a0ee5da220950513bf2125b8856d88128ef159a0a5a8e20b050222380ed373ec](sessions/local-a0ee5da220950513bf2125b8856d88128ef159a0a5a8e20b050222380ed373ec.md) — 7 obs
+* [Session local-ca46ca0f2e2a96030f076f4c9d4094dc6ab7cfb1d469c88a0774ac3b01e4b9b1](sessions/local-ca46ca0f2e2a96030f076f4c9d4094dc6ab7cfb1d469c88a0774ac3b01e4b9b1.md) — 2 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -34311,3 +34323,88 @@ session_id: local-eec846478a97](memories/mem_mvxm9qwu_a2a1a2e37db5.md)
 
 source: hermes
 session_id: local-f2e524bd5d3cfd](memories/mem_mvxm9r9p_bd0bab00e980.md)
+* [Memory: # Executing Shell Commands in Hermes #2
+
+source: hermes
+session_id: 20260615_072](memories/mem_mvz1q8v0_a473309485b9.md)
+* [Memory: # Bot Chat
+
+source: hermes
+session_id: 20260928_073419_a59040
+resource: hermes:/](memories/mem_mvz1q9kz_e4282febbded.md)
+* [Memory: # Multiboard Stack
+
+source: hermes
+session_id: 20261010_123854_7d7598
+resource: ](memories/mem_mvz1q9yu_59187dc3164b.md)
+* [Memory: # Fill out ARAG will interview
+
+source: hermes
+session_id: 20261022_070118_69eb5](memories/mem_mvz1qadu_f1b33e7b311e.md)
+* [Memory: # Fix missing profiles in status bar
+
+source: hermes
+session_id: 20261029_231630](memories/mem_mvz1qarv_4b94c4fac4ba.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 02 03:01
+
+source: hermes
+session_id: loc](memories/mem_mvz1qb8x_808edea01a5f.md)
+* [Memory: # Configure NextCloud OAuth client in config.yaml
+
+source: hermes
+session_id: lo](memories/mem_mvz1qbnp_1ef8b3629f73.md)
+* [Memory: # Evening wind-down · Nov 01 21:01
+
+source: hermes
+session_id: local-2c9a62733df](memories/mem_mvz1qc3p_84d70b975361.md)
+* [Memory: # Morning briefing · Nov 01 08:01
+
+source: hermes
+session_id: local-4e518b500711](memories/mem_mvz1qckm_c870920005b8.md)
+* [Memory: # Resolve git stashes in ~/.hermes/hermes-agent
+
+source: hermes
+session_id: loca](memories/mem_mvz1qczk_bbbbcd8e8cef.md)
+* [Memory: # Nextcloud task manager with Redmine integration
+
+source: hermes
+session_id: lo](memories/mem_mvz1qdf5_44efa1ddea67.md)
+* [Memory: # Merge two Home projects into one
+
+source: hermes
+session_id: local-7639efe6cf9](memories/mem_mvz1qduy_86ececeef041.md)
+* [Memory: # Retire CRS SWAG project
+
+source: hermes
+session_id: local-8d0a7c5e228fe7187f7d](memories/mem_mvz1qe91_ef07daaf2415.md)
+* [Memory: # Compare Hermes bots vs Grok bots features
+
+source: hermes
+session_id: local-9c](memories/mem_mvz1qene_7373e0da8372.md)
+* [Memory: # Add /projects command to switch projects
+
+source: hermes
+session_id: local-afb](memories/mem_mvz1qf0q_c5c43a471ccb.md)
+* [Memory: # Move session to profile cc fails
+
+source: hermes
+session_id: local-c798b807ec4](memories/mem_mvz1qfej_2bcafcec367f.md)
+* [Memory: # nightly-okf-index · Nov 01 03:17
+
+source: hermes
+session_id: local-c97d9e21e70](memories/mem_mvz1qfsx_9ede0401c6f8.md)
+* [Memory: # List open cards on Nextcloud
+
+source: hermes
+session_id: local-c9beff26412f559](memories/mem_mvz1qg43_d718704ed49f.md)
+* [Memory: # local-dcbaced5ef75da49e6200d23c48aa8a13d34e7fd47d0ffae361c522c1fb41f04
+
+source](memories/mem_mvz1qgir_571e9fbedb01.md)
+* [Memory: # Retiring projects process guidance
+
+source: hermes
+session_id: local-f72daeb20](memories/mem_mvz1qgws_3d4225336def.md)
+* [Memory: # agentmemory-okf-mirror · Nov 02 03:01
+
+source: hermes
+session_id: local-f7ffb0](memories/mem_mvz1qhce_f86b41c623fc.md)
