@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-03T09:01:09.241Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-04T09:01:08.951Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -8407,11 +8407,21 @@ _Exported 2026-11-03T09:01:09.241Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-5223db1b6df1614dd4c5beef1e2b688cd97deef204faf073777d96c8b69e7a39](sessions/local-5223db1b6df1614dd4c5beef1e2b688cd97deef204faf073777d96c8b69e7a39.md) — 10 obs
 * [Session local-3127f23d8f7a7ba63ee6aa71ae7cfc509fb07d6b79959b6d3e431aa0985ccb9d](sessions/local-3127f23d8f7a7ba63ee6aa71ae7cfc509fb07d6b79959b6d3e431aa0985ccb9d.md) — 5 obs
 * [Session local-963de24bf52e42184aef3b00f56239d39578dd7fd1e8786ad97c80a9aef0de4e](sessions/local-963de24bf52e42184aef3b00f56239d39578dd7fd1e8786ad97c80a9aef0de4e.md) — 28 obs
-* [Session 20261030_014348_d4bddf](sessions/20261030-014348-d4bddf.md) — 71 obs
+* [Session 20261030_014348_d4bddf](sessions/20261030-014348-d4bddf.md) — 131 obs
 * [Session local-84924181f2b8f5385af1d974cbcb819f851702ed9d8cc3ec9f480e0336829d57](sessions/local-84924181f2b8f5385af1d974cbcb819f851702ed9d8cc3ec9f480e0336829d57.md) — 22 obs
-* [Session local-0a9137e7c546315901cb94023c668db3d91910c2152362023aca71d72dbbadbf](sessions/local-0a9137e7c546315901cb94023c668db3d91910c2152362023aca71d72dbbadbf.md) — 191 obs
+* [Session local-0a9137e7c546315901cb94023c668db3d91910c2152362023aca71d72dbbadbf](sessions/local-0a9137e7c546315901cb94023c668db3d91910c2152362023aca71d72dbbadbf.md) — 310 obs
 * [Session local-a0ee5da220950513bf2125b8856d88128ef159a0a5a8e20b050222380ed373ec](sessions/local-a0ee5da220950513bf2125b8856d88128ef159a0a5a8e20b050222380ed373ec.md) — 7 obs
-* [Session local-ca46ca0f2e2a96030f076f4c9d4094dc6ab7cfb1d469c88a0774ac3b01e4b9b1](sessions/local-ca46ca0f2e2a96030f076f4c9d4094dc6ab7cfb1d469c88a0774ac3b01e4b9b1.md) — 2 obs
+* [Session local-ca46ca0f2e2a96030f076f4c9d4094dc6ab7cfb1d469c88a0774ac3b01e4b9b1](sessions/local-ca46ca0f2e2a96030f076f4c9d4094dc6ab7cfb1d469c88a0774ac3b01e4b9b1.md) — 3 obs
+* [Session local-d5fec9598097fde8235fcd00431eafa9b1b477215fb0167e0bc2ec20f7adebfa](sessions/local-d5fec9598097fde8235fcd00431eafa9b1b477215fb0167e0bc2ec20f7adebfa.md) — 1 obs
+* [Session local-1734788b14dc71ffb0e3f4345de46b0139a6f9197d160dd08063b9a96ce18c91](sessions/local-1734788b14dc71ffb0e3f4345de46b0139a6f9197d160dd08063b9a96ce18c91.md) — 2 obs
+* [Session local-6e9812324396b2091d17e9810b88c985c73260ca4c7357481846e1475ddcc7c9](sessions/local-6e9812324396b2091d17e9810b88c985c73260ca4c7357481846e1475ddcc7c9.md) — 231 obs
+* [Session local-21b968108337cec46d34d701d6cf72e3ce37e1afaa48844ea4ef446892bd0fb5](sessions/local-21b968108337cec46d34d701d6cf72e3ce37e1afaa48844ea4ef446892bd0fb5.md) — 15 obs
+* [Session local-555cea022c8ee67bfd7e3390521e06f73ae959ca19c4dc2b0caab0f3fb5e233b](sessions/local-555cea022c8ee67bfd7e3390521e06f73ae959ca19c4dc2b0caab0f3fb5e233b.md) — 8 obs
+* [Session local-32a66f7a3907749a1297cf0c191e7dda2a6b230f3349a1cd167fdd6447ab42a8](sessions/local-32a66f7a3907749a1297cf0c191e7dda2a6b230f3349a1cd167fdd6447ab42a8.md) — 49 obs
+* [Session local-1df160a46f15944e3ded5a43809f9b924e0a46efff1dfca55c2bfd4c249a46a3](sessions/local-1df160a46f15944e3ded5a43809f9b924e0a46efff1dfca55c2bfd4c249a46a3.md) — 2 obs
+* [Session local-b81656e00a7f1ab34be63b7ef024d71aac7156f6cdcbdac7080fa93a8554ea52](sessions/local-b81656e00a7f1ab34be63b7ef024d71aac7156f6cdcbdac7080fa93a8554ea52.md) — 44 obs
+* [Session local-2b8acb7ac3eb9a1b9644aeae4b77fcabb7b001f9c5c685ddae8a7e1b13417617](sessions/local-2b8acb7ac3eb9a1b9644aeae4b77fcabb7b001f9c5c685ddae8a7e1b13417617.md) — 125 obs
+* [Session local-03a787e22a6b721d5ae28e9d36486d06cb38f925e3bf16b53dabd14d09391f44](sessions/local-03a787e22a6b721d5ae28e9d36486d06cb38f925e3bf16b53dabd14d09391f44.md) — 4 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -34408,3 +34418,50 @@ session_id: local-f72daeb20](memories/mem_mvz1qgws_3d4225336def.md)
 
 source: hermes
 session_id: local-f7ffb0](memories/mem_mvz1qhce_f86b41c623fc.md)
+* [Memory: # Review dmesg boot logs for issues
+
+source: hermes
+session_id: 20261029_010915_](memories/mem_mw0h61ee_9e045f6d7afe.md)
+* [Memory: # Set up FreePBX VOIP on Debian VM
+
+source: hermes
+session_id: local-0a9137e7c54](memories/mem_mw0h61wb_92417d7c3236.md)
+* [Memory: # local-1734788b14dc71ffb0e3f4345de46b0139a6f9197d160dd08063b9a96ce18c91
+
+source](memories/mem_mw0h62b7_f68008d08674.md)
+* [Memory: # Add Qdrant storage path reminder
+
+source: hermes
+session_id: local-3127f23d8f7](memories/mem_mw0h62s8_501c25d6e5be.md)
+* [Memory: # Workday start reminder · Oct 30 09:00
+
+source: hermes
+session_id: local-322dca](memories/mem_mw0h637s_66b0333a7676.md)
+* [Memory: # Workday start reminder · Nov 02 09:01
+
+source: hermes
+session_id: local-5223db](memories/mem_mw0h63ni_35bdff9b7c00.md)
+* [Memory: # Add session ID link to reminder
+
+source: hermes
+session_id: local-963de24bf52e](memories/mem_mw0h640l_4e78eec4eeb6.md)
+* [Memory: # Evening wind-down · Nov 02 21:01
+
+source: hermes
+session_id: local-a0ee5da2209](memories/mem_mw0h64gu_31412e5d8739.md)
+* [Memory: # Morning briefing · Nov 02 08:01
+
+source: hermes
+session_id: local-b2dcb2f537fa](memories/mem_mw0h64vv_e151163b4241.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 03 03:01
+
+source: hermes
+session_id: loc](memories/mem_mw0h65af_469d5b3b4c0c.md)
+* [Memory: # agentmemory-okf-mirror · Nov 03 03:02
+
+source: hermes
+session_id: local-d5fec9](memories/mem_mw0h65nl_47295edc24bf.md)
+* [Memory: # nightly-okf-index · Nov 02 03:18
+
+source: hermes
+session_id: local-dcbaced5ef7](memories/mem_mw0h662j_7e5861e2bf9b.md)
