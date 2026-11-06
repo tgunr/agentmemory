@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-05T09:01:04.004Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-06T09:00:54.369Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -8430,9 +8430,17 @@ _Exported 2026-11-05T09:01:04.004Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-cb6846a1becf8c40afcc0d802da93f42bd61c0aea313be0061b84eb2a50ee2cc](sessions/local-cb6846a1becf8c40afcc0d802da93f42bd61c0aea313be0061b84eb2a50ee2cc.md) — 14 obs
 * [Session local-4acb777864c599ae190a1871293e586fa3649e0f8eed48f22c184a3788be4169](sessions/local-4acb777864c599ae190a1871293e586fa3649e0f8eed48f22c184a3788be4169.md) — 7 obs
 * [Session local-61c0aeeadacfc2ad2369783f895084d04e0d4963e8fddbece22a86b5a3c7216c](sessions/local-61c0aeeadacfc2ad2369783f895084d04e0d4963e8fddbece22a86b5a3c7216c.md) — 9 obs
-* [Session local-aea57a5127ca6490be9eb75015f49b07b84be4b99b8dbecaa828ddcacbd19136](sessions/local-aea57a5127ca6490be9eb75015f49b07b84be4b99b8dbecaa828ddcacbd19136.md) — 27 obs
+* [Session local-aea57a5127ca6490be9eb75015f49b07b84be4b99b8dbecaa828ddcacbd19136](sessions/local-aea57a5127ca6490be9eb75015f49b07b84be4b99b8dbecaa828ddcacbd19136.md) — 31 obs
 * [Session local-542f55c168ba8676a831f5ef8ae99674697fd663389a0f7363fcab5340a27664](sessions/local-542f55c168ba8676a831f5ef8ae99674697fd663389a0f7363fcab5340a27664.md) — 5 obs
 * [Session local-f99ae370c8a894b3c487f60e94e90ffb9e80c29692b215cc7db91647f13938b3](sessions/local-f99ae370c8a894b3c487f60e94e90ffb9e80c29692b215cc7db91647f13938b3.md) — 1 obs
+* [Session local-3f1862caa2689cc3d4bc5b5abc8b1d180936396fc765f29b79b4b274fe6d3db6](sessions/local-3f1862caa2689cc3d4bc5b5abc8b1d180936396fc765f29b79b4b274fe6d3db6.md) — 1 obs
+* [Session local-d470072514911eeb00a5a2ce23aef469c259b7ffb8a3e0ae2b58078a5d5a1182](sessions/local-d470072514911eeb00a5a2ce23aef469c259b7ffb8a3e0ae2b58078a5d5a1182.md) — 4 obs
+* [Session local-f83d47a5eba11397de3d2eb47aa1a2ac8f640512ae3c7df960feb7623d455ed5](sessions/local-f83d47a5eba11397de3d2eb47aa1a2ac8f640512ae3c7df960feb7623d455ed5.md) — 15 obs
+* [Session local-fdb2decc6e9bdae7cfbd3b82c602bcfafaea29bef444d72b4ed91b255d85127f](sessions/local-fdb2decc6e9bdae7cfbd3b82c602bcfafaea29bef444d72b4ed91b255d85127f.md) — 14 obs
+* [Session local-3ddae23f074b5e92b4650227a5bedc0a43738306f5a048edbc19443e7443104e](sessions/local-3ddae23f074b5e92b4650227a5bedc0a43738306f5a048edbc19443e7443104e.md) — 10 obs
+* [Session local-e2c4a9258c72da080d6edb8a7820a9faa459fb5167d5a183fb169e6c1673ee72](sessions/local-e2c4a9258c72da080d6edb8a7820a9faa459fb5167d5a183fb169e6c1673ee72.md) — 10 obs
+* [Session local-20e6818de2684256bd790797dff9ee82afe4640474690558fa7f24fb0f34ca5d](sessions/local-20e6818de2684256bd790797dff9ee82afe4640474690558fa7f24fb0f34ca5d.md) — 6 obs
+* [Session local-d2a1cf44a283dedd089b25e36a21666ea7127e9ce68d2cd32787e840ce8b02a2](sessions/local-d2a1cf44a283dedd089b25e36a21666ea7127e9ce68d2cd32787e840ce8b02a2.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -34565,3 +34573,78 @@ session_id: lo](memories/mem_mw1wmbmn_f57736c9eaff.md)
 source: hermes
 session_id: local-de2d9b](memories/mem_mw1wmbyy_50e68b031ef7.md)
 * [Memory: agentmemory MCP connectivity on pve.local: the backend runs on the Mac mini at h](memories/mem_mw39xw14_47d75dbe6fc2.md)
+* [Memory: # Hermes quick_commands: python3 interpreter pinning
+
+source: hermes
+session_id:](memories/mem_mw3c1tyl_e27f5820aa1b.md)
+* [Memory: # macOS Python cleanup + health audit
+
+source: hermes
+session_id: 20261002_01572](memories/mem_mw3c1uf3_e48e769793ea.md)
+* [Memory: # Set up FreePBX VOIP on Debian VM
+
+source: hermes
+session_id: local-0a9137e7c54](memories/mem_mw3c1uyc_bcf4b5fb8e21.md)
+* [Memory: # Explain DMARC purpose and benefits
+
+source: hermes
+session_id: local-1da1cb48b](memories/mem_mw3c1vec_3c09929f5d36.md)
+* [Memory: # Translate provided text
+
+source: hermes
+session_id: local-1df160a46f15944e3ded](memories/mem_mw3c1vqb_825597ee4bf7.md)
+* [Memory: # Investigate plex.polymicro.net offline
+
+source: hermes
+session_id: local-2b8ac](memories/mem_mw3c1w5v_41ac06885921.md)
+* [Memory: # agentmemory-okf-mirror · Nov 05 03:01
+
+source: hermes
+session_id: local-3f1862](memories/mem_mw3c1wku_4e80cbf305fb.md)
+* [Memory: # Evening wind-down · Nov 04 21:01
+
+source: hermes
+session_id: local-542f55c168b](memories/mem_mw3c1x08_8fa2af15dbfa.md)
+* [Memory: # Workday start reminder · Nov 04 09:01
+
+source: hermes
+session_id: local-61c0ae](memories/mem_mw3c1xea_6a203a9943dd.md)
+* [Memory: # nightly-okf-index · Nov 04 03:18
+
+source: hermes
+session_id: local-631a4a28220](memories/mem_mw3c1xt8_654cfc67aa52.md)
+* [Memory: # Nextcloud task manager with Redmine integration #2
+
+source: hermes
+session_id:](memories/mem_mw3c1y6y_1ab6165b7fb0.md)
+* [Memory: # Set up FreePBX VOIP on Debian VM #2
+
+source: hermes
+session_id: local-6e981232](memories/mem_mw3c1ylt_757d2c3df00c.md)
+* [Memory: # Locate WCPT chattering and insert tips
+
+source: hermes
+session_id: local-aea57](memories/mem_mw3c1z0z_7761fd204546.md)
+* [Memory: # Build Telegram bot-detection auto-reply app #4
+
+source: hermes
+session_id: loc](memories/mem_mw3c1zgf_53b8e22c39a8.md)
+* [Memory: # Morning briefing · Nov 04 08:01
+
+source: hermes
+session_id: local-cb6846a1becf](memories/mem_mw3c1zsw_633fcb6eb1c8.md)
+* [Memory: # local-d470072514911eeb00a5a2ce23aef469c259b7ffb8a3e0ae2b58078a5d5a1182
+
+source](memories/mem_mw3c2067_e41c834822ed.md)
+* [Memory: # Identify movie for beautiful relationship quote
+
+source: hermes
+session_id: lo](memories/mem_mw3c20gb_99a1d0b90aec.md)
+* [Memory: # Describe internal structures of penis
+
+source: hermes
+session_id: local-de2d9b](memories/mem_mw3c20vs_1822714e71d4.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 05 03:01
+
+source: hermes
+session_id: loc](memories/mem_mw3c21bu_545878ebbe59.md)
