@@ -1,0 +1,109 @@
+---
+type: Fact
+title: # nightly-okf-index · Nov 07 03:17
+
+source: hermes
+session_id: local-80d1ca10095
+description: # nightly-okf-index · Nov 07 03:17
+
+source: hermes
+session_id: local-80d1ca10095b2a7e88b195f4ea61e10ef8e425b24972f3b59a55e30eadddb762
+resource: hermes://session/local-80d1ca10095b2a7e88b195f4ea61e10ef
+resource: agentmemory://memory/mem_mw7v4xte_c82dfe7e0686
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-11-08T13:23:26.354Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# nightly-okf-index · Nov 07 03:17
+
+source: hermes
+session_id: local-80d1ca10095b2a7e88b195f4ea61e10ef8e425b24972f3b59a55e30eadddb762
+resource: hermes://session/local-80d1ca10095b2a7e88b195f4ea61e10ef8e425b24972f3b59a55e30eadddb762
+
+# Conversation
+
+- **Session ID:** `local-80d1ca10095b2a7e88b195f4ea61e10ef8e425b24972f3b59a55e30eadddb762`
+- **Source:** cron
+- **Model:** kilo-auto/free
+- **Started:** 2026-11-07T09:17:05Z
+- **Ended:** 2026-11-07T09:17:48Z
+- **Messages:** 6
+- **CWD:** `/Users/davec`
+- **Tokens:** 21452 in / 724 out
+
+---
+
+### 👤 User — 2026-11-07T09:17:06Z
+
+[IMPORTANT: The user has invoked the "kilo-agentmemory-integration" skill, indicating they want you to follow its instructions. The full skill content is loaded below.]
+
+---
+name: kilo-agentmemory-integration
+description: Repair and wire Kilo Code sessions into AgentMemory.
+---
+
+# Kilo ↔ AgentMemory Integration
+
+## Verified facts (2026-08-11)
+- Hook scripts: `/Volumes/AI/agentmemory-hooks/` (MOVED from
+  `agentmemory-kilo-hooks/` in the 2026-08-23 rename; `okf_*` scripts are
+  Hermes-facing and were renamed to `mirror-okf.sh`/`okf-bridge.py`).
+  Contains `session-start.sh`, `session-end.sh`, `agentmemory-wrapper.sh`,
+  `cleanup-stale-sessions.sh`. They POST `session/start`+`session/end` to AM
+  MCP (HTTP `127.0.0.1:3111`).
+- **Limitation:** hooks use throwaway IDs (`ses_$(date)_$$`) and capture NO
+  transcript content — envelope only, no `remember`/`observe`.
+- AM is SOURCE; OKF bundles are read-only mirror (AM→OKF), not reverse.
+- History ingestion = OKF→AM indexer: `~/.hermes/scripts/okf_to_agentmemory.py`.
+- Reference session: `20260718_061804_159701` (June 18 coexistence design).
+
+## Reorg breakage (2026-08-11)
+1. Hooks relocated: `Servers/` prefix dropped.
+2. Kilo `mcp_settings.json` is `{"mcpServers": {}}` — NO `agentmemory` entry
+   (`.backup` only has generic memory/basic-memory). Kilo can't call AM via MCP.
+3. Kilo Code *hook* wiring was NOT preserved (nothing under kilocode settings
+   references `agentmemory-wrapper`; `custom_modes.yaml` is unrelated modes).
+4. Result: Kilo sessions no longer roll into AM.
+
+## Verify
+```bash
+ls -ld /Volumes/AI/agentmemory-hooks
+cat "$HOME/Library/Application Support/Code/User/globalStorage/kilocode.kilo-code/settings/mcp_settings.json"
+SECRET=$(grep '^AGENTMEMORY_SECRET=' ~/.agentmemory/.env | tail -1 | cut -d= -f2-)
+curl -s -X POST http://127.0.0.1:3111/agentmemory/search -H "Authorization: Bearer $SECRET" \
+  -H "Content-Type: application/json" -d '{"query":"source:kilo","limit":5}'
+pgrep -fl 'dist/index.mjs' || echo "AM REST worker NOT RUNNING"
+```
+
+## Repair
+1. Re-point any absolute references to `/Volumes/AI/agentmemory-hooks/`
+   (renamed from `agentmemory-kilo-hooks/` in the 2026-08-23 rename; the Hermes-facing
+   `okf_*` scripts moved to `mirror-okf.sh`/`okf-bridge.py`).
+2. Register the `agentmemory` MCP server in Kilo `mcp_settings.json` pointing
+   at `agentmemory-wrapper.sh`; verify wrapper resolves `/Volumes/AI/agentmemory/dist`.
+3. Restart Kilo / reload VS Code. Start a Kilo session; confirm `session/start`
+   hits AM (`query: source:kilo` sessions, or tail AM logs).
+4. For transcript capture (not just envelope) rely on the OKF→AM indexer run
+   after every consolidation.
+
+## `/am` slash command (chat-UI search)
+Registered as a `quick_command` in config.yaml (NOT a core TUI patch — per
+AGENTS.md, capability goes at the edge). Set via:
+`hermes config set quick_commands.am "command: python3 ~/.hermes/scripts/am.py \"$@\"\ntype: exec"`
+Script: `~/.hermes/scripts/am.py` (stdlib only). Subcommands:
+- `/am search <query> [--limit N] [--source kilo|hermes]`
+- `/am grep <session-id> [--limit N]` — dump a past session by id (Kilo UUID
+  or Hermes id); searches `session_id:<id>` and only keeps hits whose facts
+  contain the id (avoids fuzzy false positives on miss).
+- `/am recall <query>` (alias for search)
+- `/am status` (AM health + vector size)
+- `/am remember <text>` (push a note into AM)
+Uses AM's real `concepts` filter (not keyword `source:`), so `--source hermes`
+returns ONLY hermes-tagged docs. Secret read from LAST AGENTMEMORY_SECRET=
+line in ~/.agentmemory/.env.
+quick_commands are read per-command by the gateway — no restart needed.
+
+

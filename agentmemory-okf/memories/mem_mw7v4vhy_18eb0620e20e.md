@@ -1,0 +1,116 @@
+---
+type: Fact
+title: # Investigate plex.polymicro.net offline
+
+source: hermes
+session_id: local-2b8ac
+description: # Investigate plex.polymicro.net offline
+
+source: hermes
+session_id: local-2b8acb7ac3eb9a1b9644aeae4b77fcabb7b001f9c5c685ddae8a7e1b13417617
+resource: hermes://session/local-2b8acb7ac3eb9a1b9644aeae4b7
+resource: agentmemory://memory/mem_mw7v4vhy_18eb0620e20e
+tags: ["okf", "okf-hermes", "hermes", "/Users/davec"]
+timestamp: 2026-11-08T13:23:23.319Z
+source: agentmemory
+strength: 7
+---
+# Content
+
+# Investigate plex.polymicro.net offline
+
+source: hermes
+session_id: local-2b8acb7ac3eb9a1b9644aeae4b77fcabb7b001f9c5c685ddae8a7e1b13417617
+resource: hermes://session/local-2b8acb7ac3eb9a1b9644aeae4b77fcabb7b001f9c5c685ddae8a7e1b13417617
+
+# Conversation
+
+- **Session ID:** `local-2b8acb7ac3eb9a1b9644aeae4b77fcabb7b001f9c5c685ddae8a7e1b13417617`
+- **Source:** local
+- **Model:** kilo-auto/efficient
+- **Started:** 2026-11-03T22:25:16Z
+- **Ended:** 2026-11-04T19:58:30Z
+- **Messages:** 250
+- **CWD:** `/Users/davec`
+- **Tokens:** 558954 in / 96251 out
+- **Est. cost:** $-382206.0000
+
+---
+
+### 👤 User — 2026-11-03T22:25:16Z
+
+getting report plex.polymicro.net is offline and not responding
+
+### 🤖 Assistant — 2026-11-03T22:25:21Z
+
+<details><summary>Reasoning</summary>
+
+The user says plex.polymicro.net is offline and not responding. Let me investigate. Probably load relevant skill: network-infrastructure, service-debugging, reverse-proxy-debug. Let me check.
+
+Let me start with basic diagnostics: ping, DNS, HTTP.
+
+Let me load skills and run diagnostics in parallel.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "name": "reverse-proxy-triage"
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "echo \"=== DNS ===\"; dig +short plex.polymicro.net A; echo \"--- also ---\"; host plex.polymicro.net 2>&1 | head -5; echo \"=== PING ===\"; ping -c 3 -t 5 plex.polymicro.net 2>&1 | tail -5; echo \"=== CURL ===\"; curl -sS -o /dev/null -w \"http_code=%{http_code} time=%{time_total}\\n\" --max-time 10 https://plex.polymicro.net/ 2>&1"
+}
+```
+
+### 🤖 Assistant — 2026-11-03T22:25:30Z
+
+<details><summary>Reasoning</summary>
+
+Interesting: curl returns 401. So it's not offline from here — DNS resolves, ping works, HTTPS 401. 401 might be Plex's own... Actually Plex web returns 401 sometimes? Hmm. But wait — curl from this machine (pro.local? no, we're on the agent host) resolves to WAN 98.96.55.218 and gets 401 in 18ms — hairpin NAT.
+
+Let me check the topology reference and probe deeper: headers, /web/index.html, plex port 32400.
+
+Let me get the reference and do a fuller curl.
+
+</details>
+
+**Tool call: skill_view**
+
+```json
+{
+  "file_path": "references/polymicro-topology.md",
+  "name": "reverse-proxy-triage"
+}
+```
+
+**Tool call: terminal**
+
+```json
+{
+  "command": "echo \"=== HEAD / ===\"; curl -sS -m 10 -I https://plex.polymicro.net/ 2>&1; echo \"=== /web/index.html ===\"; curl -sS -m 10 -o /dev/null -w \"%{http_code} %{size_download}\\n\" https://plex.polymicro.net/web/index.html 2>&1; echo \"=== /identity ===\"; curl -sS -m 10 https://plex.polymicro.net/identity 2>&1 | head -c 400; echo; echo \"=== internal 32400 direct ===\"; for h in 127.0.0.1 192.168.88.2 10.1.2.1; do printf \"%s: \" \"$h\"; curl -sS -m 4 -o /dev/null -w \"%{http_code}\\n\" http://$h:32400/identity 2>&1 || echo fail; done"
+}
+```
+
+### 🤖 Assistant — 2026-11-03T22:25:40Z
+
+<details><summary>Reasoning</summary>
+
+Wait — the internal probes returned 200 for 127.0.0.1:32400, 192.168.88.2:32400, 10.1.2.1:32400. That means... we are running ON pve? No. Hmm, 127.0.0.1:32400 with 200 — this host has Plex on 32400? Hmm, but curl to 192.168.88.2:32400 also 200. Wait, that's odd — 192.168.88.2 is pve. But Plex per topology is at 10.1.1.1:32400.
+
+Hold on, maybe the local machine resolves these via... no. Maybe there's a transparent proxy? Actually 127.0.0.1:32400 returning 200 means something listens locally on 32400. And the /identity endpoint via the public URL also returned 200 fine.
+
+So Plex is UP: /identity returns version 1.43.5.11079, claimed=1, and /web/index.html returns 200 with 30KB. The 401 on `/` is normal Plex behavior — Plex returns 401 on `/` when not authenticated? Actually Plex returns 401 for `/` if the server requires auth ("Unauthorized" page). Yes, Plex Media Server returns HTTP 401 with an HTML login/unauthorized page for unauthenticated root requests. That's normal.
+
+So plex.polymicro.net is actually responding. The user says it's "offline and not responding". Maybe:
+1. User is accessing from outside (WAN) and it fails — hairpin NAT works locally though.
+2. Plex "remote access" shows offline in Plex settings — a different thing (plex.tv relay/port 32400 external).
+3. Browser shows error.
+
+Let me check more: h
