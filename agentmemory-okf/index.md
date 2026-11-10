@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-09T09:01:10.914Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-10T09:01:03.350Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -8469,9 +8469,25 @@ _Exported 2026-11-09T09:01:10.914Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-b3f25736880fe12eed8793c5108df67ddb0f407727a3ac2577f36c27e8a2f707](sessions/local-b3f25736880fe12eed8793c5108df67ddb0f407727a3ac2577f36c27e8a2f707.md) — 87 obs
 * [Session local-9c81ff9b0737a36ba907b0cbcd5b46ffd14d7d1a4ece026ace3ec2381fc836f1](sessions/local-9c81ff9b0737a36ba907b0cbcd5b46ffd14d7d1a4ece026ace3ec2381fc836f1.md) — 2 obs
 * [Session local-76ecdd788b7c18a7b2d94c0b13d676f2609a87bbbedb2763e11cd6e2d7777f87](sessions/local-76ecdd788b7c18a7b2d94c0b13d676f2609a87bbbedb2763e11cd6e2d7777f87.md) — 5 obs
-* [Session local-ae9e894fa6e8a00bef41b0675741de8334cd1cf74b881ca5e0e685da21b1fbd4](sessions/local-ae9e894fa6e8a00bef41b0675741de8334cd1cf74b881ca5e0e685da21b1fbd4.md) — 15 obs
-* [Session local-dea590cd4dd46651e8c68ac043e0db21e5690339106236d9f290001a269d363f](sessions/local-dea590cd4dd46651e8c68ac043e0db21e5690339106236d9f290001a269d363f.md) — 7 obs
+* [Session local-ae9e894fa6e8a00bef41b0675741de8334cd1cf74b881ca5e0e685da21b1fbd4](sessions/local-ae9e894fa6e8a00bef41b0675741de8334cd1cf74b881ca5e0e685da21b1fbd4.md) — 125 obs
+* [Session local-dea590cd4dd46651e8c68ac043e0db21e5690339106236d9f290001a269d363f](sessions/local-dea590cd4dd46651e8c68ac043e0db21e5690339106236d9f290001a269d363f.md) — 64 obs
 * [Session local-29b942e9b67484ac5f5ee92906c0f94fe44e21325eab01f5dfb601acd38334d4](sessions/local-29b942e9b67484ac5f5ee92906c0f94fe44e21325eab01f5dfb601acd38334d4.md) — 1 obs
+* [Session local-8bbc827691e289cf2d2d347af32e40f77d7767f15876cb4cb9d8c7164bb07bdb](sessions/local-8bbc827691e289cf2d2d347af32e40f77d7767f15876cb4cb9d8c7164bb07bdb.md) — 1 obs
+* [Session local-cfca6d746c871a8ef86ae29b8d60f46bd40a1ab92262b7d73becfc22ebc369e8](sessions/local-cfca6d746c871a8ef86ae29b8d60f46bd40a1ab92262b7d73becfc22ebc369e8.md) — 6 obs
+* [Session local-b1d27d9bc46ede2125736607de619c64b41964edacaa9ff1d34ee1c04206c897](sessions/local-b1d27d9bc46ede2125736607de619c64b41964edacaa9ff1d34ee1c04206c897.md) — 26 obs
+* [Session local-ec791f45b7833a10014efdead7d490450bdcda795020513bf8d8d914f54e0396](sessions/local-ec791f45b7833a10014efdead7d490450bdcda795020513bf8d8d914f54e0396.md) — 19 obs
+* [Session local-2363f2ccea79a9bb83632ec91c5f6f391ea4b76bc1bb0bf76d1332aab5f87d1f](sessions/local-2363f2ccea79a9bb83632ec91c5f6f391ea4b76bc1bb0bf76d1332aab5f87d1f.md) — 9 obs
+* [Session local-a9eb9dbb1a50130b3b016440e58c4d6a0596c00609e60dc0adbe338b63199dfa](sessions/local-a9eb9dbb1a50130b3b016440e58c4d6a0596c00609e60dc0adbe338b63199dfa.md) — 8 obs
+* [Session local-e3cbd7229303962af78cb914386621d02b7671f2fea2f0180697c2dcb4adfbcc](sessions/local-e3cbd7229303962af78cb914386621d02b7671f2fea2f0180697c2dcb4adfbcc.md) — 35 obs
+* [Session local-1f28301d1d21594964207a1d5d9d73553a3bf4f15d6662387568057a6f54f82b](sessions/local-1f28301d1d21594964207a1d5d9d73553a3bf4f15d6662387568057a6f54f82b.md) — 146 obs
+* [Session local-e9faad17b851415562080c7ac786bbf23870d766696441da958c3ce6b4883667](sessions/local-e9faad17b851415562080c7ac786bbf23870d766696441da958c3ce6b4883667.md) — 37 obs
+* [Session local-341d2b7168c8fc9da50160a6bcfae68a13fc60b88ce13a00bd988450251a9438](sessions/local-341d2b7168c8fc9da50160a6bcfae68a13fc60b88ce13a00bd988450251a9438.md) — 3 obs
+* [Session local-bf26b9f1cd13c8e142f587dc54edd94ca4332414e2f5c935fdc48212b2b896f0](sessions/local-bf26b9f1cd13c8e142f587dc54edd94ca4332414e2f5c935fdc48212b2b896f0.md) — 7 obs
+* [Session local-f54c1db39bd5376aacf6824ac99e3f179b978a827dd316745b803dfce16cd5ca](sessions/local-f54c1db39bd5376aacf6824ac99e3f179b978a827dd316745b803dfce16cd5ca.md) — 146 obs
+* [Session local-77c044f4c3782604d9dcf5e39dcc6af54e081f45da5588cfde967b1a980c170b](sessions/local-77c044f4c3782604d9dcf5e39dcc6af54e081f45da5588cfde967b1a980c170b.md) — 25 obs
+* [Session local-8fbd041d09f9edb5c7a7c0bc00c2037c7a64b755e7393500bbed05918111ea58](sessions/local-8fbd041d09f9edb5c7a7c0bc00c2037c7a64b755e7393500bbed05918111ea58.md) — 6 obs
+* [Session local-79c59ea81955decf5d826e0c7c2c371bdc331d43a88209f9d6cb26883c3565e8](sessions/local-79c59ea81955decf5d826e0c7c2c371bdc331d43a88209f9d6cb26883c3565e8.md) — 9 obs
+* [Session local-8b8851054ba13779551a961fbd0b2aaa4cfb72c3a91a5e248e257053b0291b95](sessions/local-8b8851054ba13779551a961fbd0b2aaa4cfb72c3a91a5e248e257053b0291b95.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -34813,3 +34829,66 @@ session_id: local-cdff6](memories/mem_mw7v4yif_ae601315de27.md)
 * [Memory: # local-d7529da8b7ba4d2b4210bb8dfe5194bfbb17d484bdc6009a8de04f3b97092d92
 
 source](memories/mem_mw7v4yxl_0a0fc7d0f124.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 09 03:01
+
+source: hermes
+session_id: loc](memories/mem_mw91tluy_1d607fa02d5f.md)
+* [Memory: # Investigate plex.polymicro.net offline
+
+source: hermes
+session_id: local-2b8ac](memories/mem_mw91tm9w_3f5824daf428.md)
+* [Memory: # Evening wind-down · Nov 08 07:23
+
+source: hermes
+session_id: local-6812241ce58](memories/mem_mw91tmne_3f5b37e18e89.md)
+* [Memory: # Evening wind-down · Nov 08 21:01
+
+source: hermes
+session_id: local-76ecdd788b7](memories/mem_mw91tn0v_f7e4efcfefe1.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 08 07:23
+
+source: hermes
+session_id: loc](memories/mem_mw91tncm_da6a44ddb6e2.md)
+* [Memory: # agentmemory-okf-mirror · Nov 08 07:24
+
+source: hermes
+session_id: local-8068bb](memories/mem_mw91tnoe_2069a0dcbae2.md)
+* [Memory: # agentmemory-okf-mirror · Nov 09 03:02
+
+source: hermes
+session_id: local-8bbc82](memories/mem_mw91tnzf_120c31ff80b7.md)
+* [Memory: # Calculate credit card interest on $8,100
+
+source: hermes
+session_id: local-9c8](memories/mem_mw91tobk_e6bf43988fa9.md)
+* [Memory: # Sync iCloud design folder to reorganized structure
+
+source: hermes
+session_id:](memories/mem_mw91tonh_84d25b361152.md)
+* [Memory: # Fix rsync getcwd No such file directory error
+
+source: hermes
+session_id: loca](memories/mem_mw91toxq_c7ea04a8fb77.md)
+* [Memory: # Diagnose Finder refusing to delete /Volumes/design/Furniture
+
+source: hermes
+s](memories/mem_mw91tpag_62b023fd6d8d.md)
+* [Memory: # Fix Quick Look spinning for .dxf files
+
+source: hermes
+session_id: local-cdff6](memories/mem_mw91tplf_df7a56962674.md)
+* [Memory: # local-cfca6d746c871a8ef86ae29b8d60f46bd40a1ab92262b7d73becfc22ebc369e8
+
+source](memories/mem_mw91tpyb_e375a33317ff.md)
+* [Memory: # nightly-okf-index · Nov 08 07:23
+
+source: hermes
+session_id: local-d7529da8b7b](memories/mem_mw91tqbe_7051bf425ff0.md)
+* [Memory: # Occasional cash under VA unemployable rating
+
+source: hermes
+session_id: local](memories/mem_mw91tqnz_4190e95a44fa.md)
+* [Memory: # Morning briefing · Nov 08 08:01
+
+source: hermes
+session_id: local-ea6c57e96acf](memories/mem_mw91tr1a_e3d0bfeef743.md)
