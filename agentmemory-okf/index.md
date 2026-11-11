@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-10T09:01:03.350Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-11T09:00:49.363Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -8485,9 +8485,20 @@ _Exported 2026-11-10T09:01:03.350Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-bf26b9f1cd13c8e142f587dc54edd94ca4332414e2f5c935fdc48212b2b896f0](sessions/local-bf26b9f1cd13c8e142f587dc54edd94ca4332414e2f5c935fdc48212b2b896f0.md) — 7 obs
 * [Session local-f54c1db39bd5376aacf6824ac99e3f179b978a827dd316745b803dfce16cd5ca](sessions/local-f54c1db39bd5376aacf6824ac99e3f179b978a827dd316745b803dfce16cd5ca.md) — 146 obs
 * [Session local-77c044f4c3782604d9dcf5e39dcc6af54e081f45da5588cfde967b1a980c170b](sessions/local-77c044f4c3782604d9dcf5e39dcc6af54e081f45da5588cfde967b1a980c170b.md) — 25 obs
-* [Session local-8fbd041d09f9edb5c7a7c0bc00c2037c7a64b755e7393500bbed05918111ea58](sessions/local-8fbd041d09f9edb5c7a7c0bc00c2037c7a64b755e7393500bbed05918111ea58.md) — 6 obs
+* [Session local-8fbd041d09f9edb5c7a7c0bc00c2037c7a64b755e7393500bbed05918111ea58](sessions/local-8fbd041d09f9edb5c7a7c0bc00c2037c7a64b755e7393500bbed05918111ea58.md) — 10 obs
 * [Session local-79c59ea81955decf5d826e0c7c2c371bdc331d43a88209f9d6cb26883c3565e8](sessions/local-79c59ea81955decf5d826e0c7c2c371bdc331d43a88209f9d6cb26883c3565e8.md) — 9 obs
 * [Session local-8b8851054ba13779551a961fbd0b2aaa4cfb72c3a91a5e248e257053b0291b95](sessions/local-8b8851054ba13779551a961fbd0b2aaa4cfb72c3a91a5e248e257053b0291b95.md) — 1 obs
+* [Session local-8f5d0fadfb7693565e3aa2c27cb43e3a71076e788430f03b9f250fc88ff9f00b](sessions/local-8f5d0fadfb7693565e3aa2c27cb43e3a71076e788430f03b9f250fc88ff9f00b.md) — 1 obs
+* [Session local-a609174cbe055571fef838797d2fb9fa3818572c5880918d00edff905277d001](sessions/local-a609174cbe055571fef838797d2fb9fa3818572c5880918d00edff905277d001.md) — 3 obs
+* [Session local-fed829b8914bb86baa6e71203ad1f4ff164194432b60d3538ea2d0997c45914e](sessions/local-fed829b8914bb86baa6e71203ad1f4ff164194432b60d3538ea2d0997c45914e.md) — 23 obs
+* [Session local-e1125060688edc01601a1c41bbcd4927aa4a0634cda8b94c012c878353651b60](sessions/local-e1125060688edc01601a1c41bbcd4927aa4a0634cda8b94c012c878353651b60.md) — 141 obs
+* [Session local-ae59b910f67bffaa12d3d27073321bd831cf5a20efa3ee7d6d8bb0199a11cc30](sessions/local-ae59b910f67bffaa12d3d27073321bd831cf5a20efa3ee7d6d8bb0199a11cc30.md) — 9 obs
+* [Session local-c78eb26cd1c5025b26481e58f16ec2f2b32f23d7da9a492e1071632713784d48](sessions/local-c78eb26cd1c5025b26481e58f16ec2f2b32f23d7da9a492e1071632713784d48.md) — 1 obs
+* [Session local-c1657d6ad9e3f0e21e7108864bedd76e16536cfea982ea58a045b41df9c18ef1](sessions/local-c1657d6ad9e3f0e21e7108864bedd76e16536cfea982ea58a045b41df9c18ef1.md) — 8 obs
+* [Session local-cf7accc901eab0be498285b64783444f64a2875ea031265dc9a0b680b018e8d1](sessions/local-cf7accc901eab0be498285b64783444f64a2875ea031265dc9a0b680b018e8d1.md) — 15 obs
+* [Session local-d9eecf8dc21f1eaa804b9b2b773b5f33949f86453b392c3dcb593dda672e9310](sessions/local-d9eecf8dc21f1eaa804b9b2b773b5f33949f86453b392c3dcb593dda672e9310.md) — 59 obs
+* [Session local-2a78625bab4783af69ffe5dcbfd940cd03a9078239c4d678a9ad710037ec8d12](sessions/local-2a78625bab4783af69ffe5dcbfd940cd03a9078239c4d678a9ad710037ec8d12.md) — 5 obs
+* [Session local-7abd929d55decb6ce5284a0f8ceed045122dd7e3cd3b536cd06d3e6b68fac5d4](sessions/local-7abd929d55decb6ce5284a0f8ceed045122dd7e3cd3b536cd06d3e6b68fac5d4.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -34892,3 +34903,78 @@ session_id: local](memories/mem_mw91tqnz_4190e95a44fa.md)
 
 source: hermes
 session_id: local-ea6c57e96acf](memories/mem_mw91tr1a_e3d0bfeef743.md)
+* [Memory: # Enable Quick Look for DWG files
+
+source: hermes
+session_id: local-1f28301d1d21](memories/mem_mwah96sj_a33be5e14489.md)
+* [Memory: # Workday start reminder · Nov 09 09:01
+
+source: hermes
+session_id: local-2363f2](memories/mem_mwah978d_d2d58e99e0ed.md)
+* [Memory: # Update skill docs for macOS and workflows
+
+source: hermes
+session_id: local-34](memories/mem_mwah97mq_f656c53607c0.md)
+* [Memory: # Use GitKraken with many submodules
+
+source: hermes
+session_id: local-77c044f4c](memories/mem_mwah9813_5733e3202c9b.md)
+* [Memory: # Truncate trailing spaces in 3CL/design filenames
+
+source: hermes
+session_id: l](memories/mem_mwah98d2_711dca34f66f.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 10 03:01
+
+source: hermes
+session_id: loc](memories/mem_mwah98so_d639c8c16617.md)
+* [Memory: # agentmemory-okf-mirror · Nov 10 03:01
+
+source: hermes
+session_id: local-8f5d0f](memories/mem_mwah997q_65879ef89769.md)
+* [Memory: # Restore sessions filter in hermes sidebar
+
+source: hermes
+session_id: local-8f](memories/mem_mwah99kq_423a7cbdfde6.md)
+* [Memory: # local-a609174cbe055571fef838797d2fb9fa3818572c5880918d00edff905277d001
+
+source](memories/mem_mwah99zm_be91528ca008.md)
+* [Memory: # Sync iCloud design folder to reorganized structure
+
+source: hermes
+session_id:](memories/mem_mwah9a9u_ba89ea1bf6b6.md)
+* [Memory: # Fix Finder folder sort order
+
+source: hermes
+session_id: local-b1d27d9bc46ede2](memories/mem_mwah9apx_de5b68d8407e.md)
+* [Memory: # Fix rsync getcwd No such file directory error
+
+source: hermes
+session_id: loca](memories/mem_mwah9b4z_865caf92b57b.md)
+* [Memory: # Evening wind-down · Nov 09 21:01
+
+source: hermes
+session_id: local-bf26b9f1cd1](memories/mem_mwah9bjj_57cca995ffaa.md)
+* [Memory: # nightly-okf-index · Nov 09 03:20
+
+source: hermes
+session_id: local-cfca6d746c8](memories/mem_mwah9bz2_ae3ce55f5e0e.md)
+* [Memory: # Occasional cash under VA unemployable rating
+
+source: hermes
+session_id: local](memories/mem_mwah9cda_bb73fd5f0a1c.md)
+* [Memory: # Find missing >tuple in git history
+
+source: hermes
+session_id: local-e3cbd7229](memories/mem_mwah9cso_9087d65cf8ec.md)
+* [Memory: # Fix repo at ~/Desktop/DXF
+
+source: hermes
+session_id: local-e9faad17b851415562](memories/mem_mwah9d6c_4c43ad15ffe3.md)
+* [Memory: # Morning briefing · Nov 09 08:01
+
+source: hermes
+session_id: local-ec791f45b783](memories/mem_mwah9dm2_513f9cd90351.md)
+* [Memory: # Add missing Kilo API key to settings.json
+
+source: hermes
+session_id: local-f5](memories/mem_mwah9e0s_73bc50384efb.md)
