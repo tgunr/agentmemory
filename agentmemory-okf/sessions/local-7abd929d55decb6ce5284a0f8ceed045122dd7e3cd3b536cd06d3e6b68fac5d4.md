@@ -19,4 +19,4 @@ session_id: local-7abd929d55decb6ce5284a0f8ceed045122dd7e3cd3b536cd06d3e6b68fac5
 
 ## Observations
 
-* [observation](observations/local-7abd929d55decb6ce5284a0f8ceed045122dd7e3cd3b536cd06d3e6b68fac5d4/obs_mwbw2r3r_2796b9e63da9.md)
+* [Hermes sessions exporter](observations/local-7abd929d55decb6ce5284a0f8ceed045122dd7e3cd3b536cd06d3e6b68fac5d4/obs_mwbw2r3r_2796b9e63da9.md)
