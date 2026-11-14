@@ -1,0 +1,22 @@
+---
+type: Session
+title: Session evt_1d661e9ac001xxShLydlJp9T6T
+description: AgentMemory session (1 observations)
+resource: agentmemory://session/evt_1d661e9ac001xxShLydlJp9T6T
+tags: ["session", "active"]
+timestamp: 2026-11-13T19:28:23.542Z
+source: agentmemory
+session_id: evt_1d661e9ac001xxShLydlJp9T6T
+---
+# Session
+
+- **Project:** /Users/davec/Library/Application Support/Kilo Desktop/plugins/kilo-server/runtime
+- **CWD:** /Users/davec/Library/Application Support/Kilo Desktop/plugins/kilo-server/runtime
+- **Status:** active
+- **Observations:** 1
+- **Started:** 2026-11-13T19:28:23.477Z
+- **Updated:** 2026-11-13T19:28:23.542Z
+
+## Observations
+
+* [Initial session loaded](observations/evt-1d661e9ac001xxshlydljp9t6t/obs_mwfddiwj_d983ef2ed338.md)
