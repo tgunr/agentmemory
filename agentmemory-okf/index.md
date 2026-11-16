@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-15T09:00:20.683Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-16T09:00:52.729Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -9958,7 +9958,30 @@ _Exported 2026-11-15T09:00:20.683Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session evt_1dc4e2781001IN3ek7tfzxleeE](sessions/evt-1dc4e2781001in3ek7tfzxleee.md) — 1 obs
 * [Session evt_1dc4e2791001QWbx5R5UiSxV56](sessions/evt-1dc4e2791001qwbx5r5uisxv56.md) — 1 obs
 * [Session local-ab0afeac0687ff5556e090258fb112f8b3377fab41a62bae6af9efa42bccbf01](sessions/local-ab0afeac0687ff5556e090258fb112f8b3377fab41a62bae6af9efa42bccbf01.md) — 12 obs
-* [Session local-244e708869e343275a643ca656aec6db89c375833de3b4851301eb5a23d440bd](sessions/local-244e708869e343275a643ca656aec6db89c375833de3b4851301eb5a23d440bd.md) — 1 obs
+* [Session local-244e708869e343275a643ca656aec6db89c375833de3b4851301eb5a23d440bd](sessions/local-244e708869e343275a643ca656aec6db89c375833de3b4851301eb5a23d440bd.md) — 2 obs
+* [Session local-95d7c114c6ba8b7fab62276d96cf5c888249c68a203118789d5ea3ea16b6d73d](sessions/local-95d7c114c6ba8b7fab62276d96cf5c888249c68a203118789d5ea3ea16b6d73d.md) — 1 obs
+* [Session local-dc4e60fd14b13e99098daf84e1b653f61ceb7720d1a332308e121adf5c374e36](sessions/local-dc4e60fd14b13e99098daf84e1b653f61ceb7720d1a332308e121adf5c374e36.md) — 1 obs
+* [Session local-636bc6af6dc730e6c8b010af53006adcbdb7354f33c3f775d2d8a59158ddfbe0](sessions/local-636bc6af6dc730e6c8b010af53006adcbdb7354f33c3f775d2d8a59158ddfbe0.md) — 25 obs
+* [Session local-d14359a0ce1e741a1b9d18d19deb55594b0d78f67b6857540216e5501b9ff250](sessions/local-d14359a0ce1e741a1b9d18d19deb55594b0d78f67b6857540216e5501b9ff250.md) — 1 obs
+* [Session local-b0b296ae38604ae911e767602300cb9975d6b04877225907a1471a0375079763](sessions/local-b0b296ae38604ae911e767602300cb9975d6b04877225907a1471a0375079763.md) — 11 obs
+* [Session local-c85c08ec6ff8dc9670ab71010a957f5fee182bf7aba1a8d6a64f7cc3413a4313](sessions/local-c85c08ec6ff8dc9670ab71010a957f5fee182bf7aba1a8d6a64f7cc3413a4313.md) — 65 obs
+* [Session evt_1dfe87249001YjojYmqheiY6If](sessions/evt-1dfe87249001yjojymqheiy6if.md) — 1 obs
+* [Session evt_1dfe87316001vZhA0YnQ10x5r4](sessions/evt-1dfe87316001vzha0ynq10x5r4.md) — 1 obs
+* [Session evt_1dfe873dd001h08L3rr9t4gTUR](sessions/evt-1dfe873dd001h08l3rr9t4gtur.md) — 1 obs
+* [Session ses_e20178dcdffeU7xVxDzZLNbN4r](sessions/ses-e20178dcdffeu7xvxdzzlnbn4r.md) — 5 obs
+* [Session evt_1dfef2f2c001K6SbeimA6o1RI5](sessions/evt-1dfef2f2c001k6sbeima6o1ri5.md) — 1 obs
+* [Session evt_1dfef3190001eAJZ3Sd1zaUhKt](sessions/evt-1dfef3190001eajz3sd1zauhkt.md) — 1 obs
+* [Session local-f84f2bfb2097879705d4a4bd4f29414325ada67bdb423616598f3500e0d69ec2](sessions/local-f84f2bfb2097879705d4a4bd4f29414325ada67bdb423616598f3500e0d69ec2.md) — 10 obs
+* [Session evt_1dff18bb1001r0oFL6PeahZjpV](sessions/evt-1dff18bb1001r0ofl6peahzjpv.md) — 1 obs
+* [Session evt_1dff68abf001ryA1hNlDT1Ezp5](sessions/evt-1dff68abf001rya1hnldt1ezp5.md) — 1 obs
+* [Session evt_1dff87405001IK390CxK6tjZm5](sessions/evt-1dff87405001ik390cxk6tjzm5.md) — 1 obs
+* [Session evt_1dfffdb78001AtYVhU3O9wizMl](sessions/evt-1dfffdb78001atyvhu3o9wizml.md) — 1 obs
+* [Session local-f65fac54f6782b9ce4c44c30de29c881f168cbc89ed681de11d3b6d4e4aa755e](sessions/local-f65fac54f6782b9ce4c44c30de29c881f168cbc89ed681de11d3b6d4e4aa755e.md) — 12 obs
+* [Session local-e1e6499998c2ef29d74e9457a59fa7878a3c72c854a9497ca9e7d3769fa21a57](sessions/local-e1e6499998c2ef29d74e9457a59fa7878a3c72c854a9497ca9e7d3769fa21a57.md) — 31 obs
+* [Session local-239b6a373b9f92d4ebaaaf727b1877f6ec9c3a0f72eeba2184fd3243dc426e32](sessions/local-239b6a373b9f92d4ebaaaf727b1877f6ec9c3a0f72eeba2184fd3243dc426e32.md) — 57 obs
+* [Session local-3736708704d4cd047e0c2fffedcd23c4af6b752169063143c68a2ff2c74e2d4e](sessions/local-3736708704d4cd047e0c2fffedcd23c4af6b752169063143c68a2ff2c74e2d4e.md) — 1 obs
+* [Session local-c75cb3b5b95db7c41847a7a110e83e69d4be9baccc6b8ed2a89f1ddff8a277a0](sessions/local-c75cb3b5b95db7c41847a7a110e83e69d4be9baccc6b8ed2a89f1ddff8a277a0.md) — 9 obs
+* [Session local-4df79fe2fa4ac3ad18da9aed3317917b18f61e7a2640c6eebe2b1b091f5b114b](sessions/local-4df79fe2fa4ac3ad18da9aed3317917b18f61e7a2640c6eebe2b1b091f5b114b.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -36634,3 +36657,38 @@ session_id: local-f21317](memories/mem_mwg6zwa3_3914f9c4c090.md)
 
 source: hermes
 session_id: local-f754e7](memories/mem_mwg6zwo3_0d5bf7d4130b.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 15 03:00
+
+source: hermes
+session_id: loc](memories/mem_mwhmfbpj_d6865c1b94e0.md)
+* [Memory: # Find Books library storage location
+
+source: hermes
+session_id: local-3c5638a5](memories/mem_mwhmfc7r_af09245afcc7.md)
+* [Memory: # Update macOS integrations skill docs
+
+source: hermes
+session_id: local-644acc7](memories/mem_mwhmfcnb_806b6a3d0822.md)
+* [Memory: # Morning briefing · Nov 14 08:01
+
+source: hermes
+session_id: local-6866e0803b50](memories/mem_mwhmfcya_f48d9343b628.md)
+* [Memory: # agentmemory-okf-mirror · Nov 15 03:01
+
+source: hermes
+session_id: local-95d7c1](memories/mem_mwhmfddl_0a8fc61982d9.md)
+* [Memory: # Evening wind-down · Nov 14 21:01
+
+source: hermes
+session_id: local-ab0afeac068](memories/mem_mwhmfdub_c0c4f515aaa5.md)
+* [Memory: # Update Hermes software
+
+source: hermes
+session_id: local-c79a1792a581ab52288ff](memories/mem_mwhmfe8i_d9ab2d1313b4.md)
+* [Memory: # local-dc4e60fd14b13e99098daf84e1b653f61ceb7720d1a332308e121adf5c374e36
+
+source](memories/mem_mwhmfenv_06cd8784d69b.md)
+* [Memory: # nightly-okf-index · Nov 14 03:17
+
+source: hermes
+session_id: local-edf320fe531](memories/mem_mwhmff2l_424a1e9d8111.md)
