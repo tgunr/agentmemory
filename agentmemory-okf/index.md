@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-16T09:00:52.729Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-17T09:01:19.401Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -9982,6 +9982,19 @@ _Exported 2026-11-16T09:00:52.729Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-3736708704d4cd047e0c2fffedcd23c4af6b752169063143c68a2ff2c74e2d4e](sessions/local-3736708704d4cd047e0c2fffedcd23c4af6b752169063143c68a2ff2c74e2d4e.md) — 1 obs
 * [Session local-c75cb3b5b95db7c41847a7a110e83e69d4be9baccc6b8ed2a89f1ddff8a277a0](sessions/local-c75cb3b5b95db7c41847a7a110e83e69d4be9baccc6b8ed2a89f1ddff8a277a0.md) — 9 obs
 * [Session local-4df79fe2fa4ac3ad18da9aed3317917b18f61e7a2640c6eebe2b1b091f5b114b](sessions/local-4df79fe2fa4ac3ad18da9aed3317917b18f61e7a2640c6eebe2b1b091f5b114b.md) — 1 obs
+* [Session local-b9937b30662359db2206b3234729816ac9f861b146bb69d72f651f9aea77dfde](sessions/local-b9937b30662359db2206b3234729816ac9f861b146bb69d72f651f9aea77dfde.md) — 1 obs
+* [Session local-a9cb4712a5336052803059dc856fdeb3af686a716293c094677474c6f71724c6](sessions/local-a9cb4712a5336052803059dc856fdeb3af686a716293c094677474c6f71724c6.md) — 2 obs
+* [Session local-2a29cf0c8a8317304a22a5c22de494210637c92915ae505ea39ee45828eb612e](sessions/local-2a29cf0c8a8317304a22a5c22de494210637c92915ae505ea39ee45828eb612e.md) — 11 obs
+* [Session local-d8990a682912bc769e4607cb9d9345167e788d3b6f7b6fe407e0640a823d637a](sessions/local-d8990a682912bc769e4607cb9d9345167e788d3b6f7b6fe407e0640a823d637a.md) — 36 obs
+* [Session local-f01412d686a365372d45be3ba9b70d99985a2ed0e62f13ca1c0fc89412f24d5b](sessions/local-f01412d686a365372d45be3ba9b70d99985a2ed0e62f13ca1c0fc89412f24d5b.md) — 2 obs
+* [Session local-bdeff4a0d071d5405a3452ad4cc18e46de7b4432361b37e2cc7e464d310f0085](sessions/local-bdeff4a0d071d5405a3452ad4cc18e46de7b4432361b37e2cc7e464d310f0085.md) — 230 obs
+* [Session local-f18672663361734871de45a3d3ef30f713b35884c291e7b2829f612e1ca25bd5](sessions/local-f18672663361734871de45a3d3ef30f713b35884c291e7b2829f612e1ca25bd5.md) — 8 obs
+* [Session local-587a20a8f03fb94d0aa15af511ad59a71fca5d538acc001efad159aaf62eb971](sessions/local-587a20a8f03fb94d0aa15af511ad59a71fca5d538acc001efad159aaf62eb971.md) — 8 obs
+* [Session local-63bd570472d7430dec4c581f71cae3d0df384a8d17f2f6bf3a098d733b1fba30](sessions/local-63bd570472d7430dec4c581f71cae3d0df384a8d17f2f6bf3a098d733b1fba30.md) — 55 obs
+* [Session local-36ca10a53f7fc1bb296b2d296b5c7e5863ddd4fadf003199400bdf5bcb0a1300](sessions/local-36ca10a53f7fc1bb296b2d296b5c7e5863ddd4fadf003199400bdf5bcb0a1300.md) — 31 obs
+* [Session local-8c9b6dc41f0b6ada5b5a3d4528bba898caf46869821a2975ca5e3e76eaec73c4](sessions/local-8c9b6dc41f0b6ada5b5a3d4528bba898caf46869821a2975ca5e3e76eaec73c4.md) — 2 obs
+* [Session local-c1d562e85c2a27fcebef1ae25ea109478fc466e0204241a9b8a249d539f6b068](sessions/local-c1d562e85c2a27fcebef1ae25ea109478fc466e0204241a9b8a249d539f6b068.md) — 4 obs
+* [Session local-e3dd3a512bc628557765922aea3d045cb002e771a44772e8b8894076f4eec484](sessions/local-e3dd3a512bc628557765922aea3d045cb002e771a44772e8b8894076f4eec484.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -36692,3 +36705,78 @@ source](memories/mem_mwhmfenv_06cd8784d69b.md)
 
 source: hermes
 session_id: local-edf320fe531](memories/mem_mwhmff2l_424a1e9d8111.md)
+* [Memory: # local-0cce7d5e26a4d11a19c219b4aa8f1af5ee9156517bf3413d4564276be8c6dcd1
+
+source](memories/mem_mwj1vsi6_c0b95d8e7d0e.md)
+* [Memory: # local-1c8d50bae9018dd769008016090a4580b9fdb2fbe122eeef0e57d3b17a0e8e8a
+
+source](memories/mem_mwj1vsyy_84b53375f298.md)
+* [Memory: # Add New Project to projects popup
+
+source: hermes
+session_id: local-239b6a373b](memories/mem_mwj1vtbp_052aadd9cef8.md)
+* [Memory: # local-3736708704d4cd047e0c2fffedcd23c4af6b752169063143c68a2ff2c74e2d4e
+
+source](memories/mem_mwj1vtmd_3cc260f036ca.md)
+* [Memory: # local-47435c6ff7b3271f41fd13daae16150d4073972a99586a48d1995341b3f2bf93
+
+source](memories/mem_mwj1vu0o_3bf59b181909.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 16 03:00
+
+source: hermes
+session_id: loc](memories/mem_mwj1vuey_1f88ac764e24.md)
+* [Memory: # Pull stash and merge into master
+
+source: hermes
+session_id: local-636bc6af6dc](memories/mem_mwj1vutc_826ab7f2d63f.md)
+* [Memory: # local-7f51b9545245b811d45631b8ea37049448be5bedd4fe273799ee0294b791f11e
+
+source](memories/mem_mwj1vv7b_69dfce20e9a1.md)
+* [Memory: # local-a6afa4d4847f09d9e4a34af1a991a87b4fea42c0d22ca396ac6b231627b489c4
+
+source](memories/mem_mwj1vvht_dcdbecb28080.md)
+* [Memory: # local-a9cb4712a5336052803059dc856fdeb3af686a716293c094677474c6f71724c6
+
+source](memories/mem_mwj1vvuf_8d0a9fc0d421.md)
+* [Memory: # Morning briefing · Nov 15 08:02
+
+source: hermes
+session_id: local-b0b296ae3860](memories/mem_mwj1vw6d_18f61b6481fc.md)
+* [Memory: # agentmemory-okf-mirror · Nov 16 03:01
+
+source: hermes
+session_id: local-b9937b](memories/mem_mwj1vwlm_aeacf85487a0.md)
+* [Memory: # local-c2bb7b79e3c26d3bbee39575c3b4f6a9715689c8e2b5473a249aa7fe62d27629
+
+source](memories/mem_mwj1vwzk_505d51afa6d2.md)
+* [Memory: # Evening wind-down · Nov 15 21:01
+
+source: hermes
+session_id: local-c75cb3b5b95](memories/mem_mwj1vxfe_c3e335b2a003.md)
+* [Memory: # Update Hermes software
+
+source: hermes
+session_id: local-c79a1792a581ab52288ff](memories/mem_mwj1vxtq_a9b71cc7fc7e.md)
+* [Memory: # Pull upstream main with git
+
+source: hermes
+session_id: local-c85c08ec6ff8dc96](memories/mem_mwj1vy81_bcbdbd8af545.md)
+* [Memory: # Write a single concise git commit message (one… #6
+
+source: hermes
+session_id:](memories/mem_mwj1vynj_6f8eb63cf5f9.md)
+* [Memory: # nightly-okf-index · Nov 15 03:17
+
+source: hermes
+session_id: local-dc4e60fd14b](memories/mem_mwj1vyz6_c730b21f0950.md)
+* [Memory: # local-de6b77da4eaf68cabce94645af03abba5b649f886cc737103bcc91800a012783
+
+source](memories/mem_mwj1vzcx_d774ac27a906.md)
+* [Memory: # Restore projects popup in status bar
+
+source: hermes
+session_id: local-e1e6499](memories/mem_mwj1vzoy_f30b5bb6dbc5.md)
+* [Memory: # Set up son's Cloudflare Kilo access
+
+source: hermes
+session_id: local-f65fac54](memories/mem_mwj1w0ga_f3afbed80043.md)
