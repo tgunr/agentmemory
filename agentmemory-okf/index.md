@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-17T09:01:19.401Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-18T09:00:29.137Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -9995,6 +9995,14 @@ _Exported 2026-11-17T09:01:19.401Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-8c9b6dc41f0b6ada5b5a3d4528bba898caf46869821a2975ca5e3e76eaec73c4](sessions/local-8c9b6dc41f0b6ada5b5a3d4528bba898caf46869821a2975ca5e3e76eaec73c4.md) — 2 obs
 * [Session local-c1d562e85c2a27fcebef1ae25ea109478fc466e0204241a9b8a249d539f6b068](sessions/local-c1d562e85c2a27fcebef1ae25ea109478fc466e0204241a9b8a249d539f6b068.md) — 4 obs
 * [Session local-e3dd3a512bc628557765922aea3d045cb002e771a44772e8b8894076f4eec484](sessions/local-e3dd3a512bc628557765922aea3d045cb002e771a44772e8b8894076f4eec484.md) — 1 obs
+* [Session local-50164fd9cf0459978c438ac398b4dbbed52e6b250902ef2eedf93a052570f6a0](sessions/local-50164fd9cf0459978c438ac398b4dbbed52e6b250902ef2eedf93a052570f6a0.md) — 1 obs
+* [Session local-e9222bb0885567cc546236aa9918f69df252e80bfb2b4d063e4352321d0766b9](sessions/local-e9222bb0885567cc546236aa9918f69df252e80bfb2b4d063e4352321d0766b9.md) — 2 obs
+* [Session local-dc428438dd0e5290975e03b237348f85671d10e4f048d931665433bd4ac51e5f](sessions/local-dc428438dd0e5290975e03b237348f85671d10e4f048d931665433bd4ac51e5f.md) — 3 obs
+* [Session local-7d46890c4efafe04f8a45cc6c8d53951812b69f5157cd35561c8c96bce494db5](sessions/local-7d46890c4efafe04f8a45cc6c8d53951812b69f5157cd35561c8c96bce494db5.md) — 9 obs
+* [Session local-3917f9b039739ad3c7c970c50306e9a04b7ad4bc17ad5fe5254894415a2589e1](sessions/local-3917f9b039739ad3c7c970c50306e9a04b7ad4bc17ad5fe5254894415a2589e1.md) — 9 obs
+* [Session local-c7d23d185a560cc5f93de9842be85bb5e83228ceff8e419c07e5dbf7dd8e959d](sessions/local-c7d23d185a560cc5f93de9842be85bb5e83228ceff8e419c07e5dbf7dd8e959d.md) — 7 obs
+* [Session local-8cf3316010752bcef19b33789ee25534183ab90032baf550c4b35ad07d6fb201](sessions/local-8cf3316010752bcef19b33789ee25534183ab90032baf550c4b35ad07d6fb201.md) — 3 obs
+* [Session local-2e4093a4728683a78f63dde7ac9f32b78551fec675aee9dbb9d6779caff598dd](sessions/local-2e4093a4728683a78f63dde7ac9f32b78551fec675aee9dbb9d6779caff598dd.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -36780,3 +36788,56 @@ session_id: local-e1e6499](memories/mem_mwj1vzoy_f30b5bb6dbc5.md)
 
 source: hermes
 session_id: local-f65fac54](memories/mem_mwj1w0ga_f3afbed80043.md)
+* [Memory: # Add New Project to projects popup
+
+source: hermes
+session_id: local-239b6a373b](memories/mem_mwkhc6iu_121afde1ed08.md)
+* [Memory: # Morning briefing · Nov 16 08:01
+
+source: hermes
+session_id: local-2a29cf0c8a83](memories/mem_mwkhc719_0ed18dae70e2.md)
+* [Memory: # Learn about Metamorphia devices for AMD
+
+source: hermes
+session_id: local-36ca](memories/mem_mwkhc7dw_c7140f662e9b.md)
+* [Memory: # agentmemory-okf-mirror · Nov 17 03:02
+
+source: hermes
+session_id: local-50164f](memories/mem_mwkhc7sv_52ab7cd84a5a.md)
+* [Memory: # Fix Kilo provider setup error
+
+source: hermes
+session_id: local-63bd570472d743](memories/mem_mwkhc850_10641e15c377.md)
+* [Memory: # local-8c9b6dc41f0b6ada5b5a3d4528bba898caf46869821a2975ca5e3e76eaec73c4
+
+source](memories/mem_mwkhc8gd_5c13f04457c4.md)
+* [Memory: # nightly-okf-index · Nov 16 03:18
+
+source: hermes
+session_id: local-a9cb4712a53](memories/mem_mwkhc8v9_27889edfa9dd.md)
+* [Memory: # Determine PETCG clearance for Prusa XL fit
+
+source: hermes
+session_id: local-b](memories/mem_mwkhc97u_43bbf100cdb6.md)
+* [Memory: # Evening wind-down · Nov 16 21:01
+
+source: hermes
+session_id: local-c1d562e85c2](memories/mem_mwkhc9m8_12be03de2334.md)
+* [Memory: # Fix pnpm not found for dist:mac
+
+source: hermes
+session_id: local-d8990a682912](memories/mem_mwkhc9yt_8e3d9f05d167.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 17 03:01
+
+source: hermes
+session_id: loc](memories/mem_mwkhcaco_b0ba0451677f.md)
+* [Memory: # local-e9222bb0885567cc546236aa9918f69df252e80bfb2b4d063e4352321d0766b9
+
+source](memories/mem_mwkhcapc_5e909cb1e734.md)
+* [Memory: # local-f01412d686a365372d45be3ba9b70d99985a2ed0e62f13ca1c0fc89412f24d5b
+
+source](memories/mem_mwkhcb1j_0a595153edab.md)
+* [Memory: # Workday start reminder · Nov 16 09:01
+
+source: hermes
+session_id: local-f18672](memories/mem_mwkhcbes_df8868ffa3e5.md)
