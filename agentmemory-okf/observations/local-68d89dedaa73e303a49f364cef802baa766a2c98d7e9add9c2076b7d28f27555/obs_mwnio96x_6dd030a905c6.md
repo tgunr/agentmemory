@@ -1,0 +1,13 @@
+---
+type: Observation
+title: observation
+description: 
+resource: agentmemory://observation/obs_mwnio96x_6dd030a905c6
+tags: ["observation"]
+timestamp: 2026-11-19T12:18:51.655118+00:00
+source: agentmemory
+session_id: local-68d89dedaa73e303a49f364cef802baa766a2c98d7e9add9c2076b7d28f27555
+---
+# Summary
+
+

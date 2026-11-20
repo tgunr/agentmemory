@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-19T09:00:52.711Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-20T09:00:41.305Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -10010,6 +10010,16 @@ _Exported 2026-11-19T09:00:52.711Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-9f8ab2deec43a83a450e8d6d1ca5078e218d1532acff3c7bd7561fc92c3ea864](sessions/local-9f8ab2deec43a83a450e8d6d1ca5078e218d1532acff3c7bd7561fc92c3ea864.md) — 12 obs
 * [Session local-96edaf8558ee6de018cc7915559a03ca2c427d4ff01f101a7aa8b8fe5a563961](sessions/local-96edaf8558ee6de018cc7915559a03ca2c427d4ff01f101a7aa8b8fe5a563961.md) — 3 obs
 * [Session local-c76da58b97bf476305f633d8ca46424c7b1556e40bd5030dbdf2e0ee454178fd](sessions/local-c76da58b97bf476305f633d8ca46424c7b1556e40bd5030dbdf2e0ee454178fd.md) — 1 obs
+* [Session local-7eb08649630adfdcff69e9f183be783c848e89117b616ec4aad30eb1a25e97a1](sessions/local-7eb08649630adfdcff69e9f183be783c848e89117b616ec4aad30eb1a25e97a1.md) — 1 obs
+* [Session local-dd3684de9fc631931524ea3640792a5b404a13d1fc4737097836d284d856de9a](sessions/local-dd3684de9fc631931524ea3640792a5b404a13d1fc4737097836d284d856de9a.md) — 2 obs
+* [Session local-9086060240d8a6c2ea24f922ba6710d50b39561ac4a77fb0605228ca72e7552e](sessions/local-9086060240d8a6c2ea24f922ba6710d50b39561ac4a77fb0605228ca72e7552e.md) — 29 obs
+* [Session local-68d89dedaa73e303a49f364cef802baa766a2c98d7e9add9c2076b7d28f27555](sessions/local-68d89dedaa73e303a49f364cef802baa766a2c98d7e9add9c2076b7d28f27555.md) — 54 obs
+* [Session local-80bbd7d1e1f2fee3cc61e6d12df67e30ab4cd1f8023f1d08ec90ac04ce5c960e](sessions/local-80bbd7d1e1f2fee3cc61e6d12df67e30ab4cd1f8023f1d08ec90ac04ce5c960e.md) — 12 obs
+* [Session local-ab24cc4079bb679e6b47196d8407a6a560c2b02b499d20d3f66ded0546cc17da](sessions/local-ab24cc4079bb679e6b47196d8407a6a560c2b02b499d20d3f66ded0546cc17da.md) — 6 obs
+* [Session local-99d780213460d3ee55fba370ea4fd0170191de402f7cebae812b0eaf0a929ba0](sessions/local-99d780213460d3ee55fba370ea4fd0170191de402f7cebae812b0eaf0a929ba0.md) — 10 obs
+* [Session local-20f32e1095a01700457c3b383b3be3526dee946541e438deb81cc4d6705af0dc](sessions/local-20f32e1095a01700457c3b383b3be3526dee946541e438deb81cc4d6705af0dc.md) — 4 obs
+* [Session local-83263fc7ab0afe268fa1a3a812d0239cc22d192b5f86093d0dc6e5efbffe8bcd](sessions/local-83263fc7ab0afe268fa1a3a812d0239cc22d192b5f86093d0dc6e5efbffe8bcd.md) — 2 obs
+* [Session local-d5b53ecef60f00713ebe0b8711265975da477c7b9770d0a98f073309d3517dac](sessions/local-d5b53ecef60f00713ebe0b8711265975da477c7b9770d0a98f073309d3517dac.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -36883,3 +36893,30 @@ session_id: local-e9222bb0885](memories/mem_mwlwr5k2_a2c56d8ba97b.md)
 
 source: hermes
 session_id: local-f8caa9](memories/mem_mwlwr60d_6ccc59323dfc.md)
+* [Memory: # Morning briefing · Nov 18 08:01
+
+source: hermes
+session_id: local-2dbd20e488e1](memories/mem_mwnc6x21_2bf22813ef0f.md)
+* [Memory: # nightly-okf-index · Nov 18 03:17
+
+source: hermes
+session_id: local-3eac1e3bf09](memories/mem_mwnc6xnx_dd88bc29b3f6.md)
+* [Memory: # Workday start reminder · Nov 18 09:00
+
+source: hermes
+session_id: local-6e179c](memories/mem_mwnc6y5z_39cab5bd73bc.md)
+* [Memory: # agentmemory-okf-mirror · Nov 19 03:01
+
+source: hermes
+session_id: local-7eb086](memories/mem_mwnc6ys6_ac3bec53f09f.md)
+* [Memory: # Evening wind-down · Nov 18 21:00
+
+source: hermes
+session_id: local-96edaf8558e](memories/mem_mwnc6zb3_2ba4ac946281.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 19 03:00
+
+source: hermes
+session_id: loc](memories/mem_mwnc6zuq_426c63698be7.md)
+* [Memory: # local-dd3684de9fc631931524ea3640792a5b404a13d1fc4737097836d284d856de9a
+
+source](memories/mem_mwnc70bp_28facc91f8e8.md)
