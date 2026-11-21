@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-20T09:00:41.305Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-21T09:00:41.945Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -10020,6 +10020,13 @@ _Exported 2026-11-20T09:00:41.305Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-20f32e1095a01700457c3b383b3be3526dee946541e438deb81cc4d6705af0dc](sessions/local-20f32e1095a01700457c3b383b3be3526dee946541e438deb81cc4d6705af0dc.md) — 4 obs
 * [Session local-83263fc7ab0afe268fa1a3a812d0239cc22d192b5f86093d0dc6e5efbffe8bcd](sessions/local-83263fc7ab0afe268fa1a3a812d0239cc22d192b5f86093d0dc6e5efbffe8bcd.md) — 2 obs
 * [Session local-d5b53ecef60f00713ebe0b8711265975da477c7b9770d0a98f073309d3517dac](sessions/local-d5b53ecef60f00713ebe0b8711265975da477c7b9770d0a98f073309d3517dac.md) — 1 obs
+* [Session local-3cc509aa8d858e13cb9ea51526c625f174f40f12db687811c132a958b6be5d35](sessions/local-3cc509aa8d858e13cb9ea51526c625f174f40f12db687811c132a958b6be5d35.md) — 1 obs
+* [Session local-d5a5aa8c6c9bd7dc1da08167c3e8cc27a4197900206d0de52f9f21c4f30cdb00](sessions/local-d5a5aa8c6c9bd7dc1da08167c3e8cc27a4197900206d0de52f9f21c4f30cdb00.md) — 2 obs
+* [Session local-c927ce85e6173b0781f75eb5f7fd815b1ba2f862766f1e085582602b70aa817a](sessions/local-c927ce85e6173b0781f75eb5f7fd815b1ba2f862766f1e085582602b70aa817a.md) — 14 obs
+* [Session local-244b193d940d413ac6ce91c2280a4f35052ef94fcff12bfbaf5f39c3a7d692ab](sessions/local-244b193d940d413ac6ce91c2280a4f35052ef94fcff12bfbaf5f39c3a7d692ab.md) — 6 obs
+* [Session local-b5379e25cbbd78ea158cf08d856169ef43334be2e662bec234b036c8aca6f9f7](sessions/local-b5379e25cbbd78ea158cf08d856169ef43334be2e662bec234b036c8aca6f9f7.md) — 4 obs
+* [Session local-cbab1ff7959db02388d78adc18a9c2c6bf7b61554a5d52f700c1b556ee212ee7](sessions/local-cbab1ff7959db02388d78adc18a9c2c6bf7b61554a5d52f700c1b556ee212ee7.md) — 9 obs
+* [Session local-cdcd8fdebf82e7282cddee0456210e68088aef70adb75d066cb29fe5cd13da16](sessions/local-cdcd8fdebf82e7282cddee0456210e68088aef70adb75d066cb29fe5cd13da16.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -36920,3 +36927,42 @@ session_id: loc](memories/mem_mwnc6zuq_426c63698be7.md)
 * [Memory: # local-dd3684de9fc631931524ea3640792a5b404a13d1fc4737097836d284d856de9a
 
 source](memories/mem_mwnc70bp_28facc91f8e8.md)
+* [Memory: # Creality colored plywood engraving settings Xtool P3
+
+source: hermes
+session_i](memories/mem_mwormqoc_60c3490d10f6.md)
+* [Memory: # agentmemory-okf-mirror · Nov 20 03:01
+
+source: hermes
+session_id: local-3cc509](memories/mem_mwormrcy_818438e9985e.md)
+* [Memory: # Organize laser engraving business card capabilities
+
+source: hermes
+session_id](memories/mem_mwormrz8_5057e5bebd9c.md)
+* [Memory: # Morning briefing · Nov 19 08:01
+
+source: hermes
+session_id: local-80bbd7d1e1f2](memories/mem_mwormsks_66811d50362b.md)
+* [Memory: # Evening wind-down · Nov 19 21:00
+
+source: hermes
+session_id: local-83263fc7ab0](memories/mem_mwormt5s_d1c1e8f985b7.md)
+* [Memory: # Open crumb tray on xTool P3
+
+source: hermes
+session_id: local-9086060240d8a6c2](memories/mem_mwormtor_ed0f52de745e.md)
+* [Memory: # Workday start reminder · Nov 19 09:00
+
+source: hermes
+session_id: local-ab24cc](memories/mem_mwormubt_f20099aa8158.md)
+* [Memory: # local-d5a5aa8c6c9bd7dc1da08167c3e8cc27a4197900206d0de52f9f21c4f30cdb00
+
+source](memories/mem_mwormuu6_25679c4c4182.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 20 03:00
+
+source: hermes
+session_id: loc](memories/mem_mwormv9y_a2bab731eeef.md)
+* [Memory: # nightly-okf-index · Nov 19 03:17
+
+source: hermes
+session_id: local-dd3684de9fc](memories/mem_mwormvs3_f94e63536be9.md)
