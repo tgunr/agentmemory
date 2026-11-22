@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-21T09:00:41.945Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-22T09:00:21.405Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -10027,6 +10027,37 @@ _Exported 2026-11-21T09:00:41.945Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session local-b5379e25cbbd78ea158cf08d856169ef43334be2e662bec234b036c8aca6f9f7](sessions/local-b5379e25cbbd78ea158cf08d856169ef43334be2e662bec234b036c8aca6f9f7.md) — 4 obs
 * [Session local-cbab1ff7959db02388d78adc18a9c2c6bf7b61554a5d52f700c1b556ee212ee7](sessions/local-cbab1ff7959db02388d78adc18a9c2c6bf7b61554a5d52f700c1b556ee212ee7.md) — 9 obs
 * [Session local-cdcd8fdebf82e7282cddee0456210e68088aef70adb75d066cb29fe5cd13da16](sessions/local-cdcd8fdebf82e7282cddee0456210e68088aef70adb75d066cb29fe5cd13da16.md) — 1 obs
+* [Session local-8d25d40e0b0276ad5dc1317315532f4bfc0ffad9363b1541e0392342f7cd2ae8](sessions/local-8d25d40e0b0276ad5dc1317315532f4bfc0ffad9363b1541e0392342f7cd2ae8.md) — 1 obs
+* [Session local-6156b30ac1a25ff3abdf0f57df843d5831872fb2ed6cb05379dc674207edef16](sessions/local-6156b30ac1a25ff3abdf0f57df843d5831872fb2ed6cb05379dc674207edef16.md) — 2 obs
+* [Session evt_1fe3e3f2a001v2HAqdGp8RWndn](sessions/evt-1fe3e3f2a001v2haqdgp8rwndn.md) — 1 obs
+* [Session evt_1fe3e4042001VS2VeAqafDCTEw](sessions/evt-1fe3e4042001vs2veaqafdctew.md) — 1 obs
+* [Session evt_1fe3e408a001YwMeX4TwSBby1u](sessions/evt-1fe3e408a001ywmex4twsbby1u.md) — 1 obs
+* [Session evt_1fe3ea375001dOFWX0PX3wcCYe](sessions/evt-1fe3ea375001dofwx0px3wccye.md) — 1 obs
+* [Session evt_1fe3ea37a001kg9mwqzZsoSo1u](sessions/evt-1fe3ea37a001kg9mwqzzsoso1u.md) — 1 obs
+* [Session evt_1fe3ea394001hEK5oMczpj76mc](sessions/evt-1fe3ea394001hek5omczpj76mc.md) — 1 obs
+* [Session evt_1fe41b213001ODZS2jFhXY1lSV](sessions/evt-1fe41b213001odzs2jfhxy1lsv.md) — 1 obs
+* [Session evt_1fe4237a9001RSlWn2yHYTx6A6](sessions/evt-1fe4237a9001rslwn2yhytx6a6.md) — 1 obs
+* [Session evt_1fe4237a1001KZSWXFunNRmJBo](sessions/evt-1fe4237a1001kzswxfunnrmjbo.md) — 1 obs
+* [Session evt_1fe4237bd001C67IgmstaohtMU](sessions/evt-1fe4237bd001c67igmstaohtmu.md) — 1 obs
+* [Session evt_1fe423ace001M7NRON7wfH3AUT](sessions/evt-1fe423ace001m7nron7wfh3aut.md) — 1 obs
+* [Session evt_1fe436805001Er3Z7Z9rp74JcH](sessions/evt-1fe436805001er3z7z9rp74jch.md) — 1 obs
+* [Session evt_1fe436841001OPJE1zsf65Uql2](sessions/evt-1fe436841001opje1zsf65uql2.md) — 1 obs
+* [Session evt_1fe43b886001FoooMxP2WwQujx](sessions/evt-1fe43b886001fooomxp2wwqujx.md) — 1 obs
+* [Session evt_1fe45e919001fbUr9wDBzAbTQG](sessions/evt-1fe45e919001fbur9wdbzabtqg.md) — 1 obs
+* [Session evt_1fe45e996001b0WSLkS1Mfhs8J](sessions/evt-1fe45e996001b0wslks1mfhs8j.md) — 1 obs
+* [Session evt_1fe45f2e8001Yeo9UwuEenO26u](sessions/evt-1fe45f2e8001yeo9uwueeno26u.md) — 1 obs
+* [Session evt_1fe45f2f0001sfdQXJsgmoINpS](sessions/evt-1fe45f2f0001sfdqxjsgmoinps.md) — 1 obs
+* [Session evt_1fe45f3010012PBdYI883Xe9p3](sessions/evt-1fe45f3010012pbdyi883xe9p3.md) — 1 obs
+* [Session evt_1fe464637001iMQj3dZksRDHsz](sessions/evt-1fe464637001imqj3dzksrdhsz.md) — 1 obs
+* [Session evt_1fe464773001DiqvbwIEoulzZT](sessions/evt-1fe464773001diqvbwieoulzzt.md) — 1 obs
+* [Session evt_1fe4651ff001zvhxGH73kWr5Ve](sessions/evt-1fe4651ff001zvhxgh73kwr5ve.md) — 1 obs
+* [Session evt_1fe465202001cRy6UgkVUZ8a75](sessions/evt-1fe465202001cry6ugkvuz8a75.md) — 1 obs
+* [Session evt_1fe4652180010SHyhzBm3rwkpa](sessions/evt-1fe4652180010shyhzbm3rwkpa.md) — 1 obs
+* [Session evt_1fe469ff3001qXlFXQXoMfbBDb](sessions/evt-1fe469ff3001qxlfxqxomfbbdb.md) — 1 obs
+* [Session evt_1fe46a013001Z0xx27751Wi5Cq](sessions/evt-1fe46a013001z0xx27751wi5cq.md) — 1 obs
+* [Session ses_e01c1c0ddffegheSST1d0jiEIX](sessions/ses-e01c1c0ddffeghesst1d0jieix.md) — 1 obs
+* [Session evt_1fe471f43001f4VO9Sf5g31JCQ](sessions/evt-1fe471f43001f4vo9sf5g31jcq.md) — 1 obs
+* [Session local-064756456a71ccff3e095c7c43cde86f3f1f1a7a5fe0ccecce7dae5390c9390e](sessions/local-064756456a71ccff3e095c7c43cde86f3f1f1a7a5fe0ccecce7dae5390c9390e.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -36966,3 +36997,34 @@ session_id: loc](memories/mem_mwormv9y_a2bab731eeef.md)
 
 source: hermes
 session_id: local-dd3684de9fc](memories/mem_mwormvs3_f94e63536be9.md)
+* [Memory: # Morning briefing · Nov 20 08:00
+
+source: hermes
+session_id: local-244b193d940d](memories/mem_mwq72ofa_99920b37ce76.md)
+* [Memory: # local-6156b30ac1a25ff3abdf0f57df843d5831872fb2ed6cb05379dc674207edef16
+
+source](memories/mem_mwq72pki_5fe4426ad180.md)
+* [Memory: # Evening wind-down · Nov 20 21:00
+
+source: hermes
+session_id: local-8144b6d4ac4](memories/mem_mwq72qdb_8e746e1d73fd.md)
+* [Memory: # agentmemory-okf-mirror · Nov 21 03:01
+
+source: hermes
+session_id: local-8d25d4](memories/mem_mwq72qxv_fbd4831a506c.md)
+* [Memory: # Workday start reminder · Nov 20 09:00
+
+source: hermes
+session_id: local-b5379e](memories/mem_mwq72rnb_7affa91927ea.md)
+* [Memory: # Set up Carlton Crafted DBA in Texas
+
+source: hermes
+session_id: local-c927ce85](memories/mem_mwq72s8u_7ef26bc278fc.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 21 03:00
+
+source: hermes
+session_id: loc](memories/mem_mwq72stn_07ac0da67c10.md)
+* [Memory: # nightly-okf-index · Nov 20 03:17
+
+source: hermes
+session_id: local-d5a5aa8c6c9](memories/mem_mwq72tlb_f7aa9219def6.md)
