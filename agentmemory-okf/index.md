@@ -6,7 +6,7 @@ description: Auto-generated OKF export of AgentMemory
 ---
 # AgentMemory OKF Bundle
 
-_Exported 2026-11-22T09:00:21.405Z from AgentMemory v0.9.27 -> OKF v0.1_
+_Exported 2026-11-23T09:00:23.595Z from AgentMemory v0.9.27 -> OKF v0.1_
 
 * [Session cb731076e754](sessions/cb731076e754.md) — 2 obs
 * [Session eed4ecd6b94e](sessions/eed4ecd6b94e.md) — 0 obs
@@ -715,7 +715,7 @@ _Exported 2026-11-22T09:00:21.405Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session 20260806_080449_9e650f](sessions/20260806-080449-9e650f.md) — 13 obs
 * [Session 20260806_081527_c12345](sessions/20260806-081527-c12345.md) — 11 obs
 * [Session 20260806_083204_2a1fd6](sessions/20260806-083204-2a1fd6.md) — 35 obs
-* [Session 20260806_084129_e170ed](sessions/20260806-084129-e170ed.md) — 50 obs
+* [Session 20260806_084129_e170ed](sessions/20260806-084129-e170ed.md) — 197 obs
 * [Session evt_fd7739027001Ec5iSiEVOxyHWU](sessions/evt-fd7739027001ec5isievoxyhwu.md) — 1 obs
 * [Session evt_fd7739088001s4Pb5VYrNSkFoZ](sessions/evt-fd7739088001s4pb5vyrnskfoz.md) — 1 obs
 * [Session evt_fd77394590018Ynw16w9rQfyz0](sessions/evt-fd77394590018ynw16w9rqfyz0.md) — 1 obs
@@ -10058,6 +10058,12 @@ _Exported 2026-11-22T09:00:21.405Z from AgentMemory v0.9.27 -> OKF v0.1_
 * [Session ses_e01c1c0ddffegheSST1d0jiEIX](sessions/ses-e01c1c0ddffeghesst1d0jieix.md) — 1 obs
 * [Session evt_1fe471f43001f4VO9Sf5g31JCQ](sessions/evt-1fe471f43001f4vo9sf5g31jcq.md) — 1 obs
 * [Session local-064756456a71ccff3e095c7c43cde86f3f1f1a7a5fe0ccecce7dae5390c9390e](sessions/local-064756456a71ccff3e095c7c43cde86f3f1f1a7a5fe0ccecce7dae5390c9390e.md) — 1 obs
+* [Session local-51f7fec14e3cff30359d910a00462dbc35d425cdf3af82b80bb8fb81d9f0f94c](sessions/local-51f7fec14e3cff30359d910a00462dbc35d425cdf3af82b80bb8fb81d9f0f94c.md) — 1 obs
+* [Session local-8647b400437f43f85558e12c71a8006b56034fb759a761de04ca123b947383fa](sessions/local-8647b400437f43f85558e12c71a8006b56034fb759a761de04ca123b947383fa.md) — 1 obs
+* [Session local-8b66bf3ef9e78198fdb9c6455b83ca7f764d20473085d2cd22c03091e7c1c7b9](sessions/local-8b66bf3ef9e78198fdb9c6455b83ca7f764d20473085d2cd22c03091e7c1c7b9.md) — 11 obs
+* [Session local-7e6a3f30ab8f3dd64ee282b77dabb96a80931ea82e50eb6836908ccc304dfae7](sessions/local-7e6a3f30ab8f3dd64ee282b77dabb96a80931ea82e50eb6836908ccc304dfae7.md) — 32 obs
+* [Session local-0c78ab2b557c0540fd0c6c554fd4170db2d8730d8089e558cba4556d9d710ac1](sessions/local-0c78ab2b557c0540fd0c6c554fd4170db2d8730d8089e558cba4556d9d710ac1.md) — 41 obs
+* [Session local-a9c2a69f01adc9f9eff8b23924794d59dc4d506600ea0ceec5432b53a280f240](sessions/local-a9c2a69f01adc9f9eff8b23924794d59dc4d506600ea0ceec5432b53a280f240.md) — 1 obs
 * [Memory: Love State test memory - white oak UV printing requires proper surface preparati](memories/mem_mrmlwszp_70b56ec8edd6.md)
 * [Memory: Test embedding pipeline: verify that Xenova all-MiniLM-L6-v2 generates 384-dim v](memories/mem_mrmma893_d0a9993676df.md)
 * [Memory: Kilo Code verified memory at  via MCP wrapper proxy](memories/mem_mrnuu7e2_6fa12d394caa.md)
@@ -37028,3 +37034,46 @@ session_id: loc](memories/mem_mwq72stn_07ac0da67c10.md)
 
 source: hermes
 session_id: local-d5a5aa8c6c9](memories/mem_mwq72tlb_f7aa9219def6.md)
+* [Memory: # hermes-conversations-okf-mirror · Nov 22 03:00
+
+source: hermes
+session_id: loc](memories/mem_mwrmi9fx_9b7774fd7f19.md)
+* [Memory: # Creality colored plywood engraving settings Xtool P3
+
+source: hermes
+session_i](memories/mem_mwrmi9x6_ec7344c15c73.md)
+* [Memory: # agentmemory-okf-mirror · Nov 22 03:00
+
+source: hermes
+session_id: local-51f7fe](memories/mem_mwrmiaho_ae96ef0662b0.md)
+* [Memory: # nightly-okf-index · Nov 21 03:17
+
+source: hermes
+session_id: local-6156b30ac1a](memories/mem_mwrmidqz_1dd79745391e.md)
+* [Memory: # Organize laser engraving business card capabilities
+
+source: hermes
+session_id](memories/mem_mwrmiel9_fe304a8c3f25.md)
+* [Memory: # Morning briefing · Nov 21 08:00
+
+source: hermes
+session_id: local-6be7b3e0d20a](memories/mem_mwrmif5y_b749a7e83123.md)
+* [Memory: # local-8647b400437f43f85558e12c71a8006b56034fb759a761de04ca123b947383fa
+
+source](memories/mem_mwrmifqb_7af078508d9b.md)
+* [Memory: # Open crumb tray on xTool P3
+
+source: hermes
+session_id: local-9086060240d8a6c2](memories/mem_mwrmig7q_a0b70771ddd6.md)
+* [Memory: # XTool P3 curved surface red dot workflow
+
+source: hermes
+session_id: local-dc4](memories/mem_mwrmigop_928f5462002d.md)
+* [Memory: # Evening wind-down · Nov 21 21:00
+
+source: hermes
+session_id: local-fb5aef7be17](memories/mem_mwrmih85_86f63b876956.md)
+* [Memory: # How do I use an iPad camera from macOS
+
+source: hermes
+session_id: local-fbc18](memories/mem_mwrmihrv_d53344339f4a.md)
